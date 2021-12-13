@@ -21,3 +21,7 @@ tail -f /d/phpstudy_pro/WWW/tms_admin/protected/runtime/logs/error.log |grep 'cs
 ALTER table tms_supplier add COLUMN tms_sup_bank_account VARCHAR (255) DEFAULT NULL COMMENT '银行账号' AFTER tms_sup_invoicetype;
 ALTER table tms_supplier add COLUMN tms_sup_bank_name VARCHAR (255) DEFAULT NULL COMMENT '开户银行名称' AFTER tms_sup_invoicetype;
 ALTER table tms_supplier add COLUMN tms_sup_payee_name VARCHAR (255) DEFAULT NULL COMMENT '银行账号' AFTER tms_sup_invoicetype;
+
+
+ALTER table car add COLUMN car_volume int (11) DEFAULT NULL COMMENT '车辆容积' AFTER car_lastuse_time;
+ALTER table car add COLUMN car_ratify_size VARCHAR (255) DEFAULT NULL COMMENT '核定大小' AFTER car_lastuse_time;
