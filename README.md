@@ -16,6 +16,8 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 tail -f /d/phpstudy_pro/WWW/tms_admin/protected/runtime/logs/error.log |grep 'csl'
 
 /d/phpstudy_pro/WWW/yii3/basic/yii csl/cui 
+
+
 /添加索引
 ALTER  TABLE  `table_name`  ADD  INDEX index_name (  `column`  )
 
@@ -34,3 +36,11 @@ ALTER table tms_mf_shipnoadd add COLUMN tms_mf_carriers_name VARCHAR (255) DEFAU
 
 //修改类型
  alter table tms_mf_shipnoadd modify column tms_mf_send_month varchar(15) COMMENT '发货月份';
+
+密码 
+ cuishilei Cui123
+ 60988387
+
+ git  http://2587984bx6.zicp.vip
+cuishilei   aiuz4mz_ggU5*'kO
+cuishilei   123456
