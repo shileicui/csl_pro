@@ -37,7 +37,6 @@ ALTER table tms_mf_shipnoadd add COLUMN tms_mf_carriers_name VARCHAR (255) DEFAU
 //修改类型
  alter table tms_mf_shipnoadd modify column tms_mf_send_month varchar(15) COMMENT '发货月份';
 
-密码 
  cuishilei Cui123
  60988387
 
