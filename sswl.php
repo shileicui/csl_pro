@@ -48,3 +48,5 @@ cuishilei   123456
 生生git
 http://2587984bx6.zicp.vip/dashboard/projects
 
+git remote update origin -p
+
