@@ -40,6 +40,10 @@ ALTER table tms_mf_shipnoadd add COLUMN tms_mf_carriers_name VARCHAR (255) DEFAU
  cuishilei Cui123
  60988387
 
+谷歌邮箱
+shileicui666@gmail.com
+S***123
+
 git  http://2587984bx6.zicp.vip
 cuishilei   aiuz4mz_ggU5*'kO
 cuishilei   123456
