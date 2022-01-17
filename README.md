@@ -1,2 +1,2 @@
 # csl_pro
-sssss
+git config --global credential.helper store
