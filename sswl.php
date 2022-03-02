@@ -64,19 +64,6 @@ add COLUMN severity_degree  int(4) not null  default '0' COMMENT '严重程度 1
 
 
 
-  `we_price` varchar(50) DEFAULT NULL COMMENT '我方理赔金额',
-  `other_price` varchar(50) DEFAULT NULL COMMENT '对方理赔金额',
-  `at_present_status` int(4) NOT NULL DEFAULT '3' COMMENT '当前状态 1处理中 2 完成（未进保） 3 完成（已结案）',
-  `severity_degree` int(4) DEFAULT NULL COMMENT '严重程度 1轻微车辆损伤 2 严重车辆损伤 3 轻微人伤 4 严重人伤 5 严重车损+轻微人伤 6 重大事故 7 高金额事故',
-  PRIMARY KEY (`id`)
-
-`trucks_type` int(4) DEFAULT NULL COMMENT '货车类型',
-  `car_level` int(4) DEFAULT NULL COMMENT '技术等级评定',
-  `car_level_time` int(11) DEFAULT NULL COMMENT '技术等级评定时间',
-  `car_send_card_time` int(11) DEFAULT NULL COMMENT '运输证发证日期',
-  `car_year_valid_time` int(11) DEFAULT NULL COMMENT '运输证年审有效日期至',
-  `car_valid_time` int(11) DEFAULT NULL COMMENT '运输证有效期至',
-
 
 UPDATE operation SET opn_source = 1  WHERE opn_id = 5909144；
 
