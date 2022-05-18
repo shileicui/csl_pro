@@ -9,9 +9,8 @@ https://pdd.ismicool.cn/idea/code.html
 
 //Hyper-v
 bcdedit /set hypervisorlaunchtype off    //Hyper-v 关闭
-bcdedit /set hypervisorlaunchtype on    //Hyper-v 开启
-DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+bcdedit /set hypervisorlaunchtype auto    //Hyper-v 开启
+
 
 
 tail -f /d/phpstudy_pro/WWW/tms_admin/protected/runtime/logs/error.log |grep 'csl'
@@ -44,6 +43,11 @@ ALTER table car add COLUMN car_year_valid_time  int(11)  COMMENT '运输证年�
 ALTER table car add COLUMN car_valid_time  int(11)  COMMENT '运输证有效期至' AFTER car_volume;
 
 //车辆事故表
+ALTER table car add COLUMN car_source_type int(4) not null  default '1' COMMENT '车辆数据来源 1 物流系统添加 2资产系统录入';
+
+//供应商管理
+ALTER table tms_supplier add COLUMN tms_sup_advance int(4) not null  default '2' COMMENT '是否预付款 1是 2否';
+
 ALTER table car_accident add COLUMN we_price  varchar(50)  COMMENT '我方理赔金额' AFTER ndc_data;
 ALTER table car_accident add COLUMN other_price  varchar(50)  COMMENT '对方理赔金额' AFTER ndc_data;
 ALTER table car_accident add COLUMN at_present_status  int(4)  COMMENT '当前状态 1处理中 2 完成（未进保） 3 完成（已结案）' AFTER ndc_data;
@@ -62,13 +66,17 @@ add COLUMN other_price  varchar(50) not null  default '' COMMENT '对方理赔�
 add COLUMN at_present_status  int(4) not null  default '3' COMMENT '当前状态 1处理中 2 完成（未进保） 3 完成（已结案）' ,
 add COLUMN severity_degree  int(4) not null  default '0' COMMENT '严重程度 1轻微车辆损伤 2 严重车辆损伤 3 轻微人伤 4 严重人伤 5 严重车损+轻微人伤 6 重大事故 7 高金额事故';
 
+ALTER TABLE `tms_customer_user` drop COLUMN `tcu_level`;
 
 
 
+百优康国际货运代理
 UPDATE operation SET opn_source = 1  WHERE opn_id = 5909144；
 
 //修改类型
  alter table tms_mf_shipnoadd modify column tms_mf_send_month varchar(15) COMMENT '发货月份';
+ //修改长度
+ alter table work_map modify column wmp_tops_name varchar(300) COMMENT '站点名称';
 
  cuishilei Cui123
  60988387
@@ -76,7 +84,9 @@ UPDATE operation SET opn_source = 1  WHERE opn_id = 5909144；
 谷歌邮箱
 shileicui666@gmail.com
 S***123
-
+docker 
+csl666
+S***123
 git  http://2587984bx6.zicp.vip
 cuishilei   aiuz4mz_ggU5*'kO
 cuishilei   123456
@@ -94,3 +104,63 @@ throw new \RuntimeException('');
 catch (\Exception $e) {
            return $e->getMessage();
        }
+
+取件 order/get
+发货 order/dissend   order/qxdissend  order-closing/dissend *
+提货 order/distask  order-closing/distask *  order/mdljdistask
+派件 order/send
+
+
+订单列表/批量发货（order-closing/plsend）、确认（order/auditing）
+
+订单详情/确认（order/auditing）、取件（order/get）、发货（order/dissend）、提货（order/distask）、派件（order/send）
+
+迈迪朗杰订单/确认（order/auditing）
+
+石药订单/确认（order/auditing）、批量取件（order/syplget）
+
+晏嘉订单/确认（）
+
+临检项目/确认（order/auditing）、批量取件（order/ljplget）*、批量派件（order/ljplsend）
+
+订单调度/批量提货（dispatch/plpick）
+
+
+   \Yii::error('csl=========$to_id========'.$to_id);
+        \Yii::error('csl=========$opn_type========'.$opn_type);
+        \Yii::error('csl=========info========'.json_encode($post,JSON_UNESCAPED_UNICODE));
+
+  //物流跟踪日志
+  TmsLogisticsRemark::add();
+
+  60944067 测试环境 记得 测一下 发货
+
+61190200
+
+45165652
+
+订单列表/批量发货、确认
+订单详情/确认、取件、发货、提货、派件
+迈迪朗杰订单/确认
+石药订单/确认、批量取件
+晏嘉订单/确认
+临检项目/确认、批量取件、批量派件
+订单调度/批量提货
+
+
+    //合单订单 子单处理
+        if ($transport['to_attributes'] == 3) {
+
+            TmsLogisticsRemark::addonelog($transport['to_pid'], $region_id, $region_name, $opn_date, $opn_name, $opn_type, $uid, $name, $stop_region_name, $to_receipt);
+
+            //子订单物流跟踪日志 冗余
+            $transports = TransportOrder::find()
+                ->select("to_id")
+                ->where(["to_pid" => $transport['to_pid']])
+                ->asArray()->all();
+
+            foreach ($transports as $info) {
+                TmsLogisticsRemark::addonelog($info['to_id'], $region_id, $region_name, $opn_date, $opn_name, $opn_type, $uid, $name, $stop_region_name, $to_receipt);
+            }
+            return true;
+        }
