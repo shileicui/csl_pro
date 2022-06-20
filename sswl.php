@@ -69,6 +69,29 @@ add COLUMN severity_degree  int(4) not null  default '0' COMMENT '严重程度 1
 ALTER TABLE `tms_customer_user` drop COLUMN `tcu_level`;
 
 
+// 操作站点 
+   CREATE TABLE `tms_operation_site_user` (
+              `topsu_id`  int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
+              `tops_id` int(11) NOT NULL DEFAULT '0' COMMENT '操作站点id',
+              `topsu_phone` varchar(50) NOT NULL DEFAULT '' COMMENT '手机号',
+              `topsu_principal_opuid` int(11) NOT NULL DEFAULT '0' COMMENT '站点负责人uid',
+              `topsu_principal_opname` varchar(50) NOT NULL DEFAULT '' COMMENT '站点负责人名称',
+              `created_at` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+              `updated_at` int(11) NOT NULL DEFAULT '0' COMMENT '修改时间',
+              `deleted_at` int(11) NOT NULL DEFAULT '0' COMMENT '删除时间',
+              `topsu_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+              PRIMARY KEY (`topsu_id`),
+              KEY `idx_tops_id` (`tops_id`)
+            ) COMMENT = '操作站点附属表';
+
+
+ ALTER table tms_operation_site add COLUMN tops_number  varchar(50)  NOT NULL  DEFAULT '' COMMENT '站点编号',add COLUMN tops_nucleic_acid  varchar(50)  NOT NULL  DEFAULT '' COMMENT '物表核酸检测（1生生外包装 2药品外包装)', add COLUMN tops_carea_name  varchar(50)  NOT NULL  DEFAULT '' COMMENT '大区名称', add COLUMN tops_carea_id  int(11) NOT NULL   DEFAULT '0' COMMENT '大区ID', add COLUMN tops_province_region_name  varchar(50)  NOT NULL  DEFAULT '' COMMENT '省级名称', add COLUMN tops_province_region_id  int(11) NOT NULL  DEFAULT '0' COMMENT '省级id',add COLUMN tops_type  int(4) NOT NULL  DEFAULT '0'  COMMENT '站点类型', add COLUMN tops_project_opname  varchar(255)  NOT NULL  DEFAULT '' COMMENT '项目负责人名称', add COLUMN tops_project_opuid  varchar(255)  NOT NULL  DEFAULT '' COMMENT '项目负责人uid', add COLUMN tops_order_opname  varchar(255)  NOT NULL  DEFAULT '' COMMENT '订单负责人名称', add COLUMN tops_order_opuid  varchar(255)  NOT NULL  DEFAULT '' COMMENT '订单负责人uid';
+
+
+//操作大区 修改
+ alter table carea modify column carea_risk_user_id varchar(255) NOT NULL DEFAULT ''  COMMENT '风险外协通知人ids', modify column carea_risk_user_name varchar(255) NOT NULL  DEFAULT '' COMMENT '风险外协通知人名称';
+
+
 
 百优康国际货运代理
 UPDATE operation SET opn_source = 1  WHERE opn_id = 5909144；
