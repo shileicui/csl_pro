@@ -11,7 +11,7 @@ https://pdd.ismicool.cn/idea/code.html
 bcdedit /set hypervisorlaunchtype off    //Hyper-v 关闭
 bcdedit /set hypervisorlaunchtype auto    //Hyper-v 开启
 
-
+codesign --force --deep --sign - /Applications/Navicat\ Premium.app  //mac 闪退
 
 tail -f /d/phpstudy_pro/WWW/tms_admin/protected/runtime/logs/error.log |grep 'csl'
 
