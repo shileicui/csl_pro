@@ -10,8 +10,28 @@ https://pdd.ismicool.cn/idea/code.html
 //Hyper-v
 bcdedit /set hypervisorlaunchtype off    //Hyper-v 关闭
 bcdedit /set hypervisorlaunchtype auto    //Hyper-v 开启
+openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
 
-codesign --force --deep --sign - /Applications/Navicat\ Premium.app  //mac 闪退
+sudo  codesign --force --deep --sign - /Applications/Navicat\ Premium.app  //mac 闪退
+codesign --force --deep --sign - /Applications/Sourcetree.app  //mac 闪退
+
+        Yii::info('csl=='.json_encode($fharray,JSON_UNESCAPED_UNICODE));
+
+mds、mds_stores、mdworker占用大量的CPU，是因为系统在建立索引，开机后的一段时间比较明显
+解决方案1：
+
+sudo mdutil -a -i off    # 关闭
+sudo mdutil -a -i on    # 还原
+解决方案二：
+
+关闭控制聚焦参数文件的加载：
+
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+想打开的时候，使用：
+
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+
+
 
 tail -f /d/phpstudy_pro/WWW/tms_admin/protected/runtime/logs/error.log |grep 'csl'
 
@@ -91,6 +111,23 @@ ALTER TABLE `tms_customer_user` drop COLUMN `tcu_level`;
 //操作大区 修改
  alter table carea modify column carea_risk_user_id varchar(255) NOT NULL DEFAULT ''  COMMENT '风险外协通知人ids', modify column carea_risk_user_name varchar(255) NOT NULL  DEFAULT '' COMMENT '风险外协通知人名称';
 
+
+// 分组管理附属表 
+   CREATE TABLE `tms_work_map_user` (
+              `wmu_id`  int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
+              `wmp_id` int(11) NOT NULL DEFAULT '0' COMMENT '分组管理id',
+              `wmu_ts_id` int(11) NOT NULL DEFAULT '0' COMMENT '发货站点id',
+              `wmu_ts_name` varchar(50) NOT NULL DEFAULT '' COMMENT '发货站点名称',
+              `wmu_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+              `created_at` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+              `updated_at` int(11) NOT NULL DEFAULT '0' COMMENT '修改时间',
+              `deleted_at` int(11) NOT NULL DEFAULT '0' COMMENT '删除时间',
+              PRIMARY KEY (`wmu_id`),
+              KEY `idx_wmp_id` (`wmp_id`)
+            ) COMMENT = '分组管理附属表';
+
+alter table work_map DROP wmp_ts_name;
+alter table work_map DROP wmp_ts_id;
 
 
 百优康国际货运代理

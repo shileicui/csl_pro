@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+</head>
+<body>
+
+<div id="target">Loading</div>
+ <input type="hidden" name="carea_use_id0"  id="carea_use_id0">
+<input style="min-width: 200px" type="text" name="carea_use_name0"  id ="carea_use_name0">
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/mustache.js/4.1.0/mustache.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="http://www.cuisshsh.com//static/lib/Awesomplete/awesomplete.js?v=201711111"></script>
+    <link rel="stylesheet" href="http://www.cuisshsh.com//static/lib/Awesomplete/awesomplete.css?v=20171226" type="text/css">
+
+<script type="text/javascript" src="http://www.cuisshsh.com//static/js/js/bootstrap-table.min.js?v=201712015"></script>
+
+<script type="text/javascript">
+    var omsCommon = {
+    escapeRegex:function(a){return a.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&")},
+    serializeJson:function(form) {
+        var o = {};
+        var a = $(form).serializeArray();
+        $.each(a, function () {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    },
+};
+
+    var B = {};
+    var C = { 
+        getUrl : function(controll, action, param) {
+               var url = "http://www.cuisshsh.com/index.php?r=" + controll + "/" + action;
+               if (param)
+               {
+                   url += '&' + param;
+               }
+               return url;
+           }
+
+        };
+     B.select = function(id,name,param,ccontroller,caction) {
+
+            // $.each(param,function(i,e){
+            //     console.log(i)
+            // });
+            var cityList;
+            var awesomplete = new Awesomplete(document.querySelector('#'+ name ),{
+                minChars: 0,
+                maxItems: 300,
+                autoFirst: true,
+                data: function (item, input) {
+                    return {label: item.text, value: item};
+                },
+                replace: function (text) {
+                    $("#" + id + " ").val(text.value.value);
+                    $("#phone").val(text.value.phone);
+                    return this.input.value = text.label;
+                },
+                sort:function () {
+                    return false;
+                }
+            });
+            //默认值赋值
+            if(param.id){
+                $("#" + id + " ").val(param.id);
+            }
+            if(param.name){
+                $("#"+name+" ").val(param.name);
+                data={data:param.name};
+                searchCity(data);
+            }
+
+
+            $('#'+ name ).focus(function (){
+                awesomplete.open();
+                awesomplete.evaluate();
+            });
+            $('#'+ name).blur(function(event){
+
+                var matcher = new RegExp( omsCommon.escapeRegex( $(this).val() ), "i" )
+                    ,valid = false;
+                if(cityList && $("#"+name+" ").val()){
+                    $.each(cityList , function(key, val){
+                        if(val == '' || val.text == '')return;
+                        if ( val.text.match( matcher ) ) {
+                             if($("#" + id+ " ").val()==val.value){
+                                 valid = true;
+                                 return false;
+                             }else{
+                                 valid=false;
+                             }
+
+                        }
+                    });
+                }
+
+                if ( !valid ) {
+                    $(this).val('');
+                    $("#" + id+ " ").val('');
+                }
+                if($.trim($("#" + id+ " ").val())==''){
+                    $("#" + name+ " ").val('');
+                }
+
+                return false;
+            });
+            $('#'+ name).bind('input propertychange', function(){
+                if($.trim($("#"+name).val())!= ''){
+                    data={data:$("#"+name).val()};
+                    searchCity(data);
+                }
+
+            });
+            function searchCity(data) {
+                    var otherParams = getOtherParams(param);
+                    if (JSON.stringify(otherParams) != '{}') {
+                        data = Object.assign(otherParams, data);
+                    }
+                    $.ajax({
+                        type: "post",
+                        data: data,
+                        url: C.getUrl(ccontroller, caction),
+                        dataType: "jsonp",
+                        success: function (data2) {
+                            cityList = [{text: "崔市磊-2130", value: "11010",phone:'23529384'},{text: "孙梦新-2", value: "22",phone:'345129384'}];
+                            awesomplete.list = [{text: "崔市磊-2130", value: "11010",phone:'359129384'},{text: "孙梦新-2", value: "22",phone:'345319129384'}];
+                        }
+                    });
+            }
+
+            //除了id,name之外的参数
+            function getOtherParams(params) {
+                var tempObj = params;
+                delete tempObj.id;
+                delete tempObj.name;
+                return tempObj;
+            }
+        }
+            B.select("carea_use_id0","carea_use_name0",{id:'',name:''},"commonorder","user-operatorthree");
+
+</script>
+<script id="template" type="x-tmpl-mustache">
+    <ul>
+        {{#list}}
+        <li>
+            <span>{{name}}</span>
+            <span>{{age}}</span>
+            <span>{{job}}</span>
+        </li>
+        {{/list}}
+    </ul>
+</script>
+
+
+<script type="text/javascript">
+    var template = $("#template").html();
+    var r = Mustache.render(template,{
+        list:[
+            {name:'wannianqing',age:18,job:'The Front End'},
+            {name:'wangxiaosan',age:19,job:'java'},
+            {name:'lixiaosi',age:20,job:'The Front End'},
+            {name:'sunxiaowu',age:21,job:'java'}
+        ]
+    })
+    $("#target").append(r)
+
+    $('#carea_use_name0').bind('input propertychange', function(){
+               console.log($("#carea_use_id0").val())
+
+            });
+</script>
+
+
+
+
+
+</body>
+</html>
+
