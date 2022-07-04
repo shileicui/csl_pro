@@ -113,22 +113,25 @@ ALTER TABLE `tms_customer_user` drop COLUMN `tcu_level`;
 
 
 // 分组管理附属表 
-   CREATE TABLE `tms_work_map_user` (
-              `wmu_id`  int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
+   CREATE TABLE `tms_work_map_site` (
+              `wms_id`  int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
               `wmp_id` int(11) NOT NULL DEFAULT '0' COMMENT '分组管理id',
-              `wmu_ts_id` int(11) NOT NULL DEFAULT '0' COMMENT '发货站点id',
-              `wmu_ts_name` varchar(50) NOT NULL DEFAULT '' COMMENT '发货站点名称',
-              `wmu_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
-              `created_at` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
-              `updated_at` int(11) NOT NULL DEFAULT '0' COMMENT '修改时间',
-              `deleted_at` int(11) NOT NULL DEFAULT '0' COMMENT '删除时间',
-              PRIMARY KEY (`wmu_id`),
+              `wms_ts_id` int(11) NOT NULL DEFAULT '0' COMMENT '发货站点id',
+              `wms_ts_name` varchar(50) NOT NULL DEFAULT '' COMMENT '发货站点名称',
+              `wms_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+              `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+              `updated_at` datetime NOT NULL DEFAULT now() COMMENT '修改时间',
+              `deleted_at` datetime NOT NULL DEFAULT now() COMMENT '删除时间',
+              PRIMARY KEY (`wms_id`),
               KEY `idx_wmp_id` (`wmp_id`)
             ) COMMENT = '分组管理附属表';
+
+ ALTER table work_map add COLUMN wmp_type int(4) NOT NULL DEFAULT '1' COMMENT '排班类型 1 取派 2 提发';
 
 alter table work_map DROP wmp_ts_name;
 alter table work_map DROP wmp_ts_id;
 
+alter table 'tms_work_map_user' rename to 'tms_work_map_site'
 
 百优康国际货运代理
 UPDATE operation SET opn_source = 1  WHERE opn_id = 5909144；
