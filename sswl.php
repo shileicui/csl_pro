@@ -133,6 +133,37 @@ alter table work_map DROP wmp_ts_id;
 
 alter table 'tms_work_map_user' rename to 'tms_work_map_site'
 
+
+//同行人表
+   CREATE TABLE `tms_together_work_user` (
+              `twu_id`  int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
+              `twu_ur_uid` int(11) NOT NULL DEFAULT '0' COMMENT '操作人员ID',
+              `twu_username` varchar(50) NOT NULL DEFAULT '' COMMENT '操作人员名称',
+              `twu_type` int(4) NOT NULL DEFAULT '0' COMMENT '状态  0无分组  1有分组',
+              `twu_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+              `twu_pid` int(11) NOT NULL DEFAULT '0' COMMENT '分组关联id',
+              `twu_adduid` int(11) NOT NULL DEFAULT '0' COMMENT '添加分组人uid',
+              `twu_addname` varchar(50) NOT NULL DEFAULT '' COMMENT '添加分组人名称',
+              `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+              `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+              `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+              PRIMARY KEY (`twu_id`)
+            ) COMMENT = '同行人用户';
+    CREATE TABLE `tms_together_work_log` (
+              `twl_id`  int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
+              `twu_pid` int(11) NOT NULL DEFAULT '0' COMMENT '分组关联id',
+              `twl_ur_uids` varchar(255) NOT NULL DEFAULT '' COMMENT '操作人员ID',
+              `twl_usernames` varchar(255) NOT NULL DEFAULT '' COMMENT '操作人员名称',
+              `twl_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+              `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+              `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+              `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+              PRIMARY KEY (`twl_id`),
+              KEY `idx_twu_pid` (`twu_pid`)
+            ) COMMENT = '同行人历史记录表';
+
+
+
 百优康国际货运代理
 UPDATE operation SET opn_source = 1  WHERE opn_id = 5909144；
 
