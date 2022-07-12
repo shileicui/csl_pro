@@ -149,6 +149,7 @@ alter table 'tms_work_map_user' rename to 'tms_work_map_site'
               `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
               PRIMARY KEY (`twu_id`)
             ) COMMENT = '同行人用户';
+
     CREATE TABLE `tms_together_work_log` (
               `twl_id`  int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
               `twu_pid` int(11) NOT NULL DEFAULT '0' COMMENT '分组关联id',
@@ -162,6 +163,34 @@ alter table 'tms_work_map_user' rename to 'tms_work_map_site'
               KEY `idx_twu_pid` (`twu_pid`)
             ) COMMENT = '同行人历史记录表';
 
+
+//客户项目 和 客户列表配置
+
+   CREATE TABLE `tms_customer_config` (
+              `tcc_id`  int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
+              `cu_id` int(11) NOT NULL DEFAULT '0' COMMENT '客户id',
+              `cu_name` varchar(50) NOT NULL DEFAULT '' COMMENT  '客户名称',
+              `tcc_dwt_shutdown_verify` tinyint(4) DEFAULT '0'  COMMENT '鼎为关机验证（0不验证1验证）',
+              `tcc_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+              `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+              `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+              `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+              PRIMARY KEY (`tcc_id`),
+              KEY `idx_cu_id` (`cu_id`)
+            ) COMMENT = 'tms客户配置表';
+
+
+   CREATE TABLE `tms_project_config` (
+              `tpc_id`  int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
+              `cp_id` int(11) NOT NULL DEFAULT '0' COMMENT '项目id',
+              `cp_name` varchar(50) NOT NULL DEFAULT '' COMMENT  '项目名称',
+              `tpc_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+              `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+              `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+              `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+              PRIMARY KEY (`tpc_id`),
+              KEY `idx_cp_id` (`cp_id`)
+            ) COMMENT = 'tms项目配置表';
 
 
 百优康国际货运代理
