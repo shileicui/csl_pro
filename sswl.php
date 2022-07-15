@@ -193,6 +193,10 @@ alter table 'tms_work_map_user' rename to 'tms_work_map_site'
             ) COMMENT = 'tms项目配置表';
 
 
+//供应商 新增状态
+ALTER table tms_supplier add COLUMN tms_sup_status  int(4) not null  default '1' COMMENT '状态 1正常 0停用'
+
+
 百优康国际货运代理
 UPDATE operation SET opn_source = 1  WHERE opn_id = 5909144；
 
