@@ -194,7 +194,7 @@ alter table 'tms_work_map_user' rename to 'tms_work_map_site'
 
 
 //供应商 新增状态
-ALTER table tms_supplier add COLUMN tms_sup_status  int(4) not null  default '1' COMMENT '状态 1正常 0停用'
+ALTER table tms_supplier add COLUMN tms_sup_status  int(4) not null  default '1' COMMENT '状态 1正常 2停用'
 
 
 百优康国际货运代理
