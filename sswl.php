@@ -39,7 +39,9 @@ tail -f /d/phpstudy_pro/WWW/tms_admin/protected/runtime/logs/error.log |grep 'cs
 
 
 /添加索引
-ALTER  TABLE  `table_name`  ADD  INDEX index_name (  `column`  )
+
+ALTER  TABLE  `work_map`  ADD  INDEX idx_wmp_region_id (  `wmp_region_id`  );
+ALTER TABLE work_map modify COLUMN wmp_type  int(4) NOT NULL DEFAULT '1' COMMENT '排班类型 1.取发提派 3耗材组 4项目组 5专人专车组 6长途专线组';
 
 //添加字段
 ALTER table tms_supplier add COLUMN tms_sup_bank_account VARCHAR (255) DEFAULT '' COMMENT '银行账号' AFTER tms_sup_invoicetype;
@@ -147,7 +149,8 @@ alter table 'tms_work_map_user' rename to 'tms_work_map_site'
               `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
               `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
               `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
-              PRIMARY KEY (`twu_id`)
+              PRIMARY KEY (`twu_id`),
+               KEY `idx_twu_ur_uid` (`twu_ur_uid`)
             ) COMMENT = '同行人用户';
 
     CREATE TABLE `tms_together_work_log` (
@@ -194,7 +197,7 @@ alter table 'tms_work_map_user' rename to 'tms_work_map_site'
 
 
 //供应商 新增状态
-ALTER table tms_supplier add COLUMN tms_sup_status  int(4) not null  default '1' COMMENT '状态 1正常 0停用'
+ALTER table tms_supplier add COLUMN tms_sup_status  int(4) not null  default '1' COMMENT '状态 1正常 2停用'
 
 
 百优康国际货运代理
