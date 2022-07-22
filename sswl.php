@@ -43,6 +43,9 @@ tail -f /d/phpstudy_pro/WWW/tms_admin/protected/runtime/logs/error.log |grep 'cs
 ALTER  TABLE  `work_map`  ADD  INDEX idx_wmp_region_id (  `wmp_region_id`  );
 ALTER TABLE work_map modify COLUMN wmp_type  int(4) NOT NULL DEFAULT '1' COMMENT '排班类型 1.取发提派 3耗材组 4项目组 5专人专车组 6长途专线组';
 
+
+ALTER  TABLE  `work_map`  ADD  INDEX idx_wmp_region_id (  `wmp_region_id`  ), modify COLUMN wmp_type  int(4) NOT NULL DEFAULT '1' COMMENT '排班类型 1.取发提派 3耗材组 4项目组 5专人专车组 6长途专线组';
+
 //添加字段
 ALTER table tms_supplier add COLUMN tms_sup_bank_account VARCHAR (255) DEFAULT '' COMMENT '银行账号' AFTER tms_sup_invoicetype;
 ALTER table tms_supplier add COLUMN tms_sup_bank_name VARCHAR (255) DEFAULT '' COMMENT '开户银行名称' AFTER tms_sup_invoicetype;
