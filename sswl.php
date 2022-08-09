@@ -203,6 +203,12 @@ alter table 'tms_work_map_user' rename to 'tms_work_map_site'
 ALTER table tms_supplier add COLUMN tms_sup_status  int(4) not null  default '1' COMMENT '状态 1正常 2停用'
 
 
+
+ALTER table tms_project_config add COLUMN pickup_collect_note_switch  tinyint(4)  not null  DEFAULT '0' COMMENT '取件给收件方发送短信开关 1发送 0不发送'
+
+ALTER table tms_route_recommend add COLUMN tms_rr_to_id  int(11)  not null  DEFAULT '0' COMMENT '订单to_id',ADD  INDEX idx_tms_rr_to_id (  `tms_rr_to_id`  );
+
+
 百优康国际货运代理
 UPDATE operation SET opn_source = 1  WHERE opn_id = 5909144；
 
