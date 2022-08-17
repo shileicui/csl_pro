@@ -318,9 +318,7 @@ catch (\Exception $e) {
 
 
 
-<<<<<<< HEAD
         江苏恒瑞医药股份有限公司-综合事业部
-=======
 
 function cui(index = 0) {
     //+now.getFullYear()
@@ -415,4 +413,3 @@ function mr() {
     $("#to_category").val('1')
     $('#to_insure').val('0')
 }
->>>>>>> 39ea8e16a9327b52ca0af2b7a7646847861ae8f0
