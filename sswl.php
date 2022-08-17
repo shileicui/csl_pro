@@ -46,6 +46,18 @@ ALTER TABLE work_map modify COLUMN wmp_type  int(4) NOT NULL DEFAULT '1' COMMENT
 
 ALTER  TABLE  `work_map`  ADD  INDEX idx_wmp_region_id (  `wmp_region_id`  ), modify COLUMN wmp_type  int(4) NOT NULL DEFAULT '1' COMMENT '排班类型 1.取发提派 3耗材组 4项目组 5专人专车组 6长途专线组';
 
+
+
+
+
+ALTER  TABLE  tms_route_recommend modify COLUMN tms_rr_result text DEFAULT NULL COMMENT '路由推荐内容';
+ALTER  TABLE  tms_material_plan_recommend modify COLUMN tms_mpr_result text DEFAULT NULL COMMENT '计划箱型内容';
+
+
+
+
+
+t
 //添加字段
 ALTER table tms_supplier add COLUMN tms_sup_bank_account VARCHAR (255) DEFAULT '' COMMENT '银行账号' AFTER tms_sup_invoicetype;
 ALTER table tms_supplier add COLUMN tms_sup_bank_name VARCHAR (255) DEFAULT '' COMMENT '开户银行名称' AFTER tms_sup_invoicetype;
@@ -303,3 +315,100 @@ catch (\Exception $e) {
             }
             return true;
         }
+
+
+
+
+function cui(index = 0) {
+    //+now.getFullYear()
+    var now = new Date();
+    var now_date = 'csl'+((now.getMonth()+1)<10?"0":"")+(now.getMonth()+1)+(now.getDate()<10?"0":"")+now.getDate();
+    
+    $('input[name=to_no]').val(now_date + index);
+
+    $('#e_cu_name').val('kh20120001-百优康国际货运代理（上海）有限公司')
+    $('#e_cu_no').val('kh20120001')
+    $('#e_cu_id').val('20120001')
+    $('#cp_name').val('冷链运输-冷链运输')
+    $('#cp_id').val('9477')
+    $('#start_region_name').val('北京市')
+    $('#start_region_id').val('110000')
+    $('#stop_region_name').val('天津市')
+    $('#stop_region_id').val('120000')
+
+    $('#ol_pickup_planbegin').val(now.getFullYear()+'-'+((now.getMonth()+1)<10?"0":"")+(now.getMonth()+1)+'-'+(now.getDate()<10?"0":"")+now.getDate())
+    
+    $('#ol_delivery_planbegin').val(now.getFullYear()+'-'+((now.getMonth()+1)<10?"0":"")+(now.getMonth()+1)+'-'+(now.getDate()<10?"0":"")+now.getDate())
+    
+    $('#ol_pickup_planfw').val('7')
+    
+    $('#ol_delivery_planfw').val('5')
+    $('#start_co_name').val('崔市磊')
+    $('#start_co_mobile_phone').val('18310102039')
+
+    $('#start_co_address').val('生生物流')
+    $('#stop_co_name').val('崔市磊')
+    $('#stop_co_mobile_phone').val('18919293876')
+    $('#stop_co_address').val('生生物流')
+
+    $('select[name=to_thermometer]').val('1');
+    $('#temperature_num').val('91')
+    $("#to_goodstype").val('2')
+    $("#to_timelimit").val('1')
+    $("#to_trequirement").val('0')
+    $("#to_category").val('1')
+    $('#to_insure').val('0')
+
+    //$('#dosub').click()
+    //$("body > div.bui-message.bui-dialog.bui-overlay.bui-ext-position.x-align-cc-cc > div.bui-stdmod-footer > button.button.button-primary").click()
+
+}
+cui()
+function sleep(numberMillis) {
+    var now = new Date();
+    var exitTime = now.getTime() + numberMillis;
+    while (true) {
+        now = new Date();
+        if (now.getTime() > exitTime)
+            return;
+    }
+}
+function co() {
+    for (let index = 0; index < 2; index++) {
+
+        cui(index)
+        
+        var now = new Date();
+        var exitTime = now.getTime() + 10000;
+        while (true) {
+            now = new Date();
+            if (now.getTime() > exitTime)
+                return;
+        }
+    }
+}
+
+function mr() {
+     $('#start_region_name').val('北京市')
+    $('#start_region_id').val('110000')
+    $('#stop_region_name').val('天津市')
+    $('#stop_region_id').val('120000')
+
+    $('#ol_pickup_planbegin').val('2022-05-23')
+    $('#ol_pickup_planfw').val('7')
+    $('#start_co_name').val('崔市磊')
+    $('#start_co_mobile_phone').val('18310102039')
+
+    $('#start_co_address').val('生生物流')
+    $('#stop_co_name').val('崔市磊')
+    $('#stop_co_mobile_phone').val('18919293876')
+    $('#stop_co_address').val('生生物流')
+
+    $('select[name=to_thermometer]').val('1');
+    $('#temperature_num').val('91')
+    $("#to_goodstype").val('2')
+    $("#to_timelimit").val('1')
+    $("#to_trequirement").val('0')
+    $("#to_category").val('1')
+    $('#to_insure').val('0')
+}
