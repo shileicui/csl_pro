@@ -68,11 +68,10 @@ CREATE TABLE `tms_outsource_rule_conf` (
   `torc_region_id` int(11) NOT NULL DEFAULT '0' COMMENT '城市id',
   `torc_region_name` varchar(255) NOT NULL DEFAULT '' COMMENT '城市名称',
   `torc_far_type` int(4) NOT NULL DEFAULT '0' COMMENT '超远距离类型  1 减30km 2不减30km',
-  `torc_dryrun_fee` decimal(10,2) DEFAULT '0.00' COMMENT '空跑费',
-  `torc_standard_fee` decimal(10,2) DEFAULT '0.00' COMMENT '标准操作费',
-  `torc_sameperson_fee` decimal(10,2) DEFAULT '0.00' COMMENT '相同人续单费',
-  `torc_diverseperson_fee` decimal(10,2) DEFAULT '0.00' COMMENT '不相同人续单费',
-  `torc_remark` varchar(1024) DEFAULT NULL COMMENT '备注',
+  `torc_standard_fee` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '标准操作费',
+  `torc_sameperson_fee` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '相同人续单费',
+  `torc_diverseperson_fee` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '不相同人续单费',
+  `torc_remark` varchar(1024) NOT NULL DEFAULT '' COMMENT '备注',
   `torc_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
@@ -84,10 +83,10 @@ CREATE TABLE `tms_outsource_rule_box` (
   `torb_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `torc_id` int(11) NOT NULL DEFAULT '0' COMMENT '外协费用规则配置id',
   `torb_sto_id` int(11) NOT NULL DEFAULT '0' COMMENT '存货序号',
-  `torb_sto_name` varchar(32)  DEFAULT ''  COMMENT '存货名称',
-  `torb_quantity` int(5) NOT NULL DEFAULT '0' COMMENT '数量',
-  `torb_type` int(4) NOT NULL DEFAULT '0'  COMMENT '大箱补贴 2多箱补贴',
-  `torb_visible` int(1) NOT NULL DEFAULT '1' COMMENT '1无效 2有效',
+  `torb_sto_name` varchar(32) NOT NULL DEFAULT ''  COMMENT '存货名称',
+  `torb_box_fee` decimal(10,2)NOT NULL DEFAULT '0.00' COMMENT '箱型费',
+  `torb_type` int(4) NOT NULL DEFAULT '0'  COMMENT '1大箱补贴 2多箱补贴',
+  `torb_visible` int(1) NOT NULL DEFAULT '1' COMMENT '1有效 2无效',
   `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
@@ -95,7 +94,105 @@ CREATE TABLE `tms_outsource_rule_box` (
   KEY `idx_torc_id` (`torc_id`)
 ) COMMENT='外协费用规则配置附属表';
 
+220822
+1、外协操作费用规则配置 页面  已完成
+2、app操作费用异步加载标红提醒
 
+220823
+app_start_training
+
+
+CREATE TABLE `app_start_training` (
+  `ast_id`  int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
+  `ast_pushtime` int(11) NOT NULL DEFAULT '0' COMMENT '推送时长',
+  `ast_content` text NOT NULL DEFAULT '' COMMENT '备注',
+  `ast_state` int(4) NOT NULL DEFAULT '1' COMMENT '1正常  2关闭',
+  `ast_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`ast_id`)
+) COMMENT = 'app开机推送配置';
+
+
+
+
+CREATE TABLE `tms_operation_fee` (
+  `tof_id`  int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
+  `opn_id` int(11) NOT NULL  DEFAULT '0' COMMENT '操作ID',
+  `to_id` int(11) NOT NULL  DEFAULT '0' COMMENT '订单序号',
+  `to_no` char(32) NOT NULL DEFAULT '' COMMENT '运单编号',
+  `opn_type` tinyint(2) NOT NULL DEFAULT '0' COMMENT '操作类型 1 取件 2 派件 3 发货 4 提货',
+  `opn_region_id` int(11) NOT NULL DEFAULT '0' COMMENT '操作城市ID',
+  `opn_region_name` varchar(20) NOT NULL DEFAULT '' COMMENT '操作城市名称',
+  `opn_date` int(11) NOT NULL DEFAULT '0' COMMENT '操作时间',
+  `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '操作人id ',
+  `username` varchar(32) NOT NULL DEFAULT '' COMMENT '操作人姓名',
+  `opn_remark` varchar(1024) NOT NULL DEFAULT '' COMMENT '操作备注',
+  `opn_status` int(2) NOT NULL DEFAULT '0' COMMENT '状态 0未录1已录入2已审3已批准4已复核5已支付',
+  `od_id` int(10) NOT NULL DEFAULT '0' COMMENT '取派件存order_logistics ID 提发货存dispatch ID',
+  `opn_opfee` decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '取派转操作费用',
+  `opn_fahuofee` decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '发货费',
+  `opn_tihuofee` decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '提货费',
+  `opn_carfee` decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '停车费',
+  `opn_dryicefee` decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '干冰费',
+  `opn_tollfee` decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '路桥费',
+  `opn_visible` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态1 正常 0 删除',
+  `opn_othfee` decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '其他费',
+  `opn_totalfee` decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '汇总费',
+  `opn_zucarfee` decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '租车费',
+  `opn_moreboxfee` decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '多箱补贴费',
+  `opn_person` int(11) NOT NULL DEFAULT '0' COMMENT '付费责任人',
+  `opn_paymentday` int(11) NOT NULL DEFAULT '0' COMMENT '支付日期',
+  `opn_opt_type` tinyint(2) NOT NULL DEFAULT '0' COMMENT '结算方式（付费方式）',
+  `opn_createtime` int(11) NOT NULL  DEFAULT '0' COMMENT '创建时间',
+  `opn_pay_type` tinyint(2) NOT NULL DEFAULT '1' COMMENT '垫付状态 1 非垫付 2 垫付',
+  `opn_pay_name` varchar(255) NOT NULL DEFAULT '' COMMENT '垫付人姓名',
+  `opn_reason` varchar(1024) NOT NULL DEFAULT '' COMMENT '审核不通过原因',
+  `opn_check_state` tinyint(2) NOT NULL DEFAULT '1' COMMENT '检查状态 1.未检查 2.已检查',
+  `opn_inspect` varchar(255) NOT NULL DEFAULT '' COMMENT '检查人',
+  `opn_hidden` int(2) NOT NULL NOT NULL DEFAULT '0' COMMENT '0显示 1隐藏',
+  `opn_longdisfee` decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '远距离费',
+  `opn_bigboxfee` decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '大箱补贴',
+  `opn_source` int(4) NOT NULL NOT NULL DEFAULT '1' COMMENT '录入来源 1 oms后台 2.app',
+  `opn_app_status` int(4) NOT NULL DEFAULT '0' COMMENT 'app端录入审核状态 0 未录入 1已录入 2 已通过 3 未通过',
+  `opn_msg_type` int(4) NOT NULL DEFAULT '0' COMMENT '费用状态 0 未超标 1已超标',
+  `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+PRIMARY KEY (`tof_id`),
+KEY `idx_to_id` (`to_id`),
+KEY `idx_opn_id` (`opn_id`),
+KEY `idx_region_id` (`opn_region_id`),
+KEY `idx_user_id` (`user_id`)
+) COMMENT = '外协操作费用';
+
+
+
+CREATE TABLE `tms_operation_feeremind` (
+  `tofd_id` int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
+  `tof_id` int(11) NOT NULL  DEFAULT '0' COMMENT '外协操作费用id',
+  `opn_id` int(11) NOT NULL  DEFAULT '0' COMMENT '操作ID',
+  `opn_opfee_msg` varchar(255) NOT NULL  DEFAULT '' COMMENT '操作费提醒',
+  `opn_moreboxfee_msg` varchar(255) NOT NULL  DEFAULT '' COMMENT '多箱补贴费提醒',
+  `opn_bigboxfee_msg` varchar(255) NOT NULL  DEFAULT '' COMMENT '大箱补贴费提醒',
+  `opn_longdisfee_msg` varchar(255) NOT NULL  DEFAULT '' COMMENT '远距离费提醒',
+  `opn_dryicefee_msg` varchar(255) NOT NULL  DEFAULT '' COMMENT '干冰费提醒',
+    `tofd_visible` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 正常 0删除',
+  `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+PRIMARY KEY (`tofd_id`),
+KEY `idx_tof_id` (`tof_id`)
+)COMMENT = '外协操作费用附属规则提醒';
+
+220830
+ALTER table tms_project_config add COLUMN box_thermometer_switch  tinyint(4)  not null  DEFAULT '0' COMMENT '一箱多个温度计 0否 1是';
+
+'pickup_collect_note_switch' => ['on' => 1, 'off' => 0, 'label' => '取件给收件方发送短信', 'span' => ' '],
+'box_thermometer_switch' => ['on' => 1, 'off' => 0, 'label' => '一箱多个温度计', 'span' => ' '], 
+
+//外协同步方法 hdmtask/outsourcedata
 
 
 
