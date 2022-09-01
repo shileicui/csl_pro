@@ -1,0 +1,198 @@
+public function getData($data){
+       $json = [
+           'opn_opfee_msg'=>'',
+           'opn_moreboxfee_msg'=>'',
+           'opn_bigboxfee_msg'=>'',
+           'opn_longdisfee_msg'=>'',
+           ];
+       $ruleconf = TmsOutsourceRuleConf::getUserOne($data['opn_person']);
+
+       if(!$ruleconf){
+           $data['json_msg'] = $json;
+           $data['opn_msg_type'] = 0;
+           return $data;
+       }
+       $sttclass=Yii::$app->params['globalTypeConfig']['sttClassification'];
+       $order = TransportOrder::find()->select('start_itude,stop_itude,stop_address,start_address')->where(['to_id'=>$data['to_id']])->asArray()->one();
+       $logistics = OrderLogistics::find()->select('ol_delivery_time,ol_pickup_time')->where(['to_id'=>$data['to_id']])->asArray()->one();
+
+
+       $opn_opfee = $ruleconf['torc_standard_fee'];
+       if($data['opn_type'] == 1){
+           $time = (int)$logistics['ol_pickup_time'] - 2*60*60;
+           $orderInfo = (new Query())
+            ->select('tro.start_itude,tro.stop_itude,tro.stop_address,tro.start_address,opt.user_id')
+            ->from('operation op')
+            ->leftJoin('transport_order tro', 'tro.to_id=op.to_id')
+            ->leftJoin('order_logistics ol', 'ol.to_id=op.to_id')
+            ->leftJoin('opn_operator opt', 'opt.opn_id=op.opn_id')
+            ->where(['tro.start_address' => $order['start_address']])
+            ->andWhere('ol.ol_delivery_time>'.$time.' or ol.ol_delivery_time>'.$time)
+            ->limit(1)
+            ->one();
+            //
+           if($orderInfo && $orderInfo->user_id == $data['opn_person']){
+               $opn_opfee = $ruleconf['torc_sameperson_fee'];
+           }else{
+               $opn_opfee = $ruleconf['torc_diverseperson_fee'];
+           }
+           $stop_addr = $order['start_address'];
+       }elseif (data['opn_type'] == 2){
+           $time = (int)$logistics['ol_pickup_time'] - 2*60*60;
+           $orderInfo = (new Query())
+               ->select('tro.start_itude,tro.stop_itude,tro.stop_address,tro.start_address,opt.user_id')
+               ->from('operation op')
+               ->leftJoin('transport_order tro', 'tro.to_id=op.to_id')
+               ->leftJoin('order_logistics ol', 'ol.to_id=op.to_id')
+               ->leftJoin('opn_operator opt', 'opt.opn_id=op.opn_id')
+               ->where(['tro.start_address' => $order['start_address']])
+               ->andWhere('ol.ol_delivery_time>'.$time.' or ol.ol_delivery_time>'.$time)
+               ->limit(1)
+               ->one();
+           //
+           if($orderInfo && $orderInfo->user_id == $data['opn_person']){
+               $opn_opfee = $ruleconf['torc_sameperson_fee'];
+           }else{
+               $opn_opfee = $ruleconf['torc_diverseperson_fee'];
+           }
+           $stop_addr = $order['stop_address'];
+       }
+       //操作费提示
+       if($data['opn_opfee'] > $opn_opfee){
+           $json['opn_opfee_msg'] = '标准费用：'.$ruleconf['torc_standard_fee'].'元，已超出标准费用';
+       }
+       //大箱补贴提示
+       $str = '';
+       $total = 0;
+       $big_box_arr = [];
+       $material = [];
+       $material_kv = [];
+       $materialarr = OrderMaterial::find()->select('sto_id,om_quantity')->where('visible=1 and stt_id in ('.$sttclass[0].') and to_id='.$data['to_id'])->asArray()->all();
+       foreach ($materialarr as $item) {
+           $material[] = $item['sto_id'];
+           $material_kv[$item['sto_id']] = $item['om_quantity'];
+       }
+
+       foreach ($ruleconf['bigbox'] as $item) {
+           if(in_array($item['torb_sto_id'],$material)){
+               $total = $total + ((int)$item['torb_box_fee'] * (int)$material_kv[$item['torb_sto_id']]);
+               $str .= $item['torb_sto_name'].'/'.$material_kv[$item['torb_sto_id']].'个 为'. $item['torb_box_fee'].'元/箱';
+               $big_box_arr[] = $item['torb_sto_id'];
+           }
+
+       }
+       if($data['opn_bigboxfee'] > $total){
+            $json['opn_bigboxfee_msg'] = '标准费用：'. $total .'元，已超标 '.$str;
+       }
+
+       //多箱补贴提示
+
+       if($big_box_arr){
+           $json['opn_moreboxfee_msg'] = '订单中有大箱补贴箱型';
+       }else{
+           $customer_ids = [202758,207378,207379,216752];
+
+           $more_box_str = '';
+           $more_box_total = 0;
+           $more_box_num = 0;
+           $more_box_arr = [];
+           $customer_box_num = 0;
+           $customer_box_arr = [];
+           foreach ($ruleconf['morebox'] as $item) {
+               if(in_array($item['torb_sto_id'],$material)){
+                   $more_box_total = $more_box_total + ((int)$item['torb_box_fee'] * (int)$material_kv[$item['torb_sto_id']]);
+
+//                   $more_box_str .= $item['torb_sto_name'].'/'.$material_kv[$item['torb_sto_id']].'个 为'. $item['torb_box_fee'].'元/箱';
+                   $more_box_num = $more_box_num + (int)$material_kv[$item['torb_sto_id']];
+                   $more_box_arr[] = $item['torb_sto_id'];
+               }
+
+               if(in_array($item['torb_sto_id'],$customer_ids)){
+                   $customer_box_arr[] = $item['torb_sto_id'];
+                   $customer_box_num += (int)$material_kv[$item['torb_sto_id']];
+               }
+           }
+           //多箱补贴逻辑 标准费用 待确认 $more_box_total 暂时先取第一个
+//           if($data['opn_moreboxfee'] > $more_box_total){
+//               $json['opn_moreboxfee_msg'] = '标准费用：'. $total .'元，已超标 '.$str;
+//           }
+
+            if($customer_box_num>=6 && $customer_box_num>=10){
+                $customer_fee = 15;
+            }elseif ($customer_box_num>=11 && $customer_box_num>=30){
+                $customer_fee = 30;
+            }elseif ($customer_box_num>=31 && $customer_box_num>=50){
+                $customer_fee = 50;
+            }elseif ($customer_box_num>=51 && $customer_box_num>=100){
+                $customer_fee = 80;
+            }else{
+                $customer_fee = 0;
+            }
+            if($data['opn_moreboxfee'] > $customer_fee){
+               $json['opn_moreboxfee_msg'] = '标准费用：'. $customer_fee .'元，已超标 ';
+            }
+
+       }
+
+       //处理超远距离提醒
+       $start_itude = self::getBaiduLatLngByAddress($data['opn_region_name']);
+       $stop_itude = self::getBaiduLatLngByAddress($stop_addr);
+       $distance =  self::getBaiduDrivingDistance($start_itude,$stop_itude);
+       if($ruleconf['torc_far_type'] == 1){
+           if($distance>30){
+               $far_fee = $distance -30;
+           }else{
+               $far_fee = 0;
+           }
+       }else{
+           $far_fee = $distance;
+       }
+       if($data['opn_longdisfee'] >$far_fee){
+           if($ruleconf['torc_far_type'] == 1){
+               $json['opn_moreboxfee_msg'] = '标准费用为('.$distance.'-30km)*1元/km，已超标';
+           }else{
+               $json['opn_moreboxfee_msg'] = '标准费用为'.$distance.'*1元/km，已超标';
+           }
+       }
+
+       $data['hint_msg'] = $json;
+
+       if($json['opn_bigboxfee_msg'] || $json['opn_opfee_msg'] || $json['opn_moreboxfee_msg'] || $json['opn_longdisfee_msg']){
+           $data['opn_msg_type'] = 1;
+       }else{
+           $data['opn_msg_type'] = 0;
+       }
+       return $data;
+
+   }
+    /**
+     * 根据出发到达经纬度获取百度经纬度信息
+     *
+     * @param $startlat 出发经度
+     * @param $startlng 出发纬度
+     * @param $endlat 到达经度
+     * @param $endlng 到达纬度
+     * @return int
+     */
+    public function getBaiduDrivingDistance($start,$stop)
+    {
+        $url = 'https://api.map.baidu.com/directionlite/v1/driving?origin='.$start.'&destination='.$stop.'&ak=aMvemalfy2XxyimOrH5uyB35YoVA52QO';
+        $res = file_get_contents($url);
+        $data = json_decode($res, true);
+        if (!empty($data['result']['routes'][0]['distance']) && $data['result']['routes'][0]['distance'] > 0) {
+            $diff = ($data['result']['routes'][0]['distance']/1000);
+            return intval($diff);
+        } else {
+            return -1;
+        }
+    }
+    /**
+     * 根据地址获取百度经纬度信息
+     * @param $address 地址信息
+     * @return array
+     * @2022-06-23
+     */
+    public function getBaiduLatLngByAddress($address)
+    {
+        $ak = 'PR3lGjl59TaE5gBmLY0wwvXxC8284Q7j';
+        $url = 'http://a
