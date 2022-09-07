@@ -210,6 +210,7 @@ alter table 'tms_work_map_user' rename to 'tms_work_map_site'
               KEY `idx_cp_id` (`cp_id`)
             ) COMMENT = 'tms项目配置表';
    
+
 CREATE TABLE `tms_outsource_rule_conf` (
   `torc_id`  int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
   `torc_uid` int(11) NOT NULL DEFAULT '0' COMMENT '联系人uid',
@@ -217,12 +218,12 @@ CREATE TABLE `tms_outsource_rule_conf` (
   `torc_region_id` int(11) NOT NULL DEFAULT '0' COMMENT '城市id',
   `torc_region_name` varchar(255) NOT NULL DEFAULT '' COMMENT '城市名称',
   `torc_far_type` int(4) NOT NULL DEFAULT '0' COMMENT '超远距离类型  1 减30km 2不减30km',
-  `torc_dryrun_fee` decimal(10,2) DEFAULT '0.00' COMMENT '空跑费',
-  `torc_standard_fee` decimal(10,2) DEFAULT '0.00' COMMENT '标准操作费',
-  `torc_sameperson_fee` decimal(10,2) DEFAULT '0.00' COMMENT '相同人续单费',
-  `torc_diverseperson_fee` decimal(10,2) DEFAULT '0.00' COMMENT '不相同人续单费',
-  `torc_remark` varchar(1024) DEFAULT NULL COMMENT '备注',
-  `topsu_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `torc_dryrun_fee` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '空跑费',
+  `torc_standard_fee` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '标准操作费',
+  `torc_sameperson_fee` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '相同人续单费',
+  `torc_diverseperson_fee` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '不相同人续单费',
+  `torc_remark` varchar(1024) NOT NULL DEFAULT '' COMMENT '备注',
+  `torc_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
@@ -233,10 +234,10 @@ CREATE TABLE `tms_outsource_rule_box` (
   `torb_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `torc_id` int(11) NOT NULL DEFAULT '0' COMMENT '外协费用规则配置id',
   `torb_sto_id` int(11) NOT NULL DEFAULT '0' COMMENT '存货序号',
-  `torb_sto_name` varchar(32)  DEFAULT ''  COMMENT '存货名称',
-  `torb_quantity` int(5) NOT NULL DEFAULT '0' COMMENT '数量',
+  `torb_sto_name` varchar(32) NOT NULL DEFAULT ''  COMMENT '存货名称',
+  `torb_box_fee` decimal(10,2)NOT NULL DEFAULT '0.00' COMMENT '箱型费',
   `torb_type` int(4) NOT NULL DEFAULT '0'  COMMENT '大箱补贴 2多箱补贴',
-  `torb_visible` int(1) NOT NULL DEFAULT '1' COMMENT '1无效 2有效',
+  `torb_visible` int(1) NOT NULL DEFAULT '1' COMMENT '1有效 2无效',
   `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',

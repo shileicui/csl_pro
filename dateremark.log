@@ -1,4 +1,6 @@
 <?
+127512
+
 20220628
 车辆油耗报表导出 月份组件 优化
 分组管理 编辑 组员选择组件 优化
@@ -105,7 +107,7 @@ app_start_training
 CREATE TABLE `app_start_training` (
   `ast_id`  int(11)  unsigned  NOT NULL  AUTO_INCREMENT COMMENT '主键id',
   `ast_pushtime` int(11) NOT NULL DEFAULT '0' COMMENT '推送时长',
-  `ast_content` text NOT NULL DEFAULT '' COMMENT '备注',
+  `ast_content` text NOT NULL DEFAULT '' COMMENT '推送内容',
   `ast_state` int(4) NOT NULL DEFAULT '1' COMMENT '1正常  2关闭',
   `ast_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
@@ -178,7 +180,7 @@ CREATE TABLE `tms_operation_feeremind` (
   `opn_bigboxfee_msg` varchar(255) NOT NULL  DEFAULT '' COMMENT '大箱补贴费提醒',
   `opn_longdisfee_msg` varchar(255) NOT NULL  DEFAULT '' COMMENT '远距离费提醒',
   `opn_dryicefee_msg` varchar(255) NOT NULL  DEFAULT '' COMMENT '干冰费提醒',
-    `tofd_visible` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 正常 0删除',
+  `tofd_visible` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 正常 0删除',
   `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
@@ -193,6 +195,15 @@ ALTER table tms_project_config add COLUMN box_thermometer_switch  tinyint(4)  no
 'box_thermometer_switch' => ['on' => 1, 'off' => 0, 'label' => '一箱多个温度计', 'span' => ' '], 
 
 //外协同步方法 hdmtask/outsourcedata
+
+220902
+shardingjdbc
+跟进 外协操作费用申请测试
+220905
+修复 多箱补贴 提交数据没做校验且提交后数据为0
+修复 无温度计 6个客户包装 填写多箱补贴超过15元未标红，提交后多箱补贴数据为0
+
+跟进 外协操作费用申请测试
 
 
 
