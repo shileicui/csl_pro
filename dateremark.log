@@ -205,10 +205,259 @@ shardingjdbc
 
 跟进 外协操作费用申请测试
 
+220902
+发货记录温区查询优化
+
+220914
+ALTER table car add COLUMN car_runny_state int (11) not null  DEFAULT 0 COMMENT '是否有易流', add COLUMN car_aircrew_state int (11) not null DEFAULT 0 COMMENT '是否为独立机组';
+
+220915
+1、放开九州通订单详情页订单打印按钮（派件后）
+2、发货记录优化
+3、仓库工作单列表页、领用按钮
+
+ALTER table tms_project_config add COLUMN note_code_switch  tinyint(4)  not null  DEFAULT '0' COMMENT '众合添加派件验证码校验 0否 1是';
+
+'note_code_switch' => ['on' => 1, 'off' => 0, 'label' => '派件验证码校验', 'span' => ' '], 
+
+众合添加派件验证码校验
+
+
+220916
+城市配置
+
+CREATE TABLE `tms_city_config` (
+  `tcc_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `region_id` int(11) NOT NULL DEFAULT '0' COMMENT '城市id',
+  `region_name` varchar(50)  NOT NULL DEFAULT '' COMMENT '城市名称',
+  `warehouse_worksheet_switch` tinyint(4)  NOT NULL DEFAULT '0' COMMENT '仓库工作单配置 0否 1是',
+  `tcc_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tcc_id`),
+  KEY `idx_region_id` (`region_id`)
+) COMMENT='tms城市配置表';
+
+220919
+ALTER table tms_project_config add COLUMN pickup_client_mail_switch  tinyint(4)  not null  DEFAULT '0' COMMENT '取件给客户发送邮件 0否 1是';
+'pickup_client_mail_switch' => ['on' => 1, 'off' => 0, 'label' => '取件给客户发送邮件', 'span' => ' '], 
+
+1、客户配置 项目配置 城市配置 添加日志
+2、仓库工作单指派 添加日志
+3、项目配置新增 取件给客户发送邮件 开关
+
+
+220921
+1、仓库工作单筛选优化
+2、外协续单费同地址优化
+
+220922
+1、发货记录规则调整
+2、CART：项目节点提示，增加日志内的实际操作时间
+
+2.  操作站点：增加区县
+
+220923
+fearture_8979_csl_220922  CART：增加发车的车系信息展示 http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=8979  已上线
+
+feature_8946_csl_220922 发货记录规则调整 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=8946 已上线
+
+ALTER table tms_operation_site add COLUMN tops_county_id  int(11)  not null  DEFAULT '0' COMMENT '区县id', add COLUMN tops_county_name  varchar(255)  not null  DEFAULT '' COMMENT '区县名称';
+
+tops_county_name
+tops_county_id
+
+
+220926
+
+UPDATE tms_operation_fee set opn_msg_type=0 where tof_id=14612;
+
+fearture_8968_csl_220923 增加区县 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=8968
+
+220927
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=8518   外协提醒需求
+1、超远距离费显示实际距离
+2、续单费显示上一个订单单号
+3、添加续单费条件：同一个外协操作
+4、修复续单费2小时内取派件时间问题
+5、修复车辆管理bug
+6、仓库工作单样式优化
+
+
+分析批量修改工作单需求
+
+220928
+1、跟进 续单费相关优化 测试
+2、跟进 仓库工作单
+
+
+
+220929
+1、订单调度、发货记录 添加件数重量合计
+
+
+
+220930
+
+feature_js_csl_220929  订单调度、发货记录 新增合计
+
+feature_js_csl_220930  续单费时间相同优化
+
+feature_js_sql_csl_220930  超远距离正常显示优化 新增sql 字段  财务需要开发新增字段
+
+ALTER table tms_operation_feeremind add COLUMN opn_distance_msg varchar(255) NOT NULL  DEFAULT '' COMMENT '距离费提醒';
+
+ALTER table tms_operation_feeremind add COLUMN opn_distance_msg varchar(255) NOT NULL  DEFAULT '' COMMENT '距离费提醒' AFTER opn_dryicefee_msg; 
+
+
+221008
+feature_9112_csl_221008   220930 以上三个 
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9112
+
+
+续单费时间相同优化
+
+超远距离不超标提醒
+
+
+221009
+
+财务 超远距离不超标提醒实际距离 接口对接
+
+跟进测试cu_temperature_type
+
+
+221010
+
+//tms客户新增配置
+'cu_piece_feedback' => ['on' => 1, 'off' => 2, 'label' => '签收自动反馈', 'span' => '（派件1小时后自动邮件签收反馈）'], //签收自动反馈 1开启 2关闭
+'cu_temperature_feedback' => ['on' => 1, 'off' => 2, 'label' => '温度自动反馈', 'span' => '（每晚8点自动邮件温度数据反馈）'], //温度自动反馈 1开启 2关闭
+'cu_temperature_type' => ['on' => 1, 'off' => 2, 'label' => '支持批量上传温度数据', 'span' => '（默认客户支持批量上传温度数据）'], //温度批量上传:1开启 2关闭
+'cu_tengsen_trmperature' => ['on' => 1, 'off' => 2, 'label' => '不支持批量上传滕森温度数据', 'span' => '（默认客户支持上传）'], //不支持批量上传滕森温度数据:1不支持 2支持
+'cu_sign_feedback' => ['on' => 1, 'off' => 2, 'label' => '代签短信提醒', 'span' => ''], //签收反馈:1接受 2不接收
+'cu_goods_print' => ['on' => 1, 'off' => 0, 'label' => '打印运单时将货物名称打印在运单上', 'span' => ''], //打印运单时将货物名称打印在运单上:1打印 0不打印
+'cu_send_message' => ['on' => 0, 'off' => 1, 'label' => '不发送取派短信', 'span' => '（配置后不给收发件人发送取派短信）'], //是否发送取派短信 1发送 0不发送
+'cu_print_express_remark' => ['on' => 1, 'off' => 0, 'label' => '客户单号打印到运单备注', 'span' => ''], //客户单号打印到运单备注
+
+
+'cu_piece_feedback' => ['on' => 1, 'off' => 2, 'label' => '签收自动反馈', 'span' => '（派件1小时后自动邮件签收反馈）'], 
+'cu_temperature_feedback' => ['on' => 1, 'off' => 2, 'label' => '温度自动反馈', 'span' => '（每晚8点自动邮件温度数据反馈）'],
+'cu_temperature_type' => ['on' => 1, 'off' => 2, 'label' => '支持批量上传温度数据', 'span' => '（默认客户支持批量上传温度数据）'],
+'cu_tengsen_trmperature' => ['on' => 1, 'off' => 2, 'label' => '不支持批量上传滕森温度数据', 'span' => '（默认客户支持上传）'],
+'cu_sign_feedback' => ['on' => 1, 'off' => 2, 'label' => '代签短信提醒', 'span' => ''],
+'cu_goods_print' => ['on' => 1, 'off' => 0, 'label' => '打印运单时将货物名称打印在运单上', 'span' => ''],
+'cu_send_message' => ['on' => 0, 'off' => 1, 'label' => '不发送取派短信', 'span' => '（配置后不给收发件人发送取派短信）'],
+'cu_print_express_remark' => ['on' => 1, 'off' => 0, 'label' => '客户单号打印到运单备注', 'span' => ''],
+
+
+
+ALTER table tms_customer_config add COLUMN cu_piece_feedback tinyint(4) NOT NULL DEFAULT '2' COMMENT '签收自动反馈 1开启 2关闭',
+add COLUMN `cu_temperature_feedback` tinyint(4) NOT NULL DEFAULT '2' COMMENT '温度自动反馈 1开启 2关闭',
+add COLUMN `cu_temperature_type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '温度批量上传   1 开启 2 关闭',
+add COLUMN `cu_tengsen_trmperature` tinyint(1) NOT NULL DEFAULT '2' COMMENT '不支持批量上传滕森温度数据  1 不支持   2 支持  ',
+add COLUMN `cu_sign_feedback` tinyint(4) NOT NULL DEFAULT '1' COMMENT '代签短信提醒  1开启 2关闭',
+add COLUMN `cu_goods_print` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '打印运单时将货物名称打印在运单上',
+add COLUMN `cu_send_message` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '是否发送取派短信 1发送 0不发送',
+add COLUMN `cu_print_express_remark` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '客户单号打印到运单备注';
+
+
+项目配置
+'cpc_send_message_add_customer' => ['on' => 1, 'off' => 0, 'label' => ' 取派短信发送项目人员信息', 'span' => ''],
+
+ALTER table tms_project_config add COLUMN `cpc_send_message_add_customer` tinyint(1) NOT NULL DEFAULT '0' COMMENT '取派短信发送项目人员信息 0=>不发送，1=>发送';
+
+
+
+app外协列表 不通过-不通过原因 取消 不做任何操作
+http://project.ashsh.com.cn/index.php?m=bug&f=view&id=6489
+
+opn_distance_msg
+
+CREATE TABLE `tms_project_nsso_conf` (
+  `tpnc_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '项目配置id',
+  `cp_id` int(12) NOT NULL DEFAULT '0' COMMENT '项目id',
+  `tpnc_type` tinyint(2) NOT NULL DEFAULT '1' COMMENT '配置类型 15 温度计校准机构 16温度计允差值',
+  `conf_id` varchar(128) NOT NULL DEFAULT '' COMMENT '配置详情id（对应温度计，温度计选项配置文件）',
+  `tpnc_rename` text COMMENT '配置缩写',
+  `tpnc_visible` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态 1 正常 2 删除',
+  `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tpnc_id`),
+  KEY `idx_cp_id` (`cp_id`)
+) COMMENT = 'tms项目特殊配置表';
+
+hdmtask/customer-config-data
+hdmtask/customer-config-limit
+
+hdmtask/project-config-data
+hdmtask/project-config-data-two
+
+SELECT
+  count(*)
+FROM
+  customer 
+WHERE
+  (cu_piece_feedback = 1 
+  OR cu_temperature_feedback = 1 
+  OR cu_temperature_type = 1 
+  OR cu_tengsen_trmperature = 1 
+  OR cu_sign_feedback = 1 
+  OR cu_goods_print = 1 
+  OR cu_take_contact = 1 
+  OR cu_send_message = 0 
+  OR cu_print_express_remark = 1) and cu_visible =1;
+
+feature_9151_csl_221012  具体逻辑没迁移
+feature_9151_csl_221010  具体逻辑迁移过的
+
+
+营销系统tms配置迁移（
+
+  TransportOrder  1694 行  签收自动反馈   cu_piece_feedback
+
+  Attachment  528 行  温度自动反馈    cu_temperature_feedback
+
+
+  OrderController  5304 行           温度批量上传 cu_temperature_type 
+  DwAttachmentService  448 行        温度批量上传 cu_temperature_type
+  AttachmentService 110 行           温度批量上传 cu_temperature_type
+  AutomaticAttachmentService  96 行  温度批量上传 cu_temperature_type
+
+
+ AttachmentService 109 行 不支持批量上传滕森温度数据 cu_tengsen_trmperature
+
+
+OrderController  4422  4434 行 代签短信提醒 cu_sign_feedback
+
+
+OrderController  7466 行 打印运单时将货物名称打印在运单上 cu_goods_print
+OrderService  613  行    打印运单时将货物名称打印在运单上 cu_goods_print
+TransportOrder  6093  行    打印运单时将货物名称打印在运单上 cu_goods_print
+
+
+OrderService  612 行 客户单号打印到运单备注 cu_print_express_remark
+OrderController  7465 行 客户单号打印到运单备注 cu_print_express_remark
+
+
+ tms_service
+AttachmentService  186 行 温度批量上传 cu_temperature_type 、不支持批量上传滕森温度数据 cu_tengsen_trmperature
+
+TransportOrder  124 行 cpc_send_message_add_customer
+TransportOrder  124 行 cu_send_message
 
 
 
 
+OrderController 2646 行  OrderMaterialService 104 行 温度计校准机构配置
 
+OrderMaterialService 115 行  温度计允差值配置
+
+）
+
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9151   物流配置功能迁移
+
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9215   车辆冷藏机组变更
 
 
