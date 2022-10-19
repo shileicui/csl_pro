@@ -87,3 +87,175 @@
 </script>
 </body>
 </html>
+
+
+
+
+
+<style>
+    nav{
+    width:100%;
+    height:36px;
+    }
+    .nav_ul li a{
+        display: inline-block;
+        width: 140px;
+        height:36px;
+        line-height: 36px;
+        text-align: center;
+        border-radius: 5px 5px 0 0 ;
+        float: left;
+        font-size: 16px;
+        text-decoration: none;
+        color: #4e5656;
+        background: #d8d8d8;
+        margin-right:5px;
+        cursor: pointer;
+    }
+    .nav_ul li:nth-child(1){
+        margin-left:4px;
+    }
+
+    .nav_ul .tab a{
+        background:rgb(245, 245, 245);
+        color:#0095a2;
+        font-weight:600;
+    }
+    .content{
+        width:100%;
+        height:100%;
+        margin: 0 auto;
+    }
+    .content>div{
+        display: none;
+    }
+    .content .div_show{
+        display: block;
+    }
+    .well{
+        box-shadow: none;
+    }
+    .show_page{
+        display: block;
+    }
+    .tips_tr td{
+        position: relative;
+        
+    }
+    .tip_trs{
+        background: rgb(215,215,215);
+    }
+    .content_box{
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .hov_td:hover::after {
+        content: attr(data-title);    //取到data-title属性的值
+        display: inline-block;
+        padding: 3px 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        position: absolute;
+        white-space: nowrap;
+        background:#fff;
+        top: -20px;
+        left:10px;
+        z-index:99;
+    }
+    .hov_tds:hover::after {
+        content: attr(data-title);    //取到data-title属性的值
+        display: inline-block;
+        padding: 3px 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        position: absolute;
+        white-space: nowrap;
+        background:#fff;
+        top: -20px;
+        left:10px;
+        z-index:99;
+    }
+    .t_ab{
+        display: none;
+    }
+    .block_box{
+        display: block;
+    }
+    .page_box{
+        text-align: center;
+    }
+    .ti_ps{
+        display: inline-block;
+        border: 1px #ccc solid;
+        padding: 5px 15px;
+        border-radius: 5px;
+        color: #999;
+    }
+    .tip_s{
+        display: none;
+        position: absolute;
+        z-index: 999;
+        background: #fff;
+        padding: 5px;
+        width: 136px;
+        left: -1px;
+        border-radius: 5px;
+        border: 1px #ccc solid;
+        box-shadow: 0 3px 9px rgb(0 0 0 / 50%);
+    }
+    .tip_box:hover~.tip_s{
+        display: block;
+    }
+    .div_show{
+        display: block;
+    }
+    iframe{
+        width: 100%;
+        border: none;
+    }
+</style>
+<?php include __DIR__ . '/../layouts/bui_footer.php'; ?><!--加载了很多js-->
+<body>
+    <nav>
+        <ul class="nav_ul">
+            <li class="liquid_nit tab"  datatype="1"><a >冷藏车管理111</a></li>
+            <li class="liquid_nit"  datatype="2"><a >冷藏车管理222</a></li>
+        </ul>
+    </nav>
+    <div class="liquid_nitrogen_tank t_ab tab_1 block_box">
+        <div class="container">111111111</div>
+    </div>
+    <div class="refrigerated_truck t_ab tab_2">
+        <div class="container">222222222</div>
+    </div>
+   <!--  <iframe src="" class="liquid_nitrogen_tank t_ab tab_1 block_box">
+        
+    </iframe>
+    <iframe class="refrigerated_truck t_ab tab_2">
+        
+    </iframe> -->
+</body>
+<script type="text/javascript">
+    $('ul li').click(function(event) {
+        $(this).addClass('tab');
+        $(this).siblings().removeClass('tab');
+        $('.t_ab').eq($(this).index()).addClass('div_show');
+        $('.t_ab').eq($(this).index()).siblings().removeClass('div_show');
+        var type = $(this).attr('datatype');
+        replaceParamVal('&type',type);
+    })
+    function replaceParamVal(paramName,replaceWith) {
+        var oUrl = this.location.href.toString();
+    }
+    $(".liquid_nit").on("click",function(){
+        $(this).addClass('tab')
+        $(this).siblings().removeClass('tab');
+
+
+        $('.t_ab').removeClass('block_box');
+        $('.tab_'+datatype).addClass('block_box');
+            ajax_cx(datatype);
+    });
+</script>

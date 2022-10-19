@@ -447,3 +447,20 @@ function mr() {
     $("#to_category").val('1')
     $('#to_insure').val('0')
 }
+
+
+
+
+
+$result = array_reverse($list);
+        $count = count($result);
+        if (empty($_GET['page'])) {
+            $_GET['page'] = 1;
+        }
+        $pageSize = 10;
+
+        // 分页处理
+        $result = array_slice($list, $start = ($_GET['page'] - 1) * $pageSize, $pageSize);
+        $pages = new Pagination(['totalCount' => $count]);
+        $pages->pageSize = $pageSize;
+        return $this->render('abnormal', ['data' => $result, 'option' => $get, 'pages' => $pages]);

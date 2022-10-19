@@ -1,4 +1,6 @@
 <?
+
+腾讯通RTX
 127512
 
 20220628
@@ -460,4 +462,28 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9151   物流配置�
 
 http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9215   车辆冷藏机组变更
 
+https://omstest.ashsh.com.cn:18012/index.php?r=timing/signbackpush 签收自动反馈 
+https://omstest.ashsh.com.cn:18012/index.php?r=timing/temperaturepush 温度自动反馈 
+Temperaturepush
+221019
 
+tms_transport_car
+
+sto_id = 4 ,36
+
+
+CREATE TABLE `tms_transport_carinfo` (
+  `ttci_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `ttci_to_id` int(11) NOT NULL DEFAULT '0' COMMENT '订单to_id',
+  `ttci_set_temperature` int(6) NOT NULL DEFAULT '0' COMMENT '设置温度',
+  `ttci_customer_state` int(6) NOT NULL DEFAULT '0' COMMENT '随货是否添加了客户温度计（1 是 2 否）',
+  `ttci_carbox_state` int(6) NOT NULL DEFAULT '0' COMMENT '随车是否有备用箱(1 是 2 否）',
+  `ttci_senddata_state` int(6) NOT NULL DEFAULT '0' COMMENT '派件数据读取(1 是 2 否）',
+  `ttci_remark` varchar(1024) NOT NULL DEFAULT '' COMMENT '备注',
+  `ttci_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`ttci_id`),
+  KEY `idx_ttci_to_id` (`ttci_to_id`)
+) COMMENT '冷藏车订单关联信息';
