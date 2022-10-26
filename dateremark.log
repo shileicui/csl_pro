@@ -383,12 +383,15 @@ CREATE TABLE `tms_project_nsso_conf` (
   `conf_id` varchar(128) NOT NULL DEFAULT '' COMMENT '配置详情id（对应温度计，温度计选项配置文件）',
   `tpnc_rename` text COMMENT '配置缩写',
   `tpnc_visible` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态 1 正常 2 删除',
+  `tpnc_createtime` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
   `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
   PRIMARY KEY (`tpnc_id`),
   KEY `idx_cp_id` (`cp_id`)
 ) COMMENT = 'tms项目特殊配置表';
+
+
 
 hdmtask/customer-config-data
 hdmtask/customer-config-limit
@@ -475,10 +478,11 @@ sto_id = 4 ,36
 CREATE TABLE `tms_transport_carinfo` (
   `ttci_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `ttci_to_id` int(11) NOT NULL DEFAULT '0' COMMENT '订单to_id',
-  `ttci_set_temperature` int(6) NOT NULL DEFAULT '0' COMMENT '设置温度',
+  `ttci_set_temperature` varchar(100) NOT NULL DEFAULT '' COMMENT '设置温度',
   `ttci_customer_state` int(6) NOT NULL DEFAULT '0' COMMENT '随货是否添加了客户温度计（1 是 2 否）',
   `ttci_carbox_state` int(6) NOT NULL DEFAULT '0' COMMENT '随车是否有备用箱(1 是 2 否）',
   `ttci_senddata_state` int(6) NOT NULL DEFAULT '0' COMMENT '派件数据读取(1 是 2 否）',
+  `ttci_series_number` varchar(255) NOT NULL DEFAULT '' COMMENT '车厢温度计编号',
   `ttci_remark` varchar(1024) NOT NULL DEFAULT '' COMMENT '备注',
   `ttci_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
@@ -487,3 +491,22 @@ CREATE TABLE `tms_transport_carinfo` (
   PRIMARY KEY (`ttci_id`),
   KEY `idx_ttci_to_id` (`ttci_to_id`)
 ) COMMENT '冷藏车订单关联信息';
+
+
+221024
+订单调度申请 同步发货记录
+
+ onkeyup="this.value=this.value.replace(/[^\d^\-^\.]/g,'')"
+
+
+ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9316  冷藏车订单监控
+
+ 跟进 冷藏车订单监控 测试 
+ 跟进 配置迁移测试 测试 
+ CAR-Tv1.0：线路安排调整需求分析
+
+ CAR-Tv1.0：线路安排调整
+
+ 221025
+冷藏车订单监控  已上线
+配置迁移测试    已上线
