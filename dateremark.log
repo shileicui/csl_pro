@@ -513,23 +513,85 @@ CREATE TABLE `tms_transport_carinfo` (
 
 221026
 
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9484  冷藏车订单监控增加状态统计
 
 
 
+ALTER table tms_cart_plan add COLUMN `tcp_route_sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序id 0去取件城市 其他为中转',
+add COLUMN `tcp_out_region_name` varchar(255) NOT NULL DEFAULT '' COMMENT '出发城市名称',
+add COLUMN `tcp_out_region_id` int(11) NOT NULL DEFAULT '0' COMMENT '出发城市id',
+add COLUMN `tcp_in_region_name` varchar(255) NOT NULL DEFAULT '' COMMENT '到达城市名称',
+add COLUMN `tcp_in_region_id` int(11) NOT NULL DEFAULT '0' COMMENT '到达城市id',
+add COLUMN `tcp_operation_name` varchar(11) NOT NULL DEFAULT '' COMMENT '操作人名称',
+add COLUMN `tcp_operation_id` int(11) NOT NULL DEFAULT '0' COMMENT '操作人ID',
+add COLUMN `tcp_tagid` int(11) NOT NULL DEFAULT '0' COMMENT '标识id',
+add COLUMN `tcp_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+add COLUMN `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+add COLUMN `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+add COLUMN `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间';
 
 
 
+CREATE TABLE `tms_cart_operation_plan` (
+  `tcop_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `tcop_name` varchar(50) NOT NULL DEFAULT '' COMMENT '节点名称',
+  `tcop_type` int(4) NOT NULL DEFAULT '0' COMMENT '1.单采单人同城 2.单采单人非同城  3.单采专车 4.回输专人非同城 5.回输专车',
+  `to_id` int(11) NOT NULL DEFAULT '0' COMMENT '订单ID',
+  `tcop_sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
+  `tcp_tagid` int(11) NOT NULL DEFAULT '0' COMMENT '标识',
+  `tcop_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tcop_id`),
+  KEY `idx_to_id` (`to_id`)
+)  COMMENT='cart操作记录表配置表';
 
 
 
+221028
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9534  车辆信息展示   tms_service feature_9534_csl_221028
+
+
+221031
+ alter table tms_fahuo_receipt_no modify column fr_receipt_no varchar(255) NOT NULL DEFAULT ''  COMMENT '发货单号';
+
+ alter table dispatch modify column di_shipment_no varchar(255) NOT NULL DEFAULT ''  COMMENT '发货单号';
 
 
 
+fearture_9528_csl_221031 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9528
+
+
+CREATE TABLE `tms_cart_scheme_record` (
+  `tcsr_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `to_id` int(11) NOT NULL DEFAULT '0' COMMENT '订单ID',
+  `json_text` text COMMENT '外协方案json数据',
+  `tcsr_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tcsr_id`),
+  KEY `idx_to_id` (`to_id`)
+)  COMMENT='cart方案记录表';
+
+
+op_uid
+
+$user= User::findOne($value);
+
+221102
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9419  cart 路线调整  feature_9419_csl_221024
+
+
+1.发货记录导出走大数据  （sql 表名 参数整理给大数据）
+2.cart路线调整 添加日志 
+3.跟进cart路线调整测试
 
 
 
-
-
+1.发货记录导出走大数据  已上线
+2.cart路线调整 新增删除 加限制
 
 
 

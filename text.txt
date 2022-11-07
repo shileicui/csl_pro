@@ -1,0 +1,128 @@
+
+<?
+
+$where=' 1=1 and frd.frd_visible=1 ';
+
+$get['start_fr_create_time'] = $get['start_fr_create_time']?:date('Y-m-d',time()-30*24*3600);
+
+$where.=" and fr.fr_fahuo_time>=".strtotime($get['start_fr_create_time']).' ';
+
+$get['end_fr_create_time'] = $get['end_fr_create_time']?:date('Y-m-d',time());
+
+$where.=" and fr.fr_fahuo_time<".(strtotime($get['end_fr_create_time'])+86400).' ';
+
+if($get['rt_type']!=''){
+    $where.=" and ro.rt_id=".$get['rt_type'].' ';
+}
+if($get['js_type']!=''){
+    $where.=" and su.tms_sup_monjs=".$get['js_type']." ";
+}
+
+if($get['start_region_id']!=''){
+    $where.=" and ro.start_region_id=".$get['start_region_id']." ";
+}
+if($get['stop_region_id']!=''){
+    $where.=" and  ro.stop_region_id=".$get['stop_region_id']." ";
+}
+
+if($get['ol_pickup_person']!=''){
+    $where.=" and fr.fr_uid=".$get['ol_pickup_person']." ";
+}
+if($get['sup_id']!=''){
+    $where.=" and fr.su_id=".$get['sup_id']."";
+}
+
+if(trim($get['fr_receipt_no'])!=''){
+   $where.=" and dh.di_shipment_no='".trim($get['fr_receipt_no'])."' ";
+}
+if($get['to_no']){
+    $where.=" and FIND_IN_SET('" . $get['to_no'] . "',fr.to_nos) ";
+}
+$get['shipnostatus'] = $get['shipnostatus']?:2;
+if($get['shipnostatus'] && $get['shipnostatus'] !='all'){
+    if($get['shipnostatus']=='1'){
+        $where.=" and (dh.di_shipment_no!='' and dh.di_shipment_no is not null) ";
+    }else if($get['shipnostatus']=='2'){
+        $where.=" and (dh.di_shipment_no='' or dh.di_shipment_no is null) ";
+    }
+}
+if($get['to_temperature']){
+    $where.=" and tor.to_temperature in (".$get['to_temperature'].")";
+}
+
+$where=' 1=1 and frd.frd_visible=1 ';   必需条件
+
+
+start_fr_create_time:  发货开始时间   $where.=" and fr.fr_fahuo_time>=".strtotime($get['start_fr_create_time']).' ';
+end_fr_create_time:    发货结束时间   $where.=" and fr.fr_fahuo_time<".(strtotime($get['end_fr_create_time'])+86400).' ';
+rt_type:   路由类型            $where.=" and ro.rt_id=".$get['rt_type'].' ';
+to_no: 运单号              $where.=" and FIND_IN_SET('" . $get['to_no'] . "',fr.to_nos) ";
+fr_receipt_no: 发货单号     $where.=" and dh.di_shipment_no='".trim($get['fr_receipt_no'])."' ";
+
+sup_name: 供应商名称
+sup_id:   供应商id       $where.=" and fr.su_id=".$get['sup_id']."";
+
+js_type:   结算方式      $where.=" and su.tms_sup_monjs=".$get['js_type']." ";
+
+shipnostatus:   填写状态
+
+$get['shipnostatus'] = $get['shipnostatus']?:2;
+if($get['shipnostatus'] && $get['shipnostatus'] !='all'){
+    if($get['shipnostatus']=='1'){
+        $where.=" and (dh.di_shipment_no!='' and dh.di_shipment_no is not null) ";
+    }else if($get['shipnostatus']=='2'){
+        $where.=" and (dh.di_shipment_no='' or dh.di_shipment_no is null) ";
+    }
+}
+
+ol_pickup_person:  发货人ID        $where.=" and fr.fr_uid=".$get['ol_pickup_person']." ";
+
+person: 发货人名称
+pickup_username:  发货人名称
+
+to_temperature:  温区        $where.=" and tor.to_temperature in (".$get['to_temperature'].")";
+
+start_region_id:  出发城市ID       $where.=" and ro.start_region_id=".$get['start_region_id']." ";
+
+start_region_name: 出发城市名称    
+stop_region_id: 到达城市ID       $where.=" and  ro.stop_region_id=".$get['stop_region_id']." ";
+
+stop_region_name:  到达城市名称
+
+
+{
+"rt_type":8,
+"to_no":"62796490",
+"isshipno_no":"0000064171888",
+"tms_sup_id_list":"",
+"settleType":1,
+"isshipno":1,
+"ol_pickup_person":12364,
+"to_temperature":13,
+"start_region_id":110000,
+"stop_region_id":320200,
+"sendStartTime":"2022-10-25",
+"sendEndTime":"2022-10-25"
+}
+
+
+     var data={
+            start_fr_create_time:start_fr_create_time,
+            end_fr_create_time:end_fr_create_time,
+            ol_pickup_person:ol_pickup_person,
+            to_temperature:to_temperature,
+            sup_id:sup_id,
+            js_type:js_type,
+            shipnostatus:shipnostatus,
+            fr_receipt_no:fr_receipt_no,
+            to_no:to_no,
+            rt_type:rt_type
+        }
+start_region_id
+stop_region_id
+
+
+
+发货记录导出优化 
+
+
