@@ -522,7 +522,7 @@ add COLUMN `tcp_out_region_name` varchar(255) NOT NULL DEFAULT '' COMMENT '出�
 add COLUMN `tcp_out_region_id` int(11) NOT NULL DEFAULT '0' COMMENT '出发城市id',
 add COLUMN `tcp_in_region_name` varchar(255) NOT NULL DEFAULT '' COMMENT '到达城市名称',
 add COLUMN `tcp_in_region_id` int(11) NOT NULL DEFAULT '0' COMMENT '到达城市id',
-add COLUMN `tcp_operation_name` varchar(11) NOT NULL DEFAULT '' COMMENT '操作人名称',
+add COLUMN `tcp_operation_name` varchar(255) NOT NULL DEFAULT '' COMMENT '操作人名称',
 add COLUMN `tcp_operation_id` int(11) NOT NULL DEFAULT '0' COMMENT '操作人ID',
 add COLUMN `tcp_tagid` int(11) NOT NULL DEFAULT '0' COMMENT '标识id',
 add COLUMN `tcp_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
