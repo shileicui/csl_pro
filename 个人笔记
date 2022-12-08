@@ -1,0 +1,6 @@
+.\HD-Adb shell settings put global http_proxy <ip>:<port>
+
+
+
+仓库工作单方案准备列表，展示角色所配置城市的工作单信息
+短信消息模版调整

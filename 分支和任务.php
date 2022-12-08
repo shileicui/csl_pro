@@ -66,7 +66,7 @@ UPDATE tms_newcity_config SET tncc_volume_level = 3 WHERE tncc_region_id = 11000
 
 方案准备
 
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9764  feature_9764_csl_221110  omsapi  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9764  feature_9764_csl_221110  omsapi  已上线
 
 CREATE TABLE `tms_scheme_plan` (
   `tsp_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -97,11 +97,57 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10029  已上线
 
 财务获取专车订单信息接口
 
-featrue_9971_csl_20221123 tms_service    未上线
+featrue_9971_csl_20221123 tms_service    已上线
 http://project.ashsh.com.cn/index.php?m=task&f=view&id=9971  禅道任务  
 
 
 退回转寄 
 feature_10026_csl_20221124   omsapi
 feature_10026_csl_20221124   tms_service
-http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10026  未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10026  已上线
+
+
+
+fearture_9711_csl_221107  测试环境：cart增加新的委托客户，供客户测试
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9711  未上线 
+
+
+
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10283  未上线
+
+tms_operation_site
+
+UPDATE tms_operation_site set tops_carea_name = '华北大区', tops_carea_id='35'  WHERE tops_region_id in('310000');
+
+
+短信消息模版调整
+feature_10222_csl_20221205  tms_service
+feature_10222_csl_20221205  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10222    已上线
+
+
+方案准备列表城市
+feature_10242_csl_20221205  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10242  已上线
+
+
+调度系统添加心跳监听
+feature_10256_csl_20221206   dispatch_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10256   已上线
+
+
+城市配置调整
+feature_10263_csl_20221206  tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=10263  已上线
+
+
+签收单据反馈
+feature_10270_csl_20221206
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10270 已上线
+thind.order_temperature_data.push
+thind.order_sign_data.push
+
+
+大额保单附件上传
+feature_10283_csl_20221207
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10283  未上线

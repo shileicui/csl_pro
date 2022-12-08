@@ -1,0 +1,43 @@
+<?
+
+/***********test 配置 start************/
+
+tms_admin
+
+//取件给收件客户发送短信 场景值
+define('PICKUP_SMS_MESSAGE_SCENE','32');
+
+
+tms_service
+
+//DTP订单派件短信验证	场景值
+define('DTP_DELIVERY_VERIFY_MESSAGE_SCENE','10016');
+
+//代签收短信 场景值
+define('SIGN_SMS_MESSAGE_SCENE','10007');
+
+//取派短信 场景值
+define('GET_MESSAGE_TEM_SCENE','10004');//取件
+define('SEND_MESSAGE_TEM_SCENE','10003');//派件
+
+/***********test 配置 end************/
+
+tms_performance_evaluate
+
+
+CREATE TABLE `tms_performance_evaluate` (
+  `tpe_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `ur_uid` int(11) NOT NULL DEFAULT '0' COMMENT '操作ur_uid',
+  `em_id` int(11) NOT NULL DEFAULT '0' COMMENT '员工em_id',
+  `username` int(11) NOT NULL DEFAULT '0' COMMENT '操作名称',
+  `tms_sort` int(11) NOT NULL DEFAULT '0' COMMENT '绩效排名',
+  `tms_coefficient` decimal(10,1) NOT NULL DEFAULT '0' COMMENT '维度系数',
+  `tms_performance` int(11) NOT NULL DEFAULT '0' COMMENT '维度绩效 或 评价绩效',
+  `tpe_type` int(4) NOT NULL DEFAULT '0' COMMENT '1绩效评价 2维度考核',
+  `tpe_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tpe_id`),
+  KEY `idx_to_id` (`to_id`)
+)  COMMENT='操作绩效评价';
