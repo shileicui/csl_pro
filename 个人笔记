@@ -4,3 +4,6 @@
 
 仓库工作单方案准备列表，展示角色所配置城市的工作单信息
 短信消息模版调整
+
+
+git remote update origin --prune

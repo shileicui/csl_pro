@@ -142,12 +142,19 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&id=10263  已上线
 
 
 签收单据反馈
-feature_10270_csl_20221206
+feature_10270_csl_20221206 tms_admin
 http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10270 已上线
 thind.order_temperature_data.push
 thind.order_sign_data.push
 
 
 大额保单附件上传
-feature_10283_csl_20221207
+feature_10283_csl_20221207  tms_admin
 http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10283  未上线
+
+
+
+
+绩效互评
+feature_10342_csl_20221209  omsapi
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10342  未上线
