@@ -150,7 +150,7 @@ thind.order_sign_data.push
 
 大额保单附件上传
 feature_10283_csl_20221207  tms_admin
-http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10283  未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10283  已上线
 
 
 
@@ -158,3 +158,10 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10283  未上线
 绩效互评
 feature_10342_csl_20221209  omsapi
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10342  未上线
+
+
+晏嘉多温区合单
+
+feature_10542_csl_20221219 tms_admin
+feature_10542_csl_20221220 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10542  未上线
