@@ -175,8 +175,8 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10626 未上线
 
 
 10652 调度信息修改
-
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10652
+feature_10652_csl_20221227 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10652 未上线
 
 
 
