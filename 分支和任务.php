@@ -174,9 +174,11 @@ feature_10626_csl_20221226 omsapi
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10626 未上线
 
 
-10652 调度信息修改
+调度信息修改
 feature_10652_csl_20221227 tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10652 未上线
 
-
+外协操作费用优化
+feature_10667_csl_20221228 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10667
 
