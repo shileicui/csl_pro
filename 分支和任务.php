@@ -112,8 +112,8 @@ fearture_9711_csl_221107  测试环境：cart增加新的委托客户，供客�
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=9711  未上线 
 
 
-
-http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10283  未上线
+10283 大额保单附件上传
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10283  已上线
 
 tms_operation_site
 
@@ -159,26 +159,55 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10283  已上线
 feature_10342_csl_20221209  omsapi
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10342  未上线
 
+CREATE TABLE `tms_performance_evaluate` (
+  `tpe_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `ur_uid` int(11) NOT NULL DEFAULT '0' COMMENT '操作ur_uid',
+  `em_id` int(11) NOT NULL DEFAULT '0' COMMENT '员工em_id',
+  `username` varchar(255) NOT NULL DEFAULT '' COMMENT '操作名称',
+  `supsub_ur_uid` int(11) NOT NULL DEFAULT '0' COMMENT '上下级操作ur_uid',
+  `supsub_em_id` int(11) NOT NULL DEFAULT '0' COMMENT '上下级员工em_id',
+  `supsub_username` varchar(255) NOT NULL DEFAULT '' COMMENT '上下级操作名称',
+  `tpe_supsub_type` int(4) NOT NULL DEFAULT '1' COMMENT '1下级 2上级',
+  `tpe_sort` int(11) NOT NULL DEFAULT '0' COMMENT '绩效排名',
+  `tpe_coefficient` decimal(10,1) NOT NULL DEFAULT '0' COMMENT '维度系数',
+  `tpe_performance_money` int(11) NOT NULL DEFAULT '0' COMMENT '维度绩效金额 或 评价绩效金额',
+  `tpe_performance_time` int(11) NOT NULL DEFAULT '0' COMMENT '绩效日期',
+  `tpe_type` int(4) NOT NULL DEFAULT '0' COMMENT '1绩效评价 2维度考核',
+  `tpe_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tpe_id`),
+  KEY `idx_ur_uid` (`ur_uid`),
+  KEY `idx_em_id` (`em_id`)
+)  COMMENT='操作绩效评价';
+
+// month_dimensionality 维度考核要过滤的角色  month_evaluate 评价绩效要过滤的角色
+'tms_performance_evaluate_conf'=>['month_dimensionality'=>['0097'],'month_evaluate'=>['0045','0062','0044']]
+
 
 晏嘉多温区合单
 
 feature_10542_csl_20221219 tms_admin
 feature_10542_csl_20221220 tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10542  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10542  已上线
 
 index-sheet6 
 
 
 冷藏车订单监控 app
 feature_10626_csl_20221226 omsapi
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10626 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10626 已上线
 
 
 调度信息修改
 feature_10652_csl_20221227 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10652 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10652 已上线
 
 外协操作费用优化
 feature_10667_csl_20221228 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10667
+feature_10667_csl_20221229 omsapi
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10667  未上线
 
+ alter table operator_type add column cultivate_state int(4) NOT NULL DEFAULT '0'  COMMENT '是否培训 1是 2否';
+http://omstest.ashsh.com.cn:10001/index.php?r=external-material/order-material-status&to_nos=62211153
