@@ -207,11 +207,17 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10652 已上线
 外协操作费用优化
 feature_10667_csl_20221228 tms_admin
 feature_10667_csl_20221229 omsapi
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10667  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10667  已上线
 
  alter table operator_type add column cultivate_state int(4) NOT NULL DEFAULT '0'  COMMENT '是否培训 1是 2否';
 http://omstest.ashsh.com.cn:10001/index.php?r=external-material/order-material-status&to_nos=62211153
 
 派件提交页面新增 派件数据读取
-feature_10811_csl_20230106
-http://project.ashsh.com.cn/index.php?m=task&f=view&id=10811
+feature_10811_csl_20230106 omsapi
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=10811  未上线
+
+
+小程序退款补差价
+feature_10816_csl_20230106 tms_admin
+feature_10816_csl_20230106 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10816  未上线
