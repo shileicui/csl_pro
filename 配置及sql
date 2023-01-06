@@ -50,3 +50,6 @@ CREATE TABLE `tms_performance_evaluate` (
 
 // month_dimensionality 维度考核要过滤的角色  month_evaluate 评价绩效要过滤的角色
 'tms_performance_evaluate_conf'=>['month_dimensionality'=>['0097'],'month_evaluate'=>['0045','0062','0044']]
+
+
+cultivate
