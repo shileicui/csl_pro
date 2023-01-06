@@ -211,3 +211,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10667  未上线
 
  alter table operator_type add column cultivate_state int(4) NOT NULL DEFAULT '0'  COMMENT '是否培训 1是 2否';
 http://omstest.ashsh.com.cn:10001/index.php?r=external-material/order-material-status&to_nos=62211153
+
+派件提交页面新增 派件数据读取
+feature_10811_csl_20230106
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=10811
