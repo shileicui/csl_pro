@@ -221,3 +221,13 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&id=10811  未上线
 feature_10816_csl_20230106 tms_admin
 feature_10816_csl_20230106 tms_service
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10816  未上线
+
+
+
+路由配置管理1.2：路由类型城市客户限制
+feature_10843_csl_20230109
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10843
+
+alter table route add column units_type int(4) NOT NULL DEFAULT '1'  COMMENT '路由成本单位类别 1 /元 2 /千克',add column stop_cause int(4) NOT NULL DEFAULT '0'  COMMENT '停运原因 1长期停运 2 临时限制 3 其他',add column stop_cause_remark varchar(255) NOT NULL DEFAULT ''  COMMENT '停运原因备注';
+
+alter table tms_supplier add column tms_transport_price decimal(7,3) NOT NULL  DEFAULT '0.000'  COMMENT '供应商路由成本', add column tms_units_type int(4) NOT NULL DEFAULT '1'  COMMENT '供应商路由成本单位类别 1 /元 2 /千克';
