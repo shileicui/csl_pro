@@ -225,7 +225,8 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10816  未上线
 
 
 路由配置管理1.2：路由类型城市客户限制
-feature_10843_csl_20230109
+feature_10843_csl_20230109 dispatch_admin
+feature_10883_csl_20230110 tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10843
 
 alter table route add column units_type int(4) NOT NULL DEFAULT '0'  COMMENT '路由成本单位类别  1 元/件 2 元/千克',
