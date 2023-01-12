@@ -227,16 +227,16 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10816  未上线
 路由配置管理1.2：路由类型城市客户限制
 feature_10843_csl_20230109 dispatch_admin
 feature_10883_csl_20230110 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10843
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10843  已上线
 
-alter table route add column units_type int(4) NOT NULL DEFAULT '0'  COMMENT '路由成本单位类别  1 元/件 2 元/千克',
+alter table route add column units_type int(4) NOT NULL DEFAULT '0'  COMMENT '路由成本单位类别 1 元/千克  2 元/件',
 add column stop_cause varchar(50) NOT NULL DEFAULT ''  COMMENT '停运原因 1长期停运 2 临时限制 3 其他',
 add column stop_cause_remark varchar(255) NOT NULL DEFAULT ''  COMMENT '停运原因备注',
 add column stop_cause_time int(11) unsigned DEFAULT '0' NOT NULL   COMMENT '停运时间';
 
 
 alter table tms_supplier add column tms_transport_price varchar(50) NOT NULL  DEFAULT ''  COMMENT '供应商路由成本', 
-add column tms_units_type int(4) NOT NULL DEFAULT '0'  COMMENT '供应商路由成本单位类别  1 元/件 2 元/千克';
+add column tms_units_type int(4) NOT NULL DEFAULT '0'  COMMENT '供应商路由成本单位类别 1 元/千克  2 元/件';
 
 
 外协操作费用优化
