@@ -214,7 +214,7 @@ http://omstest.ashsh.com.cn:10001/index.php?r=external-material/order-material-s
 
 冷藏车订单监控 派件数据读修改
 feature_10811_csl_20230106 omsapi
-http://project.ashsh.com.cn/index.php?m=task&f=view&id=10811  未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=10811  已上线
 
 
 小程序退款补差价
@@ -239,7 +239,7 @@ alter table tms_supplier add column tms_transport_price varchar(50) NOT NULL  DE
 add column tms_units_type int(4) NOT NULL DEFAULT '0'  COMMENT '供应商路由成本单位类别  1 元/件 2 元/千克';
 
 
-外协费用优化
+外协操作费用优化
 feature_10883_csl_20230110 tms_admin
 http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10883  已上线
 
