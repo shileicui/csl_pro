@@ -244,3 +244,6 @@ feature_10883_csl_20230110 tms_admin
 http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10883  已上线
 
 go home
+
+UPDATE route set stop_cause = '1' WHERE ro_status = 1 and stop_cause ='';
+UPDATE route set stop_cause = '1',stop_cause_time = 1673512230 WHERE ro_status = 1 and stop_cause ='';
