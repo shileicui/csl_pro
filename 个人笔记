@@ -7,3 +7,7 @@
 
 
 git remote update origin --prune
+
+
+yii2  获取当前sql
+$query->createCommand()->getRawSql();
