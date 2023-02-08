@@ -260,6 +260,7 @@ UPDATE route set stop_cause = '1',stop_cause_time = 1673512230 WHERE ro_status =
 运营工作台
 feature_10945_csl_230128
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10945  未上线
+ alter table tms_order_information modify column `worksheet_flag` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:待标记， 2:取消待标记（创建了派件工作单） 3:已创建取件工作单'；
 
             ->leftjoin('tms_order_information info','info.to_id=tor.to_id')
             ->leftjoin('tms_order_forward tf','tf.to_id=tor.to_id')
@@ -323,6 +324,34 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10945  未上线
 
 ---2206171------2206280------2211368------2226384------2247177------2247948------2249412------2258318------2265477------2271685---
 
+
 外协操作费用火狐浏览器切换页面汇总数据错误
 fixbug_7720_csl_20230202
 http://project.ashsh.com.cn/index.php?m=bug&f=view&id=7720  已上线
+
+
+路由推荐应用2.0
+feature_11210_csl_20230208
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11210 未上线
+
+ alter table transport_stations add column ts_station_type int(4) NOT NULL DEFAULT '0'  COMMENT '站点类型 1机场 2火车站 3汽车站 4仓库 5其他';
+
+CREATE TABLE `route_stop_log` (
+  `rsl_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `ro_id` int(11) NOT NULL DEFAULT '0' COMMENT '路由ID',
+  `username` varchar(255) NOT NULL DEFAULT '' COMMENT '创建人名称',
+  `ur_uid` int(11) NOT NULL DEFAULT '0' COMMENT '创建人ur_uid',
+  `start_time` int(11) unsigned NOT NULL  DEFAULT '0' COMMENT '停运开始时间',
+  `end_time` int(11) unsigned NOT NULL  DEFAULT '0' COMMENT '停运结束时间',
+  `stop_cause` varchar(50) NOT NULL DEFAULT '' COMMENT '停运原因 1长期停运 2 临时限制 3 其他',
+  `stop_cause_name` varchar(255) NOT NULL DEFAULT '' COMMENT '停运原因',
+  `stop_cause_remark` varchar(255) NOT NULL DEFAULT '' COMMENT '停运原因备注',
+  `created_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `rsl_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`rsl_id`),
+  KEY `idx_ro_id` (`ro_id`),
+  KEY `idx_ur_uid` (`ur_uid`)
+)  COMMENT='路由停运日志';
