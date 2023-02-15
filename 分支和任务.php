@@ -259,13 +259,14 @@ UPDATE route set stop_cause = '1',stop_cause_time = 1673512230 WHERE ro_status =
 
 运营工作台
 feature_10945_csl_230128
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10945  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10945  已上线
  alter table tms_order_information modify column `worksheet_flag` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:待标记， 2:取消待标记（创建了派件工作单） 3:已创建取件工作单'；
 
             ->leftjoin('tms_order_information info','info.to_id=tor.to_id')
             ->leftjoin('tms_order_forward tf','tf.to_id=tor.to_id')
             ->rightJoin('order_logistics ol','ol.to_id=tor.to_id')
 
+        $workdataObj->andWhere('not exists(select 1 from order_worksheet ow where ow.to_id=tor.to_id and ow_type in(3,6) )');
 
             /index.php?r=hdmtask/dispatchupdate   //发货记录剔除重复的
 
@@ -334,10 +335,14 @@ http://project.ashsh.com.cn/index.php?m=bug&f=view&id=7720  已上线
 feature_11210_csl_20230208
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11210 未上线
 
- alter table transport_stations add column ts_station_type int(4) NOT NULL DEFAULT '0'  COMMENT '站点类型 1机场 2火车站 3汽车站 4仓库 5其他';
+ alter table transport_stations add column `ts_station_type` int(4) NOT NULL DEFAULT '0'  COMMENT '站点类型 1机场 2火车站 3汽车站 4仓库 5其他';
 
-CREATE TABLE `route_stop_log` (
-  `rsl_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+ alter table temperature add column `temp_type` int(4) NOT NULL DEFAULT '0'  COMMENT '温区类型 1常温 2蓝冰 3干冰 4液氮';
+
+ alter table route add column `start_time` int(11) unsigned NOT NULL  DEFAULT '0' COMMENT '停运开始时间',add column `end_time` int(11) unsigned NOT NULL  DEFAULT '0' COMMENT '停运结束时间';
+
+CREATE TABLE `tms_routestop_log` (
+  `trl_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `ro_id` int(11) NOT NULL DEFAULT '0' COMMENT '路由ID',
   `username` varchar(255) NOT NULL DEFAULT '' COMMENT '创建人名称',
   `ur_uid` int(11) NOT NULL DEFAULT '0' COMMENT '创建人ur_uid',
@@ -347,11 +352,43 @@ CREATE TABLE `route_stop_log` (
   `stop_cause_name` varchar(255) NOT NULL DEFAULT '' COMMENT '停运原因',
   `stop_cause_remark` varchar(255) NOT NULL DEFAULT '' COMMENT '停运原因备注',
   `created_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `rsl_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `trl_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
-  PRIMARY KEY (`rsl_id`),
+  PRIMARY KEY (`trl_id`),
   KEY `idx_ro_id` (`ro_id`),
   KEY `idx_ur_uid` (`ur_uid`)
 )  COMMENT='路由停运日志';
+
+
+CREATE TABLE `tms_supplier_route` (
+  `tsr_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `ro_id` int(11) NOT NULL DEFAULT '0' COMMENT '路由ID',
+  `su_id` int(11) NOT NULL DEFAULT '0' COMMENT '供应商ID',
+  `tsr_status` int(4) NOT NULL DEFAULT '2' COMMENT '状态  1启用  2停用',
+  `tsr_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT now() COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tsr_id`),
+  KEY `idx_ro_id` (`ro_id`),
+  KEY `idx_su_id` (`su_id`)
+)  COMMENT='承运商路由信息关联表';
+
+
+
+外协操作费用新增财务删除逻辑状态同步
+
+feature_11258_csl_20230209  tms_admin
+feature_11258_csl_20230209  tms_service
+feature_11258_csl_20230209  omsapi
+
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=11258 未上线
+ alter table tms_operation_fee add column opn_delreason  varchar(1024) NOT NULL DEFAULT '' COMMENT '财务删除原因';
+
+
+
+物流系统校准证书附件同步临床供应链系统
+feature_11296_csl_20230214
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11296 未上线
