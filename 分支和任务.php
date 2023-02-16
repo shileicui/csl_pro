@@ -332,14 +332,21 @@ http://project.ashsh.com.cn/index.php?m=bug&f=view&id=7720  已上线
 
 
 路由推荐应用2.0
-feature_11210_csl_20230208
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11210 未上线
+feature_11210_csl_20230208 tms_admin
+feature_11210_csl_20230208 dispatch_admin
+feature_11210_csl_20230214 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11210 已上线
+
+tms.stop.route  停运路由消息主题
+index.php?r=order/add-fahuochange-apply  订阅消耗停运路由主题 生成调度变更申请数据
+
+transport_time_type=>[],  globalTypeConfig 参数  待大数据确定
 
  alter table transport_stations add column `ts_station_type` int(4) NOT NULL DEFAULT '0'  COMMENT '站点类型 1机场 2火车站 3汽车站 4仓库 5其他';
 
  alter table temperature add column `temp_type` int(4) NOT NULL DEFAULT '0'  COMMENT '温区类型 1常温 2蓝冰 3干冰 4液氮';
 
- alter table route add column `start_time` int(11) unsigned NOT NULL  DEFAULT '0' COMMENT '停运开始时间',add column `end_time` int(11) unsigned NOT NULL  DEFAULT '0' COMMENT '停运结束时间';
+ alter table route add column `start_time` int(11) unsigned NOT NULL  DEFAULT '0' COMMENT '停运开始时间',add column `end_time` int(11) unsigned NOT NULL  DEFAULT '0' COMMENT '停运结束时间',add column `transport_time_type` int(4) NOT NULL  DEFAULT '0' COMMENT '路由时效';
 
 CREATE TABLE `tms_routestop_log` (
   `trl_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -376,6 +383,7 @@ CREATE TABLE `tms_supplier_route` (
   KEY `idx_su_id` (`su_id`)
 )  COMMENT='承运商路由信息关联表';
 
+路由详情承运商 权限记得加（上线时）
 
 
 外协操作费用新增财务删除逻辑状态同步
@@ -384,11 +392,16 @@ feature_11258_csl_20230209  tms_admin
 feature_11258_csl_20230209  tms_service
 feature_11258_csl_20230209  omsapi
 
-http://project.ashsh.com.cn/index.php?m=task&f=view&id=11258 未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=11258 已上线
  alter table tms_operation_fee add column opn_delreason  varchar(1024) NOT NULL DEFAULT '' COMMENT '财务删除原因';
 
 
 
 物流系统校准证书附件同步临床供应链系统
-feature_11296_csl_20230214
+feature_11296_csl_20230214 tms_service
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11296 未上线
+
+
+发货记录管理，默认查询日期修改
+feature_11405_csl_20230216 未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=11405
