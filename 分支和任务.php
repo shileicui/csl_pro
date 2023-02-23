@@ -157,7 +157,7 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10283  已上线
 
 绩效互评
 feature_10342_csl_20221209  omsapi
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10342  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10342  未上线（20230221上线 公共配置未上线）
 
 CREATE TABLE `tms_performance_evaluate` (
   `tpe_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -183,7 +183,7 @@ CREATE TABLE `tms_performance_evaluate` (
 )  COMMENT='操作绩效评价';
 
 // month_dimensionality 维度考核要过滤的角色  month_evaluate 评价绩效要过滤的角色
-'tms_performance_evaluate_conf'=>['month_dimensionality'=>['0097'],'month_evaluate'=>['0045','0062','0044']]
+'tms_performance_evaluate_conf'=>['month_dimensionality'=>['0097'],'month_evaluate'=>['0045','0062','0044']]（线上未配置）
 
 
 晏嘉多温区合单
@@ -399,9 +399,33 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&id=11258 已上线
 
 物流系统校准证书附件同步临床供应链系统
 feature_11296_csl_20230214 tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11296 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11296 已上线
 
 
 发货记录管理，默认查询日期修改
-feature_11405_csl_20230216 未上线
-http://project.ashsh.com.cn/index.php?m=task&f=view&id=11405
+feature_11405_csl_20230216 tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=11405 已上线
+
+
+fixbug_7876_csl_20230217  运营工作台结算箱型待确认 接口
+
+
+
+外协操作费用：冻结管理
+feature_11434_csl_20230220  未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=11434
+
+ alter table operator_type add column opt_status int(4) NOT NULL DEFAULT '0'  COMMENT '冻结状态 0激活 1冻结';
+
+ alter table tms_operation_fee add column eam_status  tinyint(4) NOT NULL DEFAULT '0'  COMMENT '耗材归还状态 0 未拉取 1.未发 2.已发 -2 未拉取到';
+
+
+车辆行车记录异常页面优化
+fearture_11513_csl_20230222 已上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11513
+
+
+
+订单确认信息调整
+feature_11515_csl_20230223  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11515
