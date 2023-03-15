@@ -220,7 +220,7 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&id=10811  已上线
 小程序退款补差价
 feature_10816_csl_20230106 tms_admin
 feature_10816_csl_20230106 tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10816  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=10816  已上线
 
 tms.order.pick_up
 /index.php?r=charge/add-charge-expense 订阅 取件异步主题 箱型不不一致 推送 bms 数据  
@@ -412,13 +412,14 @@ fixbug_7876_csl_20230217  运营工作台结算箱型待确认 接口
 
 
 外协操作费用：冻结管理
-feature_11434_csl_20230220  未上线
+feature_11434_csl_20230220  已上线
 http://project.ashsh.com.cn/index.php?m=task&f=view&id=11434
 
  alter table operator_type add column opt_status int(4) NOT NULL DEFAULT '0'  COMMENT '冻结状态 0激活 1冻结';
 
  alter table tms_operation_fee add column eam_status  tinyint(4) NOT NULL DEFAULT '0'  COMMENT '耗材归还状态 0 未拉取 1.未发 2.已发 -2 未拉取到';
 
+hdmtask/external-material-type
 
 车辆行车记录异常页面优化
 fearture_11513_csl_20230222 已上线
@@ -427,5 +428,189 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11513
 
 
 订单确认信息调整
-feature_11515_csl_20230223  未上线
+feature_11515_csl_20230223  已上线
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11515
+
+
+结算箱型推送修改
+feature_11562_csl_20230224  已上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=11562
+
+
+外协管理增加结算方式筛选
+feature_11600_csl_20230227  已上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11600
+
+
+//修改派件人
+UPDATE tms_operation_fee SET username = '克拉玛依-于红',user_id='81141' WHERE opn_id = 8775694;
+UPDATE opn_operator SET username = '克拉玛依-于红',user_id='81141' WHERE opn_id = 8775694;
+UPDATE order_logistics SET ol_delivery_person ='81141',ol_delivery_name='克拉玛依-于红' WHERE to_id = 2253015;
+
+//修改取件人
+UPDATE tms_operation_fee SET username = '克拉玛依-于红',user_id='81141' WHERE opn_id = 8755148;
+UPDATE opn_operator SET username = '克拉玛依-于红',user_id='81141' WHERE opn_id = 8755148;
+UPDATE order_logistics SET ol_pickup_person ='81141',ol_pickup_name='克拉玛依-于红' WHERE to_id = 2255653;
+
+
+//删除大数据路由时效字段
+alter table route drop column transport_time_type;
+
+
+路由时效展示大数据时效/未审核状态异步加载申请原因
+dispatch_admin
+feature_11210_csl_20230208   未上线
+
+
+后台发货异步消息异常
+fixbug_7985_csl_20230228 已上线
+https://project.ashsh.com.cn/index.php?m=bug&f=view&bugID=7985
+
+
+$first_person = OrderService::getFirstPerson($post);
+
+
+"ur_uids"=>$first_person['ur_uid'],
+"usernames"=>$first_person['username'],
+"ur_uid"=>$first_person['ur_uid'],
+"username"=>$first_person['username'],
+
+
+"ur_uids"=>$post['ol_pickup_person'][0],
+                        "usernames"=>$post['person'][0],
+                        "ur_uid"=>$post['ol_pickup_person'][0],
+                        "username"=>$post['person'][0],
+
+
+
+20230301
+订单调度页面表格增加排序点击
+feature_11631_hzw_20230228  未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=11631
+
+添加基础箱型配置异常
+fixbug_8020_csl_20230301  已上线
+https://project.ashsh.com.cn/index.php?m=bug&f=view&bugID=8020
+
+
+地址信息标红规则调整
+feature_11685_csl_20230302  已上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=11685
+
+
+操作外协类型
+feature_11667_csl_20230303 已上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11667
+
+*上线前记得先配置 枚举配置
+TMS_OPERATOR_ROLE_MAP
+操作外协列表 角色 
+{
+"108":"运营外协",
+"153":"运营脐血库外协",
+"159":"运营外协供应商"
+}
+
+*上线前 记得删除 CommonController.php  479行 测试代码
+
+ alter table opn_operator add column role_type tinyint(4) NOT NULL DEFAULT '0'  COMMENT '操作人角色类型 1员工 2运营外协 3运营外协供应商';
+
+
+
+物流项目管理流程线上化1.0：备案信息和配置管理
+feature_csl_11791_20230307
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11791
+
+CREATE TABLE `tms_car_filing` (
+  `tcf_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `cp_id` int(11) NOT NULL DEFAULT '0' COMMENT '项目id',
+  `cu_id` int(11) NOT NULL DEFAULT '0' COMMENT '客户id',
+  `tcf_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '类型  1项目  2客户',
+  `car_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '车辆类型 1冷藏车 2货车 3客车',
+  `car_number` varchar(50) NOT NULL DEFAULT '' COMMENT '车牌',
+  `ca_id` int(11) NOT NULL DEFAULT '0' COMMENT '车辆id',
+  `tcf_motion_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '操作动作类型  1取件 2派件  3取派 ',
+  `tcf_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2锁定 3已过期',
+  `tcf_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `reference_time` int(11) NOT NULL DEFAULT '0' COMMENT '备案时间',
+  `ga_indate` int(11) NOT NULL DEFAULT '0' COMMENT '验证日期',
+  `ga_calibration_time` int(11) NOT NULL DEFAULT '0' COMMENT '验证有效期',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tcf_id`) USING BTREE,
+  KEY `idx_cp_id` (`cp_id`),
+  KEY `idx_cu_id` (`cu_id`)
+) COMMENT='车辆备案';
+
+
+CREATE TABLE `tms_person_filing` (
+  `tpf_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `cp_id` int(11) NOT NULL DEFAULT '0' COMMENT '项目id',
+  `cu_id` int(11) NOT NULL DEFAULT '0' COMMENT '客户id',
+  `tpf_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '类型  1项目  2客户',
+  `city_id` text COMMENT '城市ID',
+  `city_name` text COMMENT '城市名称',
+  `person_id` int(11) NOT NULL DEFAULT '0' COMMENT '人员id',
+  `person_name` varchar(50) NOT NULL DEFAULT '' COMMENT '人员名称',
+  `phone_number` varchar(50) NOT NULL DEFAULT '' COMMENT '手机号',
+  `identity_card` varchar(100) NOT NULL DEFAULT '' COMMENT '身份证号',
+  `department` varchar(50) NOT NULL DEFAULT '' COMMENT '部门',
+  `at_ids` varchar(255) NOT NULL COMMENT '附件ids',
+  `tpf_motion_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '操作动作类型  1取件 2派件  3取派 ',
+  `tpf_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2锁定 3已过期',
+  `tpf_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `reference_time` int(11) NOT NULL DEFAULT '0' COMMENT '备案时间',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tpf_id`) USING BTREE,
+  KEY `idx_cp_id` (`cp_id`),
+  KEY `idx_cu_id` (`cu_id`)
+) COMMENT='人员备案';
+
+
+CREATE TABLE `tms_tempbox_filing` (
+  `ttf_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `cp_id` int(11) NOT NULL DEFAULT '0' COMMENT '项目id',
+  `cu_id` int(11) NOT NULL DEFAULT '0' COMMENT '客户id',
+  `sto_id` int(11) NOT NULL DEFAULT '0' COMMENT '耗材id',
+  `sto_no` varchar(50) NOT NULL DEFAULT '' COMMENT '耗材存货编号',
+  `ttf_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '类型  1项目  2客户',
+  `sto_name` varchar(50) NOT NULL DEFAULT '' COMMENT '耗材存货名称',
+  `pb_ice_name` varchar(50) NOT NULL DEFAULT '' COMMENT '冰排',
+  `gd_series_number` varchar(50) NOT NULL DEFAULT '' COMMENT '耗材存货序列号',
+  `ttf_consumable_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '耗材类型  1温度计  2保温箱 3液氮罐',
+  `ttf_standard_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '校准类型  1生生内校  2第三方校准-检测机构 3厂家校准 4第三方校准-计量院',
+  `ttf_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2锁定 3已过期',
+  `ttf_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `reference_time` int(11) NOT NULL DEFAULT '0' COMMENT '备案时间',
+  `ga_indate` int(11) NOT NULL DEFAULT '0' COMMENT '验证日期',
+  `ga_calibration_time` int(11) NOT NULL DEFAULT '0' COMMENT '验证有效期',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`ttf_id`) USING BTREE,
+  KEY `idx_cp_id` (`cp_id`),
+  KEY `idx_sto_id` (`sto_id`),
+  KEY `idx_cu_id` (`cu_id`)
+) COMMENT='温度计包装箱备案';
+
+
+CREATE TABLE `tms_person_file` (
+  `tf_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `tpf_id` int(11) NOT NULL DEFAULT '0' COMMENT '人员备案id',
+  `person_id` int(11) NOT NULL DEFAULT '0' COMMENT '人员id',
+  `at_id` int(11) NOT NULL DEFAULT '0' COMMENT '附件id',
+  `train_time` int(11) NOT NULL DEFAULT '0' COMMENT '培训时间',
+  `tf_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '类型  1项目  2客户',
+  `tf_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tf_id`),
+  KEY `idx_tpf_id` (`tpf_id`),
+  KEY `idx_person_id` (`person_id`)
+) COMMENT='人员备案附件关联表';
+
+
