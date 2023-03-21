@@ -518,8 +518,8 @@ TMS_OPERATOR_ROLE_MAP
 
 
 物流项目管理流程线上化1.0：备案信息和配置管理
-feature_csl_11791_20230307
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11791
+feature_11791_hwq_20230307  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11791  未上线
 
 CREATE TABLE `tms_car_filing` (
   `tcf_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -533,16 +533,15 @@ CREATE TABLE `tms_car_filing` (
   `tcf_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2锁定 3已过期',
   `tcf_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `reference_time` int(11) NOT NULL DEFAULT '0' COMMENT '备案时间',
-  `ga_indate` int(11) NOT NULL DEFAULT '0' COMMENT '验证日期',
-  `ga_calibration_time` int(11) NOT NULL DEFAULT '0' COMMENT '验证有效期',
+  `ga_indate` int(11) NOT NULL DEFAULT '0' COMMENT '验证有效期',
+  `ga_calibration_time` int(11) NOT NULL DEFAULT '0' COMMENT '验证日期',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
   PRIMARY KEY (`tcf_id`) USING BTREE,
   KEY `idx_cp_id` (`cp_id`),
   KEY `idx_cu_id` (`cu_id`)
-) COMMENT='车辆备案';
-
+)COMMENT='车辆备案';
 
 CREATE TABLE `tms_person_filing` (
   `tpf_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -556,19 +555,19 @@ CREATE TABLE `tms_person_filing` (
   `phone_number` varchar(50) NOT NULL DEFAULT '' COMMENT '手机号',
   `identity_card` varchar(100) NOT NULL DEFAULT '' COMMENT '身份证号',
   `department` varchar(50) NOT NULL DEFAULT '' COMMENT '部门',
-  `at_ids` varchar(255) NOT NULL COMMENT '附件ids',
+  `at_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '附件ids',
   `tpf_motion_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '操作动作类型  1取件 2派件  3取派 ',
   `tpf_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2锁定 3已过期',
   `tpf_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `reference_time` int(11) NOT NULL DEFAULT '0' COMMENT '备案时间',
+  `expiration_time` int(11) NOT NULL DEFAULT '0' COMMENT '截止日期',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
   PRIMARY KEY (`tpf_id`) USING BTREE,
   KEY `idx_cp_id` (`cp_id`),
   KEY `idx_cu_id` (`cu_id`)
-) COMMENT='人员备案';
-
+)COMMENT='人员备案';
 
 CREATE TABLE `tms_tempbox_filing` (
   `ttf_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -585,8 +584,8 @@ CREATE TABLE `tms_tempbox_filing` (
   `ttf_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2锁定 3已过期',
   `ttf_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `reference_time` int(11) NOT NULL DEFAULT '0' COMMENT '备案时间',
-  `ga_indate` int(11) NOT NULL DEFAULT '0' COMMENT '验证日期',
-  `ga_calibration_time` int(11) NOT NULL DEFAULT '0' COMMENT '验证有效期',
+  `ga_indate` int(11) NOT NULL DEFAULT '0' COMMENT '验证有效期',
+  `ga_calibration_time` int(11) NOT NULL DEFAULT '0' COMMENT '验证日期',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
@@ -594,8 +593,7 @@ CREATE TABLE `tms_tempbox_filing` (
   KEY `idx_cp_id` (`cp_id`),
   KEY `idx_sto_id` (`sto_id`),
   KEY `idx_cu_id` (`cu_id`)
-) COMMENT='温度计包装箱备案';
-
+)COMMENT='温度计包装箱备案';
 
 CREATE TABLE `tms_person_file` (
   `tf_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -611,6 +609,21 @@ CREATE TABLE `tms_person_file` (
   PRIMARY KEY (`tf_id`),
   KEY `idx_tpf_id` (`tpf_id`),
   KEY `idx_person_id` (`person_id`)
-) COMMENT='人员备案附件关联表';
+)COMMENT='人员备案附件关联表';
+
+
+
+小程序退款补差价 推送数据调整
+feature_12011_csl_20230316  tms_service   未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12011
+
+
+
+订单状态已派件 有调度待发货 不生成调度变更申请
+fixbug_8180_csl_20230320 tms_service 
+fixbug_8180_csl_20230320 dispatch_admin  
+http://project.ashsh.com.cn/index.php?m=bug&f=view&id=8180  已上线
+
+
 
 
