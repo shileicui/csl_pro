@@ -519,7 +519,7 @@ TMS_OPERATOR_ROLE_MAP
 
 物流项目管理流程线上化1.0：备案信息和配置管理
 feature_11791_hwq_20230307  tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11791  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=11791  已上线
 
 CREATE TABLE `tms_car_filing` (
   `tcf_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
