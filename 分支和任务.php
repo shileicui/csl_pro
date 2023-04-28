@@ -459,7 +459,7 @@ alter table route drop column transport_time_type;
 
 路由时效展示大数据时效/未审核状态异步加载申请原因
 dispatch_admin
-feature_11210_csl_20230208   未上线
+feature_11210_csl_20230208   已上线
 
 
 后台发货异步消息异常
@@ -485,7 +485,7 @@ $first_person = OrderService::getFirstPerson($post);
 
 20230301
 订单调度页面表格增加排序点击
-feature_11631_hzw_20230228  未上线
+feature_11631_hzw_20230228  已上线
 http://project.ashsh.com.cn/index.php?m=task&f=view&id=11631
 
 添加基础箱型配置异常
