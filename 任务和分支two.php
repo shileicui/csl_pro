@@ -220,13 +220,13 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12684 未上线
 CREATE TABLE `tms_address_remind` (
   `tar_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `recipients_name` varchar(255) NOT NULL DEFAULT '' COMMENT '收件人名称',
-  `mobile_phone` varchar(180) DEFAULT NULL DEFAULT '' COMMENT '收件人手机号',
-  `telephone` varchar(180) DEFAULT NULL DEFAULT '' COMMENT '座机号',
-  `temperature` tinyint(4) unsigned DEFAULT '0' COMMENT '温区id',
-  `region_id` int(11) DEFAULT NULL DEFAULT '0' COMMENT '所在地区ID',
-  `region_name` char(128) DEFAULT NULL DEFAULT ''  COMMENT '地区名',
-  `address` varchar(800) DEFAULT NULL COMMENT '收件人联系地址',
-  `address_type` tinyint(4) unsigned DEFAULT '0' COMMENT '地址类型 1周末不取件 2周末不派件 3周末不取件不派件',
+  `mobile_phone` varchar(180)  NOT NULL DEFAULT '' COMMENT '收件人手机号',
+  `telephone` varchar(180) NOT NULL DEFAULT '' COMMENT '座机号',
+  `temperature` tinyint(4) unsigned  NOT NULL DEFAULT '0' COMMENT '温区id',
+  `region_id` int(11) NOT NULL DEFAULT '0' COMMENT '所在地区ID',
+  `region_name` char(128) NOT NULL DEFAULT ''  COMMENT '地区名',
+  `address` varchar(800) NOT NULL DEFAULT '' COMMENT '收件人联系地址',
+  `address_type` tinyint(4) unsigned  NOT NULL DEFAULT '0' COMMENT '地址类型 1周末不取件 2周末不派件 3周末不取件不派件',
   `tar_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2停用',
   `tar_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -311,3 +311,23 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12873  已上线
 
 
 /mnt/wwwroot/tms_admin_test/tms_admin/protected
+
+
+
+客户配置 新增 取派件填写开启关闭温度 配置
+ALTER table tms_customer_config add COLUMN write_temp_switch  tinyint(4)  not null  DEFAULT '0' COMMENT '取派件填写开启关闭温度 1填写 0不填写';
+'write_temp_switch' => ['on' => 1, 'off' => 0, 'label' => '取派件填写开启关闭温度', 'span' => ' '],  
+
+
+路由名称 历史数据处理
+feature_12918_csl_20230504 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12918 未上线
+
+
+HistoryDataController
+
+history-data/route-name
+
+order/ams-eamstatus
+
+/usr/local/php7.1/bin/php /data/mnt/wwwroot/tms_admin_test/tms_admin/yii history-data/route-name
