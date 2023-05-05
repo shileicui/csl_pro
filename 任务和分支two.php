@@ -214,7 +214,7 @@ ALTER table tms_order_information add COLUMN is_note_code  tinyint(1)  not null 
 收发件人周末去派件提示，取派时间管理
 feature_12684_csl_20230417 tms_admin
 feature_12684_csl_20230418 tms_service
-http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12684 未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12684 已上线
 
 
 CREATE TABLE `tms_address_remind` (
@@ -314,7 +314,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12873  已上线
 
 
 
-客户配置 新增 取派件填写开启关闭温度 配置
+客户配置 新增 取派件填写开启关闭温度 配置    未上线
 ALTER table tms_customer_config add COLUMN write_temp_switch  tinyint(4)  not null  DEFAULT '0' COMMENT '取派件填写开启关闭温度 1填写 0不填写';
 'write_temp_switch' => ['on' => 1, 'off' => 0, 'label' => '取派件填写开启关闭温度', 'span' => ' '],  
 
@@ -331,3 +331,15 @@ history-data/route-name
 order/ams-eamstatus
 
 /usr/local/php7.1/bin/php /data/mnt/wwwroot/tms_admin_test/tms_admin/yii history-data/route-name
+
+
+客户配置 和 项目配置 新增批量派件配置
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12951  未上线
+
+ALTER table tms_customer_config add COLUMN batch_delivery_switch  tinyint(4)  not null  DEFAULT '0' COMMENT '批量派件 1支持 0不支持';
+
+ALTER table tms_project_config add COLUMN batch_delivery_switch  tinyint(4)  not null  DEFAULT '0' COMMENT '批量派件 1支持 0不支持';
+
+'batch_delivery_switch' => ['on' => 1, 'off' => 0, 'label' => '批量派件', 'span' => ' '],  
+
+'batch_delivery_switch' => ['on' => 1, 'off' => 0, 'label' => '批量派件', 'span' => ' '],  
