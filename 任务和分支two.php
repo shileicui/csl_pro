@@ -169,21 +169,31 @@ fixbug_8506_csl_20230412  tms_service
 调度变更管理，操作变更路由提醒
 feature_12611_csl_20230413 tms_admin
 feature_12611_csl_20230424 tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12611 未上线 
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12611 已上线 
 
 
-ALTER table tms_fahuochange_apply add COLUMN tfa_appcause_type  tinyint(4)  not null  DEFAULT '0' COMMENT 'app提交原因 1 原路由车次停运 2 现结、月结选择错误 3 订单通知修改 4 货到晚了 5 提货提晚了 6 其他' AFTER tfa_handleuid,
-add COLUMN tfa_tmsremark  varchar(300)  not null  DEFAULT '' COMMENT '后台处理原因备注' AFTER tfa_handleuid,
-add COLUMN tfa_tmscause_type  tinyint(4)  not null  DEFAULT '0' COMMENT '后台处理原因 1 原路由车次停运 2 现结、月结选择错误 3 订单通知修改 4 货到晚了 5 提货提晚了 6 其他' AFTER tfa_handleuid,
- add COLUMN old_ro_id int(11)  not null DEFAULT '0' COMMENT '修改前路由ro_id' AFTER tfa_handleuid,
- add COLUMN new_ro_id int(11)  not null DEFAULT '0' COMMENT '修改后路由ro_id' AFTER tfa_handleuid,
- add COLUMN source tinyint(1)  not null DEFAULT '0' COMMENT '来源 1后台 2 APP' AFTER tfa_handleuid;
+ALTER table tms_fahuochange_apply add COLUMN tfa_appcause_type  tinyint(4)  not null  DEFAULT '0' COMMENT 'app提交原因 1 原路由车次停运 2 现结、月结选择错误 3 订单通知修改 4 货到晚了 5 提货提晚了 6 其他',
+add COLUMN tfa_tmsremark  varchar(300)  not null  DEFAULT '' COMMENT '后台处理原因备注',
+add COLUMN tfa_tmscause_type  tinyint(4)  not null  DEFAULT '0' COMMENT '后台处理原因 1 原路由车次停运 2 现结、月结选择错误 3 订单通知修改 4 货到晚了 5 提货提晚了 6 其他',
+ add COLUMN old_ro_id int(11)  not null DEFAULT '0' COMMENT '修改前路由ro_id',
+ add COLUMN new_ro_id int(11)  not null DEFAULT '0' COMMENT '修改后路由ro_id',
+ add COLUMN source tinyint(1)  not null DEFAULT '0' COMMENT '来源 1后台 2 APP',
+add COLUMN old_departure_trans_time int(11) unsigned DEFAULT '0' COMMENT '修改前路由出港时间',
+add COLUMN new_departure_trans_time int(11) unsigned DEFAULT '0' COMMENT '修改后路由出港时间',
+add COLUMN old_arrive_trans_time int(11) unsigned DEFAULT '0' COMMENT '修改前路由到港时间',
+add COLUMN new_arrive_trans_time int(11) unsigned DEFAULT '0' COMMENT '修改后路由到港时间';
 
 
-ALTER table tms_fahuochange_apply add COLUMN old_departure_trans_time int(11) unsigned DEFAULT '0' COMMENT '修改前路由出港时间';
-ALTER table tms_fahuochange_apply add COLUMN new_departure_trans_time int(11) unsigned DEFAULT '0' COMMENT '修改后路由出港时间';
-ALTER table tms_fahuochange_apply add COLUMN old_arrive_trans_time int(11) unsigned DEFAULT '0' COMMENT '修改前路由到港时间';
-ALTER table tms_fahuochange_apply add COLUMN new_arrive_trans_time int(11) unsigned DEFAULT '0' COMMENT '修改后路由到港时间';
+ALTER table tms_fahuochange_apply add COLUMN tfa_appcause_type  tinyint(4)  not null  DEFAULT '0' COMMENT 'app提交原因 1 原路由车次停运 2 现结、月结选择错误 3 订单通知修改 4 货到晚了 5 提货提晚了 6 其他',
+add COLUMN tfa_tmsremark  varchar(300)  not null  DEFAULT '' COMMENT '后台处理原因备注',
+add COLUMN tfa_tmscause_type  tinyint(4)  not null  DEFAULT '0' COMMENT '后台处理原因 1 原路由车次停运 2 现结、月结选择错误 3 订单通知修改 4 货到晚了 5 提货提晚了 6 其他',
+ add COLUMN old_ro_id int(11)  not null DEFAULT '0' COMMENT '修改前路由ro_id',
+ add COLUMN new_ro_id int(11)  not null DEFAULT '0' COMMENT '修改后路由ro_id',
+ add COLUMN tfa_source tinyint(1)  not null DEFAULT '0' COMMENT '来源 1后台 2 APP',
+add COLUMN old_departure_trans_time int(11) unsigned not null  DEFAULT '0' COMMENT '修改前路由出港时间',
+add COLUMN new_departure_trans_time int(11) unsigned not null  DEFAULT '0' COMMENT '修改后路由出港时间',
+add COLUMN old_arrive_trans_time int(11) unsigned not null  DEFAULT '0' COMMENT '修改前路由到港时间',
+add COLUMN new_arrive_trans_time int(11) unsigned not null  DEFAULT '0' COMMENT '修改后路由到港时间';
 
 TMS_CAUSE_TYPE_MAP
 {
@@ -288,13 +298,14 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&id=12806 已上线
 路由配置管理1.3.2：路由定时停运
 feature_12828_csl_20230424 dispath_admin
 feature_12828_csl_20230424 tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12828 已上线
+
 feature_12828_csl_20230425 tms_service
-http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12828 未上线
 
 
 路由站点增加停用、启用和批量停用启用
 feature_12814_csl_20230425 dispath_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12814 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12814 已上线
 
 
 
@@ -314,14 +325,14 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12873  已上线
 
 
 
-客户配置 新增 取派件填写开启关闭温度 配置    未上线
+客户配置 新增 取派件填写开启关闭温度 配置    已上线
 ALTER table tms_customer_config add COLUMN write_temp_switch  tinyint(4)  not null  DEFAULT '0' COMMENT '取派件填写开启关闭温度 1填写 0不填写';
 'write_temp_switch' => ['on' => 1, 'off' => 0, 'label' => '取派件填写开启关闭温度', 'span' => ' '],  
 
 
 路由名称 历史数据处理
 feature_12918_csl_20230504 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12918 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12918 已上线
 
 
 HistoryDataController
@@ -340,6 +351,127 @@ ALTER table tms_customer_config add COLUMN batch_delivery_switch  tinyint(4)  no
 
 ALTER table tms_project_config add COLUMN batch_delivery_switch  tinyint(4)  not null  DEFAULT '0' COMMENT '批量派件 1支持 0不支持';
 
-'batch_delivery_switch' => ['on' => 1, 'off' => 0, 'label' => '批量派件', 'span' => ' '],  
+tms_customer_conf
 
 'batch_delivery_switch' => ['on' => 1, 'off' => 0, 'label' => '批量派件', 'span' => ' '],  
+
+tms_project_conf
+
+'batch_delivery_switch' => ['on' => 1, 'off' => 0, 'label' => '批量派件', 'span' => ' '],  
+
+
+1.调度变更管理 新增 变更类型筛选
+2.路由临时停运 提前生成调度变更申请 
+
+
+物流项目管理流程线上化1.1.1：液氮称重记录、CART耗材准备记录
+feature_12990_csl_20230508 omsapi 
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12990 未上线
+
+remark_subtype2
+,102173=>'液氮罐称重'
+
+at_subtype7
+,207025=>'液氮罐记录表',207026=>'液氮罐称重'
+
+
+易流推送异常数据优化
+feature_13052_csl_20230510 tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=13052  已上线
+
+ALTER table tms_ylt_wcmessage_log add COLUMN tms_ylt_wl_type  tinyint(4)  not null  DEFAULT '0' COMMENT '推送类型 1超温 2预警';
+
+
+CREATE TABLE `tms_ylt_remark` (
+  `tyr_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `tms_ylt_wl_id` int(11) NOT NULL DEFAULT '0' COMMENT '关联id tms_ylt_wcmessage_log表',
+  `car_number` varchar(30) NOT NULL DEFAULT ''  COMMENT '车牌号',
+  `tyr_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '推送类型 1超温 2预警',
+  `tyr_to_id` varchar(255) NOT NULL DEFAULT '' COMMENT '关联订单ids',
+  `tyr_to_no` varchar(255) NOT NULL DEFAULT '' COMMENT '订单编号',
+  `tyr_remark` text COMMENT '备注内容',
+  `tyr_create_name` varchar(25) NOT NULL DEFAULT '' COMMENT '创建人',
+  `tyr_create_uid` int(11) NOT NULL DEFAULT '0' COMMENT '创建人id',
+  `tyr_remark_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '备注时间',
+  `tyr_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tyr_id`)
+) COMMENT='易流异常备注';
+
+
+
+订单地址坐标错误优化
+fearture_13080_csl_20230512 tms_service
+feature_13080_csl_20230512 tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=13080 未上线
+
+CREATE TABLE `tms_redress_site` (
+  `trs_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `big_data_id` int(11) NOT NULL DEFAULT '0' COMMENT '大数据相关id',
+  `trs_to_id` varchar(255) NOT NULL DEFAULT '' COMMENT '关联订单ids',
+  `trs_to_no` varchar(255) NOT NULL DEFAULT '' COMMENT '订单编号',
+  `city_id`  int(11) NOT NULL DEFAULT '0' COMMENT '城市Id',
+  `city_name` varchar(50) NOT NULL DEFAULT '' COMMENT '城市名称',
+  `trs_address` varchar(800) NOT NULL  DEFAULT '' COMMENT '错误地址',
+  `lng` varchar(30) NOT NULL  DEFAULT '' COMMENT '经度坐标',
+  `lat` varchar(30) NOT NULL  DEFAULT '' COMMENT '纬度坐标',
+  `trs_redress_name` varchar(25) NOT NULL DEFAULT '' COMMENT '纠正人',
+  `trs_redress_uid` int(11) NOT NULL DEFAULT '0' COMMENT '纠正人id',
+  `trs_redress_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '备注时间',
+  `trs_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '纠正状态  1未纠正  2已纠正',
+  `trs_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`trs_id`)
+) COMMENT='异常坐标纠正表';
+
+define('SITE_TUIAW_MESSAGE_ID','166');
+{
+    "msgtype":"markdown",
+    "markdown":{
+        "content":"【异常坐标地址】\n地址：@@address@@\n城市：@@cityname@@\n运单编号：@@tonolist@@\n@@datadis@@"
+    },
+    "key":"af9dfb0f-81c3-4186-b793-199505dabab4"
+}
+
+{
+  "id":"68874",
+  "lng":"114.711113",
+  "lat":"38.034088"
+}
+
+冷藏车 异常数据推送 只推送 诺和客户
+
+订单列表文案更换
+feature_13136_csl_20230516 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13136 已上线
+
+
+新增客户 客户配置默认值
+feature_13134_csl_20230516 tms_service   上线前通知虹桥
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13134 已上线
+
+
+
+工作单计划箱型结算箱型 数量输入框 禁止历史记录
+feature_13207_csl_20230519 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13207 未上线
+
+
+自动数据反馈：签章后反馈
+feature_13189_csl_20230518 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13189 未上线
+thind.applet_order_temperature_data.push  消息主题
+index.php?r=timing/applet-ordertemperaturepush  处理消息主题
+
+
+php yii local/applet-temperaturepush  测试
+
+php yii order-feedback/applet-temperaturepush 每天早上五点执行
+
+60923641
+60938773
+/upload/signature/2021-09/2019-07-31广东东阳光药业东莞市广东东阳光药业到北京市中国人民解放军总医院-60923641temp1631778857595.pdf
