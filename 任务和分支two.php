@@ -208,7 +208,7 @@ TMS_CAUSE_TYPE_MAP
 
 供应商账单明细接口 财务接口 对接人冯修业
 feature_12616_csl_20230414 tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12616  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12616  已上线
 
 
 
@@ -405,7 +405,7 @@ CREATE TABLE `tms_ylt_remark` (
 订单地址坐标错误优化
 fearture_13080_csl_20230512 tms_service
 feature_13080_csl_20230512 tms_admin
-http://project.ashsh.com.cn/index.php?m=task&f=view&id=13080 未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=13080 已上线
 
 CREATE TABLE `tms_redress_site` (
   `trs_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
@@ -458,12 +458,14 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13134 已上线
 
 工作单计划箱型结算箱型 数量输入框 禁止历史记录
 feature_13207_csl_20230519 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13207 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13207 已上线
+
 
 
 自动数据反馈：签章后反馈
 feature_13189_csl_20230518 tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13189 未上线
+
 thind.applet_order_temperature_data.push  消息主题
 index.php?r=timing/applet-ordertemperaturepush  处理消息主题
 
@@ -475,3 +477,33 @@ php yii order-feedback/applet-temperaturepush 每天早上五点执行
 60923641
 60938773
 /upload/signature/2021-09/2019-07-31广东东阳光药业东莞市广东东阳光药业到北京市中国人民解放军总医院-60923641temp1631778857595.pdf
+
+
+
+签单返回2.0.7：返回“订单”修改为返回“客服”
+feature_13287_csl_20230524 tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=13287  已上线
+
+
+
+清空异常坐标地址表
+TRUNCATE TABLE `tms_redress_site`;  
+
+测试环境 手机号处理
+UPDATE `transport_order` set start_mobile_phone = '13800000000',stop_mobile_phone= '13800000000';
+
+
+路由配置管理1.3.3：路由停运启用驳回
+feature_13288_csl_20230524  dispath_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13288  未上线
+
+alter table route add column `rejective_reason`  varchar(500) NOT NULL DEFAULT '' COMMENT '驳回原因';
+
+
+20230525
+1.异常坐标地址推送企业微信 优化
+2.定时删除没有匹配到订单的 异常地址并通知算法接口
+3.异常坐标地址 新增 确认按钮
+4.跟进 签单返回文案修改 测试 及发布上线
+
+路由配置管理1.3.3：路由停运启用驳回
