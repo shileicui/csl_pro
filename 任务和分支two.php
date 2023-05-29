@@ -507,3 +507,76 @@ alter table route add column `rejective_reason`  varchar(500) NOT NULL DEFAULT '
 4.跟进 签单返回文案修改 测试 及发布上线
 
 路由配置管理1.3.3：路由停运启用驳回
+
+
+20250506
+1.路由配置管理1.3.3：路由停运启用驳回
+
+
+异常坐标地址优化
+feature_13368_csl_20230529  tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13368 未上线
+
+alter table tms_redress_site add column `is_order`  tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否有相关订单 1没有 2有';
+
+alter table tms_redress_site add column `to_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '匹配到的订单id';
+
+alter table tms_redress_site add column `to_no` char(32) NOT NULL DEFAULT '' COMMENT '匹配到的订单to_no';
+
+alter table tms_redress_site add column `start_cu_name` varchar(400) DEFAULT NULL  DEFAULT '' COMMENT '发件客户';
+alter table tms_redress_site add column `stop_cu_name` varchar(400) DEFAULT NULL  DEFAULT '' COMMENT '收件客户';
+
+alter table tms_redress_site add column `is_getsend`  tinyint(4) NOT NULL DEFAULT '0' COMMENT '匹配到的订单类型 1取件 2派件';
+
+alter table
+  tms_redress_site
+add
+  column `is_order` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否有相关订单 1没有 2有',
+add
+  column `to_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '匹配到的订单id',
+add
+  column `to_no` char(32) NOT NULL DEFAULT '' COMMENT '匹配到的订单to_no',
+add
+  column `start_cu_name` varchar(400) NOT NULL DEFAULT '' COMMENT '发件客户',
+add
+  column `stop_cu_name` varchar(400)  NOT NULL  DEFAULT '' COMMENT '收件客户',
+add
+  column `is_getsend` tinyint(4) NOT NULL DEFAULT '0' COMMENT '匹配到的订单类型 1取件 2派件';
+
+php yii history-data/site-data
+
+
+订单  温度计 箱子序列号  药品序列号
+
+
+tms_order_druginfo
+
+
+
+
+13380 APP 取件扫码 订单药品信息
+feature_13380_csl_20230529  omsapi
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13380 未上线
+
+CREATE TABLE `tms_order_drug` (
+  `tod_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `to_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '订单to_id',
+  `temp_number` varchar(50) NOT NULL DEFAULT '' COMMENT '温度计序列号',
+  `box_number` varchar(50) NOT NULL DEFAULT '' COMMENT '箱子序列号',
+  `tod_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tod_id`)
+) COMMENT='订单药品信息表';
+
+CREATE TABLE `tms_orderdrug_info` (
+  `toi_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `tod_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'tms_order_drug表 tod_id',
+  `drug_number` varchar(50) NOT NULL DEFAULT '' COMMENT '药品序列号',
+  `toi_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`toi_id`)
+) COMMENT='订单药品信息关联表';
