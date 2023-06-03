@@ -11,3 +11,9 @@ git remote update origin --prune
 
 yii2  获取当前sql
 $query->createCommand()->getRawSql();
+
+# 合并到一个exe内（--onefile）,替换exe图标(--icon=img.ico)，py源文件(main.py)，隐藏执行(-w)
+pyinstaller --onefile --icon=img.ico  main.py -w
+
+
+堡垒机  Aa1111111111
