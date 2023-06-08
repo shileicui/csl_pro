@@ -495,7 +495,7 @@ UPDATE `transport_order` set start_mobile_phone = '13800000000',stop_mobile_phon
 
 路由配置管理1.3.3：路由停运启用驳回
 feature_13288_csl_20230524  dispath_admin
-http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13288  未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13288  已上线 上线时间20230531 
 
 alter table route add column `rejective_reason`  varchar(500) NOT NULL DEFAULT '' COMMENT '驳回原因';
 
@@ -554,7 +554,7 @@ tms_order_druginfo
 
 
 
-13380 APP 取件扫码 订单药品信息
+13380 APP 取件扫码 诺和订单药品关联表信息
 feature_13380_csl_20230529  omsapi
 http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13380 未上线
 
@@ -562,6 +562,7 @@ CREATE TABLE `tms_order_drug` (
   `tod_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `to_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '订单to_id',
   `temp_number` varchar(50) NOT NULL DEFAULT '' COMMENT '温度计序列号',
+  `out_temp_number` varchar(50) NOT NULL DEFAULT '' COMMENT '温度计序列号',
   `box_number` varchar(50) NOT NULL DEFAULT '' COMMENT '箱子序列号',
   `tod_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -580,3 +581,197 @@ CREATE TABLE `tms_orderdrug_info` (
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
   PRIMARY KEY (`toi_id`)
 ) COMMENT='订单药品信息关联表';
+
+
+诺和关联表导出
+feature_13381_zzp_230529 tms_admin
+fearture_13381_csl_20230531 tms_service
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13381 已上线 上线时间（20230601）
+
+
+诺和项目绑定温度计优化 新增统一配置
+featrue_13426_csl_20230601 tms_admin
+featrue_13426_csl_20230601 tms_service
+featrue_13426_csl_20230601 omsapi
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13426 未上线
+
+TMS_THERMOMETER_MAP  项目绑定温度计 新增统一配置
+{
+    "cp_ids":"3680,2905,20256,20257,20573,20575,12396"
+}
+
+
+
+UPDATE tms_orderdrug_info SET drug_number='00357122460017208985' where  toi_id = 2;
+UPDATE tms_orderdrug_info SET drug_number='00357122460017208961' where  toi_id = 4;
+
+
+        $where[] = 'ts_status=0';
+
+
+
+路由站点优化
+feature_13461_csl_20230601 dispath_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13461 已上线
+
+
+订单确认 新增修改按钮 处理异常坐标信息
+feature_13472_csl_20230602 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13472 未上线
+
+
+
+116.5666491696746,39.7971908469835
+
+69506021
+
+
+1.APP液氮称重记录接口
+2.APP 诺和扫码 关联订单药品信息接口
+3.订单 异常坐标地址 管理
+4.易流推送异常数据优化
+5.自动数据反馈：签章后反馈
+6.路由配置管理1.3.3：路由停运启用驳回
+7.路由名称 历史数据处理
+8.客户配置和项目配置
+9.新增客户 客户配置默认值
+10.工作单计划箱型结算箱型优化
+11.签单返回2.0.7：返回订单修改为返回客服
+12.路由站点优化
+
+
+UPDATE tms_order_drug SET out_temp_number='T247C0B1' where  tod_id = 24;
+
+
+
+tod_id
+
+T247C0B1
+
+
+9112270311029
+
+
+225860
+
+225860  LiberoCL
+
+223430  LiberoCL test
+
+
+诺和扫码优化
+feature_13497_csl_20230605 omsapi
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13497 已上线
+
+
+
+虹桥获取箱型配置信息接口
+feature_13515_csl_20230605  tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13515 未上线
+
+
+
+物流供应商主体调整
+feature_13492_csl_20230606 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13492 未上线
+
+alter table
+  tms_supplier_main
+add
+  column `sup_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '供应商类别',
+add
+  column `sup_code` varchar(100) NOT NULL DEFAULT '' COMMENT '供应商代码',
+add
+  column `sup_region_id` int(11) NOT NULL DEFAULT '0' COMMENT '所在城市',
+add
+  column `sup_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '所在城市名称';
+
+
+
+订单确认、复核：识别温度计提醒
+feature_13379_csl_20230607 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13379 未上线
+
+
+
+差旅管家2.1：出差单关联运单费用报销，流程调整
+feature_13540_csl_20230607 tms_admin
+feature_13540_csl_20230608 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13540  未上线
+
+CREATE TABLE `tms_travel` (
+  `tt_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `travel_number` varchar(50) NOT NULL DEFAULT '' COMMENT '出差单编号',
+
+  `travel_name` varchar(25) NOT NULL DEFAULT '' COMMENT '出差人名称',
+  `travel_uid` int(11) NOT NULL DEFAULT '0' COMMENT '出差人id',
+  `travel_em_no` varchar(25) NOT NULL DEFAULT '' COMMENT '发起人工号',
+
+  `accompany_names` varchar(255) NOT NULL DEFAULT '' COMMENT '陪同人名称',
+  `accompany_uids`varchar(255) NOT NULL DEFAULT ''  COMMENT '陪同人id',
+  `travel_em_nos` varchar(25) NOT NULL DEFAULT '' COMMENT '陪同人工号',
+
+  `start_region_id`  int(11) NOT NULL DEFAULT '0' COMMENT '出发城市id',
+  `start_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '出发城市名称',
+
+  `stop_region_id`  int(11) NOT NULL DEFAULT '0' COMMENT '目的城市id',
+  `stop_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '目的城市名称',
+
+  `start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
+  `stop_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
+  `trip_reason` varchar(800) NOT NULL DEFAULT '' COMMENT '出差事由',
+  `tt_address` varchar(800) NOT NULL DEFAULT '' COMMENT '工作地址',
+  `tt_remark` text COMMENT '备注内容',
+
+  `created_name` varchar(25) NOT NULL DEFAULT '' COMMENT '创建人名称',
+  `created_uid` int(11) NOT NULL DEFAULT '0' COMMENT '创建人id',
+  `created_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `tt_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '出差单状态  1新建 2审批中 3待开始 4进行中 5已完成 6已取消 7已退回',
+  `trip_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '出行方式  1飞机 2高铁 3动车 4火车 5出租车 6轮船 7汽车大巴 8自驾',
+  `oid` varchar(100) NOT NULL DEFAULT '' COMMENT '出差单标识符',
+  `round_trip_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否往返  1是 2否',
+
+  `tt_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tt_id`)
+) COMMENT='出差单申请表';
+
+
+
+CREATE TABLE `tms_order_travel` (
+  `tot_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `tt_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '出差单申请表id',
+  `to_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '订单to_id',
+  `to_no` char(32) NOT NULL DEFAULT '' COMMENT '订单to_no',
+  `to_trequirement` char(32) NOT NULL DEFAULT '' COMMENT '订单to_no',
+  `tot_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tot_id`)
+) COMMENT='出差单相关订单表';
+
+
+CREATE TABLE `tms_travel_steward` (
+  `tos_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `steward_number` varchar(50) NOT NULL DEFAULT '' COMMENT '差旅管家订单号',
+  `travel_number` varchar(50) NOT NULL DEFAULT '' COMMENT '出差单编号',
+  `travel_name` varchar(25) NOT NULL DEFAULT '' COMMENT '出差人名称',
+  `cost_name` varchar(25) NOT NULL DEFAULT '' COMMENT '费用类型',
+  `travel_tool` varchar(25) NOT NULL DEFAULT '' COMMENT '交通工具',
+
+  `start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
+  `stop_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
+  `start_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '出发城市名称',
+  `stop_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '目的城市名称',
+  `steward_price` varchar(50) NOT NULL DEFAULT '' COMMENT '金额',
+  `steward_type` varchar(50) NOT NULL DEFAULT '' COMMENT '差旅订单状态',
+
+  `tos_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tos_id`)
+) COMMENT='出差单相关差旅管家表';
