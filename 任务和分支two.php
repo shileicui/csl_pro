@@ -617,9 +617,10 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13461 已上线
 
 订单确认 新增修改按钮 处理异常坐标信息
 feature_13472_csl_20230602 tms_admin
+feature_13472_csl_20230606 tms_service
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13472 未上线
 
-
+UPDATE tms_redress_site SET trs_visible=2
 
 116.5666491696746,39.7971908469835
 
@@ -699,6 +700,9 @@ feature_13540_csl_20230607 tms_admin
 feature_13540_csl_20230608 tms_service
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13540  未上线
 
+//dis接口域名
+define('DIS_API_DOMAIN', 'http://oms.ashsh.com.cn:10029');
+
 CREATE TABLE `tms_travel` (
   `tt_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `travel_number` varchar(50) NOT NULL DEFAULT '' COMMENT '出差单编号',
@@ -709,7 +713,7 @@ CREATE TABLE `tms_travel` (
 
   `accompany_names` varchar(255) NOT NULL DEFAULT '' COMMENT '陪同人名称',
   `accompany_uids`varchar(255) NOT NULL DEFAULT ''  COMMENT '陪同人id',
-  `travel_em_nos` varchar(25) NOT NULL DEFAULT '' COMMENT '陪同人工号',
+  `accompany_em_nos` varchar(255) NOT NULL DEFAULT '' COMMENT '陪同人工号',
 
   `start_region_id`  int(11) NOT NULL DEFAULT '0' COMMENT '出发城市id',
   `start_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '出发城市名称',
@@ -729,7 +733,12 @@ CREATE TABLE `tms_travel` (
   `tt_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '出差单状态  1新建 2审批中 3待开始 4进行中 5已完成 6已取消 7已退回',
   `trip_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '出行方式  1飞机 2高铁 3动车 4火车 5出租车 6轮船 7汽车大巴 8自驾',
   `oid` varchar(100) NOT NULL DEFAULT '' COMMENT '出差单标识符',
-  `round_trip_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否往返  1是 2否',
+  `round_trip_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否往返  0否 1是',
+  `is_reimbursed` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否已报销  0未报销 1已报销',
+
+  `document_type`varchar(25) NOT NULL DEFAULT '' COMMENT '北森审批类型',
+  `approve_status`varchar(25) NOT NULL DEFAULT '' COMMENT '北森审批状态',
+  `eteams_push_param` json COMMENT '北森推送内容参数',
 
   `tt_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -745,15 +754,24 @@ CREATE TABLE `tms_order_travel` (
   `tt_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '出差单申请表id',
   `to_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '订单to_id',
   `to_no` char(32) NOT NULL DEFAULT '' COMMENT '订单to_no',
-  `to_trequirement` char(32) NOT NULL DEFAULT '' COMMENT '订单to_no',
   `tot_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
-  PRIMARY KEY (`tot_id`)
+  PRIMARY KEY (`tot_id`),
+  KEY `idx_tt_id` (`tt_id`),
+  KEY `idx_to_id` (`to_id`)
 ) COMMENT='出差单相关订单表';
 
 
+北森出差单数据同步
+生产者 user_service
+user-service.business-trip.change   消息主题
+/index.php?r=tms-travel/update      消费接口
+
+
+
+//暂时不用
 CREATE TABLE `tms_travel_steward` (
   `tos_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `steward_number` varchar(50) NOT NULL DEFAULT '' COMMENT '差旅管家订单号',
@@ -775,3 +793,99 @@ CREATE TABLE `tms_travel_steward` (
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
   PRIMARY KEY (`tos_id`)
 ) COMMENT='出差单相关差旅管家表';
+
+
+
+
+
+异常坐标地址 
+feature_13472_csl_20230602  tms_admin
+tms_redress_site
+
+
+订单附属信息表新增 是否签收反馈 和是否温度反馈 字段
+feature_13680_csl_20230613 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13680 已上线
+
+alter table
+  tms_order_information
+add
+  column `is_sign_feedback` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否签收反馈 0未反馈 1已反馈',
+add
+  column `is_temperature_feedback` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否温度反馈 0未反馈 1已反馈';
+
+UPDATE tms_order_information SET is_sign_feedback='1',is_temperature_feedback='1';
+
+thind.order_sign_data.push   签收反馈 timing/ordersignbackpush
+thind.order_temperature_data.push   温度反馈  timing/ordertemperaturepush
+thind.applet_order_temperature_data.push   小程序温度反馈 timing/AppletOrdertemperaturepush
+
+php yii local/signbackpush
+php yii local/temperaturepush
+php yii local/applet-temperaturepush
+18831161
+php yii order-feedback/applet-temperaturepush
+
+
+差旅管家2.1：出差单专人专车里程申报
+feature_13539_csl_20230614 tms_admin
+feature_13539_csl_20230616 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13539 未上线
+
+
+tms_mileage_declare
+
+
+CREATE TABLE `tms_mileage_declare` (
+  `tmd_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `tmd_number` varchar(50) NOT NULL DEFAULT '' COMMENT '申请编号',
+  `travel_number` varchar(50) NOT NULL DEFAULT '' COMMENT '出差单编号',
+  `tt_id`  int(11) NOT NULL DEFAULT '0' COMMENT '出差单id',
+
+  `start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
+  `stop_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
+
+  `start_region_id`  int(11) NOT NULL DEFAULT '0' COMMENT '出发城市id',
+  `start_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '出发城市名称',
+
+  `halfway_region_ids`  varchar(255) NOT NULL DEFAULT '' COMMENT '途径城市id',
+  `halfway_region_names` varchar(255) NOT NULL DEFAULT '' COMMENT '途径城市名称',
+
+  `stop_region_id`  int(11) NOT NULL DEFAULT '0' COMMENT '目的城市id',
+  `stop_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '目的城市名称',
+
+  `tmd_mileage` varchar(50) NOT NULL DEFAULT '' COMMENT '申报里程数',
+  `travel_mileage` varchar(50) NOT NULL DEFAULT '' COMMENT '出差距离',
+
+  `car_number` varchar(32)  NOT NULL  DEFAULT '' COMMENT '车牌号',
+
+  `accompany_names` varchar(255) NOT NULL DEFAULT '' COMMENT '陪同人名称',
+  `accompany_uids`varchar(255) NOT NULL DEFAULT ''  COMMENT '陪同人id',
+
+  `send_reason` varchar(800) NOT NULL DEFAULT '' COMMENT '配送说明',
+
+  `created_name` varchar(25) NOT NULL DEFAULT '' COMMENT '创建人名称',
+  `created_uid` int(11) NOT NULL DEFAULT '0' COMMENT '创建人id',
+  `created_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `tmd_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '里程申报状态 1未申报 2已申报 3已完成 4已作废',
+
+  `tmd_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tmd_id`)
+) COMMENT='里程申报';
+
+CREATE TABLE `tms_mileage_order` (
+  `tmo_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `tmd_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '里程申报表id',
+  `to_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '订单to_id',
+  `to_no` char(32) NOT NULL DEFAULT '' COMMENT '订单to_no',
+  `tmo_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tmo_id`),
+  KEY `idx_tmd_id` (`tmd_id`),
+  KEY `idx_to_id` (`to_id`)
+) COMMENT='里程申报相关订单表';
