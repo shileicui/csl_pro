@@ -833,7 +833,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13539 未上线
 
 
 CREATE TABLE `tms_mileage_declare` (
- `tmd_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `tmd_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `tmd_number` varchar(50) NOT NULL DEFAULT '' COMMENT '申请编号',
   `travel_number` varchar(50) NOT NULL DEFAULT '' COMMENT '出差单编号',
   `tt_id` int(11) NOT NULL DEFAULT '0' COMMENT '出差单id',
@@ -886,7 +886,8 @@ CREATE TABLE `tms_mileage_order` (
 ) COMMENT='里程申报相关订单表';
 
 
-
+office-service.workflow-approval.change-notify
+index.php?r=tms-travel/update-mileage
 
 {"code":0,"msg":"ok","data":{"unique_number":61866421542887424,"request_id":24049}}
 
@@ -1043,14 +1044,16 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13978 已上线
 
 
 
-获取物流供应商启用数据
+获取物流供应商启用数据   0703
 feature_14007_csl_20230630  tms_service
 http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14007 未上线
 
+无重大BUG发生
+严格执行规范
 
 
-1.物流供应商主体调整
-2.获取箱型配置信息接口
+1.物流供应商主体调整  
+2.oms获取箱型配置信息接口
 3.订单确认、复核：识别温度计提醒
 4.差旅管家2.1：出差单关联运单费用报销
 5.差旅管家2.1：出差单专人专车里程申报
@@ -1061,3 +1064,6 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14007 未上线
 10.质量管控点不合格提醒-tms端
 11.车辆管理3.2：车辆租赁信息调整
 
+
+
+历史站点错误数据修改（审批编号ITSJ202307030002） 0703
