@@ -698,7 +698,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13379 已上线
 差旅管家2.1：出差单关联运单费用报销，流程调整
 feature_13540_csl_20230607 tms_admin
 feature_13540_csl_20230608 tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13540  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13540  已上线
 
 //dis接口域名
 define('DIS_API_DOMAIN', 'http://oms.ashsh.com.cn:10029');
@@ -827,7 +827,7 @@ php yii order-feedback/applet-temperaturepush
 差旅管家2.1：出差单专人专车里程申报
 feature_13539_csl_20230614 tms_admin
 feature_13539_csl_20230616 tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13539 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13539 已上线
 
 
 
@@ -892,6 +892,8 @@ index.php?r=tms-travel/update-mileage
 {"code":0,"msg":"ok","data":{"unique_number":61866421542887424,"request_id":24049}}
 
 
+ALTER table tms_mileage_declare add COLUMN `tmd_url`  text COMMENT '图片链接';
+ALTER table tms_travel add COLUMN `tt_type`  tinyint(4) NOT NULL DEFAULT '0' COMMENT '出差单类型 1 业务出差 2 公务出差';
 
 
 
@@ -991,7 +993,7 @@ php yii history-data/station-data
 
 换箱时效配置
 feature_13933_csl_20230627 tms_admin
-http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13933 未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13933 已上线
 
 php yii history-data/boxchange-data
 
@@ -1067,3 +1069,92 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14007 未上线
 
 
 历史站点错误数据修改（审批编号ITSJ202307030002） 0703
+
+
+
+
+SELECT
+  ro.ro_id AS '路由id',
+  ro.ro_name AS '路由名称',
+  rt.rt_name AS '路由类型',
+  ro.start_region_name AS '出港城市',
+  start_ts.ts_name AS '出港站点',
+  ro.start_ts_id AS '出港站点id',
+  ro.stop_region_name AS '到港城市',
+  stop_ts.ts_name AS '到港站点',
+  ro.stop_ts_id AS '到港站点id',(
+  CASE
+      ro.ro_status 
+      WHEN 0 THEN
+      '正常' 
+      WHEN 1 THEN
+      '停运' 
+    END 
+    ) AS '路由状态',
+    count( tro.ro_id ) AS '供应商数量',
+    use_count AS '路由使用次数',
+    CONCAT(( rto.con_time * 4 ), '-',(( rto.con_time * 4 )+ 4 ), '小时' ) AS '路由时效',
+    CONCAT(
+      transport_price,(
+      CASE
+          ro.units_type 
+          WHEN 1 THEN
+          '元/千克' 
+          WHEN 2 THEN
+          '元/件' 
+        END 
+        )) AS '路由成本',
+      ts.tms_sup_name AS '承运商名称',(
+  CASE
+      ts.tms_sup_monjs
+      WHEN 1 THEN
+      '月结' 
+      WHEN 2 THEN
+      '日结' 
+    END 
+    ) AS '承运商结算类型'
+
+    FROM
+      `route` AS ro
+      LEFT JOIN route_type AS rt ON ro.rt_id = rt.rt_id
+      LEFT JOIN transport_stations AS start_ts ON ro.start_ts_id = start_ts.ts_id
+      LEFT JOIN transport_stations AS stop_ts ON ro.stop_ts_id = stop_ts.ts_id
+      LEFT JOIN ( SELECT * FROM tms_supplier_route WHERE tsr_visible = 1 OR tsr_visible IS NULL ) AS tro ON ro.ro_id = tro.ro_id
+      LEFT JOIN ro_time AS rto ON rto.ro_id = ro.ro_id 
+      LEFT JOIN tms_supplier AS ts ON ro.su_id = ts.tms_sup_id
+    WHERE
+      ro.ro_visible = 1 
+  GROUP BY
+  ro.ro_id;
+
+导出路由数据  20230705
+
+app和oms派件时间限制
+feature_14107_csl_20230706  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14107 未上线
+
+
+
+特殊收费优化
+feature_14136_csl_20230707  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14136 已上线
+
+
+差旅管家2.2：出差申请和报销优化
+feature_14150_csl_20230710 tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=14150 未上线
+
+ALTER table tms_travel add COLUMN `tt_type`  tinyint(4) NOT NULL DEFAULT '0' COMMENT '出差单类型 1 业务出差 2 公务出差';
+
+
+ 派件、反馈操作按钮限制
+ feature_14208_csl_20230711 tms_admin
+ http://project.ashsh.com.cn/index.php?m=task&f=view&id=14208 未上线
+
+
+
+路由推荐应用2.2 ：推荐路由批量导入
+feature_14228_csl_20230712 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14228  未上线
+
+
