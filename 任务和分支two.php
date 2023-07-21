@@ -1170,9 +1170,6 @@ feature_14302_csl_20230717   tms_admin
 http://project.ashsh.com.cn/index.php?m=task&f=view&id=14302 未上线
 
 
-路由发运规则设置
-feature_14303_csl_20230717  dispath_admin
-http://project.ashsh.com.cn/index.php?m=task&f=view&id=14303  未上线
 
 alter table
   route
@@ -1249,17 +1246,39 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14388  未上线
 
 
 
+// 路由发运规则设置
+// feature_14303_csl_20230717  dispath_admin
+// http://project.ashsh.com.cn/index.php?m=task&f=view&id=14303  未上线
+
+路由推荐应用2.3：路由发运规则设置
+feature_14399_csl_20230724 dispath_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=14399  未上线
+
+// alter table
+//   route
+// add
+//   column `shipping_rules` tinyint(4) NOT NULL DEFAULT '1' COMMENT '发运规则 1无限制 2按星期 3按日期 4 手动选择',
+// add
+//   column `shipping_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '发运时间 1周一 2周二 3周三 4周四 5周五 6周六 7周日 8单日发运 9双日发运';
+
+
+
 CREATE TABLE `route_rules_restrict` (
   `rr_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `ro_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '路由id',
-  `months` varchar(50) NOT NULL DEFAULT '' COMMENT '月份',
-  `weeks` varchar(50) NOT NULL DEFAULT '' COMMENT '星期',
+  `months` varchar(50) NOT NULL DEFAULT '' COMMENT '月份 1、1月 2、2月.. 多个用逗号隔开',
+  `weeks` varchar(50) NOT NULL DEFAULT '' COMMENT '星期 1、星期一 2、星期二 ..多个用逗号隔开',
+  `tag_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '标签',
+  `insure_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '保价 0无  1 300W+',
+  `sto_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '箱型ids',
+  `sto_names` varchar(500) NOT NULL DEFAULT '' COMMENT '箱型名称',
+  `cp_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '项目ids',
+  `cp_names` varchar(1024) NOT NULL DEFAULT '' COMMENT '项目名称',
   `rr_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
-  PRIMARY KEY (`tbt_id`),
-  KEY `idx_tem_id` (`tem_id`),
-  KEY `idx_tba_id` (`tba_id`)
-) COMMENT='换箱时效温度配置';
+  PRIMARY KEY (`rr_id`),
+  KEY `idx_ro_id` (`ro_id`)
+) COMMENT='路由发运规则设置';
 
