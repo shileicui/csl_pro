@@ -1149,7 +1149,7 @@ ALTER table tms_travel add COLUMN `tt_type`  tinyint(4) NOT NULL DEFAULT '0' COM
 
  派件、反馈操作按钮限制
  feature_14208_csl_20230711 tms_admin
- http://project.ashsh.com.cn/index.php?m=task&f=view&id=14208 未上线
+ http://project.ashsh.com.cn/index.php?m=task&f=view&id=14208 已上线
 
 
 
@@ -1157,4 +1157,109 @@ ALTER table tms_travel add COLUMN `tt_type`  tinyint(4) NOT NULL DEFAULT '0' COM
 feature_14228_csl_20230712 tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14228  未上线
 
+{tms_admin}history-data/route-data
+
+
+  日喀则市-日喀则市-大巴
+
+
+  郑州市-无锡市-中铁
+
+14302 车辆租赁增加宴嘉=
+feature_14302_csl_20230717   tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=14302 未上线
+
+
+路由发运规则设置
+feature_14303_csl_20230717  dispath_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=14303  未上线
+
+alter table
+  route
+add
+  column `shipping_rules` tinyint(4) NOT NULL DEFAULT '1' COMMENT '发运规则 1无限制 2按星期 3按日期 4 手动选择',
+add
+  column `shipping_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '发运时间 1周一 2周二 3周三 4周四 5周五 6周六 7周日 8单日发运 9双日发运';
+
+
+
+ice_aging
+
+
+ALTER table tms_customer_config add COLUMN `ice_aging_status` tinyint(3)  NOT NULL DEFAULT '0' COMMENT '不需要换冰排时效监控  0不勾选  1勾选';
+
+ALTER table tms_project_config add COLUMN `ice_aging_status` tinyint(3)  NOT NULL DEFAULT '0' COMMENT '不需要换冰排时效监控  0不勾选  1勾选';
+
+'ice_aging_status' => ['on' => 1, 'off' => 0, 'label' => '不需要换冰排时效监控', 'span' => ' '],  
+
+update tms_customer_config set ice_aging_status=1 where cu_id = '201900337';
+update tms_customer_config set ice_aging_status=1 where cu_id = '202000180';
+
+//物流系统，客户项目特殊配置
+TMS_CUSTOMER_CONFIG
+ {
+  "tcc_dwt_shutdown_verify" : {"on" : 1, "off" : 0, "label" : "鼎为关机验证", "span" : ""},
+   "cu_piece_feedback" : {"on" : 1, "off" : 2, "label" : "签收自动反馈", "span" : "（派件1小时后自动邮件签收反馈）"}, 
+   "cu_temperature_feedback" : {"on" : 1, "off" : 2, "label" : "温度自动反馈", "span" : "（每晚8点自动邮件温度数据反馈）"},
+   "cu_temperature_type" : {"on" : 1, "off" : 2, "label" : "支持批量上传温度数据", "span" : "（默认客户支持批量上传温度数据）"},
+   "cu_tengsen_trmperature" : {"on" : 1, "off" : 2, "label" : "不支持批量上传滕森温度数据", "span" : "（默认客户支持上传）"},
+   "cu_sign_feedback" : {"on" : 1, "off" : 2, "label" : "代签短信提醒", "span" : ""},
+   "cu_goods_print" : {"on" : 1, "off" : 0, "label" : "打印运单时将货物名称打印在运单上", "span" : ""},
+   "cu_send_message" : {"on" : 0, "off" : 1, "label" : "不发送取派短信", "span" : "（配置后不给收发件人发送取派短信）"},
+   "cu_print_express_remark" : {"on" : 1, "off" : 0, "label" : "客户单号打印到运单备注", "span" : ""},
+   "main_plural_thermometer" : {"on" : 1, "off" : 0, "label" : "支持主副温度计", "span" : " "},  
+   "connect_verify" : {"on" : 1, "off" : 0, "label" : "上传客户交接单", "span" : " "},  
+   "write_temp_switch" : {"on" : 1, "off" : 0, "label" : "取派件填写开启关闭温度", "span" : " "},  
+   "batch_delivery_switch" : {"on" : 1, "off" : 0, "label" : "批量派件", "span" : " "},
+   "cpc_not_use_ssexpress" : {"on" : 1, "off" : 0, "label" : "不使用生生签收单据", "span" : " "},
+   "cpc_use_customer_express" : {"on" : 1, "off" : 0, "label" : "使用客户签收单据", "span" : " "},
+    "ice_aging_status" : {"on" : 1, "off" : 0, "label" : "不需要换冰排时效监控", "span" : " ","disabled_ids":"201900337,202000180"}
+  }
+
+TMS_PROJECT_CONFIG
+  {
+    "pickup_collect_note_switch" : {"on" : 1, "off" : 0, "label" : "取件给收件方发送短信", "span" : " "},  
+    "pickup_client_mail_switch" : {"on" : 1, "off" : 0, "label" : "取件给客户发送邮件", "span" : " "}, 
+    "note_code_switch" : {"on" : 1, "off" : 0, "label" : "派件验证码校验", "span" : " "}, 
+    "cpc_send_message_add_customer" : {"on" : 1, "off" : 0, "label" : " 取派短信发送项目人员信息", "span" : ""},
+    "send_code_verify" : {"on" : 1, "off" : 0, "label" : "到达派件签收码校验", "span" : " "},  
+    "connect_verify" : {"on" : 1, "off" : 0, "label" : "上传客户交接单", "span" : " "},  
+    "batch_delivery_switch" : {"on" : 1, "off" : 0, "label" : "批量派件", "span" : " "},
+    "cpc_not_use_ssexpress" : {"on" : 1, "off" : 0, "label" : "不使用生生签收单据", "span" : " "},
+   "cpc_use_customer_express" : {"on" : 1, "off" : 0, "label" : "使用客户签收单据", "span" : " "},
+   "ice_aging_status" : {"on" : 1, "off" : 0, "label" : "不需要换冰排时效监控", "span" : " "}
+  }
+
+
+异常坐标地址 修改时把cu_id给算法
+feature_14357_csl_20230720 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14357 未上线
+
+
+大件发货页面优化调整
+feature_14347_csl_20230720  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14347 未上线
+
+
+
+路由添加修改优化
+feature_14388_csl_20230721  tms_admin
+feature_14388_csl_20230721  dispath_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14388  未上线
+
+
+
+CREATE TABLE `route_rules_restrict` (
+  `rr_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `ro_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '路由id',
+  `months` varchar(50) NOT NULL DEFAULT '' COMMENT '月份',
+  `weeks` varchar(50) NOT NULL DEFAULT '' COMMENT '星期',
+  `rr_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tbt_id`),
+  KEY `idx_tem_id` (`tem_id`),
+  KEY `idx_tba_id` (`tba_id`)
+) COMMENT='换箱时效温度配置';
 
