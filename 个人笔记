@@ -1,6 +1,7 @@
 .\HD-Adb shell settings put global http_proxy <ip>:<port>
 
-
+//添加索引sql
+ALTER  TABLE  `work_map`  ADD  INDEX idx_wmp_region_id (  `wmp_region_id`  )
 
 仓库工作单方案准备列表，展示角色所配置城市的工作单信息
 短信消息模版调整
@@ -18,6 +19,38 @@ pyinstaller --onefile --icon=img.ico  main.py -w
 
 堡垒机  Aa1111111111
 
+泛微
+18310120387
+Aa*111111
 
 
 {"of_way":"zhouyating@HEC.CN","of_tplname":"[60923641]送达通知","of_content":"<p>尊敬的客户，您好！<br\/> 您1970年01月01日08点从东莞市发往北京市的冷链货物已于1970年01月01日08点00分由安全签收!<br\/> [运输单号：60923641]<br\/>[项目编号：PCD-DZ650-17-001]<\/p><br\/><a target=\"_blank\" href=\"https:\/\/omstest.ashsh.com.cn:18012\/\/upload\/attach\/2021-09\/2019-07-31广东东阳光药业东莞市广东东阳光药业到北京市中国人民解放军总医院-60923641temp1631778857595.pdf\">2019-07-31广东东阳光药业东莞市广东东阳光药业到北京市中国人民解放军总医院-60923641temp1631778857595.pdf<\/a><br\/><a target=\"_blank\" href=\"https:\/\/omstest.ashsh.com.cn:18012\/\/upload\/attach\/2021-11\/2019-07-31广东东阳光药业东莞市广东东阳光药业到北京市中国人民解放军总医院-60923641qjphoto1635918668930.jpg\">2019-07-31广东东阳光药业东莞市广东东阳光药业到北京市中国人民解放军总医院-60923641qjphoto1635918668930.jpg<\/a><br\/><a target=\"_blank\" href=\"https:\/\/omstest.ashsh.com.cn:18012\/\/upload\/signature\/2021-09\/2019-07-31广东东阳光药业东莞市广东东阳光药业到北京市中国人民解放军总医院-60923641temp1631778857595.pdf\">2019-07-31广东东阳光药业东莞市广东东阳光药业到北京市中国人民解放军总医院-60923641temp1631778857595.pdf<\/a><br\/><p>如您有任何疑问欢迎致电生生物流.<br\/>祝：工作愉快！<br\/>客服中心-[崔市磊]<br\/>上海生生物流有限公司<br\/>客服电话：4000-121-321\/021-54296788<br\/>接单邮箱：cs@ashsh.cn<br\/>服务生物医药，专注冷链物流<\/p>","typeid":1,"at_id":["18796009","18798077"],"sgin_at_id":["18796009"]}
+
+
+'tms_customer_conf' => [
+         'tcc_dwt_shutdown_verify' => ['on' => 1, 'off' => 0, 'label' => '鼎为关机验证', 'span' => ''], //鼎为关机验证 1开启 0关闭
+         'cu_piece_feedback' => ['on' => 1, 'off' => 2, 'label' => '签收自动反馈', 'span' => '（派件1小时后自动邮件签收反馈）'], 
+         'cu_temperature_feedback' => ['on' => 1, 'off' => 2, 'label' => '温度自动反馈', 'span' => '（每晚8点自动邮件温度数据反馈）'],
+         'cu_temperature_type' => ['on' => 1, 'off' => 2, 'label' => '支持批量上传温度数据', 'span' => '（默认客户支持批量上传温度数据）'],
+         'cu_tengsen_trmperature' => ['on' => 1, 'off' => 2, 'label' => '不支持批量上传滕森温度数据', 'span' => '（默认客户支持上传）'],
+         'cu_sign_feedback' => ['on' => 1, 'off' => 2, 'label' => '代签短信提醒', 'span' => ''],
+         'cu_goods_print' => ['on' => 1, 'off' => 0, 'label' => '打印运单时将货物名称打印在运单上', 'span' => ''],
+         'cu_send_message' => ['on' => 0, 'off' => 1, 'label' => '不发送取派短信', 'span' => '（配置后不给收发件人发送取派短信）'],
+         'cu_print_express_remark' => ['on' => 1, 'off' => 0, 'label' => '客户单号打印到运单备注', 'span' => ''],
+         'main_plural_thermometer' => ['on' => 1, 'off' => 0, 'label' => '支持主副温度计', 'span' => ' '],  
+          'connect_verify' => ['on' => 1, 'off' => 0, 'label' => '上传客户交接单', 'span' => ' '],  
+          'write_temp_switch' => ['on' => 1, 'off' => 0, 'label' => '取派件填写开启关闭温度', 'span' => ' '],  
+          'batch_delivery_switch' => ['on' => 1, 'off' => 0, 'label' => '批量派件', 'span' => ' '],  
+
+      ],
+      'tms_project_conf' => [
+ 		'pickup_collect_note_switch' => ['on' => 1, 'off' => 0, 'label' => '取件给收件方发送短信', 'span' => ' '],  
+                'box_thermometer_switch' => ['on' => 1, 'off' => 0, 'label' => '双温度计（一箱2个温度计）', 'span' => ' '],
+                 'note_code_switch' => ['on' => 1, 'off' => 0, 'label' => '派件验证码校验', 'span' => ' '], 
+                 'pickup_client_mail_switch' => ['on' => 1, 'off' => 0, 'label' => '取件给客户发送邮件', 'span' => ' '], 
+                 'cpc_send_message_add_customer' => ['on' => 1, 'off' => 0, 'label' => ' 取派短信发送项目人员信息', 'span' => ''],
+                  'send_code_verify' => ['on' => 1, 'off' => 0, 'label' => '到达派件签收码校验', 'span' => ' '],  
+                  'connect_verify' => ['on' => 1, 'off' => 0, 'label' => '上传客户交接单', 'span' => ' '],  
+                  'batch_delivery_switch' => ['on' => 1, 'off' => 0, 'label' => '批量派件', 'span' => ' '],  
+
+      ],

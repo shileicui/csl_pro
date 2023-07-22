@@ -694,55 +694,48 @@ add
 
 订单确认、复核：识别温度计提醒
 feature_13379_csl_20230607 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13379 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13379 已上线
 
 
 
 差旅管家2.1：出差单关联运单费用报销，流程调整
 feature_13540_csl_20230607 tms_admin
 feature_13540_csl_20230608 tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13540  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13540  已上线
 
 //dis接口域名
 define('DIS_API_DOMAIN', 'http://oms.ashsh.com.cn:10029');
 
 CREATE TABLE `tms_travel` (
-  `tt_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+ `tt_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `travel_number` varchar(50) NOT NULL DEFAULT '' COMMENT '出差单编号',
-
   `travel_name` varchar(25) NOT NULL DEFAULT '' COMMENT '出差人名称',
   `travel_uid` int(11) NOT NULL DEFAULT '0' COMMENT '出差人id',
   `travel_em_no` varchar(25) NOT NULL DEFAULT '' COMMENT '发起人工号',
-
   `accompany_names` varchar(255) NOT NULL DEFAULT '' COMMENT '陪同人名称',
-  `accompany_uids`varchar(255) NOT NULL DEFAULT ''  COMMENT '陪同人id',
+  `accompany_uids` varchar(255) NOT NULL DEFAULT '' COMMENT '陪同人id',
   `accompany_em_nos` varchar(255) NOT NULL DEFAULT '' COMMENT '陪同人工号',
-
-  `start_region_id`  int(11) NOT NULL DEFAULT '0' COMMENT '出发城市id',
+  `start_region_id` int(11) NOT NULL DEFAULT '0' COMMENT '出发城市id',
   `start_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '出发城市名称',
-
-  `stop_region_id`  int(11) NOT NULL DEFAULT '0' COMMENT '目的城市id',
+  `stop_region_id` int(11) NOT NULL DEFAULT '0' COMMENT '目的城市id',
   `stop_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '目的城市名称',
-
   `start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
   `stop_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
   `trip_reason` varchar(800) NOT NULL DEFAULT '' COMMENT '出差事由',
   `tt_address` varchar(800) NOT NULL DEFAULT '' COMMENT '工作地址',
   `tt_remark` text COMMENT '备注内容',
-
   `created_name` varchar(25) NOT NULL DEFAULT '' COMMENT '创建人名称',
   `created_uid` int(11) NOT NULL DEFAULT '0' COMMENT '创建人id',
   `created_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `tt_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '出差单状态  1新建 2审批中 3待开始 4进行中 5已完成 6已取消 7已退回',
+  `tt_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '出差单状态  1新建 2审批中  5审批通过 6已取消 7已退回',
   `trip_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '出行方式  1飞机 2高铁 3动车 4火车 5出租车 6轮船 7汽车大巴 8自驾',
   `oid` varchar(100) NOT NULL DEFAULT '' COMMENT '出差单标识符',
-  `round_trip_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否往返  0否 1是',
-  `is_reimbursed` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否已报销  0未报销 1已报销',
-
-  `document_type`varchar(25) NOT NULL DEFAULT '' COMMENT '北森审批类型',
-  `approve_status`varchar(25) NOT NULL DEFAULT '' COMMENT '北森审批状态',
-  `eteams_push_param` json COMMENT '北森推送内容参数',
-
+  `round_trip_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否往返 0否 1是 ',
+  `is_reimbursed` tinyint(4) NOT NULL DEFAULT '0' COMMENT '否已报销  0未报销 1已报销',
+  `document_type` varchar(25) NOT NULL DEFAULT '' COMMENT '北森审批类型',
+  `approve_status` varchar(25) NOT NULL DEFAULT '' COMMENT '北森审批状态',
+  `eteams_push_param` json DEFAULT NULL COMMENT '北森推送内容参数',
+  `sp_id` varchar(50) NOT NULL DEFAULT '' COMMENT '出差单报销申请审批ID',
   `tt_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
@@ -753,7 +746,7 @@ CREATE TABLE `tms_travel` (
 
 
 CREATE TABLE `tms_order_travel` (
-  `tot_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+ `tot_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `tt_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '出差单申请表id',
   `to_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '订单to_id',
   `to_no` char(32) NOT NULL DEFAULT '' COMMENT '订单to_no',
@@ -775,27 +768,27 @@ user-service.business-trip.change   消息主题
 
 
 //暂时不用
-CREATE TABLE `tms_travel_steward` (
-  `tos_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `steward_number` varchar(50) NOT NULL DEFAULT '' COMMENT '差旅管家订单号',
-  `travel_number` varchar(50) NOT NULL DEFAULT '' COMMENT '出差单编号',
-  `travel_name` varchar(25) NOT NULL DEFAULT '' COMMENT '出差人名称',
-  `cost_name` varchar(25) NOT NULL DEFAULT '' COMMENT '费用类型',
-  `travel_tool` varchar(25) NOT NULL DEFAULT '' COMMENT '交通工具',
+// CREATE TABLE `tms_travel_steward` (
+//   `tos_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+//   `steward_number` varchar(50) NOT NULL DEFAULT '' COMMENT '差旅管家订单号',
+//   `travel_number` varchar(50) NOT NULL DEFAULT '' COMMENT '出差单编号',
+//   `travel_name` varchar(25) NOT NULL DEFAULT '' COMMENT '出差人名称',
+//   `cost_name` varchar(25) NOT NULL DEFAULT '' COMMENT '费用类型',
+//   `travel_tool` varchar(25) NOT NULL DEFAULT '' COMMENT '交通工具',
 
-  `start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
-  `stop_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
-  `start_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '出发城市名称',
-  `stop_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '目的城市名称',
-  `steward_price` varchar(50) NOT NULL DEFAULT '' COMMENT '金额',
-  `steward_type` varchar(50) NOT NULL DEFAULT '' COMMENT '差旅订单状态',
+//   `start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
+//   `stop_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
+//   `start_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '出发城市名称',
+//   `stop_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '目的城市名称',
+//   `steward_price` varchar(50) NOT NULL DEFAULT '' COMMENT '金额',
+//   `steward_type` varchar(50) NOT NULL DEFAULT '' COMMENT '差旅订单状态',
 
-  `tos_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
-  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
-  PRIMARY KEY (`tos_id`)
-) COMMENT='出差单相关差旅管家表';
+//   `tos_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+//   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+//   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+//   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+//   PRIMARY KEY (`tos_id`)
+// ) COMMENT='出差单相关差旅管家表';
 
 
 
@@ -830,53 +823,55 @@ php yii local/applet-temperaturepush
 php yii order-feedback/applet-temperaturepush
 
 
+
+
+
+
 差旅管家2.1：出差单专人专车里程申报
 feature_13539_csl_20230614 tms_admin
 feature_13539_csl_20230616 tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13539 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13539 已上线
 
 
-tms_mileage_declare
 
 
 CREATE TABLE `tms_mileage_declare` (
   `tmd_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `tmd_number` varchar(50) NOT NULL DEFAULT '' COMMENT '申请编号',
   `travel_number` varchar(50) NOT NULL DEFAULT '' COMMENT '出差单编号',
-  `tt_id`  int(11) NOT NULL DEFAULT '0' COMMENT '出差单id',
-
+  `tt_id` int(11) NOT NULL DEFAULT '0' COMMENT '出差单id',
   `start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
   `stop_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
-
-  `start_region_id`  int(11) NOT NULL DEFAULT '0' COMMENT '出发城市id',
+  `start_region_id` int(11) NOT NULL DEFAULT '0' COMMENT '出发城市id',
   `start_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '出发城市名称',
-
-  `halfway_region_ids`  varchar(255) NOT NULL DEFAULT '' COMMENT '途径城市id',
+  `halfway_region_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '途径城市id',
   `halfway_region_names` varchar(255) NOT NULL DEFAULT '' COMMENT '途径城市名称',
-
-  `stop_region_id`  int(11) NOT NULL DEFAULT '0' COMMENT '目的城市id',
+  `stop_region_id` int(11) NOT NULL DEFAULT '0' COMMENT '目的城市id',
   `stop_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '目的城市名称',
-
   `tmd_mileage` varchar(50) NOT NULL DEFAULT '' COMMENT '申报里程数',
   `travel_mileage` varchar(50) NOT NULL DEFAULT '' COMMENT '出差距离',
-
-  `car_number` varchar(32)  NOT NULL  DEFAULT '' COMMENT '车牌号',
-
+  `car_number` varchar(32) NOT NULL DEFAULT '' COMMENT '车牌号',
+  `unique_number` varchar(100) NOT NULL DEFAULT '' COMMENT '泛微ecology关联编号',
+  `request_id` int(11) NOT NULL DEFAULT '0' COMMENT '泛微ecology流程ID',
   `accompany_names` varchar(255) NOT NULL DEFAULT '' COMMENT '陪同人名称',
-  `accompany_uids`varchar(255) NOT NULL DEFAULT ''  COMMENT '陪同人id',
-
+  `accompany_uids` varchar(255) NOT NULL DEFAULT '' COMMENT '陪同人id',
+  `accompany_em_nos` varchar(255) NOT NULL DEFAULT '' COMMENT '陪同人工号',
   `send_reason` varchar(800) NOT NULL DEFAULT '' COMMENT '配送说明',
-
+  `cancel_reason` varchar(500) NOT NULL DEFAULT '' COMMENT '作废原因',
+  `car_back_to_ids` varchar(1024) NOT NULL DEFAULT '' COMMENT '返程的订单id',
+  `car_back_to_nos` varchar(1024) NOT NULL DEFAULT '' COMMENT '返程的单号',
   `created_name` varchar(25) NOT NULL DEFAULT '' COMMENT '创建人名称',
   `created_uid` int(11) NOT NULL DEFAULT '0' COMMENT '创建人id',
+  `created_em_no` varchar(25) NOT NULL DEFAULT '' COMMENT '创建人工号',
   `created_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `tmd_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '里程申报状态 1未申报 2已申报 3已完成 4已作废',
-
   `tmd_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
-  PRIMARY KEY (`tmd_id`)
+  `tmd_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '专车专人类型 0 专车冷藏车 1 专人',
+  PRIMARY KEY (`tmd_id`),
+  KEY `idx_tt_id` (`tt_id`)
 ) COMMENT='里程申报';
 
 CREATE TABLE `tms_mileage_order` (
@@ -892,3 +887,401 @@ CREATE TABLE `tms_mileage_order` (
   KEY `idx_tmd_id` (`tmd_id`),
   KEY `idx_to_id` (`to_id`)
 ) COMMENT='里程申报相关订单表';
+
+
+office-service.workflow-approval.change-notify
+index.php?r=tms-travel/update-mileage
+
+{"code":0,"msg":"ok","data":{"unique_number":61866421542887424,"request_id":24049}}
+
+
+ALTER table tms_mileage_declare add COLUMN `tmd_url`  text COMMENT '图片链接';
+ALTER table tms_travel add COLUMN `tt_type`  tinyint(4) NOT NULL DEFAULT '0' COMMENT '出差单类型 1 业务出差 2 公务出差';
+
+
+
+
+
+
+
+
+异常坐标地址 新增订单负责人
+feature_13771_csl_20230619 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13771  已上线
+
+
+TMS迁移不使用生生签收单据与使用客户签收单据配置项
+feature_13786_csl_20230620 tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=13786  已上线
+
+php yii history-data/project-conf-data
+
+
+
+ALTER table tms_customer_config add COLUMN `cpc_not_use_ssexpress` tinyint(3) unsigned  NOT NULL DEFAULT '0' COMMENT '不使用生生面单  0使用  1不使用',
+add COLUMN `cpc_use_customer_express` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '是否使用客户面单 1使用 0不使用';
+
+
+ALTER table tms_project_config add COLUMN `cpc_not_use_ssexpress` tinyint(3) unsigned  NOT NULL DEFAULT '0' COMMENT '不使用生生面单  0使用  1不使用',
+add COLUMN `cpc_use_customer_express` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '是否使用客户面单 1使用 0不使用';
+
+\sswl\utils\config\SystemEnum::getSystemEnumByEnumType('TMS_CUSTOMER_CONFIG');
+
+  \sswl\utils\config\SystemEnum::getSystemEnumByEnumType('TMS_PROJECT_CONFIG');
+//物流系统，客户项目特殊配置
+TMS_CUSTOMER_CONFIG
+ {
+  "tcc_dwt_shutdown_verify" : {"on" : 1, "off" : 0, "label" : "鼎为关机验证", "span" : ""},
+   "cu_piece_feedback" : {"on" : 1, "off" : 2, "label" : "签收自动反馈", "span" : "（派件1小时后自动邮件签收反馈）"}, 
+   "cu_temperature_feedback" : {"on" : 1, "off" : 2, "label" : "温度自动反馈", "span" : "（每晚8点自动邮件温度数据反馈）"},
+   "cu_temperature_type" : {"on" : 1, "off" : 2, "label" : "支持批量上传温度数据", "span" : "（默认客户支持批量上传温度数据）"},
+   "cu_tengsen_trmperature" : {"on" : 1, "off" : 2, "label" : "不支持批量上传滕森温度数据", "span" : "（默认客户支持上传）"},
+   "cu_sign_feedback" : {"on" : 1, "off" : 2, "label" : "代签短信提醒", "span" : ""},
+   "cu_goods_print" : {"on" : 1, "off" : 0, "label" : "打印运单时将货物名称打印在运单上", "span" : ""},
+   "cu_send_message" : {"on" : 0, "off" : 1, "label" : "不发送取派短信", "span" : "（配置后不给收发件人发送取派短信）"},
+   "cu_print_express_remark" : {"on" : 1, "off" : 0, "label" : "客户单号打印到运单备注", "span" : ""},
+   "main_plural_thermometer" : {"on" : 1, "off" : 0, "label" : "支持主副温度计", "span" : " "},  
+   "connect_verify" : {"on" : 1, "off" : 0, "label" : "上传客户交接单", "span" : " "},  
+   "write_temp_switch" : {"on" : 1, "off" : 0, "label" : "取派件填写开启关闭温度", "span" : " "},  
+   "batch_delivery_switch" : {"on" : 1, "off" : 0, "label" : "批量派件", "span" : " "},
+   "cpc_not_use_ssexpress" : {"on" : 1, "off" : 0, "label" : "不使用生生签收单据", "span" : " "},
+   "cpc_use_customer_express" : {"on" : 1, "off" : 0, "label" : "使用客户签收单据", "span" : " "}
+  }
+
+TMS_PROJECT_CONFIG
+  {
+    "pickup_collect_note_switch" : {"on" : 1, "off" : 0, "label" : "取件给收件方发送短信", "span" : " "},  
+    "pickup_client_mail_switch" : {"on" : 1, "off" : 0, "label" : "取件给客户发送邮件", "span" : " "}, 
+    "note_code_switch" : {"on" : 1, "off" : 0, "label" : "派件验证码校验", "span" : " "}, 
+    "cpc_send_message_add_customer" : {"on" : 1, "off" : 0, "label" : " 取派短信发送项目人员信息", "span" : ""},
+    "send_code_verify" : {"on" : 1, "off" : 0, "label" : "到达派件签收码校验", "span" : " "},  
+    "connect_verify" : {"on" : 1, "off" : 0, "label" : "上传客户交接单", "span" : " "},  
+    "batch_delivery_switch" : {"on" : 1, "off" : 0, "label" : "批量派件", "span" : " "},
+    "cpc_not_use_ssexpress" : {"on" : 1, "off" : 0, "label" : "不使用生生签收单据", "span" : " "},
+   "cpc_use_customer_express" : {"on" : 1, "off" : 0, "label" : "使用客户签收单据", "span" : " "}
+  }
+
+系统添加供应商加不了了，选择供应商主体之后银行账号和收款人信息出不来
+fixbug_9142_csl_20230620 tms_admin
+http://project.ashsh.com.cn/index.php?m=bug&f=view&id=9142 
+
+
+路由列表 站点筛选框组件优化
+feature_13832_csl_20230621 dispath_admin
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13832
+
+
+
+ 
+诺和 导出 优化
+feature_13834_csl_20230621  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13834
+
+
+路由站点停运 提示 文案添加链接跳转
+feature_13840_csl_20230625 dispath_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13840 已上线
+
+
+
+
+路由站点地址调整
+feature_13861_csl_20230627 tms_admin
+feature_13861_csl_20230626 dispath_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13861 已上线
+
+php yii history-data/station-data
+
+
+换箱时效配置
+feature_13933_csl_20230627 tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13933 已上线
+
+php yii history-data/boxchange-data
+
+CREATE TABLE `tms_boxchange_aging` (
+ `tba_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `sto_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '存货id',
+  `sto_name` char(32) NOT NULL DEFAULT '' COMMENT '存货名称',
+  `aging_num` int(11) NOT NULL DEFAULT '0' COMMENT '时效',
+  `send_day` varchar(100) NOT NULL DEFAULT '' COMMENT '派件时间',
+  `send_day_remark` varchar(500) NOT NULL DEFAULT '' COMMENT '派件时间节点文案',
+  `tba_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2停用',
+  `tba_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tba_id`),
+  KEY `idx_sto_id` (`sto_id`)
+) COMMENT='换箱时效配置';
+
+
+CREATE TABLE `tms_boxchange_temp` (
+  `tbt_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `tba_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '存货id',
+  `tem_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '温度id',
+  `tem_name` varchar(50) NOT NULL DEFAULT '' COMMENT '温度区间',
+  `tbt_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tbt_id`),
+  KEY `idx_tem_id` (`tem_id`),
+  KEY `idx_tba_id` (`tba_id`)
+) COMMENT='换箱时效温度配置';
+
+
+
+异常坐标地址优化
+feature_13938_csl_20230628 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13938 已上线
+
+
+质量管控点不合格提醒-tms端
+feature_13864_csl_20230628
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13864 未上线
+
+
+车辆管理3.2：车辆租赁信息调整
+feature_13978_csl_20230629  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13978 已上线
+
+
+
+获取物流供应商启用数据   0703
+feature_14007_csl_20230630  tms_service
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14007 未上线
+
+无重大BUG发生
+严格执行规范
+
+
+1.物流供应商主体调整  
+2.oms获取箱型配置信息接口
+3.订单确认、复核：识别温度计提醒
+4.差旅管家2.1：出差单关联运单费用报销
+5.差旅管家2.1：出差单专人专车里程申报
+6.订单附属信息表新增 是否签收反馈 和是否温度反馈 标识
+7.TMS迁移不使用生生签收单据与使用客户签收单据配置项
+8.路由站点地址调整
+9.换箱时效配置
+10.质量管控点不合格提醒-tms端
+11.车辆管理3.2：车辆租赁信息调整
+
+
+
+历史站点错误数据修改（审批编号ITSJ202307030002） 0703
+
+
+
+
+SELECT
+  ro.ro_id AS '路由id',
+  ro.ro_name AS '路由名称',
+  rt.rt_name AS '路由类型',
+  ro.start_region_name AS '出港城市',
+  start_ts.ts_name AS '出港站点',
+  ro.start_ts_id AS '出港站点id',
+  ro.stop_region_name AS '到港城市',
+  stop_ts.ts_name AS '到港站点',
+  ro.stop_ts_id AS '到港站点id',(
+  CASE
+      ro.ro_status 
+      WHEN 0 THEN
+      '正常' 
+      WHEN 1 THEN
+      '停运' 
+    END 
+    ) AS '路由状态',
+    count( tro.ro_id ) AS '供应商数量',
+    use_count AS '路由使用次数',
+    CONCAT(( rto.con_time * 4 ), '-',(( rto.con_time * 4 )+ 4 ), '小时' ) AS '路由时效',
+    CONCAT(
+      transport_price,(
+      CASE
+          ro.units_type 
+          WHEN 1 THEN
+          '元/千克' 
+          WHEN 2 THEN
+          '元/件' 
+        END 
+        )) AS '路由成本',
+      ts.tms_sup_name AS '承运商名称',(
+  CASE
+      ts.tms_sup_monjs
+      WHEN 1 THEN
+      '月结' 
+      WHEN 2 THEN
+      '日结' 
+    END 
+    ) AS '承运商结算类型'
+
+    FROM
+      `route` AS ro
+      LEFT JOIN route_type AS rt ON ro.rt_id = rt.rt_id
+      LEFT JOIN transport_stations AS start_ts ON ro.start_ts_id = start_ts.ts_id
+      LEFT JOIN transport_stations AS stop_ts ON ro.stop_ts_id = stop_ts.ts_id
+      LEFT JOIN ( SELECT * FROM tms_supplier_route WHERE tsr_visible = 1 OR tsr_visible IS NULL ) AS tro ON ro.ro_id = tro.ro_id
+      LEFT JOIN ro_time AS rto ON rto.ro_id = ro.ro_id 
+      LEFT JOIN tms_supplier AS ts ON ro.su_id = ts.tms_sup_id
+    WHERE
+      ro.ro_visible = 1 
+  GROUP BY
+  ro.ro_id;
+
+导出路由数据  20230705
+
+app和oms派件时间限制
+feature_14107_csl_20230706  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14107 未上线
+
+
+
+特殊收费优化
+feature_14136_csl_20230707  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14136 已上线
+
+
+差旅管家2.2：出差申请和报销优化
+feature_14150_csl_20230710 tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=14150 未上线
+
+ALTER table tms_travel add COLUMN `tt_type`  tinyint(4) NOT NULL DEFAULT '0' COMMENT '出差单类型 1 业务出差 2 公务出差';
+
+
+ 派件、反馈操作按钮限制
+ feature_14208_csl_20230711 tms_admin
+ http://project.ashsh.com.cn/index.php?m=task&f=view&id=14208 已上线
+
+
+
+路由推荐应用2.2 ：推荐路由批量导入
+feature_14228_csl_20230712 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14228  未上线
+
+{tms_admin}history-data/route-data
+
+
+  日喀则市-日喀则市-大巴
+
+
+  郑州市-无锡市-中铁
+
+14302 车辆租赁增加宴嘉=
+feature_14302_csl_20230717   tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=14302 未上线
+
+
+
+alter table
+  route
+add
+  column `shipping_rules` tinyint(4) NOT NULL DEFAULT '1' COMMENT '发运规则 1无限制 2按星期 3按日期 4 手动选择',
+add
+  column `shipping_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '发运时间 1周一 2周二 3周三 4周四 5周五 6周六 7周日 8单日发运 9双日发运';
+
+
+
+ice_aging
+
+
+ALTER table tms_customer_config add COLUMN `ice_aging_status` tinyint(3)  NOT NULL DEFAULT '0' COMMENT '不需要换冰排时效监控  0不勾选  1勾选';
+
+ALTER table tms_project_config add COLUMN `ice_aging_status` tinyint(3)  NOT NULL DEFAULT '0' COMMENT '不需要换冰排时效监控  0不勾选  1勾选';
+
+'ice_aging_status' => ['on' => 1, 'off' => 0, 'label' => '不需要换冰排时效监控', 'span' => ' '],  
+
+update tms_customer_config set ice_aging_status=1 where cu_id = '201900337';
+update tms_customer_config set ice_aging_status=1 where cu_id = '202000180';
+
+//物流系统，客户项目特殊配置
+TMS_CUSTOMER_CONFIG
+ {
+  "tcc_dwt_shutdown_verify" : {"on" : 1, "off" : 0, "label" : "鼎为关机验证", "span" : ""},
+   "cu_piece_feedback" : {"on" : 1, "off" : 2, "label" : "签收自动反馈", "span" : "（派件1小时后自动邮件签收反馈）"}, 
+   "cu_temperature_feedback" : {"on" : 1, "off" : 2, "label" : "温度自动反馈", "span" : "（每晚8点自动邮件温度数据反馈）"},
+   "cu_temperature_type" : {"on" : 1, "off" : 2, "label" : "支持批量上传温度数据", "span" : "（默认客户支持批量上传温度数据）"},
+   "cu_tengsen_trmperature" : {"on" : 1, "off" : 2, "label" : "不支持批量上传滕森温度数据", "span" : "（默认客户支持上传）"},
+   "cu_sign_feedback" : {"on" : 1, "off" : 2, "label" : "代签短信提醒", "span" : ""},
+   "cu_goods_print" : {"on" : 1, "off" : 0, "label" : "打印运单时将货物名称打印在运单上", "span" : ""},
+   "cu_send_message" : {"on" : 0, "off" : 1, "label" : "不发送取派短信", "span" : "（配置后不给收发件人发送取派短信）"},
+   "cu_print_express_remark" : {"on" : 1, "off" : 0, "label" : "客户单号打印到运单备注", "span" : ""},
+   "main_plural_thermometer" : {"on" : 1, "off" : 0, "label" : "支持主副温度计", "span" : " "},  
+   "connect_verify" : {"on" : 1, "off" : 0, "label" : "上传客户交接单", "span" : " "},  
+   "write_temp_switch" : {"on" : 1, "off" : 0, "label" : "取派件填写开启关闭温度", "span" : " "},  
+   "batch_delivery_switch" : {"on" : 1, "off" : 0, "label" : "批量派件", "span" : " "},
+   "cpc_not_use_ssexpress" : {"on" : 1, "off" : 0, "label" : "不使用生生签收单据", "span" : " "},
+   "cpc_use_customer_express" : {"on" : 1, "off" : 0, "label" : "使用客户签收单据", "span" : " "},
+    "ice_aging_status" : {"on" : 1, "off" : 0, "label" : "不需要换冰排时效监控", "span" : " ","disabled_ids":"201900337,202000180"}
+  }
+
+TMS_PROJECT_CONFIG
+  {
+    "pickup_collect_note_switch" : {"on" : 1, "off" : 0, "label" : "取件给收件方发送短信", "span" : " "},  
+    "pickup_client_mail_switch" : {"on" : 1, "off" : 0, "label" : "取件给客户发送邮件", "span" : " "}, 
+    "note_code_switch" : {"on" : 1, "off" : 0, "label" : "派件验证码校验", "span" : " "}, 
+    "cpc_send_message_add_customer" : {"on" : 1, "off" : 0, "label" : " 取派短信发送项目人员信息", "span" : ""},
+    "send_code_verify" : {"on" : 1, "off" : 0, "label" : "到达派件签收码校验", "span" : " "},  
+    "connect_verify" : {"on" : 1, "off" : 0, "label" : "上传客户交接单", "span" : " "},  
+    "batch_delivery_switch" : {"on" : 1, "off" : 0, "label" : "批量派件", "span" : " "},
+    "cpc_not_use_ssexpress" : {"on" : 1, "off" : 0, "label" : "不使用生生签收单据", "span" : " "},
+   "cpc_use_customer_express" : {"on" : 1, "off" : 0, "label" : "使用客户签收单据", "span" : " "},
+   "ice_aging_status" : {"on" : 1, "off" : 0, "label" : "不需要换冰排时效监控", "span" : " "}
+  }
+
+
+异常坐标地址 修改时把cu_id给算法
+feature_14357_csl_20230720 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14357 未上线
+
+
+大件发货页面优化调整
+feature_14347_csl_20230720  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14347 未上线
+
+
+
+路由添加修改优化
+feature_14388_csl_20230721  tms_admin
+feature_14388_csl_20230721  dispath_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14388  未上线
+
+
+
+// 路由发运规则设置
+// feature_14303_csl_20230717  dispath_admin
+// http://project.ashsh.com.cn/index.php?m=task&f=view&id=14303  未上线
+
+路由推荐应用2.3：路由发运规则设置
+feature_14399_csl_20230724 dispath_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=14399  未上线
+
+// alter table
+//   route
+// add
+//   column `shipping_rules` tinyint(4) NOT NULL DEFAULT '1' COMMENT '发运规则 1无限制 2按星期 3按日期 4 手动选择',
+// add
+//   column `shipping_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '发运时间 1周一 2周二 3周三 4周四 5周五 6周六 7周日 8单日发运 9双日发运';
+
+
+
+CREATE TABLE `route_rules_restrict` (
+  `rr_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `ro_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '路由id',
+  `months` varchar(50) NOT NULL DEFAULT '' COMMENT '月份 1、1月 2、2月.. 多个用逗号隔开',
+  `weeks` varchar(50) NOT NULL DEFAULT '' COMMENT '星期 1、星期一 2、星期二 ..多个用逗号隔开',
+  `tag_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '标签',
+  `insure_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '保价 0无  1 300W+',
+  `sto_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '箱型ids',
+  `sto_names` varchar(500) NOT NULL DEFAULT '' COMMENT '箱型名称',
+  `cp_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '项目ids',
+  `cp_names` varchar(1024) NOT NULL DEFAULT '' COMMENT '项目名称',
+  `rr_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`rr_id`),
+  KEY `idx_ro_id` (`ro_id`)
+) COMMENT='路由发运规则设置';
+

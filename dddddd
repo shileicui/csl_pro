@@ -1,0 +1,111 @@
+PCM+5（2~8℃、2~20℃、2~25℃、2~30℃、2~7.9℃、）蓝冰			
+
+ $arr = [
+	 31=>'蓝冰2~8℃',
+	 12=>'常温2~20℃',
+	 16=>'常温2-25℃',
+	 17=>'常温2-30℃',
+	 32=>'蓝冰2.0~7.9℃',
+ ]
+
+['sto_name'=>'VIP6','aging_num'=>0,'send_day'=>	'2D17','send_day_remark'=>	'今天取件明天17:30点派件'],
+['sto_name'=>'VIP12','aging_num'=>4,'send_day'=>	'2D17','send_day_remark'=>	'今天取件明天17:30点派件'],
+['sto_name'=>'VIP16','aging_num'=>6,'send_day'=>	'2D17','send_day_remark'=>	'今天取件明天17:30点派件'],
+['sto_name'=>'VIP28','aging_num'=>8,'send_day'=>	'2D17','send_day_remark'=>	'今天取件明天17:30点派件'],
+['sto_name'=>'VIP36','aging_num'=>4,'send_day'=>	'3D12','send_day_remark'=>	'今天取件后天上午12点前派件'],
+['sto_name'=>'VIP56','aging_num'=>6,'send_day'=>	'3D12','send_day_remark'=>	'今天取件后天上午12点前派件'],
+['sto_name'=>'VIP58','aging_num'=>6,'send_day'=>	'3D12','send_day_remark'=>	'今天取件后天上午12点前派件'],
+['sto_name'=>'VIP96','aging_num'=>6,'send_day'=>	'4D12','send_day_remark'=>	'今天取件大后天上午12点前派件'],
+['sto_name'=>'VIP100','aging_num'=>2,'send_day'=>	'3D17','send_day_remark'=>	'今天取件后天17:30点前派件'],
+['sto_name'=>'VIP168','aging_num'=>2,'send_day'=>	'3D17','send_day_remark'=>	'今天取件后天17:30点前派件'],
+
+
+
+
+PCM+22（15~25℃、0~30℃、6~30℃、1~44℃、10~30℃、18~30℃、4~25℃、2~29.9℃、2~24.9℃、5~39.9℃、15~24.9℃）恒温		
+
+ $arr = [
+	22=>'恒温15~25℃',
+	11=>'常温0~30℃',
+	13=>'常温6~30℃',
+	14=>'常温1~44℃',
+	21=>'恒温10~30℃',
+	23=>'恒温18~30℃',
+	26=>'恒温4~25℃',
+	81=>'恒温2.0~29.9℃',
+	82=>'恒温2.0~24.9℃',
+	83=>'恒温5.0~39.9℃',
+	84=>'恒温15.0~24.9℃',
+ ]
+
+['sto_name'=>'VIP6','aging_num'VIP6=>56,'send_day'=>	'3D12','send_day_remark'=>	'今天取件后天上午12点前派件'],
+['sto_name'=>'VIP12','aging_num'=>82,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP16','aging_num'=>84,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP28','aging_num'=>96,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP36','aging_num'=>96,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP56','aging_num'=>96,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP58','aging_num'=>96,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP96','aging_num'=>108,'send_day'=>	'5D17','send_day_remark'=>	'今天取件大大后天17:30前派件'],
+['sto_name'=>'VIP100','aging_num'=>108,'send_day'=>	'5D17','send_day_remark'=>	'今天取件大大后天17:30前派件'],
+['sto_name'=>'VIP168','aging_num'=>108,'send_day'=>	'5D17','send_day_remark'=>	'今天取件大大后天17:30前派件'],
+
+
+
+
+PCM+22（20~25℃、20~30℃）
+
+$arr = [
+	 24=>'恒温20~25℃',
+	 28=>'恒温20~30℃'
+]
+
+
+['sto_name'=>'VIP6','aging_num'=>52,'send_day'=>	'3D12','send_day_remark'=>	'今天取件后天上午12点前派件'],
+['sto_name'=>'VIP12','aging_num'=>72,'send_day'=>	'3D17','send_day_remark'=>	'今天取件后天17:30点前派件'],
+['sto_name'=>'VIP16','aging_num'=>72,'send_day'=>	'3D17','send_day_remark'=>	'今天取件后天17:30点前派件'],
+['sto_name'=>'VIP28','aging_num'=>84,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP36','aging_num'=>84,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP56','aging_num'=>84,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP58','aging_num'=>84,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP96','aging_num'=>96,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP100','aging_num'=>96,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP168','aging_num'=>96,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+
+
+
+PCM+15（10~20℃、8~20℃、）	
+
+$arr = [
+	25=>'恒温10~20℃',
+	27=>'恒温8~20℃'
+]	
+
+['sto_name'=>'VIP6','aging_num'=>52,'send_day'=>	'3D12','send_day_remark'=>	'今天取件后天上午12点前派件'],
+['sto_name'=>'VIP12','aging_num'=>72,'send_day'=>	'3D17','send_day_remark'=>	'今天取件后天17:30点前派件'],
+['sto_name'=>'VIP16','aging_num'=>72,'send_day'=>	'3D17','send_day_remark'=>	'今天取件后天17:30点前派件'],
+['sto_name'=>'VIP28','aging_num'=>84,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP36','aging_num'=>84,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP56','aging_num'=>84,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP58','aging_num'=>84,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP96','aging_num'=>96,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP100','aging_num'=>96,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+['sto_name'=>'VIP168','aging_num'=>96,'send_day'=>	'4D17','send_day_remark'=>	'今天取件大后天17:30前派件'],
+
+
+
+PCM~20（负15—负25℃）	
+
+$arr = [
+	41=>'低温-15~-25℃'
+]	
+
+['sto_name'=>'VIP12','aging_num'=>46,'send_day'=>	'2D17','send_day_remark'=>	'今天取明天17:30前派件'],
+['sto_name'=>'VIP16','aging_num'=>52,'send_day'=>	'3D12','send_day_remark'=>	'今天取后天上午12点前派件'],
+['sto_name'=>'VIP28','aging_num'=>52,'send_day'=>	'3D12','send_day_remark'=>	'今天取后天上午12点前派件'],
+['sto_name'=>'VIP36','aging_num'=>52,'send_day'=>	'3D12','send_day_remark'=>	'今天取后天上午12点前派件'],
+['sto_name'=>'VIP56','aging_num'=>54,'send_day'=>	'3D12','send_day_remark'=>	'今天取后天上午12点前派件'],
+['sto_name'=>'VIP58','aging_num'=>54,'send_day'=>	'3D12','send_day_remark'=>	'今天取后天上午12点前派件'],
+['sto_name'=>'VIP96','aging_num'=>68,'send_day'=>	'3D17','send_day_remark'=>	'今天取后天下午17:30前派件'],
+['sto_name'=>'VIP100','aging_num'=>62,'send_day'=>	'3D17','send_day_remark'=>	'今天取后天下午17:30前派件'],
+['sto_name'=>'VIP168','aging_num'=>68,'send_day'=>	'3D17','send_day_remark'=>	'今天取后天下午17:30前派件'],
+
