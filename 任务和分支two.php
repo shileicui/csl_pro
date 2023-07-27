@@ -582,6 +582,9 @@ CREATE TABLE `tms_orderdrug_info` (
   PRIMARY KEY (`toi_id`)
 ) COMMENT='订单药品信息关联表';
 
+select temp_number,out_temp_number,box_number,group_cont(‘,’,drug_number) FROM tms_order_drug tod left join tms_orderdrug_info toi on tod.tod_id=toi.tod_id  where to_id = 2505558 and tod_visible =1 and toi_visible=1;
+
+
 
 诺和关联表导出
 feature_13381_zzp_230529 tms_admin
