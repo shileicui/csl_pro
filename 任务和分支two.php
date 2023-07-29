@@ -1255,6 +1255,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14388  未上线
 
 路由推荐应用2.3：路由发运规则设置
 feature_14399_csl_20230724 dispath_admin
+feature_14399_csl_20230727 tms_admin
 http://project.ashsh.com.cn/index.php?m=task&f=view&id=14399  未上线
 
 // alter table
@@ -1266,17 +1267,20 @@ http://project.ashsh.com.cn/index.php?m=task&f=view&id=14399  未上线
 
 
 
-CREATE TABLE `route_rules_restrict` (
+CREATE TABLE `tms_routerules_restrict` (
   `rr_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `ro_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '路由id',
   `months` varchar(50) NOT NULL DEFAULT '' COMMENT '月份 1、1月 2、2月.. 多个用逗号隔开',
   `weeks` varchar(50) NOT NULL DEFAULT '' COMMENT '星期 1、星期一 2、星期二 ..多个用逗号隔开',
-  `tag_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '标签',
-  `insure_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '保价 0无  1 300W+',
+  `tag_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '标签id',
+  `tag_names` varchar(500) NOT NULL DEFAULT '' COMMENT '标签名称',
+  `shipping_rules` tinyint(4) NOT NULL DEFAULT '0' COMMENT '时间限制 1按月份 2按星期',
+  `insure_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '保价 0无  1 大于300万',
+  `drikold_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否干冰 0 否 1是',
   `sto_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '箱型ids',
   `sto_names` varchar(500) NOT NULL DEFAULT '' COMMENT '箱型名称',
   `cp_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '项目ids',
-  `cp_names` varchar(1024) NOT NULL DEFAULT '' COMMENT '项目名称',
+  `cp_names` text COMMENT '项目名称',
   `rr_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
@@ -1285,3 +1289,30 @@ CREATE TABLE `route_rules_restrict` (
   KEY `idx_ro_id` (`ro_id`)
 ) COMMENT='路由发运规则设置';
 
+
+
+        $('.demo').fSelect({
+            placeholder: '请选择标签',
+            numDisplayed: 10,
+            overflowText: '{n} selected',
+            noResultsText: 'No results found',
+            searchText: 'Search',
+            showSearch: true
+        });
+
+诺和导出优化
+feature_14442_csl_20230725 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14442  已上线
+
+223430 ->225860  stock sto_id 测试环境
+
+
+车辆类型新增 小型普通货车
+feature_14458_csl_20230726  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14458
+
+
+
+订单详情，绑定车辆功能调整
+feature_14476_csl_20230728 tms_admin
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14476 未上线
