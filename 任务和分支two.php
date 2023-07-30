@@ -1,6 +1,6 @@
 <?php 
 
-
+rm-uf607qm8l57p67nl2.mysql.rds.aliyuncs.com
 
 智能排线v1.1
 feature_12080_csl_20230321 tms_admin  已上线
@@ -1316,3 +1316,9 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14458
 订单详情，绑定车辆功能调整
 feature_14476_csl_20230728 tms_admin
 http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14476 未上线
+
+UPDATE tms_cart_plan SET tcp_operation_id='851',tcp_operation_name='陈留建' where tcp_to_id = '2570387';
+
+update order_worksheet SET op_uid='851'  where to_id = '2570387';
+
+
