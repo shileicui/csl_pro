@@ -21,6 +21,8 @@ pyinstaller --onefile --icon=img.ico  main.py -w
 
 vdhUvaK4oab(^=8p
 
+oms_test 
+44i48rVxf8kLIg==
 cp /mnt/tmp_dir/xlsspecially.xlsx /mnt/wwwroot/tms_admin_test/tms_admin/web/upload
 >>>>>>> e175a41ac1447ccf903ed80c6c3b0b4cc654cfa5
 

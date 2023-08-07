@@ -57,4 +57,20 @@ CREATE TABLE `tms_orderdrug_infolog` (
   PRIMARY KEY (`toi_id`)
 )COMMENT='操作员订单药品信息关联表';
 
-ALTER table tms_order_drug add COLUMN log_tod_id  tinyint(4)  not null  DEFAULT '0' COMMENT '操作记录表tod_id';
+ALTER table
+  tms_order_drug
+add
+  COLUMN `log_tod_id` int(11) unsigned not null DEFAULT '0' COMMENT '操作记录表tod_id',
+add
+  COLUMN `ur_uid` int(11) NOT NULL DEFAULT '0' COMMENT '操作员id',
+add
+  COLUMN `username` varchar(30) NOT NULL DEFAULT '' COMMENT '操作员名称';
+  
+ALTER table
+  tms_orderdrug_info
+add
+  COLUMN `log_toi_id` int(11) unsigned not null DEFAULT '0' COMMENT '操作记录表toi_id',
+add
+  COLUMN `ur_uid` int(11) NOT NULL DEFAULT '0' COMMENT '操作员id',
+add
+  COLUMN `username` varchar(30) NOT NULL DEFAULT '' COMMENT '操作员名称';
