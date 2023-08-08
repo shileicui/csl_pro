@@ -1145,7 +1145,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14136 已上线
 
 差旅管家2.2：出差申请和报销优化
 feature_14150_csl_20230710 tms_admin
-http://project.ashsh.com.cn/index.php?m=task&f=view&id=14150 未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=14150 已上线
 
 ALTER table tms_travel add COLUMN `tt_type`  tinyint(4) NOT NULL DEFAULT '0' COMMENT '出差单类型 1 业务出差 2 公务出差';
 
@@ -1158,7 +1158,7 @@ ALTER table tms_travel add COLUMN `tt_type`  tinyint(4) NOT NULL DEFAULT '0' COM
 
 路由推荐应用2.2 ：推荐路由批量导入
 feature_14228_csl_20230712 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14228  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14228  已上线
 
 {tms_admin}history-data/route-data
 
@@ -1170,7 +1170,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14228  未上线
 
 14302 车辆租赁增加宴嘉=
 feature_14302_csl_20230717   tms_admin
-http://project.ashsh.com.cn/index.php?m=task&f=view&id=14302 未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=14302 已上线
 
 
 
@@ -1238,14 +1238,14 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14357 未上线
 
 大件发货页面优化调整
 feature_14347_csl_20230720  tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14347 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14347 已上线（优化查询）
 
 
 
 路由添加修改优化
 feature_14388_csl_20230721  tms_admin
 feature_14388_csl_20230721  dispath_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14388  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14388  已上线
 
 
 
@@ -1300,7 +1300,7 @@ CREATE TABLE `tms_routerules_restrict` (
             showSearch: true
         });
 
-诺和导出优化
+诺和关联表优化
 feature_14442_csl_20230725 tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14442  已上线
 
@@ -1309,10 +1309,68 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14442  已上线
 
 车辆类型新增 小型普通货车
 feature_14458_csl_20230726  tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14458
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14458 已上线
 
 
 
 订单详情，绑定车辆功能调整
 feature_14476_csl_20230728 tms_admin
-http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14476 未上线
+http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14476 已上线
+
+北森出差单 删除 状态 同步
+feature_14559_csl_20230801 tms_admin
+feature_14559_csl_20230801 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14559  已上线
+
+ALTER table tms_travel add COLUMN serial_number  varchar(100)  not null  DEFAULT '' COMMENT '北森 SerialNumber 字段';
+
+
+
+1.里程申报数据同步  已上线
+2.oms派件时间限制   已上线
+3.特殊收费优化    已上线
+4.差旅管家2.2：出差申请和报销优化      已上线
+5.派件、反馈操作按钮限制               已上线
+6.路由推荐应用2.2 ：推荐路由批量导入   已上线
+7.车辆租赁增加宴嘉           已上线
+8.不允许中途私自换冰排 配置   已上线
+9.大件发货页面优化调整       已上线
+10.路由添加修改优化                   已上线
+11.路由推荐应用2.3：路由发运规则设置   已上线
+12.诺和关联表导出优化                 已上线
+13.车辆类型新增 小型普通货车          已上线
+14.订单详情，绑定车辆功能调整         已上线
+
+
+
+车辆管理4.0：车辆信息拓展 （第一版）  油耗
+feature_14584_csl_20230801 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14584 未上线
+
+CREATE TABLE `tms_car_info` (
+  `tci_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `ca_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '车辆id',
+  `hundred_fuel` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '官方百公里油耗',
+  `kilometer_num` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '满油/电 可行驶公里数',
+  `first_kilometer_num` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '首保公里数',
+  `maintainance_num` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '保养公里数',
+  `maintainance_cycle` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '保养周期 天',
+  `tank_num` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '油箱大小',
+  `tci_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tci_id`),
+  KEY `idx_ca_id` (`ca_id`)
+) COMMENT='车辆信息附属表';
+
+
+
+出差单绑定单号 限制 放开
+feature_14613_csl_20230802 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14613 已上线
+
+
+AMS 获取使用中的 供应商 接口
+feature_14624_csl_20230803 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14624 已上线
