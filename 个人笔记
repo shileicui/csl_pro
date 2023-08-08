@@ -22,6 +22,12 @@ pyinstaller --onefile --icon=img.ico  main.py -w
 cp /mnt/tmp_dir/nhdrugaircraft.xlsx /mnt/wwwroot/tms_admin_test/tms_admin/web/upload
 
 cp /mnt/tmp_dir/nhdrugcar.xlsx /mnt/wwwroot/tms_admin_test/tms_admin/web/upload
+vdhUvaK4oab(^=8p
+
+oms_test 
+44i48rVxf8kLIg==
+cp /mnt/tmp_dir/xlsspecially.xlsx /mnt/wwwroot/tms_admin_test/tms_admin/web/upload
+
 
 泛微
 18310120387
