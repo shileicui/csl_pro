@@ -1381,27 +1381,6 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14624 已上线
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14585  未上线
 
 
-CREATE TABLE `tms_car_break` (
-  `tcb_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `ca_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '车辆id',
-  `break_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '违章日期',
-  `driver_uid` int(11) NOT NULL DEFAULT '0' COMMENT '驾驶人ID',
-  `driver_username` varchar(30) NOT NULL DEFAULT '' COMMENT '驾驶人姓名',
-  `driver_project` varchar(255) NOT NULL DEFAULT '' COMMENT '违章项目',
-  `tcb_visible` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否有责 0无责 1有责',
-  `deduction_minute` int(11) NOT NULL DEFAULT '0' COMMENT '扣分',
-  `break_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '罚款金额',
-  `driver_address` varchar(255) NOT NULL DEFAULT '' COMMENT '违章地址',
-  `tcb_remark` text COMMENT '备注',
-  `tcb_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
-  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
-  PRIMARY KEY (`tci_id`),
-  KEY `idx_ca_id` (`ca_id`)
-) COMMENT='车辆违章记录';
-
-
 发运规则配置优化
 feature_14657_csl_20230804  dispath_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14657 未上线

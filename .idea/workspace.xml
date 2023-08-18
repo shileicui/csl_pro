@@ -21,6 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4aef81d4-a31a-4dbd-b20d-19df49505a96" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/任务和分支two.php" beforeDir="false" afterPath="$PROJECT_DIR$/任务和分支two.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/禅道任务和分支2023.php" beforeDir="false" afterPath="$PROJECT_DIR$/禅道任务和分支2023.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +42,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -50,7 +53,10 @@
       <recent name="E:\testmeger\csl_pro" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="4aef81d4-a31a-4dbd-b20d-19df49505a96" name="Default Changelist" comment="" />
@@ -60,11 +66,12 @@
       <updated>1641880558167</updated>
       <workItem from="1641880559362" duration="1060000" />
       <workItem from="1641953713157" duration="270000" />
+      <workItem from="1692318586921" duration="1190000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
