@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4aef81d4-a31a-4dbd-b20d-19df49505a96" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/任务和分支two.php" beforeDir="false" afterPath="$PROJECT_DIR$/任务和分支two.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/禅道任务和分支2023.php" beforeDir="false" afterPath="$PROJECT_DIR$/禅道任务和分支2023.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,6 +66,7 @@
       <workItem from="1641880559362" duration="1060000" />
       <workItem from="1641953713157" duration="270000" />
       <workItem from="1692318586921" duration="1190000" />
+      <workItem from="1692577837814" duration="621000" />
     </task>
     <servers />
   </component>

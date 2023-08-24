@@ -67,7 +67,7 @@ CREATE TABLE `tms_car_certificate` (
   `serial_number` varchar(100) NOT NULL DEFAULT '' COMMENT '编号',
   `certificate_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '发证/卡日期',
   `validity_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '有效截止日期',
-  `tcc_status` int(11) NOT NULL DEFAULT '0' COMMENT '证件类型 101001、驾驶证 101003、登记证 101010、运输证  101011、油卡  101012、ETC',
+  `tcc_status` int(11) NOT NULL DEFAULT '0' COMMENT '101001 : 行驶证, 101003 : 登记证, 101010 : 运输证, 101011 : 油卡, 101012: ETC',
   `tcc_visible` tinyint(3) NOT NULL DEFAULT '1' COMMENT '1显示，2删除',
   `tcc_remark` longtext NOT NULL COMMENT '备注',
   `tcc_att_ids` varchar(200) NOT NULL DEFAULT '' COMMENT '附件ID',
@@ -103,7 +103,15 @@ add
 add
   column `vice_renewal_premium_hour` int(11) NOT NULL DEFAULT '0' COMMENT '副冷机续保时长',
 add
-  column  `vice_cumulative_duration` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '副冷机累计使用时长';
+  column `vice_cumulative_duration` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '副冷机累计使用时长',
+add
+  column `door_require` varchar(255) NOT NULL DEFAULT '' COMMENT '安装要求',
+add
+  column `door_num` int(11) NOT NULL DEFAULT '0' COMMENT '门帘数量',
+add
+  column `door_num_qualified` tinyint(4) NOT NULL DEFAULT '0' COMMENT '门帘数量是否合格 1是 2否',
+add
+  column `door_position_qualified` tinyint(4) NOT NULL DEFAULT '0' COMMENT '门帘位置是否合格 1是 2否';
 
 
 
@@ -133,7 +141,9 @@ CREATE TABLE `tms_car_refrigerator` (
 
 
 
-
+car_door
+car_box
+car_tail_lift
 
 
 
@@ -248,3 +258,17 @@ feature_14875_csl_20230816  tms_service
 feature_14875_csl_20230817 tms_admin
 feature_14875_csl_20230817 omsapi
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14875  未上线
+
+
+
+user-operator
+
+订单调度：发货单号管理
+feature_14915_csl_20230822 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14915  未上线
+
+
+
+车辆管理4.0：车辆信息拓展 第二版
+feature_15030_csl_20230824  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15030 未上线

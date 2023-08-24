@@ -225,7 +225,7 @@ ALTER table tms_order_information add COLUMN is_note_code  tinyint(1)  not null 
 feature_12684_csl_20230417 tms_admin
 feature_12684_csl_20230418 tms_service
 http://project.ashsh.com.cn/index.php?m=task&f=view&taskID=12684 已上线
-
+2596914
 
 CREATE TABLE `tms_address_remind` (
   `tar_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
