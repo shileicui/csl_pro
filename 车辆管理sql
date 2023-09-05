@@ -1,0 +1,112 @@
+CREATE TABLE `tms_car_break` (
+  `tcb_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `ca_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '车辆id',
+  `car_number` varchar(32) NOT NULL DEFAULT '' COMMENT '车牌号',
+  `break_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '违章日期',
+  `break_uid` int(11) NOT NULL DEFAULT '0' COMMENT '违章人/驾驶人uid',
+  `break_username` varchar(30) NOT NULL DEFAULT '' COMMENT '违章人/驾驶人姓名',
+  `project_name` varchar(255) NOT NULL DEFAULT '' COMMENT '违章项目',
+  `duty_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否有责  1无责  2有责',
+  `tcb_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '处理状态 1未处理 2已处理',
+  `buckle_minute` int(11) NOT NULL DEFAULT '0' COMMENT '扣分',
+  `break_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '罚款金额',
+  `tcb_address` varchar(800) NOT NULL DEFAULT '' COMMENT '违章地址',
+  `tcb_remark` text COMMENT '备注内容',
+  `tcb_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tcb_id`),
+  KEY `idx_break_uid` (`break_uid`)
+) COMMENT='车辆违章记录';
+
+CREATE TABLE `tms_car_yearcheck` (
+  `tcy_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `ca_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '车辆id',
+  `car_number` varchar(32) NOT NULL DEFAULT '' COMMENT '车牌号',
+  `yearcheck_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '年检日期',
+  `next_yearcheck_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '下次年检日期',
+  `yearcheck_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '年检费用',
+  `yearcheck_content` text COMMENT '年检内容',
+  `car_manage_name` varchar(255) NOT NULL DEFAULT '' COMMENT '车管所',
+  `responsible_uid` int(11) NOT NULL DEFAULT '0' COMMENT '经手人uid',
+  `responsible_username` varchar(30) NOT NULL DEFAULT '' COMMENT '经手人姓名',
+  `tcy_remark` text COMMENT '备注内容',
+  `tcy_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tcy_id`),
+  KEY `idx_responsible_uid` (`responsible_uid`)
+) COMMENT='车辆年检记录';
+
+ alter table car modify column `car_volume` decimal(10,1) NOT NULL DEFAULT '0' COMMENT '车辆容积';
+
+CREATE TABLE `tms_car_certificate` (
+  `tcc_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `ca_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '车辆id',
+  `car_number` varchar(32) NOT NULL DEFAULT '' COMMENT '车牌号',
+  `serial_number` varchar(100) NOT NULL DEFAULT '' COMMENT '编号',
+  `certificate_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '发证/卡日期  运输证 取car.car_send_card_time',
+  `validity_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '有效截止日期 运输证 取car.car_valid_time',
+  `tcc_status` int(11) NOT NULL DEFAULT '0' COMMENT '101001 : 行驶证, 101003 : 登记证, 101010 : 运输证, 101011 : 油卡, 101012: ETC',
+  `tcc_visible` tinyint(3) NOT NULL DEFAULT '1' COMMENT '1显示，2删除',
+  `tcc_remark` text  COMMENT '备注',
+  `tcc_att_ids` varchar(200) NOT NULL DEFAULT '' COMMENT '附件ID',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tcc_id`)
+) COMMENT='车辆证件管理';
+
+alter table
+  tms_car_info
+add
+  column `refrigerator_num` int(11) NOT NULL DEFAULT '0' COMMENT '机组数量',
+add
+  column `refrigerator_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '机组性质 1、独立 2、非独立',
+add
+  column `refrigerator_setnums` varchar(50) NOT NULL DEFAULT '' COMMENT '设置参数 1、除霜间隔4H 2、除霜间隔6H 3、回温度间隔2C 4、回温度间隔1C',
+add
+  column `refrigerator_number` varchar(100) NOT NULL DEFAULT '' COMMENT '主冷机编号',
+add
+  column `first_premium_hour` int(11) NOT NULL DEFAULT '0' COMMENT '主冷机首保时长',
+add
+  column `renewal_premium_hour` int(11) NOT NULL DEFAULT '0' COMMENT '主冷机续保时长',
+add
+  column `vice_refrigerator_name` varchar(255) NOT NULL DEFAULT '' COMMENT '副冷机品牌和型号',
+add
+  column `vice_refrigerator_number` varchar(100) NOT NULL DEFAULT '' COMMENT '副冷机编号',
+add
+  column `vice_first_premium_hour` int(11) NOT NULL DEFAULT '0' COMMENT '副冷机首保时长',
+add
+  column `vice_renewal_premium_hour` int(11) NOT NULL DEFAULT '0' COMMENT '副冷机续保时长',
+add
+  column `vice_cumulative_duration` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '副冷机累计使用时长',
+add
+  column `door_require` varchar(255) NOT NULL DEFAULT '' COMMENT '安装要求',
+add
+  column `door_num` int(11) NOT NULL DEFAULT '0' COMMENT '门帘数量',
+add
+  column `door_num_qualified` tinyint(4) NOT NULL DEFAULT '0' COMMENT '门帘数量是否合格 1是 2否',
+add
+  column `door_position_qualified` tinyint(4) NOT NULL DEFAULT '0' COMMENT '门帘位置是否合格 1是 2否';
+
+
+CREATE TABLE `tms_car_refrigerator` (
+  `tcr_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `ca_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '车辆id',
+  `car_number` varchar(32) NOT NULL DEFAULT '' COMMENT '车牌号',
+  `refrigerator_name` varchar(255) NOT NULL DEFAULT '' COMMENT '冷机品牌和型号',
+  `refrigerator_number` varchar(100) NOT NULL DEFAULT '' COMMENT '冷机编号',
+  `tcr_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '主副冷机 1、主 2、副',
+  `upkeep_hour`  int(11) NOT NULL DEFAULT '0' COMMENT '最新保养时数',
+  `upkeep_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '最新保养日期',
+  `upkeep_project` varchar(255) NOT NULL DEFAULT '' COMMENT '保养项目',
+  `upkeep_price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '保养金额',
+  `tcr_visible` tinyint(3) NOT NULL DEFAULT '1' COMMENT '1显示，2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tcr_id`)
+) COMMENT='车辆冷机保养记录';

@@ -2,10 +2,12 @@
 
 车辆管理4.0：车辆信息拓展
 feature_14585_csl_20230807  tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14585 未上线
+feature_14585_csl_20230830 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14585 已上线
 
+车辆附属信息
 
-{tms_admin}history-data/car-info  车辆附属信息
+{tms_admin}history-data/car-info  
 这个帮我执行一下
 
 
@@ -14,7 +16,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14585 未上线
 CREATE TABLE `tms_car_break` (
   `tcb_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `ca_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '车辆id',
-  `car_number` varchar(32) DEFAULT NULL DEFAULT '' COMMENT '车牌号',
+  `car_number` varchar(32) NOT NULL DEFAULT '' COMMENT '车牌号',
   `break_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '违章日期',
   `break_uid` int(11) NOT NULL DEFAULT '0' COMMENT '违章人/驾驶人uid',
   `break_username` varchar(30) NOT NULL DEFAULT '' COMMENT '违章人/驾驶人姓名',
@@ -29,7 +31,7 @@ CREATE TABLE `tms_car_break` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
-  PRIMARY KEY (`tar_id`),
+  PRIMARY KEY (`tcb_id`),
   KEY `idx_break_uid` (`break_uid`)
 ) COMMENT='车辆违章记录';
 
@@ -39,7 +41,7 @@ CREATE TABLE `tms_car_break` (
 CREATE TABLE `tms_car_yearcheck` (
   `tcy_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `ca_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '车辆id',
-  `car_number` varchar(32) DEFAULT NULL DEFAULT '' COMMENT '车牌号',
+  `car_number` varchar(32) NOT NULL DEFAULT '' COMMENT '车牌号',
   `yearcheck_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '年检日期',
   `next_yearcheck_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '下次年检日期',
   `yearcheck_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '年检费用',
@@ -57,19 +59,19 @@ CREATE TABLE `tms_car_yearcheck` (
 ) COMMENT='车辆年检记录';
 
 字段调整
- alter table car modify column `car_volume` double(10,1) NOT NULL DEFAULT '0' COMMENT '车辆容积';
+ alter table car modify column `car_volume` decimal(10,1) NOT NULL DEFAULT '0' COMMENT '车辆容积';
 
 证件管理
 CREATE TABLE `tms_car_certificate` (
   `tcc_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `ca_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '车辆id',
-  `car_number` varchar(32) DEFAULT NULL DEFAULT '' COMMENT '车牌号',
+  `car_number` varchar(32) NOT NULL DEFAULT '' COMMENT '车牌号',
   `serial_number` varchar(100) NOT NULL DEFAULT '' COMMENT '编号',
-  `certificate_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '发证/卡日期',
-  `validity_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '有效截止日期',
+  `certificate_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '发证/卡日期  运输证 取car.car_send_card_time',
+  `validity_time`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '有效截止日期 运输证 取car.car_valid_time',
   `tcc_status` int(11) NOT NULL DEFAULT '0' COMMENT '101001 : 行驶证, 101003 : 登记证, 101010 : 运输证, 101011 : 油卡, 101012: ETC',
   `tcc_visible` tinyint(3) NOT NULL DEFAULT '1' COMMENT '1显示，2删除',
-  `tcc_remark` longtext NOT NULL COMMENT '备注',
+  `tcc_remark` text  COMMENT '备注',
   `tcc_att_ids` varchar(200) NOT NULL DEFAULT '' COMMENT '附件ID',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
@@ -120,7 +122,7 @@ add
 CREATE TABLE `tms_car_refrigerator` (
   `tcr_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `ca_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '车辆id',
-  `car_number` varchar(32) DEFAULT NULL DEFAULT '' COMMENT '车牌号',
+  `car_number` varchar(32) NOT NULL DEFAULT '' COMMENT '车牌号',
   `refrigerator_name` varchar(255) NOT NULL DEFAULT '' COMMENT '冷机品牌和型号',
   `refrigerator_number` varchar(100) NOT NULL DEFAULT '' COMMENT '冷机编号',
   `tcr_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '主副冷机 1、主 2、副',
@@ -217,7 +219,7 @@ https://project.ashsh.com.cn/index.php?m=bug&f=view&bugID=9667 已上线
 
 发运规则 时间限制支持全选
 feature_14746_csl_20230810 dispath_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14746 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14746 已上线
 
 
 
@@ -257,7 +259,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14797 已上线
 feature_14875_csl_20230816  tms_service 
 feature_14875_csl_20230817 tms_admin
 feature_14875_csl_20230817 omsapi
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14875  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14875  已上线
 
 
 
@@ -265,10 +267,115 @@ user-operator
 
 订单调度：发货单号管理
 feature_14915_csl_20230822 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14915  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=14915  已上线
 
 
 
-车辆管理4.0：车辆信息拓展 第二版
-feature_15030_csl_20230824  tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15030 未上线
+
+
+
+//62782808  临沧-张远锋 改成 芒市-王昱凯
+UPDATE opn_operator SET username = '芒市-王昱凯',user_id='7024' WHERE opn_id = 10255066;
+UPDATE tms_operation_fee SET username = '芒市-王昱凯',user_id='7024' WHERE opn_id = 10255066;
+
+//更改调度信息发货人
+UPDATE dispatch SET di_consignor_name = '外协-芒市-王昱凯',di_consignor_uid='7024' WHERE di_id = 2693924;
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102023', 2596988, 0, '系统申请', 0, 'IT协助修改数据 审批单号：ITSJ202308280003 调度单号2322614424 发货人 临沧-张远锋 改成 芒市-王昱凯', 1693018518, 1, 0);
+
+
+
+
+
+
+UPDATE order_logistics SET ol_pickup_name = '外协-芒市-王昱凯',ol_pickup_person='7024' WHERE to_id = 2596988;
+
+UPDATE opn_operator SET username = '芒市-王昱凯',user_id='7024' WHERE opn_id = 10255046;
+
+UPDATE remark_log SET rl_remark = '取件人：外协-芒市-王昱凯，取件时间：2023-08-19 14:40，取件件数：1，运单编号:62782808，</br> 激活工作单:11418541<br>激活调度单：2322614424',user_id='7024', username = '外协-芒市-王昱凯', WHERE rl_id = 82022373;
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102023', 2596988, 0, '系统申请', 0, 'IT协助修改数据 审批单号：ITSJ202308280004 实际取件人改成 改成 芒市-王昱凯', 1693018518, 1, 0);
+
+
+
+
+差旅管家2.3：出差申请和报销查询优化
+
+feature_15089_csl_20230829 tms_admin
+feature_15089_csl_20230904 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15089  已上线
+
+CREATE TABLE `tms_travel_steward` (
+  `tos_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `steward_number` varchar(50) NOT NULL DEFAULT '' COMMENT '差旅管家订单号',
+  `travel_number` varchar(50) NOT NULL DEFAULT '' COMMENT '出差单编号',
+  `travel_name` varchar(25) NOT NULL DEFAULT '' COMMENT '出差人名称',
+  `cost_name` varchar(25) NOT NULL DEFAULT '' COMMENT '费用类型',
+  `travel_tool` varchar(25) NOT NULL DEFAULT '' COMMENT '交通工具',
+  `tts_travel_type`  tinyint(4) NOT NULL DEFAULT '0' COMMENT '类型 1火车 2飞机 3住宿 4未订',
+
+  `start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
+  `stop_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
+  `start_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '出发城市名称',
+  `stop_region_name` varchar(50) NOT NULL DEFAULT '' COMMENT '目的城市名称',
+  `steward_price` varchar(50) NOT NULL DEFAULT '' COMMENT '金额',
+  `result_param` json DEFAULT NULL COMMENT '获取差旅管家的json 数据',
+  `steward_type` varchar(50) NOT NULL DEFAULT '' COMMENT '差旅订单状态',
+
+  `tos_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tos_id`)
+) COMMENT='出差单相关差旅管家表';
+
+ALTER table
+  tms_travel
+add
+  COLUMN `booking_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '订票状态 1交通 2住宿 3 交通/住宿 4未订',
+add
+  COLUMN `result_params`  json DEFAULT NULL  COMMENT '获取差旅管家的json';
+
+
+{tms_admin}timing-push/get-travel
+每天 8:00 14:00 17:00 执行一次
+
+
+
+
+路由配置管理2.4.1：路由类型调整
+
+feature_15093_csl_20230829  dispath_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15093  已上线
+
+alter table route add column `ro_label`  varchar(255) NOT NULL DEFAULT '' COMMENT '路由标签';
+
+
+外协操作费用 批量审核通过 优化
+feature_15164_csl_20230901  tms_admin
+feature_15164_csl_20230901  tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15164 已上线
+
+
+车辆管理调整
+feature_15208_csl_20230904
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15208 已上线
+
+
+里程申报 已作废 不在同步数据
+feature_15211_csl_20230904  tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15211  未上线
+
+
+路由详情修改供应商优化
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15216  已上线
+
+
+
+
+自动生成里程申报优化
+feature_15223_csl_20230905  tms_admin
+feature_15223_csl_20230905  tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15223
+
+56e64ea2a6118223cf3ef428e637dddd

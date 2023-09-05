@@ -671,7 +671,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13497 已上线
 
 虹桥获取箱型配置信息接口
 feature_13515_csl_20230605  tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13515 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=13515 已上线
 
 
 
