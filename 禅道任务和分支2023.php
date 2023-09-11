@@ -397,36 +397,37 @@ alter table tms_sdeduction add column `su_id` int(11) unsigned NOT NULL DEFAULT 
 
 
 
-alter table tms_supplier_main add column`sup_credit_code` varchar(100) NOT NULL DEFAULT '' COMMENT '统一信用社代码';
+alter table tms_supplier_main add column `sup_credit_code` varchar(100) NOT NULL DEFAULT '' COMMENT '统一信用社代码';
+
+alter table tms_supplier_main add column `bank_type`  varchar(50) NOT NULL DEFAULT '' COMMENT '银行类别',
+add column `bank_code`  varchar(50) NOT NULL DEFAULT '' COMMENT '银行行号',
+add column `account_natures`  tinyint(4) NOT NULL DEFAULT '0' COMMENT '账号性质 1公司 2个人',
+add column   `tsa_currency`  varchar(50) NOT NULL DEFAULT '' COMMENT '币种';
 
 
-CREATE TABLE `tms_supplier_account` (
-  `tsa_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `sup_main_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '供应商主体id',
-  `sup_bank_name` varchar(255) NOT NULL DEFAULT '' COMMENT '开户银行名称',
-  `sup_bank_account` varchar(255) NOT NULL DEFAULT '' COMMENT '银行账号',
-  `sup_payee_name` varchar(255) NOT NULL DEFAULT '' COMMENT '账号名称',
+// CREATE TABLE `tms_supplier_account` (
+//   `tsa_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+//   `sup_main_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '供应商主体id',
+//   `sup_bank_name` varchar(255) NOT NULL DEFAULT '' COMMENT '开户银行名称',
+//   `sup_bank_account` varchar(255) NOT NULL DEFAULT '' COMMENT '银行账号',
+//   `sup_payee_name` varchar(255) NOT NULL DEFAULT '' COMMENT '账号名称',
+
+//   `bank_type` varchar(50) NOT NULL DEFAULT '' COMMENT '银行类别',
+//   `bank_code` varchar(50) NOT NULL DEFAULT '' COMMENT '银行行号',
+//   `account_natures` tinyint(4) NOT NULL DEFAULT '0' COMMENT '账号性质 1公司 2个人',
+//   `tsa_currency` varchar(50) NOT NULL DEFAULT '' COMMENT '币种',
+
+//   `expiry_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '失效日期',
+//   `start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '启用日期',
+//   `effective_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '生效日期',
   
-  `bank_type`  varchar(50) NOT NULL DEFAULT '' COMMENT '银行类别',
-  `bank_code`  varchar(50) NOT NULL DEFAULT '' COMMENT '银行行号',
-
-  `account_natures`  tinyint(4) NOT NULL DEFAULT '0' COMMENT '账号性质 1公司 2个人',
-  `tsa_currency`  varchar(50) NOT NULL DEFAULT '' COMMENT '币种',
-
-  `expiry_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '失效日期',
-  `start_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '启用日期',
-  `effective_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '生效日期',
-
-  `tsa_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
-  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
-  PRIMARY KEY (`tsa_id`),
-  KEY `idx_sup_main_id` (`sup_main_id`)
-) COMMENT='供应商主体相关账号信息';
-
-
-
+//   `tsa_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+//   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+//   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+//   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+//   PRIMARY KEY (`tsa_id`),
+//   KEY `idx_sup_main_id` (`sup_main_id`)
+// ) COMMENT='供应商主体相关账号信息';
 
 
 
