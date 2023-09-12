@@ -383,9 +383,9 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15223 已上线
 
 
 供应商结构调整
-feature_15243_csl_20230906  tms_admin
-feature_15243_csl_20230906  dispath_admin
-feature_15243_csl_20230906  tms_service
+feature_15243_csl_20230906  tms_admin  20230911 发第一版 
+feature_15243_csl_20230906  dispath_admin   20230911 发第一版 
+feature_15243_csl_20230906  tms_service  未发版
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15243  未上线
 
 alter table tms_supplier modify column `tms_sup_supply_type` varchar(255) NOT NULL DEFAULT '' COMMENT '供货类型 对应路由类型 rt_id';
@@ -394,15 +394,26 @@ UPDATE tms_supplier SET tms_sup_supply_type=9 where  tms_sup_supply_type = 3;
 
 alter table tms_sdeduction add column `su_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '供应商序号';
 
+php yii history-data/opn-order
 
 
 
-alter table tms_supplier_main add column `sup_credit_code` varchar(100) NOT NULL DEFAULT '' COMMENT '统一信用社代码';
+供应商主体 
+feature_15243_csl_20230906  tms_admin  
 
-alter table tms_supplier_main add column `bank_type`  varchar(50) NOT NULL DEFAULT '' COMMENT '银行类别',
-add column `bank_code`  varchar(50) NOT NULL DEFAULT '' COMMENT '银行行号',
-add column `account_natures`  tinyint(4) NOT NULL DEFAULT '0' COMMENT '账号性质 1公司 2个人',
-add column   `tsa_currency`  varchar(50) NOT NULL DEFAULT '' COMMENT '币种';
+feature_15243_csl_20230906  tms_service  未发版
+
+
+ALTER TABLE
+  tms_supplier_main
+ADD
+  COLUMN `sup_credit_code` VARCHAR (100) NOT NULL DEFAULT '' COMMENT '统一信用社代码',
+ADD
+  COLUMN `bank_type` VARCHAR (50) NOT NULL DEFAULT '' COMMENT '银行类别',
+ADD
+  COLUMN `account_natures` TINYINT (4) NOT NULL DEFAULT '0' COMMENT '账号性质 1公司 2个人',
+ADD
+  COLUMN `tsa_currency` VARCHAR (50) NOT NULL DEFAULT '' COMMENT '币种';
 
 
 // CREATE TABLE `tms_supplier_account` (
@@ -461,3 +472,41 @@ UPDATE opn_operator SET username = '芒市-王昱凯',user_id='7024' WHERE opn_i
 UPDATE remark_log SET rl_remark = '取件人：外协-芒市-王昱凯，取件时间：2023-08-21 15:19，取件件数：1，运单编号:62782853，</br> 激活工作单:11391491<br>激活调度单：2322241759',ur_uid='7024', username = '外协-芒市-王昱凯', WHERE rl_id = 82256821;
 
 INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102023', 2592770, 0, '系统申请', 0, 'IT协助修改数据 审批单号：ITSJ202309070003 实际取件人改成 改成 芒市-王昱凯', 1694073106, 1, 0);
+
+
+
+
+
+
+
+
+
+
+
+
+发货记录增加，是否有上传附件的筛选
+feature_15310_csl_20230911  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15310 未上线
+
+//历史数据状态更新
+php yii history-data/dispatch-file
+
+
+
+
+
+增加对仓库工作单操作的接口
+feature_15355_csl_20230911 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15355  未上线
+
+
+
+
+
+
+
+
+
+
+
+
