@@ -413,7 +413,7 @@ ADD
 ADD
   COLUMN `account_natures` TINYINT (4) NOT NULL DEFAULT '0' COMMENT '账号性质 1公司 2个人',
 ADD
-  COLUMN `tsa_currency` VARCHAR (50) NOT NULL DEFAULT '' COMMENT '币种';
+  COLUMN `tsa_currency` TINYINT (4) NOT NULL DEFAULT '1' COMMENT '币种 1人民币';
 
 
 // CREATE TABLE `tms_supplier_account` (
@@ -442,9 +442,21 @@ ADD
 
 
 
+// tms_bank
 
+// CREATE TABLE `tms_bank` (
+//   `tb_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  
+//   `bank_name` varchar(255) NOT NULL DEFAULT '' COMMENT '账号名称',
 
-
+//   `bank_code` varchar(50) NOT NULL DEFAULT '' COMMENT '银行行号',
+ 
+//   `tsa_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+//   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+//   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+//   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+//   PRIMARY KEY (`tb_id`)
+// ) COMMENT='银行名称';
 
 
 
@@ -493,16 +505,15 @@ php yii history-data/dispatch-file
 
 
 
-
-
 增加对仓库工作单操作的接口
 feature_15355_csl_20230911 tms_service
+feature_15355_csl_20230911  tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15355  未上线
 
 
 
-
-
+薛滨测试数据  
+UPDATE tms_refuel_record set trr_visible=0 where trr_id=1431;
 
 
 
