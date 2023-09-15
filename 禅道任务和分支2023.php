@@ -385,8 +385,8 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15223 已上线
 供应商结构调整
 feature_15243_csl_20230906  tms_admin  20230911 发第一版 
 feature_15243_csl_20230906  dispath_admin   20230911 发第一版 
-feature_15243_csl_20230906  tms_service  未发版
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15243  未上线
+feature_15243_csl_20230906  tms_service  已上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15243  未上线（已发第一版）
 
 alter table tms_supplier modify column `tms_sup_supply_type` varchar(255) NOT NULL DEFAULT '' COMMENT '供货类型 对应路由类型 rt_id';
 
@@ -394,8 +394,15 @@ UPDATE tms_supplier SET tms_sup_supply_type=9 where  tms_sup_supply_type = 3;
 
 alter table tms_sdeduction add column `su_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '供应商序号';
 
-php yii history-data/opn-order
+// php yii history-data/opn-order
 
+
+//未上线 （第二版 sql）
+// 清空历史数据 供应商代码
+update tms_supplier_main set sup_code = ''; 
+
+//历史供应商主体 同步大数据
+php yii history-data/supplier-main-data
 
 
 供应商主体 
@@ -516,8 +523,17 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15355  未上线
 UPDATE tms_refuel_record set trr_visible=0 where trr_id=1431;
 
 
+车辆管理4.1：车辆详情，保养和提醒优化
+feature_15384_csl_20130913 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15384 未上线
 
 
 
-
-
+alter table
+  tms_car_info
+add
+  column `car_power` varchar(50) NOT NULL DEFAULT '' COMMENT '排量/功率 ',
+add
+  column `refrigerator_hour_fuel` int(11) NOT NULL DEFAULT '0' COMMENT '冷机官方小时油耗',
+add
+  column `start_refrigerator_kilometre` int(11) NOT NULL DEFAULT '0' COMMENT '满油开冷机可行驶公里数';
