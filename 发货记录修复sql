@@ -1,0 +1,86 @@
+
+
+
+
+
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=523117;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=524237;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=524238;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=524629;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=525370;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=525373;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=525855;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=526100;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=526204;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=526206;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=527166;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=532714;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=534129;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=534271;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=535939;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=535952;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=536409;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=537113;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=539077;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=540374;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=540381;
+
+
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=540213;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=541527;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=541361;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=540380;
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=540389;
+
+
+
+
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=523117;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=524237;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=524238;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=524629;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=525370;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=525373;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=525855;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=526100;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=526204;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=526206;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=527166;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=532714;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=534129;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=534271;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=535939;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=535952;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=536409;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=537113;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=539077;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=540374;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=540381;
+
+
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=540213;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=541527;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=541361;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=540380;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=540389;
+
+
+
+未录入
+83297436
+83297640
+63273318
+
+
+63340793
+83297546
+
+
+
+
+
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=524619;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=524619;
+
+UPDATE tms_fahuo_receipt_detail set frd_visible=2 where fr_id=523272;
+UPDATE tms_fahuo_receipt_no set di_ids='',to_nos='' where fr_id=523272;

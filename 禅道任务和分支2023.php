@@ -408,7 +408,7 @@ php yii history-data/supplier-main-data
 供应商主体 
 feature_15243_csl_20230906  tms_admin  
 
-feature_15243_csl_20230906  tms_service  未发版
+feature_15243_csl_20230906  tms_service  已发版
 
 
 ALTER TABLE
@@ -536,4 +536,30 @@ add
 add
   column `refrigerator_hour_fuel` int(11) NOT NULL DEFAULT '0' COMMENT '冷机官方小时油耗',
 add
-  column `start_refrigerator_kilometre` int(11) NOT NULL DEFAULT '0' COMMENT '满油开冷机可行驶公里数';
+  column `start_refrigerator_kilometre` int(11) NOT NULL DEFAULT '0' COMMENT '满油开冷机可行驶公里数',
+add
+  column `car_scrap_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '报废日期',
+add
+  column `car_scrap_remark` text COMMENT '报废备注内容',
+add
+  column `runny_expect_status` TINYINT (4) NOT NULL DEFAULT '0' COMMENT '易流安装要求 1需安装已安装 2需安装未安装 3无需安装 ',
+add
+  column `runny_probes_num` TINYINT (4) NOT NULL DEFAULT '0' COMMENT '探头数量 2、2路 4、4路',
+add
+  column `runny_probes_place` TINYINT (4) NOT NULL DEFAULT '0' COMMENT '探头位置是否合格 1是 2否';
+
+//证件历史数据 执行时先导出一份数据
+php yii history-data/upd-car-cert
+
+alter table
+  car_repair
+add
+  column `maintain_type` TINYINT (4) NOT NULL DEFAULT '0' COMMENT '保养类型  1常规保养 2临时保养';
+
+
+
+供应商主体限制
+feature_15574_csl_20230920 tms_admin
+feature_15574_csl_20230920 tms_service
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15574 未上线
