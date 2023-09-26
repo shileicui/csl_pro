@@ -563,3 +563,61 @@ feature_15574_csl_20230920 tms_admin
 feature_15574_csl_20230920 tms_service
 
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15574 未上线
+
+
+
+
+路由类型 新增
+feature_15628_csl_20230925 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15628  已上线
+
+
+
+供应商主体 调整
+feature_15609_csl_20230922
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15609
+
+
+ALTER TABLE
+  tms_supplier_main
+ADD
+  COLUMN `sup_remark`  text   COMMENT '备注';
+
+
+
+
+
+
+
+
+  SELECT
+        ro.ro_id as '路由id',
+        ro.ro_name as '路由名称',
+  CASE 
+          ro.ro_type
+                WHEN '1' THEN '待审核'
+                WHEN '2' THEN '已审核'
+                END '路由审核状态',
+        CASE
+        ro.ro_status 
+        WHEN '0' THEN
+        '正常' 
+        WHEN '1' THEN
+        '停运' 
+        END '路由状态',
+  ts1.ts_name as '出港站点',
+  ts1.ts_id as '出港站点id',
+  ts1.region_name as '出发城市',
+  ts1.child_region_name as '出发地区',          
+        ts2.ts_name as '到港站点',
+        ts2.ts_id as '到港站点id',
+  ts2.region_name as '到达城市',
+  ts2.child_region_name as '到达地区',
+  rt.rt_name as '路由类型'          
+FROM
+        route ro
+  left join transport_stations ts1 on ts1.ts_id=ro.start_ts_id
+  left join transport_stations ts2 on ts2.ts_id=ro.stop_ts_id
+  left join route_type rt on rt.rt_id=ro.rt_id         
+WHERE
+        ro.ro_visible =1 and use_count=0
