@@ -501,7 +501,7 @@ INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `
 
 
 
-
+ 
 
 发货记录增加，是否有上传附件的筛选
 feature_15310_csl_20230911  tms_admin
@@ -621,3 +621,46 @@ FROM
   left join route_type rt on rt.rt_id=ro.rt_id         
 WHERE
         ro.ro_visible =1 and use_count=0
+
+
+
+
+供应商kpi
+feature_15605_csl_20231007
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15605  未上线
+
+
+
+CREATE TABLE `tms_supplier_kpi` (
+  `tsk_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `tms_sup_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '供应商id',
+  `month_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '月份',
+  `assess_type`  tinyint(4) NOT NULL DEFAULT '0' COMMENT '考核结果 1优秀 2良好 3一般',
+  `grade` int(4) NOT NULL DEFAULT '0' COMMENT '分数',
+  `tsk_remark` text COMMENT '备注内容',
+  `tsk_att_ids` varchar(200) NOT NULL DEFAULT '' COMMENT '附件ID',
+  `tsk_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tsk_id`),
+  KEY `idx_tms_sup_id` (`tms_sup_id`)
+) COMMENT='供应商kpi';
+
+
+
+
+
+
+
+
+
+
+
+烟台市-杭州市-航空  10.8启用
+
+
+
+出差单新增 同步状态
+feature_15692_csl_20231008 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15692
