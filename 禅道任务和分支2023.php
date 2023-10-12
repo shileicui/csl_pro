@@ -664,3 +664,156 @@ CREATE TABLE `tms_supplier_kpi` (
 出差单新增 同步状态
 feature_15692_csl_20231008 tms_service
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15692
+
+
+客户配置 不可以高铁押运  开关
+
+ALTER table tms_customer_config add COLUMN high_speed_status tinyint(4)  not null  DEFAULT '0' COMMENT '不可以高铁押运 1不可以 0可以';
+
+
+
+{
+    "tcc_dwt_shutdown_verify": {
+        "on": 1,
+        "off": 0,
+        "label": "鼎为关机验证",
+        "span": ""
+    },
+    "cu_piece_feedback": {
+        "on": 1,
+        "off": 2,
+        "label": "签收自动反馈",
+        "span": "（派件1小时后自动邮件签收反馈）"
+    },
+    "cu_temperature_feedback": {
+        "on": 1,
+        "off": 2,
+        "label": "温度自动反馈",
+        "span": "（每晚8点自动邮件温度数据反馈）"
+    },
+    "cu_temperature_type": {
+        "on": 1,
+        "off": 2,
+        "label": "支持批量上传温度数据",
+        "span": "（默认客户支持批量上传温度数据）"
+    },
+    "cu_tengsen_trmperature": {
+        "on": 1,
+        "off": 2,
+        "label": "不支持批量上传滕森温度数据",
+        "span": "（默认客户支持上传）"
+    },
+    "cu_sign_feedback": {
+        "on": 1,
+        "off": 2,
+        "label": "代签短信提醒",
+        "span": ""
+    },
+    "cu_goods_print": {
+        "on": 1,
+        "off": 0,
+        "label": "打印运单时将货物名称打印在运单上",
+        "span": ""
+    },
+    "cu_send_message": {
+        "on": 0,
+        "off": 1,
+        "label": "不发送取派短信",
+        "span": "（配置后不给收发件人发送取派短信）"
+    },
+    "cu_print_express_remark": {
+        "on": 1,
+        "off": 0,
+        "label": "客户单号打印到运单备注",
+        "span": ""
+    },
+    "main_plural_thermometer": {
+        "on": 1,
+        "off": 0,
+        "label": "支持主副温度计",
+        "span": " "
+    },
+    "connect_verify": {
+        "on": 1,
+        "off": 0,
+        "label": "上传客户交接单",
+        "span": " "
+    },
+    "write_temp_switch": {
+        "on": 1,
+        "off": 0,
+        "label": "取派件填写开启关闭温度",
+        "span": " "
+    },
+    "batch_delivery_switch": {
+        "on": 1,
+        "off": 0,
+        "label": "批量派件",
+        "span": " "
+    },
+    "cpc_not_use_ssexpress": {
+        "on": 1,
+        "off": 0,
+        "label": "不使用生生签收单据",
+        "span": " "
+    },
+    "cpc_use_customer_express": {
+        "on": 1,
+        "off": 0,
+        "label": "使用客户签收单据",
+        "span": " "
+    },
+    "ice_aging_status": {
+        "on": 1,
+        "off": 0,
+        "label": "不允许中途私自换冰排",
+        "span": " "
+    },
+    "high_speed_status": {
+        "on": 1,
+        "off": 0,
+        "label": "不可以高铁押运",
+        "span": " "
+    }
+}
+
+
+路由全选 默认选中 20条
+feature_15737_csl_20231010 dispath_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15737 未上线
+
+
+
+
+201208064
+202102951
+
+
+荣昌成品药/协和麒麟冷藏车机器人提醒易流预警及超温
+feature_15754_csl_20231010  tms_admin
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15754 未上线
+
+//车辆异常数据推送 消息模板 新
+define('Yl_TUIAW_MESSAGE_NEW_ID','186');
+
+//车辆异常推送群 诺和
+define('NH_YL_TUIAW_MESSAGE_CARQWKEY','ff0b8708-79cb-4298-be77-2b8234826f1d');
+
+//车辆异常推送群  荣昌成品药/协和麒麟
+define('QT_YL_TUIAW_MESSAGE_CARQWKEY','52af3331-ed9c-44d0-8cab-90d89f3c3f3b');
+
+
+
+
+
+路由配置管理2.4：路由类型调整
+feature_15812_csl_20231012  tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15812 未上线
+
+
+452条 rt_id =7
+
+193条 rt_id =12
+
+19条 rt_id =11
