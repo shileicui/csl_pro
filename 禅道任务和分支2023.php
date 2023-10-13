@@ -809,6 +809,8 @@ define('QT_YL_TUIAW_MESSAGE_CARQWKEY','52af3331-ed9c-44d0-8cab-90d89f3c3f3b');
 
 路由配置管理2.4：路由类型调整
 feature_15812_csl_20231012  tms_service
+feature_15812_csl_20231012  dispath_admin
+feature_15812_csl_20231012  tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15812 未上线
 
 
@@ -817,3 +819,25 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15812 未上线
 193条 rt_id =12
 
 19条 rt_id =11
+
+
+
+15815 耗材发货记录按钮
+
+feature_15815_csl_20231012 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15815 未上线
+
+
+
+物流供应商2.5：供应商增加附件
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15832
+
+
+ALTER table tms_supplier add COLUMN `at_ids` varchar(200) NOT NULL DEFAULT '' COMMENT '附件ID';
+
+
+
+车辆管理4.1：车辆详情，保养和提醒优化
+feature_15834_csl_20231013  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15834  未上线
