@@ -810,11 +810,9 @@ define('QT_YL_TUIAW_MESSAGE_CARQWKEY','52af3331-ed9c-44d0-8cab-90d89f3c3f3b');
 路由配置管理2.4：路由类型调整
 feature_15812_csl_20231012  tms_service
 feature_15812_csl_20231012  dispath_admin
-feature_15812_csl_20231012  tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15812 未上线
 
 
-452条 rt_id =7
 
 193条 rt_id =12
 
@@ -830,8 +828,8 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15815 未上线
 
 
 物流供应商2.5：供应商增加附件
-
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15832
+feature_15832_csl_20231013
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15832  未上线
 
 
 ALTER table tms_supplier add COLUMN `at_ids` varchar(200) NOT NULL DEFAULT '' COMMENT '附件ID';
@@ -841,3 +839,68 @@ ALTER table tms_supplier add COLUMN `at_ids` varchar(200) NOT NULL DEFAULT '' CO
 车辆管理4.1：车辆详情，保养和提醒优化
 feature_15834_csl_20231013  tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15834  未上线
+alter table
+  car_repair
+add
+  column `unique_number` varchar(100) NOT NULL DEFAULT '' COMMENT '泛微ecology关联编号',
+add
+  column `cr_url` text COMMENT '泛微上传的图片';
+
+
+alter table
+  car
+add
+  column `car_mileage` varchar(50)  NOT NULL  DEFAULT '' COMMENT  '行驶里程',
+add
+  column `car_repair_mile`  varchar(50)  NOT NULL  DEFAULT ''  COMMENT '上次维修保养里程',
+add
+  column `car_ga_indate`  int(11) unsigned NOT NULL  DEFAULT '0'  COMMENT '冷藏车 冷机验证有效期',
+add
+  column `car_min_ga_indate`  int(11) unsigned NOT NULL  DEFAULT '0'  COMMENT '易流验证有效期';
+
+
+
+
+
+ alter table tms_car_info modify column `hundred_fuel` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '官方百公里油耗',
+ modify column `refrigerator_hour_fuel` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '冷机官方小时油耗';
+
+
+
+
+车辆管理 车辆维修 对接北森
+feature_15902_csl_20231016 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15902 未上线
+
+alter table
+  car_repair
+add
+  column `unique_number` varchar(100) NOT NULL DEFAULT '' COMMENT '泛微ecology关联编号',
+add
+  column `cr_md` varchar(100) NOT NULL DEFAULT '' COMMENT '泛微ecology数据md5',
+add
+  column `cr_url` text COMMENT '泛微上传的图片';
+
+
+
+温度数据邮件推送调整
+feature_15932_csl_20231018 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15932 已上线
+
+
+
+
+面单打印调整
+feature_15935_csl_20231018 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15935  已上线
+
+
+
+车辆油耗 冷机的油耗 改成小数点后2位
+feature_15976_csl_20231020 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15976 未上线
+
+
+车辆提醒企业微信通知
+feature_15978_csl_20231020  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15978
