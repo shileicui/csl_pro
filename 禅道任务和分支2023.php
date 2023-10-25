@@ -844,6 +844,8 @@ alter table
 add
   column `unique_number` varchar(100) NOT NULL DEFAULT '' COMMENT '泛微ecology关联编号',
 add
+  column `cr_md` varchar(100) NOT NULL DEFAULT '' COMMENT '泛微ecology数据md5',
+add
   column `cr_url` text COMMENT '泛微上传的图片';
 
 
@@ -856,9 +858,27 @@ add
 add
   column `car_ga_indate`  int(11) unsigned NOT NULL  DEFAULT '0'  COMMENT '冷藏车 冷机验证有效期',
 add
-  column `car_min_ga_indate`  int(11) unsigned NOT NULL  DEFAULT '0'  COMMENT '易流验证有效期';
+  column `car_min_ga_indate`  int(11) unsigned NOT NULL  DEFAULT '0'  COMMENT '易流验证有效期',
+add
+  column `car_term_start_time`  int(11) unsigned NOT NULL  DEFAULT '0'  COMMENT '保险上次购买日期';
+
+//车辆提醒消息推送 消息模板
+define('CAR_REMIND_MESSAGE_ID','190');
+//车辆提醒消息推送群
+define('CAR_REMIND_MESSAGE_CARKEY','1178ecf7-42fa-4900-9504-b34dffe5f53f');
 
 
+车辆提醒 企业微信推送 每天早上8:00
+{tms_admin}timing-push/car-remind-send
+
+
+
+车辆提醒 企业微信推送 exel 每天早上 8:01
+{tms_admin}timing-push/car-remind-exel-send
+
+
+车辆提醒 维护需要提醒的数据 每天 00:00:10 执行一次
+{tms_admin}timing-push/car-remind-data
 
 
 
@@ -904,3 +924,43 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15976 未上线
 车辆提醒企业微信通知
 feature_15978_csl_20231020  tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15978
+
+
+计划箱型推荐 接口更换
+feature_16059_csl_20131025 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16059 未上线
+
+
+
+待签收人员选择配置
+feature_16053_csl_20131025 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16053  未上线
+
+
+
+
+
+CREATE TABLE `tms_sign_customer` (
+  `tsc_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `sign_customer_name` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '待签收客户',
+  `tsc_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tsc_id`)
+) COMMENT='待签收客户表';
+
+
+
+
+CREATE TABLE `tms_sign_customer_user` (
+  `tscu_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `username` varchar(25) NOT NULL DEFAULT '' COMMENT '人员名称',
+  `ur_uid` int(11) NOT NULL DEFAULT '0' COMMENT '人员uid',
+  `tscu_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tscu_id`),
+  KEY `idx_ur_uid` (`ur_uid`)
+) COMMENT='待签收客户人员配置表';

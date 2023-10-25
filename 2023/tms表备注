@@ -1,0 +1,1744 @@
+[{
+	"表名": "abnormal_punishment",
+	"备注": "责任人异常处罚表"
+}, {
+	"表名": "account_subject",
+	"备注": "会计科目表"
+}, {
+	"表名": "achievements_box",
+	"备注": "箱型绩效配置表"
+}, {
+	"表名": "achievements_log",
+	"备注": "绩效操作记录表"
+}, {
+	"表名": "added_service",
+	"备注": "订单增值服务表"
+}, {
+	"表名": "adjustment_income",
+	"备注": "费用调整表"
+}, {
+	"表名": "allocation",
+	"备注": "仓库调拨表"
+}, {
+	"表名": "allocation_detail",
+	"备注": "仓库调拨明细表"
+}, {
+	"表名": "ams_approval",
+	"备注": "资产系统审批表"
+}, {
+	"表名": "ams_check_inventory_region",
+	"备注": "盘点区域表"
+}, {
+	"表名": "ams_cold_stock",
+	"备注": ""
+}, {
+	"表名": "ams_cold_stock_details",
+	"备注": ""
+}, {
+	"表名": "ams_file_resource",
+	"备注": "资产系统资源表"
+}, {
+	"表名": "ams_gii_test",
+	"备注": ""
+}, {
+	"表名": "ams_ice_raft_record",
+	"备注": ""
+}, {
+	"表名": "ams_inventory_lease",
+	"备注": "耗材外借详情表"
+}, {
+	"表名": "ams_inventory_lease_detail",
+	"备注": ""
+}, {
+	"表名": "ams_inventory_transit_count",
+	"备注": "在途盘点记录"
+}, {
+	"表名": "ams_inventory_transit_details",
+	"备注": "在途盘点明细"
+}, {
+	"表名": "ams_lease_order",
+	"备注": "耗材租售订单"
+}, {
+	"表名": "ams_material_offer",
+	"备注": "物资报价表"
+}, {
+	"表名": "ams_procurement_approval_detail",
+	"备注": "采购审批详情表（主要记录采购物资的具体信息）"
+}, {
+	"表名": "ams_procurement_approval_record",
+	"备注": "审批记录子表（只用于前期企业微信审批，泛微暂时没有使用这个记录）"
+}, {
+	"表名": "ams_purchase_reimburse",
+	"备注": "采购报账信息表"
+}, {
+	"表名": "ams_purchase_reimburse_file",
+	"备注": "采购报账文件关系表（附件）"
+}, {
+	"表名": "ams_stock_param",
+	"备注": "vip保温箱参数表"
+}, {
+	"表名": "ams_stock_param_temperature",
+	"备注": "vip保温箱与温区关联表"
+}, {
+	"表名": "annual_sales",
+	"备注": "销售进度(回款完成)年度统计表"
+}, {
+	"表名": "annual_sales_plan",
+	"备注": "年计划表"
+}, {
+	"表名": "annual_sales_record",
+	"备注": "销售年度统计记录表"
+}, {
+	"表名": "api_delivery_approval",
+	"备注": ""
+}, {
+	"表名": "api_drug",
+	"备注": "api药品表"
+}, {
+	"表名": "api_group",
+	"备注": "api 权限分组表"
+}, {
+	"表名": "api_grouping",
+	"备注": ""
+}, {
+	"表名": "api_list",
+	"备注": "api 列表"
+}, {
+	"表名": "api_medidata_backlog",
+	"备注": ""
+}, {
+	"表名": "api_static_medidata",
+	"备注": ""
+}, {
+	"表名": "api_user",
+	"备注": "api 用户列表"
+}, {
+	"表名": "apply_order",
+	"备注": "订单修改、取消申请表"
+}, {
+	"表名": "apportion_settlement",
+	"备注": "费用分摊表"
+}, {
+	"表名": "app_attachment",
+	"备注": "app独立文件列表"
+}, {
+	"表名": "app_monitoring_record",
+	"备注": "app接口监控表格"
+}, {
+	"表名": "area",
+	"备注": "大区表"
+}, {
+	"表名": "area_salesemployee_relation",
+	"备注": "大区销售人员关系表"
+}, {
+	"表名": "arrival_order",
+	"备注": "到货单表"
+}, {
+	"表名": "arrival_order_detail",
+	"备注": "到货单明细表"
+}, {
+	"表名": "asset_allocation",
+	"备注": "资产调拨单"
+}, {
+	"表名": "asset_allocation_detail",
+	"备注": "资产调拨单详情表"
+}, {
+	"表名": "asset_change_detail_log",
+	"备注": "资产库存变动详情记录表"
+}, {
+	"表名": "asset_change_log",
+	"备注": "资产库存变动记录表"
+}, {
+	"表名": "asset_use",
+	"备注": "资产领用表"
+}, {
+	"表名": "asset_use_detail",
+	"备注": "资产领用详情表"
+}, {
+	"表名": "attachment",
+	"备注": "附件表"
+}, {
+	"表名": "att_backup",
+	"备注": ""
+}, {
+	"表名": "auto_worksheet_customer",
+	"备注": "自动工作单客户表"
+}, {
+	"表名": "auto_worksheet_recommend",
+	"备注": "自动工作单推荐路由表"
+}, {
+	"表名": "auto_worksheet_route",
+	"备注": "自动工作单路由表"
+}, {
+	"表名": "auto_worksheet_route_customer",
+	"备注": "自动工作单路由客户表"
+}, {
+	"表名": "auto_worksheet_route_project",
+	"备注": "自动工作单路由项目表"
+}, {
+	"表名": "auto_worksheet_route_project_customer",
+	"备注": "自动工作单路由项目-客户表"
+}, {
+	"表名": "auto_worksheet_setting",
+	"备注": "自动工作单-客户温区配置表"
+}, {
+	"表名": "auto_worksheet_temperature",
+	"备注": "自动工作单-客户温区表"
+}, {
+	"表名": "balance_detail",
+	"备注": "客户余额细节表"
+}, {
+	"表名": "bank_record",
+	"备注": "收款记录表"
+}, {
+	"表名": "base_order_settlement",
+	"备注": "物流结算费用基础表"
+}, {
+	"表名": "base_other_settlement",
+	"备注": "其它结算费用基础表"
+}, {
+	"表名": "base_sample_settlement",
+	"备注": "样本结算费用基础表"
+}, {
+	"表名": "basis_offer",
+	"备注": "基础报价"
+}, {
+	"表名": "basis_offer_temp_history",
+	"备注": "基础报价历史数据处理表"
+}, {
+	"表名": "beforehand_realbill",
+	"备注": "预开票管理"
+}, {
+	"表名": "beforehand_realbill_detil",
+	"备注": "预开票管理明细"
+}, {
+	"表名": "billinfo",
+	"备注": "开票信息表"
+}, {
+	"表名": "billinfo_address",
+	"备注": ""
+}, {
+	"表名": "bi_info",
+	"备注": "测试开票客户表"
+}, {
+	"表名": "bms_fahuofee_approve",
+	"备注": "发货费用审批表"
+}, {
+	"表名": "bms_fahuofee_attachment",
+	"备注": "发货费用附件表"
+}, {
+	"表名": "bms_fahuofee_details",
+	"备注": "发货费用明细表"
+}, {
+	"表名": "bms_fahuofee_route",
+	"备注": "发货路由表"
+}, {
+	"表名": "bms_operation",
+	"备注": "bms操作表"
+}, {
+	"表名": "bms_order",
+	"备注": "运输订单表"
+}, {
+	"表名": "bms_order_status",
+	"备注": "bms订单状态表"
+}, {
+	"表名": "bms_product_code",
+	"备注": "发票-商品编码表"
+}, {
+	"表名": "bms_remark_log",
+	"备注": "bms备注记录表"
+}, {
+	"表名": "bms_tempscheme_temps",
+	"备注": "温区方案关联温度表"
+}, {
+	"表名": "bms_tempzone_scheme",
+	"备注": "温区方案表"
+}, {
+	"表名": "bms_tmp_abnormal_order",
+	"备注": "临时异常订单表"
+}, {
+	"表名": "boxs_test",
+	"备注": "计划箱型冗余表"
+}, {
+	"表名": "business_message",
+	"备注": "业务消息表"
+}, {
+	"表名": "business_message_retry_push_check",
+	"备注": "消息推送幂等检查表"
+}, {
+	"表名": "capital_purchase",
+	"备注": "采购订单表"
+}, {
+	"表名": "capital_purchase_detail",
+	"备注": "采购明细表"
+}, {
+	"表名": "car",
+	"备注": "车辆管理"
+}, {
+	"表名": "carea",
+	"备注": "操作大区表"
+}, {
+	"表名": "carrier_bill",
+	"备注": "月结供应商账单"
+}, {
+	"表名": "carryover_record",
+	"备注": "结转记录表"
+}, {
+	"表名": "carry_down_record",
+	"备注": "结算回款应收结转记录表"
+}, {
+	"表名": "cart_person",
+	"备注": "CAR-T备案人员"
+}, {
+	"表名": "cart_project",
+	"备注": "car-t项目配置表"
+}, {
+	"表名": "car_accident",
+	"备注": "车辆事故"
+}, {
+	"表名": "car_binding_temp_probe",
+	"备注": "冷藏车绑定温度计探头"
+}, {
+	"表名": "car_insurance",
+	"备注": "车辆保险"
+}, {
+	"表名": "car_oms_copy_oms_copy",
+	"备注": "车辆管理"
+}, {
+	"表名": "car_repair",
+	"备注": "车辆维修记录表"
+}, {
+	"表名": "centre_city_copy1",
+	"备注": "中心城市"
+}, {
+	"表名": "change_amount_log",
+	"备注": "金额变更记录"
+}, {
+	"表名": "charge",
+	"备注": "异常收费"
+}, {
+	"表名": "check_balance",
+	"备注": "VIEW"
+}, {
+	"表名": "check_balcace_out",
+	"备注": "VIEW"
+}, {
+	"表名": "check_inventory",
+	"备注": "库存盘点开关表"
+}, {
+	"表名": "city_category",
+	"备注": "城市分类"
+}, {
+	"表名": "city_category_copy1",
+	"备注": "城市分类"
+}, {
+	"表名": "claim_management",
+	"备注": "理赔管理表"
+}, {
+	"表名": "company_group",
+	"备注": "集团"
+}, {
+	"表名": "complaint_management",
+	"备注": "投诉管理"
+}, {
+	"表名": "com_company",
+	"备注": ""
+}, {
+	"表名": "connections",
+	"备注": ""
+}, {
+	"表名": "connection_alert_contents",
+	"备注": ""
+}, {
+	"表名": "connection_alert_settings",
+	"备注": ""
+}, {
+	"表名": "connection_groups",
+	"备注": ""
+}, {
+	"表名": "consignee",
+	"备注": "oms收货人菜单"
+}, {
+	"表名": "consumables_charge",
+	"备注": "耗材结算表"
+}, {
+	"表名": "consumables_charge_detail",
+	"备注": "耗材结算表详细表"
+}, {
+	"表名": "contact",
+	"备注": "联系人表"
+}, {
+	"表名": "contact_copy1",
+	"备注": "联系人表"
+}, {
+	"表名": "contact_risk_extend",
+	"备注": "外协风险类型扩展表"
+}, {
+	"表名": "control_inventory_log",
+	"备注": "库存数据操作记录表"
+}, {
+	"表名": "custcont_project",
+	"备注": "项目管理员表"
+}, {
+	"表名": "customer",
+	"备注": "客户表"
+}, {
+	"表名": "customer_address",
+	"备注": "客户地址表"
+}, {
+	"表名": "customer_audit",
+	"备注": "客户审核记录表"
+}, {
+	"表名": "customer_balance",
+	"备注": "客户余额表"
+}, {
+	"表名": "customer_bind_company",
+	"备注": "开票客户绑定开票公司表"
+}, {
+	"表名": "customer_branch",
+	"备注": ""
+}, {
+	"表名": "customer_configure",
+	"备注": ""
+}, {
+	"表名": "customer_contract",
+	"备注": "客户合同"
+}, {
+	"表名": "customer_down_log",
+	"备注": "客户端附件下载日志表"
+}, {
+	"表名": "customer_durg",
+	"备注": "成品药客户货物"
+}, {
+	"表名": "customer_email",
+	"备注": ""
+}, {
+	"表名": "customer_experiment",
+	"备注": "项目实验表"
+}, {
+	"表名": "customer_goods",
+	"备注": "客户货物表"
+}, {
+	"表名": "customer_hospital",
+	"备注": "客户账号中心绑定关系"
+}, {
+	"表名": "customer_invoice_relation",
+	"备注": ""
+}, {
+	"表名": "customer_offer",
+	"备注": "客户报价"
+}, {
+	"表名": "customer_offer_change_log",
+	"备注": "客户报价变更明细表"
+}, {
+	"表名": "customer_offer_copy1",
+	"备注": "客户报价"
+}, {
+	"表名": "customer_offer_temp_history",
+	"备注": "报价明细历史数据处理表"
+}, {
+	"表名": "customer_project",
+	"备注": "客户项目表"
+}, {
+	"表名": "customer_project_conf",
+	"备注": ""
+}, {
+	"表名": "customer_quotation",
+	"备注": "客户报价单关联表"
+}, {
+	"表名": "customer_quotation_config",
+	"备注": "客户报价单关联配置"
+}, {
+	"表名": "customer_quotation_contract_relation",
+	"备注": "客户报价绑定合同"
+}, {
+	"表名": "customer_quotation_jinsai",
+	"备注": "金赛城市报价"
+}, {
+	"表名": "customer_quotation_special",
+	"备注": "客户报价单关联特约费用"
+}, {
+	"表名": "customer_rate",
+	"备注": "客户税率"
+}, {
+	"表名": "customer_records",
+	"备注": "客户回访记录表"
+}, {
+	"表名": "customer_settlement",
+	"备注": "客户对账单"
+}, {
+	"表名": "customer_type",
+	"备注": "客户行业类型表"
+}, {
+	"表名": "database_performances",
+	"备注": ""
+}, {
+	"表名": "deadlocks",
+	"备注": ""
+}, {
+	"表名": "department",
+	"备注": "部门表"
+}, {
+	"表名": "deviation_management",
+	"备注": "偏差管理"
+}, {
+	"表名": "device_service",
+	"备注": "设备维护表"
+}, {
+	"表名": "discount_config",
+	"备注": "结算折扣表"
+}, {
+	"表名": "discount_config_detail",
+	"备注": "结算折扣详情表"
+}, {
+	"表名": "discount_config_relevance",
+	"备注": "折扣关联表"
+}, {
+	"表名": "dispatch",
+	"备注": "调度单表"
+}, {
+	"表名": "dispatch_detail",
+	"备注": "调度单调度明细表"
+}, {
+	"表名": "dispatch_operator",
+	"备注": "调度单操作人表"
+}, {
+	"表名": "dispatch_order_and_third_order_relation",
+	"备注": "调度单和三方快递单关系表"
+}, {
+	"表名": "dms_special_person_travel_order",
+	"备注": "专人出差订单表"
+}, {
+	"表名": "dms_travel_order_item",
+	"备注": "出差单行程表"
+}, {
+	"表名": "drug_arrived_pay",
+	"备注": "药品到付记录表"
+}, {
+	"表名": "drug_batch",
+	"备注": "药品批次表"
+}, {
+	"表名": "drug_surplus",
+	"备注": "药品结余表"
+}, {
+	"表名": "drug_surplus_detail",
+	"备注": "药品结余详情表"
+}, {
+	"表名": "ectocyst",
+	"备注": "操作外协表"
+}, {
+	"表名": "ectocyst_contact",
+	"备注": ""
+}, {
+	"表名": "email_processing_log",
+	"备注": "邮件处理日志表"
+}, {
+	"表名": "employee",
+	"备注": ""
+}, {
+	"表名": "employee_copy1",
+	"备注": ""
+}, {
+	"表名": "employee_department",
+	"备注": "员工部门表"
+}, {
+	"表名": "employee_department_quarters_relation",
+	"备注": "员工部门职位关系表"
+}, {
+	"表名": "employee_list",
+	"备注": ""
+}, {
+	"表名": "employee_quarters",
+	"备注": "员工职位表"
+}, {
+	"表名": "employee_test",
+	"备注": ""
+}, {
+	"表名": "etl_temp",
+	"备注": ""
+}, {
+	"表名": "files_approve",
+	"备注": "文件审批表"
+}, {
+	"表名": "files_approve_details",
+	"备注": "审批详情表"
+}, {
+	"表名": "files_attachment",
+	"备注": "文件附件表"
+}, {
+	"表名": "files_form",
+	"备注": "文件表单表"
+}, {
+	"表名": "files_frame_chart",
+	"备注": "文件框图"
+}, {
+	"表名": "files_log",
+	"备注": "文件操作日志表"
+}, {
+	"表名": "files_set_approver",
+	"备注": "文件审批人配置表"
+}, {
+	"表名": "files_user_behavior",
+	"备注": "用户操作文件行为记录表"
+}, {
+	"表名": "file_station",
+	"备注": ""
+}, {
+	"表名": "gaode_map",
+	"备注": ""
+}, {
+	"表名": "general_settings",
+	"备注": ""
+}, {
+	"表名": "global_alert_settings",
+	"备注": ""
+}, {
+	"表名": "goods_attachment",
+	"备注": "物资附件表"
+}, {
+	"表名": "goods_details",
+	"备注": "物资明细表"
+}, {
+	"表名": "goods_details_lock_log",
+	"备注": "物资明细锁定记录表"
+}, {
+	"表名": "group_alert_settings",
+	"备注": ""
+}, {
+	"表名": "hospital",
+	"备注": ""
+}, {
+	"表名": "hospital_message",
+	"备注": ""
+}, {
+	"表名": "inventory",
+	"备注": "库存表"
+}, {
+	"表名": "inventory_back",
+	"备注": "库存盘点备份表"
+}, {
+	"表名": "inventory_back_detail",
+	"备注": "库存盘点备份明细表"
+}, {
+	"表名": "inventory_check",
+	"备注": "库存盘点表"
+}, {
+	"表名": "inventory_check_detail",
+	"备注": "库存盘点明细表"
+}, {
+	"表名": "inventory_detail",
+	"备注": "库存详细表"
+}, {
+	"表名": "inventory_warning",
+	"备注": "库存预警表"
+}, {
+	"表名": "invoice",
+	"备注": "实开发票表"
+}, {
+	"表名": "invoice_detail",
+	"备注": "实开发票详情"
+}, {
+	"表名": "invoice_pdf",
+	"备注": "发票pdf表"
+}, {
+	"表名": "iosto",
+	"备注": "VIEW"
+}, {
+	"表名": "iostorage",
+	"备注": "出入库单表"
+}, {
+	"表名": "iostorage_detail",
+	"备注": "出入库明细表"
+}, {
+	"表名": "jzt_air_offer",
+	"备注": "九州通空运报价"
+}, {
+	"表名": "jzt_box_offer",
+	"备注": "九州通冷冻包装箱报价"
+}, {
+	"表名": "jzt_car_convert",
+	"备注": "九州通车辆装载换算表"
+}, {
+	"表名": "jzt_car_offer",
+	"备注": "九州通整车报价"
+}, {
+	"表名": "jzt_scattered_offer",
+	"备注": "九州通零担报价"
+}, {
+	"表名": "ls_cus",
+	"备注": ""
+}, {
+	"表名": "maintenance_settings",
+	"备注": ""
+}, {
+	"表名": "marketing",
+	"备注": "营销活动"
+}, {
+	"表名": "marking_drug",
+	"备注": "贴标订单药品表"
+}, {
+	"表名": "marking_order",
+	"备注": ""
+}, {
+	"表名": "material_lend",
+	"备注": "耗材外借表"
+}, {
+	"表名": "metadata",
+	"备注": ""
+}, {
+	"表名": "migrations",
+	"备注": ""
+}, {
+	"表名": "mini_wechat_address",
+	"备注": ""
+}, {
+	"表名": "monthly_statement",
+	"备注": "对账单表"
+}, {
+	"表名": "month_receivable",
+	"备注": "月度应收统计表"
+}, {
+	"表名": "month_receivable_record",
+	"备注": "月度应收统计记录表"
+}, {
+	"表名": "new_customer_order",
+	"备注": "新客户订单表"
+}, {
+	"表名": "notice",
+	"备注": "通知管理表"
+}, {
+	"表名": "notice_read",
+	"备注": "通知阅读表"
+}, {
+	"表名": "notifications",
+	"备注": ""
+}, {
+	"表名": "notification_settings",
+	"备注": ""
+}, {
+	"表名": "number_rules",
+	"备注": "仓库城市编号表"
+}, {
+	"表名": "office_current",
+	"备注": "期初余额表"
+}, {
+	"表名": "office_expenses",
+	"备注": "办事处支出表"
+}, {
+	"表名": "office_income",
+	"备注": "办事处收入表"
+}, {
+	"表名": "office_log",
+	"备注": "办事处日志表"
+}, {
+	"表名": "oms_customer_remark_log",
+	"备注": "客户相关日志表"
+}, {
+	"表名": "oms_logistics",
+	"备注": "运输订单物流信息表"
+}, {
+	"表名": "oms_order",
+	"备注": "运输订单表"
+}, {
+	"表名": "oms_order_attached",
+	"备注": ""
+}, {
+	"表名": "oms_order_box",
+	"备注": ""
+}, {
+	"表名": "oms_order_d",
+	"备注": "运输订单表"
+}, {
+	"表名": "oms_order_email",
+	"备注": ""
+}, {
+	"表名": "oms_order_extension",
+	"备注": "oms_order附属表"
+}, {
+	"表名": "oms_receive_order_email",
+	"备注": "邮件订单表"
+}, {
+	"表名": "oms_transport_time",
+	"备注": ""
+}, {
+	"表名": "operate_log",
+	"备注": "操作日志表"
+}, {
+	"表名": "operation",
+	"备注": "操作表"
+}, {
+	"表名": "operator_type",
+	"备注": "外协结算类型表"
+}, {
+	"表名": "opn_operator",
+	"备注": "操作人表"
+}, {
+	"表名": "opn_opr",
+	"备注": "订单操作明细操作人次表"
+}, {
+	"表名": "order_accident",
+	"备注": "运输订单事故表"
+}, {
+	"表名": "order_accident_related",
+	"备注": "运输订单事故关联人员表"
+}, {
+	"表名": "order_achievements",
+	"备注": ""
+}, {
+	"表名": "order_cbox",
+	"备注": "订单换箱记录表"
+}, {
+	"表名": "order_customer_durg",
+	"备注": "订单客户货物"
+}, {
+	"表名": "order_dispatch",
+	"备注": "运输订单调度表"
+}, {
+	"表名": "order_feedback",
+	"备注": "运输订单反馈表"
+}, {
+	"表名": "order_goods",
+	"备注": "运输订单货物表"
+}, {
+	"表名": "order_goods_detail",
+	"备注": "运输订单货物编号明细表"
+}, {
+	"表名": "order_group",
+	"备注": "订单分组"
+}, {
+	"表名": "order_information",
+	"备注": "订单物流信息表"
+}, {
+	"表名": "order_iostorage",
+	"备注": "运输订单出入库表"
+}, {
+	"表名": "order_iostorage_real",
+	"备注": "运输订单出库表"
+}, {
+	"表名": "order_logistics",
+	"备注": "运输订单物流信息表"
+}, {
+	"表名": "order_material",
+	"备注": "运输单包装耗材表"
+}, {
+	"表名": "order_material_old",
+	"备注": "运输单包装耗材表"
+}, {
+	"表名": "order_material_plan",
+	"备注": "订单计划包装"
+}, {
+	"表名": "order_settlement",
+	"备注": "运输订单费用结算表"
+}, {
+	"表名": "order_settlement_boxs",
+	"备注": "订单结算耗材表"
+}, {
+	"表名": "order_settlement_detail",
+	"备注": "订单结算货物详情表"
+}, {
+	"表名": "order_settlement_discount",
+	"备注": "订单折扣统计表"
+}, {
+	"表名": "order_settlement_discount_change",
+	"备注": "订单折扣统计变更表"
+}, {
+	"表名": "order_special",
+	"备注": "特殊费用关联表"
+}, {
+	"表名": "order_temperature_record",
+	"备注": ""
+}, {
+	"表名": "order_thermometer",
+	"备注": "订单温度数据上传验证表"
+}, {
+	"表名": "order_twelve_update",
+	"备注": ""
+}, {
+	"表名": "order_worksheet",
+	"备注": "订单工作单表"
+}, {
+	"表名": "order_worksheet_copy1",
+	"备注": "订单工作单表"
+}, {
+	"表名": "order_worksheet_handover",
+	"备注": "交接工作单表"
+}, {
+	"表名": "order_worksheet_route",
+	"备注": "工作单排线"
+}, {
+	"表名": "order_worksheet_route_info",
+	"备注": "工作单排线信息"
+}, {
+	"表名": "other_settlement",
+	"备注": "其它费用表"
+}, {
+	"表名": "other_settlement_feeverify",
+	"备注": "验证结算费用详情表"
+}, {
+	"表名": "packing",
+	"备注": "包装箱"
+}, {
+	"表名": "packing_box_relation",
+	"备注": "包装箱验证报告关联数据"
+}, {
+	"表名": "packing_copy1",
+	"备注": "包装箱"
+}, {
+	"表名": "packing_cost",
+	"备注": "包装箱费用"
+}, {
+	"表名": "packing_scheme",
+	"备注": "包装箱方案"
+}, {
+	"表名": "packing_scheme_pks",
+	"备注": "包装箱方案下包装箱表"
+}, {
+	"表名": "packing_scheme_temps",
+	"备注": "包装箱方案下温度表"
+}, {
+	"表名": "packing_temp_change_history",
+	"备注": "包装箱方案历史数据处理表"
+}, {
+	"表名": "payment_apply",
+	"备注": "付款申请表"
+}, {
+	"表名": "pay_log",
+	"备注": ""
+}, {
+	"表名": "person_material",
+	"备注": "个人应还耗材记录表"
+}, {
+	"表名": "perwarehouse",
+	"备注": "个人虚拟仓"
+}, {
+	"表名": "position",
+	"备注": "职位表"
+}, {
+	"表名": "procurement_approval",
+	"备注": "采购审批单"
+}, {
+	"表名": "procurement_approval_2",
+	"备注": "采购审批单拷贝表"
+}, {
+	"表名": "procurement_approval_copy",
+	"备注": "采购审批单的拷贝表"
+}, {
+	"表名": "project_destination",
+	"备注": "项目目的地配置表"
+}, {
+	"表名": "project_hospital",
+	"备注": "项目绑定的中心列表"
+}, {
+	"表名": "project_nsso_conf",
+	"备注": "项目特殊配置表"
+}, {
+	"表名": "project_site",
+	"备注": "项目医院表"
+}, {
+	"表名": "protocol",
+	"备注": ""
+}, {
+	"表名": "protocol_log",
+	"备注": ""
+}, {
+	"表名": "purchase",
+	"备注": "采购单表"
+}, {
+	"表名": "purchase_attachment",
+	"备注": "采购单附件表"
+}, {
+	"表名": "purchase_detail",
+	"备注": "采购明细表"
+}, {
+	"表名": "purchase_quoted_price",
+	"备注": "采购报价信息表"
+}, {
+	"表名": "push_task",
+	"备注": ""
+}, {
+	"表名": "p_department",
+	"备注": "企业微信部门表"
+}, {
+	"表名": "qc_abnormal",
+	"备注": "质控异常投诉表"
+}, {
+	"表名": "qc_abnormal_attachment",
+	"备注": ""
+}, {
+	"表名": "qc_capa",
+	"备注": ""
+}, {
+	"表名": "qc_kpi",
+	"备注": ""
+}, {
+	"表名": "qc_upload",
+	"备注": "质控异常上传文件表"
+}, {
+	"表名": "qms_attachment",
+	"备注": "qms附件表"
+}, {
+	"表名": "qms_exception_config",
+	"备注": ""
+}, {
+	"表名": "qms_qc_warehouse",
+	"备注": "仓储温度异常"
+}, {
+	"表名": "qms_series_abnormal_file",
+	"备注": "温度探头校准异常文件"
+}, {
+	"表名": "qms_verify_attachment",
+	"备注": "验证订单管理附件表"
+}, {
+	"表名": "qms_verify_cost",
+	"备注": "验证成本表"
+}, {
+	"表名": "qms_verify_order",
+	"备注": "验证订单表"
+}, {
+	"表名": "qms_verify_task",
+	"备注": "温控设备验证任务表"
+}, {
+	"表名": "quality_log",
+	"备注": "质控异常备注记录表"
+}, {
+	"表名": "quotation",
+	"备注": "报价单"
+}, {
+	"表名": "quotation_settlement_config",
+	"备注": "报价结算配置表"
+}, {
+	"表名": "quotation_settlement_config_detail",
+	"备注": "报价结算配置明细表"
+}, {
+	"表名": "realbill",
+	"备注": "实开发票表"
+}, {
+	"表名": "receivable",
+	"备注": "财务应收统计表"
+}, {
+	"表名": "receivable_carryover",
+	"备注": "应收账款表"
+}, {
+	"表名": "receivable_detail",
+	"备注": "应收明细统计表"
+}, {
+	"表名": "receivable_month_detail",
+	"备注": "应收-月度汇总明细"
+}, {
+	"表名": "receivable_month_summary",
+	"备注": "应收-月度汇总表"
+}, {
+	"表名": "recipients_check",
+	"备注": "收件单位地址检验"
+}, {
+	"表名": "recipients_unit",
+	"备注": "收件单位地址关键字配置"
+}, {
+	"表名": "recover_drug",
+	"备注": "药品回收表"
+}, {
+	"表名": "recover_drug_detail",
+	"备注": "回收药品明细"
+}, {
+	"表名": "refund_log",
+	"备注": ""
+}, {
+	"表名": "remark_log",
+	"备注": "备注记录表"
+}, {
+	"表名": "replications",
+	"备注": ""
+}, {
+	"表名": "replication_error_histories",
+	"备注": ""
+}, {
+	"表名": "replication_states",
+	"备注": ""
+}, {
+	"表名": "report_management",
+	"备注": "报告管理"
+}, {
+	"表名": "reward",
+	"备注": "惩罚信息表"
+}, {
+	"表名": "risk_outsource",
+	"备注": "外协异常"
+}, {
+	"表名": "risk_outsource_type",
+	"备注": "外协异常类型"
+}, {
+	"表名": "roles",
+	"备注": ""
+}, {
+	"表名": "role_ip_ranges",
+	"备注": ""
+}, {
+	"表名": "route",
+	"备注": "路由表"
+}, {
+	"表名": "route_copy1",
+	"备注": "路由表"
+}, {
+	"表名": "route_history_use_count",
+	"备注": "路由历史使用次数"
+}, {
+	"表名": "route_select_data",
+	"备注": "路由选择数据表"
+}, {
+	"表名": "route_type",
+	"备注": "路由类型表"
+}, {
+	"表名": "sample_offer",
+	"备注": "样本仓储报价"
+}, {
+	"表名": "sample_settlement",
+	"备注": "仓储样本结算表"
+}, {
+	"表名": "seat_management",
+	"备注": ""
+}, {
+	"表名": "session",
+	"备注": "系统用户组或角色"
+}, {
+	"表名": "settlement_receivable_statistics",
+	"备注": "结算应收统计表"
+}, {
+	"表名": "settlement_relation",
+	"备注": "订单结算关联表"
+}, {
+	"表名": "Sheet1",
+	"备注": ""
+}, {
+	"表名": "signature_temp",
+	"备注": "签章附件表"
+}, {
+	"表名": "signbill_log",
+	"备注": "签单返回日志表"
+}, {
+	"表名": "sign_bill",
+	"备注": "签单返回管理表"
+}, {
+	"表名": "sms_log",
+	"备注": "短信发送日志"
+}, {
+	"表名": "special_config",
+	"备注": "特殊费用配置"
+}, {
+	"表名": "special_fee",
+	"备注": "公共特约费用表"
+}, {
+	"表名": "sscc_attach",
+	"备注": "附件表"
+}, {
+	"表名": "sscc_drug",
+	"备注": "药品表"
+}, {
+	"表名": "sscc_employee",
+	"备注": "员工表"
+}, {
+	"表名": "sscc_operation",
+	"备注": "路由中转表"
+}, {
+	"表名": "sscc_order",
+	"备注": ""
+}, {
+	"表名": "sscc_ordercount",
+	"备注": ""
+}, {
+	"表名": "sscc_sample",
+	"备注": "样本表"
+}, {
+	"表名": "stock",
+	"备注": "存货表"
+}, {
+	"表名": "stock_copy1",
+	"备注": "存货表"
+}, {
+	"表名": "stock_copy2",
+	"备注": "存货表"
+}, {
+	"表名": "stock_extend",
+	"备注": "存货扩展表"
+}, {
+	"表名": "stock_type",
+	"备注": "存货类型表"
+}, {
+	"表名": "stock_type_copy",
+	"备注": "存货类型表"
+}, {
+	"表名": "subwarehouse",
+	"备注": "子仓库表"
+}, {
+	"表名": "subwarehouse_attachment",
+	"备注": "仓库温度数据表"
+}, {
+	"表名": "subwarehouse_yiliu_rubik",
+	"备注": "子仓易流魔方关联表"
+}, {
+	"表名": "sub_office",
+	"备注": "办事处表"
+}, {
+	"表名": "success_pdf",
+	"备注": "上传成功pdf表"
+}, {
+	"表名": "supplier",
+	"备注": "供应商表"
+}, {
+	"表名": "supplier_detail",
+	"备注": "供应商物料明细表"
+}, {
+	"表名": "supplier_monthly_settlement",
+	"备注": "月结供应商"
+}, {
+	"表名": "supplier_month_settlement_detail",
+	"备注": "供应商月结明细表"
+}, {
+	"表名": "supplier_type",
+	"备注": "供货类型表"
+}, {
+	"表名": "system_group",
+	"备注": "系统用户组或角色"
+}, {
+	"表名": "system_group_priv",
+	"备注": "系统用户组或角色权限"
+}, {
+	"表名": "system_group_priv111",
+	"备注": "系统用户组或角色权限"
+}, {
+	"表名": "system_log",
+	"备注": "系统操作日志"
+}, {
+	"表名": "system_menu",
+	"备注": "系统菜单"
+}, {
+	"表名": "system_performances",
+	"备注": ""
+}, {
+	"表名": "system_priv",
+	"备注": "系统权限"
+}, {
+	"表名": "system_rate",
+	"备注": "税率表"
+}, {
+	"表名": "system_region",
+	"备注": "地区列表-系统数据"
+}, {
+	"表名": "system_region_back20211209",
+	"备注": "地区列表-系统数据"
+}, {
+	"表名": "system_region_jwd",
+	"备注": "地区码表"
+}, {
+	"表名": "system_service",
+	"备注": "服务表"
+}, {
+	"表名": "system_service_rate",
+	"备注": "服务税率绑定表"
+}, {
+	"表名": "system_user_group",
+	"备注": "用户分组"
+}, {
+	"表名": "system_workday",
+	"备注": "系统节假日数据"
+}, {
+	"表名": "tag",
+	"备注": "标签表"
+}, {
+	"表名": "take_stock_analysis",
+	"备注": "盘点数据分析表"
+}, {
+	"表名": "take_stock_analysis_all",
+	"备注": "全国盘点数据分析表"
+}, {
+	"表名": "take_stock_inventory",
+	"备注": "盘点结束后库存备份表"
+}, {
+	"表名": "take_stock_inventory_detail",
+	"备注": "盘点结束后库存备份明细表"
+}, {
+	"表名": "temperature",
+	"备注": "温度范围配置表"
+}, {
+	"表名": "temperature_copy1",
+	"备注": "温度范围配置表"
+}, {
+	"表名": "temperature_pdf",
+	"备注": "订单温度数据异常文件表"
+}, {
+	"表名": "temperature_pdf_handle",
+	"备注": "异常温度数据文件处理关联表"
+}, {
+	"表名": "temperature_range",
+	"备注": "温度范围表"
+}, {
+	"表名": "temperature_templete",
+	"备注": ""
+}, {
+	"表名": "templete_message",
+	"备注": "模板消息推送表"
+}, {
+	"表名": "temporary_log",
+	"备注": ""
+}, {
+	"表名": "temporary_order",
+	"备注": "临时订单表"
+}, {
+	"表名": "temp_error_log",
+	"备注": ""
+}, {
+	"表名": "test20201118",
+	"备注": ""
+}, {
+	"表名": "test20210424",
+	"备注": ""
+}, {
+	"表名": "test2021052802",
+	"备注": ""
+}, {
+	"表名": "testcity2021052801",
+	"备注": ""
+}, {
+	"表名": "test_mybatis",
+	"备注": ""
+}, {
+	"表名": "tms_attachment",
+	"备注": "tms独立文件列表"
+}, {
+	"表名": "tms_attachment_bank",
+	"备注": "tms独立文件列表"
+}, {
+	"表名": "tms_auto_open_thermometer",
+	"备注": ""
+}, {
+	"表名": "tms_cart_operation",
+	"备注": "cart操作员表"
+}, {
+	"表名": "tms_cart_operation_config",
+	"备注": "cart配置表"
+}, {
+	"表名": "tms_cart_operation_config_copy1",
+	"备注": ""
+}, {
+	"表名": "tms_cart_operation_record",
+	"备注": "cart操作记录表"
+}, {
+	"表名": "tms_cart_plan",
+	"备注": "cart订单车辆安排"
+}, {
+	"表名": "tms_car_check",
+	"备注": "车辆检查表"
+}, {
+	"表名": "tms_change_box",
+	"备注": "换箱操作记录表"
+}, {
+	"表名": "tms_ddd_data",
+	"备注": "懂调度"
+}, {
+	"表名": "tms_ddd_push_log",
+	"备注": "订单推送（讯轻）"
+}, {
+	"表名": "tms_dn_information",
+	"备注": "订单dn信息表"
+}, {
+	"表名": "tms_drive_record",
+	"备注": "行车记录表"
+}, {
+	"表名": "tms_dtp_delovery_code",
+	"备注": ""
+}, {
+	"表名": "tms_dwt_distribution_results",
+	"备注": "鼎为下发结果推送"
+}, {
+	"表名": "tms_dwt_flight_mode",
+	"备注": "鼎为推送飞行模式记录"
+}, {
+	"表名": "tms_dwt_offline_remark",
+	"备注": "鼎为离线推送备注表"
+}, {
+	"表名": "tms_dwt_off_line",
+	"备注": "鼎为离线推送"
+}, {
+	"表名": "tms_dwt_power_off",
+	"备注": "鼎为关机推送表"
+}, {
+	"表名": "tms_dwt_power_on",
+	"备注": "鼎为推送开机日志"
+}, {
+	"表名": "tms_dwt_quantity_electricity",
+	"备注": "鼎为推送电量数据表"
+}, {
+	"表名": "tms_dwt_th_alarm",
+	"备注": "鼎为超温报警"
+}, {
+	"表名": "tms_dwt_th_warning",
+	"备注": "鼎为预警推送"
+}, {
+	"表名": "tms_dwt_wcmessage_log",
+	"备注": "鼎为推送日志表"
+}, {
+	"表名": "tms_dwt_wcml_remark",
+	"备注": "鼎为推送日志备注表"
+}, {
+	"表名": "tms_dwyc",
+	"备注": ""
+}, {
+	"表名": "tms_dw_data",
+	"备注": "鼎为温度计数据获取"
+}, {
+	"表名": "tms_dw_hddata",
+	"备注": "鼎为温度计数据获取"
+}, {
+	"表名": "tms_dw_qldata",
+	"备注": "鼎为温度计数据获取"
+}, {
+	"表名": "tms_dw_sydata",
+	"备注": "上药温度计推送数据"
+}, {
+	"表名": "tms_dw_temperature_pdf",
+	"备注": "鼎为温度报告表"
+}, {
+	"表名": "tms_dw_warning_config",
+	"备注": ""
+}, {
+	"表名": "tms_epidemic_area",
+	"备注": "疫情风险地区表"
+}, {
+	"表名": "tms_epidemic_area_remark",
+	"备注": ""
+}, {
+	"表名": "tms_exception_handling",
+	"备注": "订单异常处理流程"
+}, {
+	"表名": "tms_fahuo_receipt_detail",
+	"备注": "发货记录明细"
+}, {
+	"表名": "tms_fahuo_receipt_no",
+	"备注": "月结发货费单号填写"
+}, {
+	"表名": "tms_generatekill_attachment",
+	"备注": ""
+}, {
+	"表名": "tms_jpush_user",
+	"备注": ""
+}, {
+	"表名": "tms_lj_inventory",
+	"备注": ""
+}, {
+	"表名": "tms_lj_inventory_detail",
+	"备注": ""
+}, {
+	"表名": "tms_logistics_node",
+	"备注": "订单物流最新调度信息"
+}, {
+	"表名": "tms_material_plan_config",
+	"备注": "计划箱型配置"
+}, {
+	"表名": "tms_material_plan_config_detail",
+	"备注": ""
+}, {
+	"表名": "tms_material_plan_recommend",
+	"备注": "计划箱型推荐记录"
+}, {
+	"表名": "tms_merge_order_check",
+	"备注": "合单检查复核表"
+}, {
+	"表名": "tms_mf_noshipadd",
+	"备注": ""
+}, {
+	"表名": "tms_mf_shipnoadd",
+	"备注": ""
+}, {
+	"表名": "tms_notfilled_spfee_record",
+	"备注": ""
+}, {
+	"表名": "tms_nucleic_acid",
+	"备注": "核酸检测服务"
+}, {
+	"表名": "tms_nucleic_acid_testing_report",
+	"备注": "核算检测报告表"
+}, {
+	"表名": "tms_nucleic_acid_user",
+	"备注": ""
+}, {
+	"表名": "tms_open_thermometer",
+	"备注": ""
+}, {
+	"表名": "tms_operation_site",
+	"备注": ""
+}, {
+	"表名": "tms_order_information",
+	"备注": "订单物流信息附加表"
+}, {
+	"表名": "tms_performance",
+	"备注": "员工操作绩效表"
+}, {
+	"表名": "tms_project",
+	"备注": "物流系统-项目配置"
+}, {
+	"表名": "tms_ql_pushdata",
+	"备注": "去来物流和签单推送日志表"
+}, {
+	"表名": "tms_sdeduction",
+	"备注": "供应商扣款表"
+}, {
+	"表名": "tms_send_check",
+	"备注": "派件复核记录表"
+}, {
+	"表名": "tms_send_check_remark",
+	"备注": "派件复核备注表"
+}, {
+	"表名": "tms_sign_bill",
+	"备注": "签单返回管理"
+}, {
+	"表名": "tms_sign_bill_log",
+	"备注": "签单返回管理日志"
+}, {
+	"表名": "tms_sign_project_type",
+	"备注": "项目签单类型配置表"
+}, {
+	"表名": "tms_sign_type",
+	"备注": "签单类型"
+}, {
+	"表名": "tms_sterilize_record",
+	"备注": ""
+}, {
+	"表名": "tms_supplier",
+	"备注": "物流供应商信息"
+}, {
+	"表名": "tms_supplier_business",
+	"备注": "业务供应商表"
+}, {
+	"表名": "tms_supplier_business_det",
+	"备注": "供应商业务详情表"
+}, {
+	"表名": "tms_tdw_data",
+	"备注": "鼎为需要推送数据的温度计关联关系"
+}, {
+	"表名": "tms_tdw_hddata",
+	"备注": "鼎为需要推送数据的温度计关联关系"
+}, {
+	"表名": "tms_tdw_qldata",
+	"备注": "鼎为需要推送数据的温度计关联关系"
+}, {
+	"表名": "tms_tdw_sydata",
+	"备注": "上药绑定关系表"
+}, {
+	"表名": "tms_transport_car",
+	"备注": ""
+}, {
+	"表名": "tms_xm_information",
+	"备注": "西门子订单附属信息"
+}, {
+	"表名": "tms_ylt",
+	"备注": "易联车辆推送数据"
+}, {
+	"表名": "tms_ylt_wcmessage_log",
+	"备注": ""
+}, {
+	"表名": "transactions",
+	"备注": ""
+}, {
+	"表名": "transfer",
+	"备注": "移库表"
+}, {
+	"表名": "transfer_detail",
+	"备注": "移库明细表"
+}, {
+	"表名": "transportation_cost",
+	"备注": "脐血订单运输成本表"
+}, {
+	"表名": "transport_order",
+	"备注": "运输订单表"
+}, {
+	"表名": "transport_order_abnormal",
+	"备注": ""
+}, {
+	"表名": "transport_order_nephew",
+	"备注": ""
+}, {
+	"表名": "transport_stations",
+	"备注": "运输站点"
+}, {
+	"表名": "t_user",
+	"备注": ""
+}, {
+	"表名": "uppickuptime",
+	"备注": ""
+}, {
+	"表名": "uptoid",
+	"备注": "20190124更新订单uid数据临时表"
+}, {
+	"表名": "up_down_states",
+	"备注": ""
+}, {
+	"表名": "user",
+	"备注": "用户表"
+}, {
+	"表名": "users",
+	"备注": ""
+}, {
+	"表名": "user_connection_groups",
+	"备注": ""
+}, {
+	"表名": "user_customer_role_relation",
+	"备注": "用户客户角色关系表"
+}, {
+	"表名": "user_filter_profiles",
+	"备注": ""
+}, {
+	"表名": "user_pass",
+	"备注": "用户历史密码表"
+}, {
+	"表名": "user_preferences",
+	"备注": ""
+}, {
+	"表名": "user_property",
+	"备注": "用户属性"
+}, {
+	"表名": "user_sessions",
+	"备注": ""
+}, {
+	"表名": "user_signature",
+	"备注": "用户签名配置表"
+}, {
+	"表名": "verification",
+	"备注": "验证管理表"
+}, {
+	"表名": "verify_code",
+	"备注": "短信验证码表"
+}, {
+	"表名": "version_information",
+	"备注": ""
+}, {
+	"表名": "warehouse",
+	"备注": "仓库表"
+}, {
+	"表名": "warehouse_thermometer",
+	"备注": "仓库温度计探头绑定表"
+}, {
+	"表名": "warse_offer",
+	"备注": "药品仓储报价"
+}, {
+	"表名": "wechat_params",
+	"备注": ""
+}, {
+	"表名": "we_chat",
+	"备注": "微信账号绑定表"
+}, {
+	"表名": "we_chat_copying",
+	"备注": "微信抄送"
+}, {
+	"表名": "wms_dryice_customer",
+	"备注": "干冰统计客户管理表"
+}, {
+	"表名": "wms_dryice_procurement",
+	"备注": "干冰采购统计表"
+}, {
+	"表名": "wms_dryice_recycle",
+	"备注": "干冰回收表"
+}, {
+	"表名": "wms_hc_extend",
+	"备注": ""
+}, {
+	"表名": "wms_inventory_check_abnormal",
+	"备注": "盘点异常上报表"
+}, {
+	"表名": "wms_order_material",
+	"备注": "运输单包装耗材表"
+}, {
+	"表名": "wms_prevent_duplicate",
+	"备注": "仓储防止重复表"
+}, {
+	"表名": "wms_supplier_remark_log",
+	"备注": ""
+}, {
+	"表名": "wms_sw_management",
+	"备注": ""
+}, {
+	"表名": "wms_transport_order",
+	"备注": "运输订单表"
+}, {
+	"表名": "wms_yb_inventory",
+	"备注": "库存表"
+}, {
+	"表名": "wms_yb_inventory_detail",
+	"备注": "库存详细表"
+}, {
+	"表名": "wms_yb_iostorage",
+	"备注": "出入库单表"
+}, {
+	"表名": "wms_yb_iostorage_detail",
+	"备注": "出入库明细表"
+}, {
+	"表名": "wms_yb_transfer",
+	"备注": "移库表"
+}, {
+	"表名": "wms_yb_transfer_detail",
+	"备注": "移库明细表"
+}, {
+	"表名": "wms_yp_inventory",
+	"备注": "库存表"
+}, {
+	"表名": "wms_yp_inventory_change_detail_log",
+	"备注": "药品库存变动明细药品序列号详情表"
+}, {
+	"表名": "wms_yp_inventory_change_log",
+	"备注": "药品库存变动明细表"
+}, {
+	"表名": "wms_yp_inventory_detail",
+	"备注": "库存详细表"
+}, {
+	"表名": "wms_yp_inventory_lock_detail",
+	"备注": "药品库存锁定详情表"
+}, {
+	"表名": "wms_yp_inventory_pre_lock",
+	"备注": "药品总库存预锁定表"
+}, {
+	"表名": "wms_yp_iostorage",
+	"备注": "出入库单表"
+}, {
+	"表名": "wms_yp_iostorage_before",
+	"备注": "出入库前检查"
+}, {
+	"表名": "wms_yp_iostorage_detail",
+	"备注": "出入库明细表"
+}, {
+	"表名": "work_map",
+	"备注": ""
+}, {
+	"表名": "work_order",
+	"备注": "工单表"
+}, {
+	"表名": "work_order_assign",
+	"备注": "工单指派表"
+}, {
+	"表名": "work_order_log",
+	"备注": "工单操作日志表"
+}, {
+	"表名": "work_record",
+	"备注": "工作记录"
+}, {
+	"表名": "wo_id",
+	"备注": "基础报价"
+}, {
+	"表名": "yiliu_cold_sign",
+	"备注": "冷签数据"
+}, {
+	"表名": "yiliu_cold_sign_record",
+	"备注": "冷签数据记录"
+}, {
+	"表名": "yiliu_rubik",
+	"备注": "魔方数据"
+}, {
+	"表名": "yp_inventory_balance",
+	"备注": "药品库存结余"
+}, {
+	"表名": "yp_inventory_detail_balance",
+	"备注": "药品明细库存结余"
+}, {
+	"表名": "yp_stand_book",
+	"备注": ""
+}, {
+	"表名": "城市分类",
+	"备注": ""
+}]
