@@ -890,6 +890,7 @@ define('CAR_REMIND_MESSAGE_CARKEY','1178ecf7-42fa-4900-9504-b34dffe5f53f');
 
 车辆管理 车辆维修 对接北森
 feature_15902_csl_20231016 tms_admin
+feature_15902_csl_20231016 tms_service
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15902 未上线
 
 alter table
@@ -938,8 +939,6 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16053  未上线
 
 
 
-
-
 CREATE TABLE `tms_sign_customer` (
   `tsc_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `sign_customer_name` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '待签收客户',
@@ -955,12 +954,20 @@ CREATE TABLE `tms_sign_customer` (
 
 CREATE TABLE `tms_sign_customer_user` (
   `tscu_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `tsc_id` int(11) NOT NULL  DEFAULT '0'  COMMENT '待签收客户表id',
   `username` varchar(25) NOT NULL DEFAULT '' COMMENT '人员名称',
-  `ur_uid` int(11) NOT NULL DEFAULT '0' COMMENT '人员uid',
   `tscu_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
   PRIMARY KEY (`tscu_id`),
-  KEY `idx_ur_uid` (`ur_uid`)
+  KEY `idx_ur_uid` (`ur_uid`),
+  KEY `idx_tsc_id` (`tsc_id`)
 ) COMMENT='待签收客户人员配置表';
+
+
+
+
+易流推送优化
+feature_16077_csl_20231026 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16077  已上线
