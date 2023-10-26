@@ -941,7 +941,8 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16053  未上线
 
 CREATE TABLE `tms_sign_customer` (
   `tsc_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `sign_customer_name` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '待签收客户',
+  `sign_customer_name` varchar(255) NOT NULL DEFAULT ''  COMMENT '待签收客户',
+  `usernames` text COMMENT '人员名称',
   `tsc_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
