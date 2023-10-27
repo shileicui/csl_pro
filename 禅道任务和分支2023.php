@@ -919,17 +919,17 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15935  已上线
 
 车辆油耗 冷机的油耗 改成小数点后2位
 feature_15976_csl_20231020 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15976 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15976 已上线
 
 
 车辆提醒企业微信通知
 feature_15978_csl_20231020  tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15978
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15978  已上线
 
 
 计划箱型推荐 接口更换
 feature_16059_csl_20131025 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16059 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16059 已上线
 
 
 
@@ -953,18 +953,18 @@ CREATE TABLE `tms_sign_customer` (
 
 
 
-CREATE TABLE `tms_sign_customer_user` (
-  `tscu_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `tsc_id` int(11) NOT NULL  DEFAULT '0'  COMMENT '待签收客户表id',
-  `username` varchar(25) NOT NULL DEFAULT '' COMMENT '人员名称',
-  `tscu_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
-  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
-  PRIMARY KEY (`tscu_id`),
-  KEY `idx_ur_uid` (`ur_uid`),
-  KEY `idx_tsc_id` (`tsc_id`)
-) COMMENT='待签收客户人员配置表';
+// CREATE TABLE `tms_sign_customer_user` (
+//   `tscu_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
+//   `tsc_id` int(11) NOT NULL  DEFAULT '0'  COMMENT '待签收客户表id',
+//   `username` varchar(25) NOT NULL DEFAULT '' COMMENT '人员名称',
+//   `tscu_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+//   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+//   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+//   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+//   PRIMARY KEY (`tscu_id`),
+//   KEY `idx_ur_uid` (`ur_uid`),
+//   KEY `idx_tsc_id` (`tsc_id`)
+// ) COMMENT='待签收客户人员配置表';
 
 
 
@@ -972,3 +972,19 @@ CREATE TABLE `tms_sign_customer_user` (
 易流推送优化
 feature_16077_csl_20231026 tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16077  已上线
+
+
+鼎为推送优化
+feature_16096_csl_20231027   tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16096  未上线
+
+消息主题（鼎为温度预警推送）
+tms.temperature.abnormal_push
+
+//鼎为消息推送 委托客户是 方案培训测试 企业微信群
+define('DINGWEI_FAPXTS_ROOBKEY','54b332ea-ef0f-42fd-84ec-35606692a952');
+
+//鼎为消息推送 订单类型是验证订单 企业微信群
+define('DINGWEI_CATEGORY_YZDD_ROOBKEY','54b332ea-ef0f-42fd-84ec-35606692a952');
+
+62991828
