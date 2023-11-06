@@ -823,13 +823,13 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15812 未上线
 15815 耗材发货记录按钮
 
 feature_15815_csl_20231012 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15815 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15815 已上线
 
 
 
 物流供应商2.5：供应商增加附件
 feature_15832_csl_20231013
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15832  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15832  已上线
 
 
 ALTER table tms_supplier add COLUMN `at_ids` varchar(200) NOT NULL DEFAULT '' COMMENT '附件ID';
@@ -838,7 +838,7 @@ ALTER table tms_supplier add COLUMN `at_ids` varchar(200) NOT NULL DEFAULT '' CO
 
 车辆管理4.1：车辆详情，保养和提醒优化
 feature_15834_csl_20231013  tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15834  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15834  已上线
 alter table
   car_repair
 add
@@ -891,7 +891,7 @@ define('CAR_REMIND_MESSAGE_CARKEY','1178ecf7-42fa-4900-9504-b34dffe5f53f');
 车辆管理 车辆维修 对接北森
 feature_15902_csl_20231016 tms_admin
 feature_15902_csl_20231016 tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15902 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=15902 已上线
 
 alter table
   car_repair
@@ -988,3 +988,52 @@ define('DINGWEI_FAPXTS_ROOBKEY','54b332ea-ef0f-42fd-84ec-35606692a952');
 define('DINGWEI_CATEGORY_YZDD_ROOBKEY','54b332ea-ef0f-42fd-84ec-35606692a952');
 
 62991828
+
+
+项目配置复制脚本
+feature_16120_csl_20231030  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16120 未上线
+
+history-data/project-data
+
+
+车辆管理统计优化
+feature_16133_csl_20231031 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16133  已上线
+
+
+
+车辆管理4.2：车辆详情，行车记录添加和修改
+
+feature_16163_csl_20231101 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=16163 未上线
+
+
+
+车辆维修 新增类型同步
+feature_16179_csl_20231101 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16179  已上线
+
+
+
+
+
+车辆配置
+feature_16176_zzp_231101 tms_admin
+
+ALTER table tms_city_config add COLUMN cold_storage_state tinyint(4)  not null  DEFAULT '0' COMMENT '是否有冷库 1有 0没有';
+
+{
+    "warehouse_worksheet_switch": {
+        "on": 1,
+        "off": 0,
+        "span": " ",
+        "label": "仓库工作单配置"
+    },
+    "cold_storage_state": {
+        "on": 1,
+        "off": 0,
+        "span": " ",
+        "label": "是否有冷库"
+    }
+}
