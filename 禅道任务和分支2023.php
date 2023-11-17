@@ -933,9 +933,9 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16059 已上线
 
 
 
-待签收人员选择配置
+代签收人员选择配置
 feature_16053_csl_20131025 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16053  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16053  已上线
 
 
 
@@ -948,14 +948,14 @@ CREATE TABLE `tms_sign_customer` (
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
   PRIMARY KEY (`tsc_id`)
-) COMMENT='待签收客户表';
+) COMMENT='代签收客户表';
 
 
 
 
 // CREATE TABLE `tms_sign_customer_user` (
 //   `tscu_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
-//   `tsc_id` int(11) NOT NULL  DEFAULT '0'  COMMENT '待签收客户表id',
+//   `tsc_id` int(11) NOT NULL  DEFAULT '0'  COMMENT '代签收客户表id',
 //   `username` varchar(25) NOT NULL DEFAULT '' COMMENT '人员名称',
 //   `tscu_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
 //   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -964,7 +964,7 @@ CREATE TABLE `tms_sign_customer` (
 //   PRIMARY KEY (`tscu_id`),
 //   KEY `idx_ur_uid` (`ur_uid`),
 //   KEY `idx_tsc_id` (`tsc_id`)
-// ) COMMENT='待签收客户人员配置表';
+// ) COMMENT='代签收客户人员配置表';
 
 
 
@@ -982,10 +982,10 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16096  未上线
 tms.temperature.abnormal_push
 
 //鼎为消息推送 委托客户是 方案培训测试 企业微信群
-define('DINGWEI_FAPXTS_ROOBKEY','54b332ea-ef0f-42fd-84ec-35606692a952');
+define('DINGWEI_FAPXTS_ROOBKEY','9d55f255-8d4c-4dee-9b5e-0a41171bd19d');
 
 //鼎为消息推送 订单类型是验证订单 企业微信群
-define('DINGWEI_CATEGORY_YZDD_ROOBKEY','54b332ea-ef0f-42fd-84ec-35606692a952');
+define('DINGWEI_CATEGORY_YZDD_ROOBKEY','ecf307fb-e215-472d-a4bb-41482d3eb67c');
 
 62991828
 
@@ -1006,7 +1006,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16133  已上线
 车辆管理4.2：车辆详情，行车记录添加和修改
 
 feature_16163_csl_20231101 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&id=16163 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=16163 已上线
 
 
 
@@ -1037,3 +1037,96 @@ ALTER table tms_city_config add COLUMN cold_storage_state tinyint(4)  not null  
         "label": "是否有冷库"
     }
 }
+
+
+
+
+
+出差单管理新增同步字段到北森
+feature_16325_csl_20231108 tms_admin
+feature_16325_csl_20231108 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16325 未上线
+
+                if($tms_travel->trip_type != $trip_type && isset($message['BusinessVehicleText']) && trim($message['BusinessVehicleText'])!=''){
+
+
+
+
+城市配置新增 可以购买干冰
+
+ALTER table tms_city_config add COLUMN buy_drikold_state tinyint(4)  not null  DEFAULT '0' COMMENT '可以购买干冰 1是 0否';
+
+{
+    "warehouse_worksheet_switch": {
+        "on": 1,
+        "off": 0,
+        "span": " ",
+        "label": "仓库工作单配置"
+    },
+    "cold_storage_state": {
+        "on": 1,
+        "off": 0,
+        "span": " ",
+        "label": "有冷库"
+    },
+    "buy_drikold_state": {
+        "on": 1,
+        "off": 0,
+        "span": " ",
+        "label": "可以购买干冰"
+    }
+}
+
+
+
+外协超远距离结算记录
+feature_16382_csl_20231110 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16382  未上线
+
+
+
+//历史供应商主体 同步大数据
+php yii history-data/supplier-main-data
+
+
+
+
+
+仓库工作单方案准备优化调整
+feature_16411_csl_20231113   tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16411  未上线
+
+
+
+63401075
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102002', 2740140, 0, '系统申请', 0, 'IT协助修改数据 审批单号：ITS202311150001 取件时间更正为2023-11-11 19:17', 1700030976, 1, 0);
+
+update order_logistics set ol_pickup_time = 1699701420 where to_id=2740140;
+update oms_logistics set ol_pickup_time = 1699701420 where to_id=2740140;
+
+
+
+
+
+订单详情路由修改 同步 调度变更申请状态  
+feature_16502_csl_20231116  tms_admin
+feature_16502_csl_20231116  tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16502  未上线
+
+tms.order.route.change
+
+TmsFahuochangeApply
+
+
+
+
+订单取消生成耗材监控数据
+
+feature_16531_csl_20231117 tms_admin
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=16531  未上线
+
+
+车辆保险新增中国大地财产保险
+feature_16537_csl_20231117 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16537  未上线
