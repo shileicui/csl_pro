@@ -1079,9 +1079,6 @@ ALTER table tms_city_config add COLUMN buy_drikold_state tinyint(4)  not null  D
 
 
 
-外协超远距离结算记录
-feature_16382_csl_20231110 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16382  未上线
 
 
 
@@ -1094,7 +1091,7 @@ php yii history-data/supplier-main-data
 
 仓库工作单方案准备优化调整
 feature_16411_csl_20231113   tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16411  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16411  已上线
 
 
 
@@ -1111,7 +1108,7 @@ update oms_logistics set ol_pickup_time = 1699701420 where to_id=2740140;
 订单详情路由修改 同步 调度变更申请状态  
 feature_16502_csl_20231116  tms_admin
 feature_16502_csl_20231116  tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16502  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16502  已上线
 
 tms.order.route.change
 
@@ -1124,9 +1121,67 @@ TmsFahuochangeApply
 
 feature_16531_csl_20231117 tms_admin
 
-https://project.ashsh.com.cn/index.php?m=task&f=view&id=16531  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=16531  已上线
 
 
-车辆保险新增中国大地财产保险
+车辆保险新增中国大地财产保险、中银保险
 feature_16537_csl_20231117 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16537  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16537  已上线
+
+
+冷藏车监控优化
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16571 已上线
+
+
+
+外协超远距离结算记录
+feature_16382_csl_20231120 tms_admin
+feature_16382_csl_20231110 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16382  已上线
+
+tms.order.send
+
+ALTER table charge add COLUMN `pickup_distance` varchar(100) not null DEFAULT '' COMMENT '取件公里数',
+add COLUMN `delivery_distance` varchar(100) not null  DEFAULT '' COMMENT '派件公里数';
+
+80081871
+
+
+
+车辆冷机保养新增限制
+feature_16595_csl_20231121  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16595  已上线
+
+
+
+国际订单绑定保温箱有效期验证
+feature_16573_csl_20231127 tms_admin
+feature_16573_csl_20231122 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16573  未上线
+
+
+
+
+正常订单，半程专人专车标记和结算
+feature_16608_csl_20231122  tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=16608  已上线
+ 
+INSERT INTO `tag` (`tag_id`, `tag_name`, `tag_type`, `tag_visible`, `tag_createtime`) VALUES (77, '专人取件', 1, 1, 0);
+INSERT INTO `tag` (`tag_id`, `tag_name`, `tag_type`, `tag_visible`, `tag_createtime`) VALUES (78, '专人派件', 1, 1, 0);
+INSERT INTO `tag` (`tag_id`, `tag_name`, `tag_type`, `tag_visible`, `tag_createtime`) VALUES (79, '专车取件', 1, 1, 0);
+INSERT INTO `tag` (`tag_id`, `tag_name`, `tag_type`, `tag_visible`, `tag_createtime`) VALUES (80, '专车派件', 1, 1, 0);
+
+
+
+
+车辆管理v4.2：车辆维修保养字段调整
+feature_16609_csl_20231122    tms_admin
+feature_16609_csl_20231122    tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16609  已上线
+
+ALTER  TABLE  `tms_mileage_declare`  ADD  INDEX idx_created_time (  `created_time`  );
+
+ALTER table car_repair add COLUMN `create_name` varchar(30) NOT NULL DEFAULT '' COMMENT '创建人名称',
+add COLUMN `create_uid` int(11) NOT NULL DEFAULT '0' COMMENT '创建人uid',
+add COLUMN `upkeep_project`  varchar(30) NOT NULL DEFAULT ''  COMMENT '保养项目 0、机油 1、机油滤清器 2、柴油滤洁器 3、空气滤清器 4、其他';
+
