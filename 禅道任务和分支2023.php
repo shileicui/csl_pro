@@ -1185,3 +1185,77 @@ ALTER table car_repair add COLUMN `create_name` varchar(30) NOT NULL DEFAULT '' 
 add COLUMN `create_uid` int(11) NOT NULL DEFAULT '0' COMMENT '创建人uid',
 add COLUMN `upkeep_project`  varchar(30) NOT NULL DEFAULT ''  COMMENT '保养项目 0、机油 1、机油滤清器 2、柴油滤洁器 3、空气滤清器 4、其他';
 
+
+
+
+
+{
+   "touser" : "@@touser@@",
+   "msgtype" : "text",
+   "agentid" : 1000029,
+   "text" : {
+       "content" : "请于@@study_date@@前，在<a href=\"@@url@@\">@@company@@质量系统</a>-文件管理界面完成岗前受控文件学习。(此为test环境数据，可以忽略不计)"
+   },
+   "safe":0,
+   "enable_id_trans": 0,
+   "enable_duplicate_check": 0,
+   "duplicate_check_interval": 1800
+}
+
+
+0 30 13 ? *  MON,WED
+
+
+
+车辆核定大小新增 叉车和商务车
+feature_16796_csl_20231201  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16796  已上线
+
+
+采购未到货群消息推送
+feature_16824_csl_20231201 ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16824  未上线
+
+
+// {
+//     "msgtype":"markdown",
+//     "markdown":{
+//         "content":"【历史未到货采购订单统计】：\n采购中心：[@@SS02@@](@@SS02_url@@)\n运营中心：[@@SS03@@](@@SS03_url@@)\n营销中心：[@@SS05@@](@@SS05_url@@)\n质量中心：[@@SS06@@](@@SS06_url@@)\nIT研发中心：[@@SS07@@](@@SS07_url@@)\n财务中心：[@@SS08@@](@@SS08_url@@)\n人资行政中心：[@@SS09@@](@@SS09_url@@)\n技术开发中心：[@@SS16@@](@@SS16_url@@)\n临床供应链中心：[@@SS17@@](@@SS17_url@@)\n技术研发中心：[@@SS18@@](@@SS18_url@@)\n总部运营：[@@SS11@@](@@SS11_url@@)\n<@所有人>\n"
+//     },
+//     "key":"54b332ea-ef0f-42fd-84ec-35606692a952"
+// }
+
+
+//采购未到货消息推送 消息模板
+define('PURCHASE_NOT_ARRIVED_MESSAGE_ID','204');
+
+//资产采购系统菜单id
+define('AMS_URL_MENU_ID','354');
+//到货管理菜单id
+define('PURCHASE_NOT_ARRIVED_MENU_ID','641');
+
+$config = SystemEnum::getSystemEnumByEnumType('PURCHASE_NOT_ARRIVED_CONFIG');
+
+{
+  "purchase_not_arrived_message_id":"204",
+  "ams_url_menu_id":"354",
+  "purchase_not_arrived_menu_id":"641"
+}
+
+{
+    "msgtype":"markdown",
+    "markdown":{
+        "content":"【历史未到货采购订单统计】：@@datadis@@\n<@所有人>\n"
+    },
+    "key":"6642e729-9d80-4e20-8870-df7b181d3c2a"
+}
+
+php yii time-exec/arrival-notice
+
+
+
+
+车辆领取归还库存位置更新
+feature_16853_csl_20231205 tms_admin
+feature_16853_csl_20231205 ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16853 未上线
