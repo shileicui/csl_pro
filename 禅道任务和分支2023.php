@@ -1257,5 +1257,215 @@ php yii time-exec/arrival-notice
 
 车辆领取归还库存位置更新
 feature_16853_csl_20231205 tms_admin
-feature_16853_csl_20231205 ams_admin
+feature_16853_csl_20231205 ams_service
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16853 未上线
+
+
+干冰液氮台账限制
+feature_16934_csl_20231208 ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16934
+
+ALTER table ams_dryice_purchase_account add COLUMN `invoice_type`  tinyint(4)  NOT NULL DEFAULT '0'  COMMENT '发票类型 1普通发票 2增值税专用发票',
+ add COLUMN `fp_at_id`  varchar(255) NOT NULL DEFAULT '' COMMENT '发票 附件序号  逗号分割';
+
+
+
+操作站点设置为停用
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16995
+
+
+客户配置 新增 取派件获取温度计开关机时间
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16992  未上线
+ALTER table tms_customer_config add COLUMN app_send_time_status tinyint(4)  not null  DEFAULT '0' COMMENT 'APP取派件获取温度计开关机时间 1是 0否';
+ALTER table tms_project_config add COLUMN app_send_time_status tinyint(4)  not null  DEFAULT '0' COMMENT 'APP取派件获取温度计开关机时间 1是 0否';
+{
+    "tcc_dwt_shutdown_verify": {
+        "on": 1,
+        "off": 0,
+        "label": "鼎为关机验证",
+        "span": ""
+    },
+    "cu_piece_feedback": {
+        "on": 1,
+        "off": 2,
+        "label": "签收自动反馈",
+        "span": "（派件1小时后自动邮件签收反馈）"
+    },
+    "cu_temperature_feedback": {
+        "on": 1,
+        "off": 2,
+        "label": "温度自动反馈",
+        "span": "（每晚8点自动邮件温度数据反馈）"
+    },
+    "cu_temperature_type": {
+        "on": 1,
+        "off": 2,
+        "label": "支持批量上传温度数据",
+        "span": "（默认客户支持批量上传温度数据）"
+    },
+    "cu_tengsen_trmperature": {
+        "on": 1,
+        "off": 2,
+        "label": "不支持批量上传滕森温度数据",
+        "span": "（默认客户支持上传）"
+    },
+    "cu_sign_feedback": {
+        "on": 1,
+        "off": 2,
+        "label": "代签短信提醒",
+        "span": ""
+    },
+    "cu_goods_print": {
+        "on": 1,
+        "off": 0,
+        "label": "打印运单时将货物名称打印在运单上",
+        "span": ""
+    },
+    "cu_send_message": {
+        "on": 0,
+        "off": 1,
+        "label": "不发送取派短信",
+        "span": "（配置后不给收发件人发送取派短信）"
+    },
+    "cu_print_express_remark": {
+        "on": 1,
+        "off": 0,
+        "label": "客户单号打印到运单备注",
+        "span": ""
+    },
+    "main_plural_thermometer": {
+        "on": 1,
+        "off": 0,
+        "label": "支持主副温度计",
+        "span": " "
+    },
+    "connect_verify": {
+        "on": 1,
+        "off": 0,
+        "label": "上传客户交接单",
+        "span": " "
+    },
+    "write_temp_switch": {
+        "on": 1,
+        "off": 0,
+        "label": "取派件填写开启关闭温度",
+        "span": " "
+    },
+    "batch_delivery_switch": {
+        "on": 1,
+        "off": 0,
+        "label": "批量派件",
+        "span": " "
+    },
+    "cpc_not_use_ssexpress": {
+        "on": 1,
+        "off": 0,
+        "label": "不使用生生签收单据",
+        "span": " "
+    },
+    "cpc_use_customer_express": {
+        "on": 1,
+        "off": 0,
+        "label": "使用客户签收单据",
+        "span": " "
+    },
+    "ice_aging_status": {
+        "on": 1,
+        "off": 0,
+        "label": "不允许中途私自换冰排",
+        "span": " "
+    },
+    "high_speed_status": {
+        "on": 1,
+        "off": 0,
+        "label": "不可以高铁押运",
+        "span": " "
+    },
+    "app_send_time_status": {
+        "on": 1,
+        "off": 0,
+        "label": "取派件不获取温度计开关及时间",
+        "span": " "
+    }
+}
+
+{
+    "pickup_collect_note_switch": {
+        "on": 1,
+        "off": 0,
+        "label": "取件给收件方发送短信",
+        "span": " "
+    },
+    "pickup_client_mail_switch": {
+        "on": 1,
+        "off": 0,
+        "label": "取件给客户发送邮件",
+        "span": " "
+    },
+    "note_code_switch": {
+        "on": 1,
+        "off": 0,
+        "label": "派件验证码校验",
+        "span": " "
+    },
+    "cpc_send_message_add_customer": {
+        "on": 1,
+        "off": 0,
+        "label": " 取派短信发送项目人员信息",
+        "span": ""
+    },
+    "send_code_verify": {
+        "on": 1,
+        "off": 0,
+        "label": "到达派件签收码校验",
+        "span": " "
+    },
+    "connect_verify": {
+        "on": 1,
+        "off": 0,
+        "label": "上传客户交接单",
+        "span": " "
+    },
+    "batch_delivery_switch": {
+        "on": 1,
+        "off": 0,
+        "label": "批量派件",
+        "span": " "
+    },
+    "cpc_not_use_ssexpress": {
+        "on": 1,
+        "off": 0,
+        "label": "不使用生生签收单据",
+        "span": " "
+    },
+    "cpc_use_customer_express": {
+        "on": 1,
+        "off": 0,
+        "label": "使用客户签收单据",
+        "span": " "
+    },
+    "ice_aging_status": {
+        "on": 1,
+        "off": 0,
+        "label": "不允许中途私自换冰排",
+        "span": " "
+    },
+    "app_send_time_status": {
+        "on": 1,
+        "off": 0,
+        "label": "取派件不获取温度计开关及时间",
+        "span": " "
+    }
+}
+
+
+超期未到货数据推送优化
+feature_16999_csl_20231211 ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=16999  未上线
+
+
+
+供应商增加类型及接口
+feature_17024_csl_20231212  ams_admin
+feature_17024_csl_20231212  ams_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17024  未上线
