@@ -1258,12 +1258,12 @@ php yii time-exec/arrival-notice
 车辆领取归还库存位置更新
 feature_16853_csl_20231205 tms_admin
 feature_16853_csl_20231205 ams_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16853 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16853 已上线
 
 
 干冰液氮台账限制
 feature_16934_csl_20231208 ams_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16934
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16934  已上线
 
 ALTER table ams_dryice_purchase_account add COLUMN `invoice_type`  tinyint(4)  NOT NULL DEFAULT '0'  COMMENT '发票类型 1普通发票 2增值税专用发票',
  add COLUMN `fp_at_id`  varchar(255) NOT NULL DEFAULT '' COMMENT '发票 附件序号  逗号分割';
@@ -1275,9 +1275,9 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16995
 
 
 客户配置 新增 取派件获取温度计开关机时间
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16992  未上线
-ALTER table tms_customer_config add COLUMN app_send_time_status tinyint(4)  not null  DEFAULT '0' COMMENT 'APP取派件获取温度计开关机时间 1是 0否';
-ALTER table tms_project_config add COLUMN app_send_time_status tinyint(4)  not null  DEFAULT '0' COMMENT 'APP取派件获取温度计开关机时间 1是 0否';
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16992  已上线
+ALTER table tms_customer_config add COLUMN app_send_time_status tinyint(4)  not null  DEFAULT '0' COMMENT 'APP取派件不获取温度计开关机时间 1是 0否';
+ALTER table tms_project_config add COLUMN app_send_time_status tinyint(4)  not null  DEFAULT '0' COMMENT 'APP取派件不获取温度计开关机时间 1是 0否';
 {
     "tcc_dwt_shutdown_verify": {
         "on": 1,
@@ -1384,7 +1384,7 @@ ALTER table tms_project_config add COLUMN app_send_time_status tinyint(4)  not n
     "app_send_time_status": {
         "on": 1,
         "off": 0,
-        "label": "取派件不获取温度计开关及时间",
+        "label": "取派件不获取温度计开关机时间",
         "span": " "
     }
 }
@@ -1453,7 +1453,7 @@ ALTER table tms_project_config add COLUMN app_send_time_status tinyint(4)  not n
     "app_send_time_status": {
         "on": 1,
         "off": 0,
-        "label": "取派件不获取温度计开关及时间",
+        "label": "取派件不获取温度计开关机时间",
         "span": " "
     }
 }
@@ -1461,13 +1461,14 @@ ALTER table tms_project_config add COLUMN app_send_time_status tinyint(4)  not n
 
 超期未到货数据推送优化
 feature_16999_csl_20231211 ams_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&id=16999  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=16999  已上线
 
 
 
 集团资产新增、审核优化
 feature_16961_csl_20231211 ams_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16961 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16961 已上线
+
 
 
 供应商增加类型及接口
@@ -1477,3 +1478,25 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17024  未上线
 
 INSERT INTO `supplier_type` (`st_id`, `st_name`) VALUES (20, '车辆维保供应商');
 INSERT INTO `supplier_type` (`st_id`, `st_name`) VALUES (21, '车辆冷机维保供应商');
+
+
+
+车辆维修保养管理对接
+feature_17003_csl_20231215 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17003  未上线
+
+
+
+
+采购付款增加结算方式
+feature_17150_csl_20231219  ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=17150  已上线
+
+
+ALTER table ams_purchase_pay_money add COLUMN `account_type`  tinyint(4)  NOT NULL DEFAULT '0'  COMMENT '结算方式 1.银行电汇 2.非银行电汇';
+
+
+
+ 到货管理增加修改
+ feature_17130_csl_20231221 tms_admin
+ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17130  未上线
