@@ -1465,7 +1465,15 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&id=16999  未上线
 
 
 
+集团资产新增、审核优化
+feature_16961_csl_20231211 ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16961 未上线
+
+
 供应商增加类型及接口
 feature_17024_csl_20231212  ams_admin
 feature_17024_csl_20231212  ams_service
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17024  未上线
+
+INSERT INTO `supplier_type` (`st_id`, `st_name`) VALUES (20, '车辆维保供应商');
+INSERT INTO `supplier_type` (`st_id`, `st_name`) VALUES (21, '车辆冷机维保供应商');
