@@ -1498,5 +1498,24 @@ ALTER table ams_purchase_pay_money add COLUMN `account_type`  tinyint(4)  NOT NU
 
 
  到货管理增加修改
- feature_17130_csl_20231221 tms_admin
- https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17130  未上线
+ feature_17130_csl_20231221 ams_admin
+ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17130  已上线
+
+
+采购订单下载优化
+feature_17081_csl_20231220  ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17081  未上线
+
+
+
+
+采购申请创建订单金额计算
+feature_16286_csl_20231221  ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16286  未上线
+
+
+
+
+采购申请、订单公司显示统一
+feature_16304_csl_20231221 ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16304 未上线
