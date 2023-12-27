@@ -1474,7 +1474,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16961 已上线
 供应商增加类型及接口
 feature_17024_csl_20231212  ams_admin
 feature_17024_csl_20231212  ams_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17024  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17024  已上线
 
 INSERT INTO `supplier_type` (`st_id`, `st_name`) VALUES (20, '车辆维保供应商');
 INSERT INTO `supplier_type` (`st_id`, `st_name`) VALUES (21, '车辆冷机维保供应商');
@@ -1511,11 +1511,74 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17081  未上线
 
 采购申请创建订单金额计算
 feature_16286_csl_20231221  ams_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16286  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16286  已上线
 
 
 
 
 采购申请、订单公司显示统一
 feature_16304_csl_20231221 ams_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16304 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16304 已上线
+
+
+
+采购三单付款优化
+feature_17257_csl_20231222 ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17257  未上线
+
+
+特殊收费-专人专车冷藏车取派件调整
+feature_17276_csl20231222  tms_service
+feature_17276_csl_20231226 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17276 未上线
+
+
+// 正常订单，半程专人专车标记和结算
+// feature_16608_csl_20231122  tms_service
+// https://project.ashsh.com.cn/index.php?m=task&f=view&id=16608  已上线
+ 
+// INSERT INTO `tag` (`tag_id`, `tag_name`, `tag_type`, `tag_visible`, `tag_createtime`) VALUES (77, '专人取件', 1, 1, 0);
+// INSERT INTO `tag` (`tag_id`, `tag_name`, `tag_type`, `tag_visible`, `tag_createtime`) VALUES (78, '专人派件', 1, 1, 0);
+// INSERT INTO `tag` (`tag_id`, `tag_name`, `tag_type`, `tag_visible`, `tag_createtime`) VALUES (79, '专车取件', 1, 1, 0);
+// INSERT INTO `tag` (`tag_id`, `tag_name`, `tag_type`, `tag_visible`, `tag_createtime`) VALUES (80, '专车派件', 1, 1, 0); 
+
+
+update tag set tag_name = '取件专人' where tag_id=77;
+update tag set tag_name = '派件专人' where tag_id=78;
+update tag set tag_name = '取件专车' where tag_id=79;
+update tag set tag_name = '派件专车' where tag_id=80;
+update tag set tag_name = '取件冷藏车' where tag_id=72;
+update tag set tag_name = '派件冷藏车' where tag_id=73;
+
+
+
+
+
+客户配置 新增  取派件签电话联系客户任务推送管理 
+https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=3796  未上线
+
+ALTER table tms_customer_config add COLUMN pickup_contact_status tinyint(4)  not null  DEFAULT '0' COMMENT '取件前电话联系客户 1是 0否';
+ALTER table tms_project_config add COLUMN pickup_contact_status tinyint(4)  not null  DEFAULT '0' COMMENT '取件前电话联系客户 1是 0否';
+
+ALTER table tms_customer_config add COLUMN send_contact_status tinyint(4)  not null  DEFAULT '0' COMMENT '派件前电话联系客户 1是 0否';
+ALTER table tms_project_config add COLUMN send_contact_status tinyint(4)  not null  DEFAULT '0' COMMENT '派件前电话联系客户 1是 0否';
+
+
+
+ "pickup_contact_status": {
+        "on": 1,
+        "off": 0,
+        "label": "取件前电话联系客户",
+        "span": " "
+    },
+"send_contact_status": {
+        "on": 1,
+        "off": 0,
+        "label": "取件前电话联系客户",
+        "span": " "
+    }
+
+
+
+    {"rule":{"bool":{"must":[{"term":{"template_key":"vehicle_maintenance_application"}},{"term":{"status_type":"finish"}}]}}}
+    
