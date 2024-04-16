@@ -1,0 +1,40 @@
+                <th style="color: red;max-width: 50px;">暂估含税金额</th>
+                <th style="color: red;max-width: 50px;">暂估成本金额</th>
+                <th style="color: red">暂估税额</th>
+                <th style="color: red;max-width: 50px;">对账含税金额</th>
+                <th style="color: red;max-width: 50px;">对账成本金额</th>
+                <th style="color: red">对账税额</th>
+                <th style="color: red;min-width: 61px;">对账与暂估<br>含税差异</th>
+                <th style="color: red;min-width: 61px;">对账与暂估<br>成本差异</th>
+                <th style="color: red;min-width: 61px;">对账月暂估<br>税额差异</th>
+
+
+
+
+
+
+                                <th ><input type="checkbox" onclick="C.choose('id[]', this)" ></th>
+                <th>序号</th>
+                <th>对账单号</th>
+                <th>资金支付单号</th>
+                <th style="color: red;min-width: 40px;">城市</th>
+                <th style="min-width: 100px;">所属公司</th>
+                <th style="min-width: 48px;">维保月份</th>
+                <th style="color: red;min-width: 48px;">付款月份</th>
+                <th style="color: red;min-width: 48px;">入账月份</th>
+                <th style="min-width: 48px;">成本类型</th>
+                <th style="min-width: 100px;">供应商名称</th>
+                <th style="min-width: 66px;">发票类型</th>
+                <th>税率</th>
+                <th style="color: red;">暂估含税金额</th>
+                <th style="color: red;">暂估成本金额</th>
+                <th style="color: red">暂估税额</th>
+                <th style="color: red;">对账含税金额</th>
+                <th style="color: red;">对账成本金额</th>
+                <th style="color: red">对账税额</th>
+                <th style="color: red;">对账与暂估<br>含税差异</th>
+                <th style="color: red;">对账与暂估<br>成本差异</th>
+                <th style="color: red;">对账月暂估<br>税额差异</th>
+                <th style="min-width: 38px;">状态</th>
+                <th>备注</th>
+                <th style="min-width: 76px;">操作</th>

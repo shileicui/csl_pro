@@ -672,6 +672,7 @@ ALTER table tms_customer_config add COLUMN high_speed_status tinyint(4)  not nul
 
 
 
+
 {
     "tcc_dwt_shutdown_verify": {
         "on": 1,
@@ -1530,7 +1531,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17257  未上线
 特殊收费-专人专车冷藏车取派件调整
 feature_17276_csl20231222  tms_service
 feature_17276_csl_20231226 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17276 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17276 已上线
 
 
 // 正常订单，半程专人专车标记和结算
@@ -1555,7 +1556,7 @@ update tag set tag_name = '派件冷藏车' where tag_id=73;
 
 
 客户配置 新增  取派件签电话联系客户任务推送管理 
-https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=3796  未上线
+https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=3796  已上线
 
 ALTER table tms_customer_config add COLUMN pickup_contact_status tinyint(4)  not null  DEFAULT '0' COMMENT '取件前电话联系客户 1是 0否';
 ALTER table tms_project_config add COLUMN pickup_contact_status tinyint(4)  not null  DEFAULT '0' COMMENT '取件前电话联系客户 1是 0否';
@@ -1574,7 +1575,7 @@ ALTER table tms_project_config add COLUMN send_contact_status tinyint(4)  not nu
 "send_contact_status": {
         "on": 1,
         "off": 0,
-        "label": "取件前电话联系客户",
+        "label": "派件前电话联系客户",
         "span": " "
     }
 
@@ -1582,3 +1583,39 @@ ALTER table tms_project_config add COLUMN send_contact_status tinyint(4)  not nu
 
     {"rule":{"bool":{"must":[{"term":{"template_key":"vehicle_maintenance_application"}},{"term":{"status_type":"finish"}}]}}}
     
+
+    车辆管理优化
+    feature_17375_csl_20231229 tms_admin
+    feature_17375_csl_20231229 ams_service
+    https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17375  已上线
+
+
+外勤操作记录 新增时间限制
+feature_17535_csl_20240105 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17535  已上线
+
+
+
+
+
+
+
+
+INSERT INTO `work_map` (`wmp_name`,`wmp_region_name`,`wmp_region_id`,`wmp_tops_name`, `wmp_tops_id`, `wmp_type`, `wmp_drname`, `wmp_druid`,  `wmp_ts_id`, `wmp_ts_name`) VALUES ('衢州','衢州市',330800,'衢州站点',221,'取派提发','衢州-王仲毅',65768,'482,1724,2017,2398','衢州市仓库,衢州市火车站,衢州火车站,衢州市汽车站');
+
+
+
+
+
+
+
+  `wmp_region_id` int(11) NOT NULL COMMENT '城市id',
+  `wmp_region_name` varchar(255) NOT NULL COMMENT '城市名称',
+  `wmp_druid` int(11) NOT NULL COMMENT '组长',
+  `wmp_drname` varchar(255) NOT NULL COMMENT '组长名称',
+  `wmp_name` varchar(255) NOT NULL COMMENT '组名',
+  `wmp_tops_id` int(11) DEFAULT NULL COMMENT '站点id',
+  `wmp_tops_name` varchar(255) DEFAULT NULL COMMENT '站点名称',
+  `wmp_ts_id` varchar(255) NOT NULL DEFAULT '' COMMENT '发货站点id',
+  `wmp_ts_name` text COMMENT '发货站点名称',
+  `wmp_type` int(4) NOT NULL DEFAULT '1' COMMENT '排班类型 1.取发提派 3耗材组 4项目组 5专人专车组 6长途专线组 7夜班组 8夜班耗材组',
