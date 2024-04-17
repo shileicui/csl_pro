@@ -972,11 +972,6 @@ add
   column  `trrb_id` int(11) unsigned NOT NULL DEFAULT '0'  COMMENT '加油记录台账id';
 
 
-alter table
-  tms_refuel_record
-add
-  column  `trrb_id` int(11) unsigned NOT NULL DEFAULT '0'  COMMENT '加油记录台账id';
-
 
 CREATE TABLE `tms_refuel_record_bill` (
   `trrb_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录主键id',
@@ -1001,16 +996,13 @@ CREATE TABLE `tms_refuel_record_bill` (
 
 
 
-路桥费
 
 CREATE TABLE `tms_road_record` (
   `trr_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录主键id',
   `serial_number` varchar(100) NOT NULL DEFAULT ''  COMMENT '编号',
   `trr_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '金额',
-
   `trr_car_id` int(11) NOT NULL DEFAULT '0' COMMENT '车辆ID',
   `trr_car_number` varchar(20) NOT NULL DEFAULT '' COMMENT '车牌号',
-  `trr_region_name` varchar(100) NOT NULL DEFAULT '' COMMENT '城市',
   `etc_no` varchar(100) NOT NULL DEFAULT ''  COMMENT 'etc 卡号',
   `deal_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '所属账单日',
   `inbound_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '入站时间',
@@ -1018,19 +1010,18 @@ CREATE TABLE `tms_road_record` (
   `inbound_name` varchar(100) NOT NULL DEFAULT ''  COMMENT '入站口',
   `outbound_name` varchar(100) NOT NULL DEFAULT ''  COMMENT '出站口',
   `car_colour` varchar(50) NOT NULL DEFAULT ''  COMMENT '车辆颜色',
-  `car_type` varchar(50) NOT NULL DEFAULT ''  COMMENT '车型',
   `card_type` varchar(50) NOT NULL DEFAULT ''  COMMENT '卡种',
   `exchange_type` varchar(150) NOT NULL DEFAULT ''  COMMENT '交易类型',
   `payment_company` varchar(100) NOT NULL DEFAULT ''  COMMENT '付款公司',
-
   `provisional_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '暂估状态 1未暂估 2已暂估',
+  `trr_money_source` tinyint(4) NOT NULL DEFAULT '0' COMMENT '金额数据来源   2.批量导入',
   `trrb_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '路桥费台账id',
-
   `trr_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
-  PRIMARY KEY (`trrb_id`)
+  PRIMARY KEY (`trr_id`),
+  KEY `idx_trrb_id` (`trrb_id`)
   )COMMENT='路桥费月结账单';
 
 
@@ -1054,6 +1045,7 @@ CREATE TABLE `tms_road_record_bill` (
   `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
   PRIMARY KEY (`trrb_id`)
   )COMMENT='路桥费月结台账';
+
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16943 
 
 
