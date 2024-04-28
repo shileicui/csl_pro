@@ -939,13 +939,13 @@ php yii {tms_admin}history-data/cl-data
 
 操作反馈 后台 支持回复功能
 feature_19161_csl_20240409  tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19161 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19161 已上线
 
 
 
 月结路桥费成本线上化
 feature_19124_csl_20240408  tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19124 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19124 已上线
 
 
 alter table
@@ -953,7 +953,7 @@ alter table
 add
   column  `trade_type`   varchar(100) NOT NULL DEFAULT ''  COMMENT '交易类型',
 add
-  column  `unit_price`   varchar(100) NOT NULL DEFAULT ''  COMMENT '单价',
+  column  `unit_price`    decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '单价',
 add
   column  `bonus_points`   varchar(100) NOT NULL DEFAULT ''  COMMENT '奖励积分',
 add
@@ -1053,3 +1053,76 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=16943
 车辆管理资产同步的数据默认在自营车辆显示
 feature_19275_csl_20240416  tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19275  已上线
+
+
+冷藏车监控调用易流接口调整
+feature_19334_csl_20240418 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19334 已上线
+
+
+供应商管理附件上传优化
+feature_19335_csl_20240418   ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19335  已上线
+
+
+外协操作费用新增提货费提醒
+feature_19338_csl_20240418   tms_admin
+feature_19338_csl_20240418   omsapi
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19338  已上线
+
+
+alter table
+  tms_outsource_rule_conf
+add
+  column  `torc_carry_fee`  varchar(50) NOT NULL DEFAULT '' COMMENT '标准提货费';
+
+update tms_outsource_rule_conf set torc_carry_fee=10 where torc_visible=1;
+
+alter table
+  tms_operation_feeremind
+add
+  column  `opn_carry_msg` varchar(255) NOT NULL DEFAULT '' COMMENT '提货费提醒';
+
+
+
+仓库工作单v1.1：方案准备增加温度计校准证书
+feature_19384_csl_20240423   tms_admin
+feature_19384_csl_20240423   tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19384  未上线（等app一起上线）
+
+
+
+已确认-已提货
+
+
+
+
+供应商增加个人供应商
+feature_19249_csl_20240423  ams_admin
+feature_19249_csl_20240423  ams_service
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19249 已上线
+
+
+
+cr_type=2 maintain_type=1
+
+
+月结路桥费成本线上化 路桥费导入去掉所属账单
+feature_19415_csl_20240425   tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19415  已上线 
+
+
+
+车辆维保月结记录界面，增加维修项目显示
+feature_19416_csl_20240425    tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19416   已上线
+
+ 
+alter table
+  tms_car_repair_monthlysettlement
+add
+  column  `tcrm_remark` text COMMENT '备注内容';
+
+
