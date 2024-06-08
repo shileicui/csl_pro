@@ -115,7 +115,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17670  已上线
 
 供应商主体新增通过id查数据接口
 feature_17694_csl_20240111  ams_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17694 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17694 已上线
 
 
 发货记录新增大区筛选
@@ -216,7 +216,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17686 已上线
 
 车辆管理v4.3：车辆维修保养免费支持
 feature_17960_csl_20240124 tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&id=17960 未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=17960 已上线
 
 
 
@@ -881,7 +881,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=18621  已上线（�
 出差单优化
 feature_19017_csl_20240330  tms_admin
 feature_19017_csl_20240401 tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19017  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19017  已上线
 
 php yii timing-push/add-lc
 
@@ -889,14 +889,14 @@ php yii timing-push/add-lc
 
 维修保养优化
 feature_19019_csl_20240401  tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19019  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19019  已上线
 
 
 
 供应商管理字段显示优化
 feature_19093_csl_20240408  ams_admin
 feature_19093_csl_20240408  ams_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19093  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19093  已上线
 
 
 alter table
@@ -1089,7 +1089,9 @@ add
 仓库工作单v1.1：方案准备增加温度计校准证书
 feature_19384_csl_20240423   tms_admin
 feature_19384_csl_20240423   tms_service
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19384  未上线（等app一起上线）
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19384  已上线（等app一起上线）
+
+
 
 
 
@@ -1125,4 +1127,655 @@ alter table
 add
   column  `tcrm_remark` text COMMENT '备注内容';
 
+
+
+
+ITSJ202404270001
+
+8482
+
+
+update car_repair set repair_mile=191874,repair_finish_mile=191874 where cr_id=8482
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',8482, 0, '系统', 0, 'IT协助修改  2024年03月12号 保养里程修改为191874公里   审批单号：   
+ITSJ202404270001', 1714295383, 13, 0);
+
+
+
+ITSJ202404290002
+
+8482
+
+update car_repair set repair_mile=291874,repair_finish_mile=291874 where cr_id=8482
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',8482, 0, '系统', 0, 'IT协助修改  2024年03月12号 保养里程修改为291874公里   审批单号：   
+ITSJ202404290002', 1714361442, 13, 0);
+
+
+
+供应商管理优化v1
+feature_19478_csl_20240429  ams_admin
+feature_19478_csl_20240509  ams_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19478  已上线
+
+
+alter table
+  supplier
+add
+   column  `su_source` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 供应商主体自动创建';
+
+
+alter table
+  tms_supplier
+add
+   column  `tms_source` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 供应商主体自动创建';
+
+
+alter table
+  ams_supplier_main
+add 
+  column `questionnaire_atids` varchar(100) NOT NULL DEFAULT '' COMMENT '调查问卷：附件上传ids',
+add 
+  column `site_audit` text COMMENT '现场审核 泛微上传同步的图片地址';
+
+
+
+
+alter table
+  ams_supplier_main
+add 
+  column `site_audit` text COMMENT '现场审核 泛微上传同步的图片地址';
+
+
+{
+    "262001": "营业执照",
+    "262002": "资质证件",
+    "262003": "调查问卷"
+}
+
+{
+  "0": "增值税普通发票",
+  "1": "增值税专用发票",
+  "2": "增值税电子普通发票",
+  "5": "增值税电子专用发票",
+  "3": "全电票-普通发票",
+  "4": "全电票-增值税专用发票"
+}
+
+
+
+物流日志跟踪 提货时间优化
+feature_19494_csl_20240430  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19494  已上线
+
+
+
+
+
+
+
+3013361
+
+update tms_logistics_remark set lr_opn_date=1714375335 where lr_id=6302256;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102002',3013361, 0, '系统', 0, 'IT协助修改    审批单号：   
+ITS1202404290002', 1714447621, 13, 0);
+
+
+
+
+ITSJ202404290002
+
+
+  
+
+沪DYT068在2024年3月12日完成保养，保养里程录入错误，需要进行修改
+修改内容  
+保养里程修改为291874公里
+
+update car_repair set repair_mile=291874,repair_finish_mile=291874 where cr_id=8482
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',8482, 0, '系统', 0, 'IT协助修改  2024年03月12号 保养里程修改为291874公里   审批单号：   
+ITS1202404290002', 1714361442, 13, 0);
+
+
+
+
+
+2962906
+2962898
+2969176
+2969177
+
+
+17033090
+17033111
+17075321
+17075335
+
+
+2976329
+
+17073179
+
+
+update order_logistics set ol_delivery_person=2793,ol_delivery_name='武威-李席德' where to_id=2962906;
+update oms_logistics set ol_delivery_person=2793,ol_delivery_name='武威-李席德' where to_id=2962906;
+
+
+update order_logistics set ol_delivery_person=2793,ol_delivery_name='武威-李席德' where to_id=2962898;
+update oms_logistics set ol_delivery_person=2793,ol_delivery_name='武威-李席德' where to_id=2962898;
+
+
+update order_logistics set ol_delivery_person=2793,ol_delivery_name='武威-李席德' where to_id=2969176;
+update oms_logistics set ol_delivery_person=2793,ol_delivery_name='武威-李席德' where to_id=2969176;
+
+
+update order_logistics set ol_delivery_person=2793,ol_delivery_name='武威-李席德' where to_id=2969177;
+update oms_logistics set ol_delivery_person=2793,ol_delivery_name='武威-李席德' where to_id=2969177;
+
+
+
+update opn_operator set user_id=2793,username='武威-李席德' where opnop_id=17033090;
+
+update opn_operator set user_id=2793,username='武威-李席德' where opnop_id=17033111;
+
+update opn_operator set user_id=2793,username='武威-李席德' where opnop_id=17075321;
+
+update opn_operator set user_id=2793,username='武威-李席德' where opnop_id=17075335;
+
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',2962906, 0, '系统', 0, 'IT协助修改  派件人 员工账号：李席德 改成 外协账号：武威-李席德 审批单号：ITSJ202405080002', 1715564675, 13, 0);
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',2962898, 0, '系统', 0, 'IT协助修改  派件人 员工账号：李席德 改成 外协账号：武威-李席德 审批单号：ITSJ202405080002 ', 1715564675, 13, 0);
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',2969176, 0, '系统', 0, 'IT协助修改  派件人 员工账号：李席德 改成 外协账号：武威-李席德 审批单号：ITSJ202405080002 ', 1715564675, 13, 0);
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',2969177, 0, '系统', 0, 'IT协助修改  派件人 员工账号：李席德 改成 外协账号：武威-李席德 审批单号：ITSJ202405080002 ', 1715564675, 13, 0);
+
+
+update order_logistics set ol_pickup_person=2793,ol_pickup_name='武威-李席德' where to_id=2976329;
+update oms_logistics set ol_pickup_person=2793,ol_pickup_name='武威-李席德' where to_id=2976329;
+
+
+update opn_operator set user_id=2793,username='武威-李席德' where opnop_id=17073179;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102010',2976329, 0, '系统', 0, 'IT协助修改  取件人 员工账号：李席德 改成 外协账号：武威-李席德 审批单号：ITSJ202405080002 ', 1715564675, 13, 0);
+
+
+
+
+
+车辆属性调整：将叉车分开管理
+feature_19662_csl_20240511  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19662  已上线
+
+
+
+
+月结路桥费成本线上化1.1优化
+feature_19697_csl_20230513  tms_admin
+feature_19697_csl_20230513  dispath_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19697  未上线
+
+
+alter table
+  tms_road_record
+add
+  column  `reconciliation_status`  tinyint(4) NOT NULL DEFAULT '1' COMMENT '对账状态  1、未对账 2已对账';
+
+
+alter table
+  tms_road_record_bill
+add
+  column  `reconciliation_month`  varchar(30) NOT NULL DEFAULT ''  COMMENT '对账月份 ',
+add
+  column  `car_money`  decimal(10,2) NOT NULL DEFAULT '0.00'  COMMENT '停车费 ';
+
+update tms_road_record set reconciliation_status=2 where provisional_status in (2,3);
+
+update tms_road_record_bill set reconciliation_month=provisional_month;
+
+
+
+
+
+alter table
+  tms_refuel_record
+add
+  column  `reconciliation_status`  tinyint(4) NOT NULL DEFAULT '1' COMMENT '对账状态  1、未对账 2已对账',
+add
+  column  `account_province`  varchar(30) NOT NULL DEFAULT '' COMMENT '开户省份';
+
+
+alter table
+  tms_refuel_record_bill
+add
+  column  `reconciliation_month`  varchar(30) NOT NULL DEFAULT ''  COMMENT '对账月份 ',
+add
+  column  `car_money`  decimal(10,2) NOT NULL DEFAULT '0.00'  COMMENT '停车费 ',
+add
+  column  `account_province`  varchar(30) NOT NULL DEFAULT '' COMMENT '开户省份';
+
+update tms_refuel_record set reconciliation_status=2 where provisional_status in (2,3);
+
+update tms_refuel_record_bill set reconciliation_month=provisional_month;
+
+
+
+仓库工作单v1.1：方案准备增加温度计校准证书 调整
+feature_19754_csl_20240516 tms_admin
+feature_19754_csl_20240516 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19754  已上线
+
+
+
+CREATE TABLE `tms_temperature_print` (
+  `ttp_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录主键id',
+  `gd_series_number`  varchar(32) NOT NULL DEFAULT '' COMMENT '温度计序列号',
+  `temperature_print`  int(11) unsigned  NOT NULL  DEFAULT '0'  COMMENT '温度计校准证书 最后打印时间',
+  `ttp_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`ttp_id`)
+  )COMMENT='温度计校准证书打印';
+
+
+
+
+
+LVBV6P0C8PW071619
+
+update car set car_frame_number='LVBV6PDC8PW071619' where ca_id=901;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',901, 0, '系统', 0, 'IT协助修改  更改车架号为 LVBV6PDC8PW071619   审批单号：   
+ITSJ202405150008', 1715840961, 13, 0);
+
+
+
+
+外协耗材监控优化
+feature_19771_csl_20240517  tms_service
+feature_19771_csl_20240517  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19771  已上线
+
+
+取派时间补录 优化
+feature_19779_csl_20240517   tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19779   已上线
+
+
+时间和操作取件时间不在同一天，请注意复核！
+
+
+
+14702 9095  安排工作指令  3050923 1716163200  12220 章甜甜 1716121844  1
+14718 9096  购买车票  3050923 1716162427  47363 李冬源 1716162428  2
+14723 9097  到达车站  3050923 1716178500  47363 李冬源 1716178542  3
+14724 9098  乘车  3050923 1716178560  47363 李冬源 1716178581  4
+14725 9099  车辆出发  3050923 1716178800  47363 李冬源 1716178847  5
+14726 9100  到达取件城市  3050923 1716178860  47363 李冬源 1716178884  6
+14727 9101  到达取件单位  3050923 1716178860  47363 李冬源 1716178897  7
+
+
+
+
+
+
+  UPDATE tms_cart_operation_record SET tcor_time=1716169680 where tcor_id = 14723;
+
+  UPDATE tms_cart_operation_record SET tcor_time=1716169800 where tcor_id = 14724;
+
+  UPDATE tms_cart_operation_record SET tcor_time=1716169980 where tcor_id = 14725;
+
+  UPDATE tms_cart_operation_record SET tcor_time=1716170280 where tcor_id = 14726;
+
+  UPDATE tms_cart_operation_record SET tcor_time=1716170340 where tcor_id = 14727;
+
+
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102040', 3050923, 0, '系统申请', 0, ' 乘车9:50 车辆出发：9:53 到达取件城市:9:58 到达取件单位：9:59 到达车站：9:48
+审批单号：ITSJ202405200005 ', 1716188194, 1, 0)
+
+107548822
+
+
+
+UPDATE remark_log SET rl_server_type=13 where rl_id = 107548822;
+
+
+UPDATE tms_cart_operation_record SET tcor_time=1716181020 where tcor_id = 14732;
+
+update order_logistics set ol_pickup_time=1716181020   where to_id=3047587;
+update oms_logistics set ol_pickup_time=1716181020   where to_id=3047587;
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102040', 3047587, 0, '系统申请', 0, ' 取件时间修改为2024.05.20 12:57 审批单号：ITSJ202405200006 ', 1716189380, 13, 0);
+
+
+
+
+UPDATE tms_cart_operation_record SET tcor_time=1716182400 where tcor_id = 14739;
+
+update order_logistics set ol_pickup_time=1716182400   where to_id=3050989;
+update oms_logistics set ol_pickup_time=1716182400   where to_id=3050989;
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102040', 3050989, 0, '系统申请', 0, ' 取件时间修改为2024.05.20 13:20 审批单号：ITSJ202405200006 ', 1716189380, 13, 0);
+
+
+
+
+
+update car_repair set repair_status=6 where cr_id=8241;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',8241, 0, '系统', 0, 'IT协助修改维保状态：完成   审批单号：ITSJ202405200001', 1716198579, 13, 0)
+
+
+
+
+update car_repair set repair_status=6 where cr_id=7969;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',7969, 0, '系统', 0, 'IT协助修改维保状态：完成   审批单号：ITSJ202405200001', 1716198579, 13, 0);
+
+
+
+
+UPDATE remark_log SET rl_identifier=7969 where rl_id = 107587589;
+
+
+取派时间补录 优化  5.20
+
+外协耗材监控优化  5.21
+
+
+月结路桥费成本线上化1.1优化
+
+
+
+
+小程序退款补差价1.2
+feature_19819_csl_20240521  tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19819  未上线
+
+
+
+
+
+feature_csl_supplier_20240523
+
+php yii history-data/add-supplier-main
+
+
+
+3050921
+
+
+
+
+
+UPDATE tms_cart_operation_record SET tcor_time=1716249600 where tcor_id = 14790;
+
+UPDATE tms_cart_operation_record SET tcor_time=1716251040 where tcor_id = 14794;
+
+update order_logistics set ol_delivery_time=1716251040   where to_id=3050921;
+update oms_logistics set ol_delivery_time=1716251040   where to_id=3050921;
+
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102041', 3050921, 0, '系统申请', 0, '更改 到达派件单位 2024-05-21 8:00 车辆运输流程2024-05-21 8:05 实际派件2024-05-21 8:24 审批单号：ITSJ202405210001 ', 1716444156, 13, 0);
+
+
+
+UPDATE remark_log SET rl_remark='派件人：潘晶，货物状态：货物完好，签收时间：2024-05-21 8:24，签收人：袁善杰 ' where rl_id = 107625141;
+
+UPDATE remark_log SET rl_remark=' 派件到达：到达时间：2024-05-21 8:05 到达附近坐标点：120.796014,31.284618 ' where rl_id = 107618229;
+
+UPDATE remark_log SET rl_remark='2024-05-21 8:00到达派件单位' where rl_id = 107618209;
+
+
+  
+到达派件单位   8:00
+车辆运输流程   8:05
+实际派件   8:24
+
+
+
+车辆管理查询优化
+feature_19904_csl_20240524   tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19904  未上线
+
+
+
+
+取派时间补录 优化  5.20  已上线  （取派时间补录  选择的时间和实际操作取派时间 不是同一天  提醒）
+外协耗材监控优化  5.21   已上线   （外协耗材监控 子单绑定耗材  推送子单号）
+小程序退款补差价1.2   5.23  已提测（1、正常变更为：专人、专车、冷藏车  2、专人、专车、冷藏车相互变更产生费用的）
+月结路桥费成本线上化1.1优化  已上线
+同步泛微供应商数据  进行中  （根据exel 表格导入供应商数据）
+
+
+同步泛微供应商数据
+feature_csl_19894_20240523  已上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19894
+
+history-data/add-supplier-main
+
+
+
+车辆随车资产管理
+feature_19929_csl_20240527  tms_admin
+feature_19929_csl_20240528  ams_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19929   未上线
+
+
+alter table
+  tms_car_info
+add
+  column  `tailplate_no`   varchar(32) NOT NULL  DEFAULT '' COMMENT '尾板编码',
+add
+  column  `video_surveillance_status`  tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否有视频监控 0 否 1 是',
+add
+  column  `video_surveillance_no`   varchar(32) NOT NULL  DEFAULT '' COMMENT '视频监控编码',
+add
+  column  `cooler_status`  tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否有冷分机 0 否 1 是',
+add
+  column  `cooler_no`   varchar(32) NOT NULL  DEFAULT '' COMMENT '冷风机编码';
+
+
+
+
+
+
+
+
+  17082 11574 3040906 83656613  1 2024-05-18 09:10:59 2024-05-18 09:10:59 0000-00-00 00:00:00
+
+
+
+
+
+  tms_mileage_order
+
+
+update tms_mileage_order set to_id=3040160,to_no=83643470   where tmo_id=17082;
+
+INSERT INTO `tms_remark_log` (`trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( 126, 126002, 11574, 0, '系统', 0, ' 订单号改为83643470， 审批编号：ITSJ202405240007', 1716010883, 13);
+
+
+
+
+
+车辆维保提醒，里程调整为提前1000KM
+feature_19948_csl_20240530  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=19948  已上线
+
+
+
+
+1.供应商管理优化v1（自动创建物流、资产供应商） 已上线
+2.车辆属性调整：将叉车分开管理  已上线
+3.月结路桥费成本线上化1.1优化   已上线
+4.仓库工作单v1.1：方案准备增加温度计校准证书 调整  已上线
+5.外协耗材监控优化  已上线
+6.取派时间补录 优化  已上线
+7.车辆维保提醒 调整  已上线
+8.同步泛微供应商数据  已上线
+9.小程序退款补差价  已上线
+10.车辆随车资产管理   待发布
+
+
+代码规范性逻辑性
+严格执行规范
+
+
+
+发货单号规则去除
+feature_20027_csl_20240531   tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20027   已上线
+
+
+调度单匹配
+feature_20004_csl_20240531  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20004  已上线
+
+
+
+车辆保险资金支付对接
+feature_20044_csl_20240603  tms_admin   
+feature_20044_csl_20240607 ams_service
+feature_20044_csl_20240608 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20044  未上线
+
+
+CREATE TABLE `car_insurance` (
+  `ci_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '车辆保险序号',
+  `ca_id` int(11) DEFAULT NULL COMMENT '车辆序号',
+  `ca_number` varchar(30) DEFAULT NULL COMMENT '车牌号',
+  `price` decimal(10,2) DEFAULT NULL COMMENT '购买金额',
+  `ci_compulsory` decimal(10,2) DEFAULT NULL COMMENT '交强险',
+  `ci_vehicle` decimal(10,2) DEFAULT NULL COMMENT '车税险',
+  `ci_commercial` decimal(10,2) DEFAULT NULL COMMENT '商业险',
+  `ci_loss` decimal(10,2) DEFAULT NULL COMMENT '机动车损失保险',
+  `ci_third_loss_1` decimal(10,2) DEFAULT NULL COMMENT '机动车第三者责任险(100万)',
+  `ci_third_loss_2` decimal(10,2) DEFAULT NULL COMMENT '机动车第三者责任险(150万)',
+  `ci_loss_driver` decimal(10,2) DEFAULT NULL COMMENT '车上人员责任险：驾驶员',
+  `ci_loss_passenger` decimal(10,2) DEFAULT NULL COMMENT '车上人员责任险：乘客',
+  `project` varchar(255) DEFAULT NULL COMMENT '购买项目',
+  `company` varchar(30) DEFAULT NULL COMMENT '保险公司',
+  `contacts` varchar(30) DEFAULT NULL COMMENT '联系人',
+  `insured` varchar(30) DEFAULT NULL COMMENT '被保险人',
+  `term_start_time` int(11) DEFAULT NULL COMMENT '保险起始时间',
+  `term_end_time` int(11) DEFAULT NULL COMMENT '保险结束时间',
+  `ci_state` tinyint(4) DEFAULT NULL COMMENT '状态  1 已续保  2 即将过期  3 已过期   0过期后已续保数据  ',
+  `desc` varchar(255) DEFAULT NULL COMMENT '备注',
+  `createtime` int(11) DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`ci_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='车辆保险';
+
+
+
+alter table
+  car_insurance
+add
+  column  `commerce_start_time` int(11) unsigned  NOT NULL  DEFAULT '0' COMMENT '商业保险起始时间',
+add
+  column  `commerce_end_time` int(11) unsigned  NOT NULL  DEFAULT '0' COMMENT '商业保险结束时间',
+add
+  column  `ci_third_loss_two` decimal(10,2) unsigned  NOT NULL  DEFAULT '0' COMMENT '机动车第三者责任险(200万)',
+add
+  column  `medicine_risk`  decimal(10,2)  NOT NULL   DEFAULT '0' COMMENT '医保外用药';
+
+
+
+alter table
+  car_insurance
+add
+  column  `new_car_type` tinyint(4)  NOT NULL  DEFAULT '0' COMMENT '状态 1 新车 2 非自营 3 自营续保',
+add
+  column  `payment_state` tinyint(4)  NOT NULL  DEFAULT '3' COMMENT '支付审批状态 0 待提交 1 审核中 2 审批完成 3 正常 4 已退回 5 已变更 6 已作废';
+
+
+alter table
+  car_insurance
+add
+  column  `approve_no` varchar(32)  NOT NULL  DEFAULT '' COMMENT '审批编号';
+
+
+alter table
+  car_insurance
+add
+  column  `applicant_uid` int(11)  NOT NULL  DEFAULT '0' COMMENT '申请人uid',
+add
+  column  `applicant_name` char(32)  NOT NULL  DEFAULT '' COMMENT '申请人名称';
+
+
+alter table
+  car_insurance
+add
+  column  `su_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '保险公司id （资产供应商id）';
+
+
+alter table
+  car_insurance
+add
+  column  `tipa_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '资金支付申请id';
+
+
+// alter table
+//   car_insurance
+// add
+//   column  `request_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '泛微id',
+// add
+//   column  `workflow_number`  varchar(100) NOT NULL DEFAULT '' COMMENT '北森 workflow_number 字段',
+// add
+//   column  `eteams_push_param` json DEFAULT NULL COMMENT '北森推送内容参数';
+
+
+approve
+
+alter table
+  car
+add
+  column  `car_commerce_start_time` int(11) unsigned  NOT NULL  DEFAULT '0' COMMENT '商业保险起始时间';
+
+
+
+
+
+
+CREATE TABLE `tms_insurance_payment_apply` (
+  `tipa_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录主键id',
+  `request_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '泛微id',
+  `workflow_number`  varchar(100) NOT NULL DEFAULT '' COMMENT '北森 workflow_number 字段',
+  `eteams_push_param` json DEFAULT NULL COMMENT '北森推送内容参数',
+  `payment_state` tinyint(4)  NOT NULL  DEFAULT '1' COMMENT '支付审批状态  1 审核中 2 审批完成 4 已退回 7 已支付',
+  `tipa_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tipa_id`)
+  )COMMENT='车辆保险支付申请';
+
+  ITSJ202406040005
+
+
+update order_worksheet set ow_cart_type=1 where ow_id=14256121;
+
+  14256121
+
+
+
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102107',3075344, 0, '系统', 0, 'IT协助修改 更改操作节点 审批编号 ITSJ202406040005', 1717473237, 13, 0);
+
+update tms_cart_operation_record set to_id=0 where tcor_id=14989;
+update tms_cart_operation_record set to_id=0 where tcor_id=14990;
+update tms_cart_operation_record set to_id=0 where tcor_id=14991;
+
+
+单号录入优化
+feature_20156_csl_20240607  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20156
 
