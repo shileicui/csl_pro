@@ -1684,63 +1684,29 @@ add
 add
   column  `ci_third_loss_two` decimal(10,2) unsigned  NOT NULL  DEFAULT '0' COMMENT '机动车第三者责任险(200万)',
 add
-  column  `medicine_risk`  decimal(10,2)  NOT NULL   DEFAULT '0' COMMENT '医保外用药';
-
-
-
-alter table
-  car_insurance
+  column  `medicine_risk`  decimal(10,2)  NOT NULL   DEFAULT '0' COMMENT '医保外用药',
 add
   column  `new_car_type` tinyint(4)  NOT NULL  DEFAULT '0' COMMENT '状态 1 新车 2 非自营 3 自营续保',
 add
-  column  `payment_state` tinyint(4)  NOT NULL  DEFAULT '3' COMMENT '支付审批状态 0 待提交 1 审核中 2 审批完成 3 正常 4 已退回 5 已变更 6 已作废';
-
-
-alter table
-  car_insurance
-add
-  column  `approve_no` varchar(32)  NOT NULL  DEFAULT '' COMMENT '审批编号';
-
-
-alter table
-  car_insurance
+  column  `payment_state` tinyint(4)  NOT NULL  DEFAULT '3' COMMENT '支付审批状态 0 待提交 1 审核中 2 审批完成 3 正常 4 已退回 5 已变更 6 已作废',
 add
   column  `applicant_uid` int(11)  NOT NULL  DEFAULT '0' COMMENT '申请人uid',
 add
-  column  `applicant_name` char(32)  NOT NULL  DEFAULT '' COMMENT '申请人名称';
-
-
-alter table
-  car_insurance
+  column  `applicant_name` char(32)  NOT NULL  DEFAULT '' COMMENT '申请人名称',
 add
-  column  `su_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '保险公司id （资产供应商id）';
-
-
-alter table
-  car_insurance
+  column  `su_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '保险公司id （资产供应商id）',
 add
   column  `tipa_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '资金支付申请id';
 
 
-// alter table
-//   car_insurance
-// add
-//   column  `request_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '泛微id',
-// add
-//   column  `workflow_number`  varchar(100) NOT NULL DEFAULT '' COMMENT '北森 workflow_number 字段',
-// add
-//   column  `eteams_push_param` json DEFAULT NULL COMMENT '北森推送内容参数';
 
-
-approve
 
 alter table
   car
 add
-  column  `car_commerce_start_time` int(11) unsigned  NOT NULL  DEFAULT '0' COMMENT '商业保险起始时间';
-
-
-
+  column  `car_commerce_start_time` int(11) unsigned  NOT NULL  DEFAULT '0' COMMENT '商业保险起始时间',
+add
+  column  `commerce_ci_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '上次商业险保险ci_id';
 
 
 
@@ -1749,7 +1715,19 @@ CREATE TABLE `tms_insurance_payment_apply` (
   `request_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '泛微id',
   `workflow_number`  varchar(100) NOT NULL DEFAULT '' COMMENT '北森 workflow_number 字段',
   `eteams_push_param` json DEFAULT NULL COMMENT '北森推送内容参数',
-  `payment_state` tinyint(4)  NOT NULL  DEFAULT '1' COMMENT '支付审批状态  1 审核中 2 审批完成 4 已退回 7 已支付',
+  `inprocess_name` varchar(50) DEFAULT NULL NOt NULL  DEFAULT '' COMMENT '审批中',
+
+  `apply_name` varchar(50) DEFAULT NULL NOt NULL  DEFAULT '' COMMENT '提交资金支付人',
+  `apply_uid` int(11) DEFAULT NULL NOt NULL  DEFAULT '0' COMMENT '提交资金支付人 uid',
+  `next_inprocess_name` varchar(50) DEFAULT NULL NOt NULL  DEFAULT '' COMMENT '下一个审批人',
+  `finish_name` varchar(50) DEFAULT NULL NOt NULL  DEFAULT '' COMMENT '审批完成人',
+
+  `inprocess_time`  datetime NOT NULL DEFAULT '0000-00-00 00:00:00'  COMMENT '审批中时间',
+  `finish_time`  datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '审批完成人时间',
+  `payment_time`  datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '支付时间',
+  `predict_payment_time`  datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '预计支付时间',
+
+  `payment_state` tinyint(4)  NOT NULL  DEFAULT '1' COMMENT '支付审批状态  1 审核中 2 审批完成 4 已退回 7 已支付 8 删除',
   `tipa_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
@@ -1757,7 +1735,46 @@ CREATE TABLE `tms_insurance_payment_apply` (
   PRIMARY KEY (`tipa_id`)
   )COMMENT='车辆保险支付申请';
 
-  ITSJ202406040005
+
+
+CREATE TABLE `tms_car_insurance_warn` (
+  `tciw_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录主键id',
+  `ca_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '车辆id',
+  `ci_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '保险ci_id',
+  `term_start_time` int(11) unsigned  NOT NULL  DEFAULT '0' COMMENT '保险起始时间',
+  `term_end_time` int(11) unsigned  NOT NULL  DEFAULT '0' COMMENT  '保险结束时间',
+  `tciw_type`  tinyint(4)  NOT NULL  DEFAULT '1'  COMMENT '1 交强险 2 商业险',
+
+  `tciw_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tciw_id`)
+  )COMMENT='车辆上次交强险商业险';
+
+
+{"rule":{"bool":{"must":[{"term":{"template_key":"fund_payment"}},{"term":{"extend_params":"tms"}}]}}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 update order_worksheet set ow_cart_type=1 where ow_id=14256121;
@@ -1778,4 +1795,8 @@ update tms_cart_operation_record set to_id=0 where tcor_id=14991;
 单号录入优化
 feature_20156_csl_20240607  tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20156
+
+
+
+
 
