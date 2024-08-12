@@ -1648,30 +1648,30 @@ feature_20044_csl_20240608 tms_service
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20044  未上线
 
 
-CREATE TABLE `car_insurance` (
-  `ci_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '车辆保险序号',
-  `ca_id` int(11) DEFAULT NULL COMMENT '车辆序号',
-  `ca_number` varchar(30) DEFAULT NULL COMMENT '车牌号',
-  `price` decimal(10,2) DEFAULT NULL COMMENT '购买金额',
-  `ci_compulsory` decimal(10,2) DEFAULT NULL COMMENT '交强险',
-  `ci_vehicle` decimal(10,2) DEFAULT NULL COMMENT '车税险',
-  `ci_commercial` decimal(10,2) DEFAULT NULL COMMENT '商业险',
-  `ci_loss` decimal(10,2) DEFAULT NULL COMMENT '机动车损失保险',
-  `ci_third_loss_1` decimal(10,2) DEFAULT NULL COMMENT '机动车第三者责任险(100万)',
-  `ci_third_loss_2` decimal(10,2) DEFAULT NULL COMMENT '机动车第三者责任险(150万)',
-  `ci_loss_driver` decimal(10,2) DEFAULT NULL COMMENT '车上人员责任险：驾驶员',
-  `ci_loss_passenger` decimal(10,2) DEFAULT NULL COMMENT '车上人员责任险：乘客',
-  `project` varchar(255) DEFAULT NULL COMMENT '购买项目',
-  `company` varchar(30) DEFAULT NULL COMMENT '保险公司',
-  `contacts` varchar(30) DEFAULT NULL COMMENT '联系人',
-  `insured` varchar(30) DEFAULT NULL COMMENT '被保险人',
-  `term_start_time` int(11) DEFAULT NULL COMMENT '保险起始时间',
-  `term_end_time` int(11) DEFAULT NULL COMMENT '保险结束时间',
-  `ci_state` tinyint(4) DEFAULT NULL COMMENT '状态  1 已续保  2 即将过期  3 已过期   0过期后已续保数据  ',
-  `desc` varchar(255) DEFAULT NULL COMMENT '备注',
-  `createtime` int(11) DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`ci_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='车辆保险';
+// CREATE TABLE `car_insurance` (
+//   `ci_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '车辆保险序号',
+//   `ca_id` int(11) DEFAULT NULL COMMENT '车辆序号',
+//   `ca_number` varchar(30) DEFAULT NULL COMMENT '车牌号',
+//   `price` decimal(10,2) DEFAULT NULL COMMENT '购买金额',
+//   `ci_compulsory` decimal(10,2) DEFAULT NULL COMMENT '交强险',
+//   `ci_vehicle` decimal(10,2) DEFAULT NULL COMMENT '车税险',
+//   `ci_commercial` decimal(10,2) DEFAULT NULL COMMENT '商业险',
+//   `ci_loss` decimal(10,2) DEFAULT NULL COMMENT '机动车损失保险',
+//   `ci_third_loss_1` decimal(10,2) DEFAULT NULL COMMENT '机动车第三者责任险(100万)',
+//   `ci_third_loss_2` decimal(10,2) DEFAULT NULL COMMENT '机动车第三者责任险(150万)',
+//   `ci_loss_driver` decimal(10,2) DEFAULT NULL COMMENT '车上人员责任险：驾驶员',
+//   `ci_loss_passenger` decimal(10,2) DEFAULT NULL COMMENT '车上人员责任险：乘客',
+//   `project` varchar(255) DEFAULT NULL COMMENT '购买项目',
+//   `company` varchar(30) DEFAULT NULL COMMENT '保险公司',
+//   `contacts` varchar(30) DEFAULT NULL COMMENT '联系人',
+//   `insured` varchar(30) DEFAULT NULL COMMENT '被保险人',
+//   `term_start_time` int(11) DEFAULT NULL COMMENT '保险起始时间',
+//   `term_end_time` int(11) DEFAULT NULL COMMENT '保险结束时间',
+//   `ci_state` tinyint(4) DEFAULT NULL COMMENT '状态  1 已续保  2 即将过期  3 已过期   0过期后已续保数据  ',
+//   `desc` varchar(255) DEFAULT NULL COMMENT '备注',
+//   `createtime` int(11) DEFAULT NULL COMMENT '创建时间',
+//   PRIMARY KEY (`ci_id`)
+// ) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='车辆保险';
 
 
 
@@ -1688,7 +1688,7 @@ add
 add
   column  `new_car_type` tinyint(4)  NOT NULL  DEFAULT '0' COMMENT '状态 1 新车 2 非自营 3 自营续保',
 add
-  column  `payment_state` tinyint(4)  NOT NULL  DEFAULT '3' COMMENT '支付审批状态 0 待提交 1 审核中 2 审批完成 3 正常 4 已退回 5 已变更 6 已作废',
+  column  `payment_state` tinyint(4)  NOT NULL  DEFAULT '3' COMMENT '支付审批状态 0 待提交 1 审核中 2 审批完成 3 正常 4 已退回 5 已变更 6 已作废 7已支付 9 即将到期 10 已过期',
 add
   column  `applicant_uid` int(11)  NOT NULL  DEFAULT '0' COMMENT '申请人uid',
 add
@@ -1757,6 +1757,9 @@ CREATE TABLE `tms_car_insurance_warn` (
 
 
 
+{tms_admin} car/car-insurance-status
+
+{tms_admin} timing-push/car-remind-data
 
 
 
@@ -1792,11 +1795,578 @@ update tms_cart_operation_record set to_id=0 where tcor_id=14990;
 update tms_cart_operation_record set to_id=0 where tcor_id=14991;
 
 
-单号录入优化
-feature_20156_csl_20240607  tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20156
+// 单号录入优化
+// feature_20156_csl_20240607  tms_admin
+// https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20156
+
+
+
+
+中石油加油卡管理
+feature_20311_csl_20240617  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20311  未上线
+
+
+alter table
+  tms_caroil_cardbalance
+add
+  column  `trr_payment_method` tinyint(3) NOT NULL DEFAULT '1' COMMENT '加油方式，1 油卡-中石化，3 油卡-中石油';
 
 
 
 
 
+车辆维保增加年审、尾板保养、大金额对公支付
+feature_20335_csl_20240618  tms_admin
+feature_20335_csl_20240619  ams_service
+feature_20335_csl_20240625  tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20335  未上线
+
+
+history-data/upd-insurance
+
+
+
+alter table
+  tms_car_info
+add
+  column  `record_status`  tinyint(3) NOT NULL  DEFAULT '0' COMMENT '是否备案 1是 2 否',
+add
+  column  `maintenance_cycle`  tinyint(4) NOT NULL  DEFAULT '0' COMMENT '维保周期 1、6个月 2、12个月',
+add
+  column  `tailplate_status`  tinyint(4) NOT NULL  DEFAULT '0' COMMENT '是否安装 1、是 2、否',
+add
+  column  `tailplate_time`  int(11) unsigned NOT NULL  DEFAULT '0' COMMENT '安装时间',
+add
+  column  `storage_address`  varchar(255) NOT NULL  DEFAULT '' COMMENT '存放地点';
+
+
+
+
+alter table
+  car
+add
+  column  `tail_plate_time` int(11) unsigned  NOT NULL  DEFAULT '0' COMMENT '尾板保养时间',
+add
+  column  `next_tail_plate_time` int(11) unsigned  NOT NULL  DEFAULT '0' COMMENT '下次尾板保养时间';
+
+
+CREATE TABLE `tms_repair_payment_apply` (
+  `trpa_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录主键id',
+  `request_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '泛微id',
+  `workflow_number`  varchar(100) NOT NULL DEFAULT '' COMMENT '北森 workflow_number 字段',
+  `eteams_push_param` json DEFAULT NULL COMMENT '北森推送内容参数',
+  `inprocess_name` varchar(50) DEFAULT NULL NOt NULL  DEFAULT '' COMMENT '审批中',
+
+  `apply_name` varchar(50) DEFAULT NULL NOt NULL  DEFAULT '' COMMENT '提交资金支付人',
+  `apply_uid` int(11) DEFAULT NULL NOt NULL  DEFAULT '0' COMMENT '提交资金支付人 uid',
+  `next_inprocess_name` varchar(50) DEFAULT NULL NOt NULL  DEFAULT '' COMMENT '下一个审批人',
+  `finish_name` varchar(50) DEFAULT NULL NOt NULL  DEFAULT '' COMMENT '审批完成人',
+
+  `inprocess_time`  datetime NOT NULL DEFAULT '0000-00-00 00:00:00'  COMMENT '审批中时间',
+  `finish_time`  datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '审批完成人时间',
+  `payment_time`  datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '支付时间',
+  `predict_payment_time`  datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '预计支付时间',
+  `payment_msg` varchar(255)  NOT NULL  DEFAULT '' COMMENT '付款说明',
+
+  `payment_state` tinyint(4)  NOT NULL  DEFAULT '1' COMMENT '支付审批状态  1 审核中 2 审批完成 4 已退回 7 已支付 8 删除',
+  `trpa_visible` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1正常  2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`trpa_id`)
+  )COMMENT='车辆维保支付申请';
+
+
+
+
+
+alter table
+  car_repair
+add
+  column  `trpa_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '资金支付申请id',
+add
+  column  `tcy_id` int(11)  NOT NULL  DEFAULT '0' COMMENT '年检id';
+
+
+  
+
+
+
+
+
+{
+    "170001": "修改车辆",
+    "170002": "添加车辆",
+    "170003": "添加事故",
+    "170004": "修改事故",
+    "170005": "添加保险",
+    "170006": "修改保险",
+    "170007": "添加维修",
+    "170008": "修改维修",
+    "170009": "绑定温度计探头",
+    "170010": "删除温度计探头",
+    "170011": "启用温度计探头",
+    "170012": "停用温度计探头",
+    "170013": "提交维修保养审批",
+    "170014": "确认完成",
+    "170015": "提交报销审批",
+    "170016": "油卡充值记录",
+    "170017": "提交资金支付申请"
+}
+
+
+
+
+/index.php?r=car-repair/update-type
+
+
+
+差旅管家接口请求优化
+feature_20347_csl_20240618
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20347
+
+
+
+
+
+update car_repair set repair_finish_mile=144617 where cr_id=9167;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',9167, 0, '系统', 0, 'IT协助修改 保养里程改为 144617 审批编号 ITSJ202406190001', 1719213620, 13, 0);
+
+
+
+
+
+供应商管理增加类型
+feature_20081_csl_20240626   ams_admin
+feature_20081_csl_20240701  ams_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20081  未上线
+
+
+
+
+
+
+ALTER table tms_project_config add COLUMN corpuscle_single_status tinyint(4)  not null  DEFAULT '0' COMMENT '支持电子面单 1支持 0不支持';
+
+ALTER table tms_customer_config add COLUMN corpuscle_single_status tinyint(4)  not null  DEFAULT '0' COMMENT '支持电子面单 1支持 0不支持';
+
+
+,
+    "corpuscle_single_status": {
+        "on": 1,
+        "off": 0,
+        "label": "支持电子面单",
+        "span": " "
+    }
+
+
+    1995
+    1994
+    1993
+    1992
+    1991
+    1990
+    1989
+
+car_insurance
+
+update car_insurance set payment_state=3 where ci_id=1995;
+
+    payment_state
+
+
+
+
+    1.车辆保险资金支付对接    已上线
+    2.中石油加油卡管理        已上线
+    3.车辆维保增加年审、尾板保养、大金额对公支付   待发布
+
+
+    代码规范性逻辑性
+
+严格执行规范
+
+
+
+    1.车辆保险资金支付对接    已上线
+    2.中石油加油卡管理        已上线
+    3.车辆维保增加年审、尾板保养、大金额对公支付   待发布
+
+
+1.车辆保险资金支付对接   已上线
+
+2.中石油加油卡管理       已上线
+
+3.车辆保险提醒（商业险、交强险分开提醒）  已上线
+
+4.车辆维保：尾板保养   待发布
+
+5.供应主体新增海外供应商  ams    已上线
+
+6.发货记录 新增调度单匹配按钮   已上线
+
+7.车辆保险历史数据批量修改     待发布
+
+8.车辆维保：车辆年审    待发布
+
+9.项目、客户配置 新增 支持电子面单配置   待发布
+
+10.车辆维保大金额对公支付   待发布
+
+
+
+小程序异常收费
+feature_20633_csl_20240703 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20633  未上线
+
+
+
+
+ 外协操作费用优化调整
+ feature_20622_csl_20240703 tms_admin
+ feature_20622_csl_20240704 omsapi
+ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20622  未上线
+
+
+
+ALTER table
+  tms_operation_feeremind
+add
+  COLUMN fee_status tinyint(4) not null DEFAULT '0' COMMENT '续单费类型 1相同人续单费 2不同人续单费',
+add
+  COLUMN to_id int(11) unsigned NOT NULL DEFAULT '0' COMMENT '续单费上一个to_id';
+
+
+
+换冰排时效管理添加箱型筛选
+feature_20699_csl_20240705 tms_admin  
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=20699  未上线
+
+
+
+
+ITSJ202407050006
+
+
+
+
+
+update tms_operation_feeremind set opn_id=0 where tofd_id=26760;
+
+update tms_operation_feeremind set opn_id=0 where tofd_id=26925;
+
+update tms_operation_feeremind set opn_id=0 where tofd_id=27595;
+
+update tms_operation_feeremind set opn_id=0 where tofd_id=28010;
+
+update tms_operation_feeremind set opn_id=0 where tofd_id=50493;
+
+update tms_operation_feeremind set opn_id=0 where tofd_id=57039;
+
+update tms_operation_feeremind set opn_id=0 where tofd_id=59297;
+
+update tms_operation_feeremind set opn_id=0 where tofd_id=62056;
+
+update tms_operation_feeremind set opn_id=0 where tofd_id=62160;
+
+
+
+
+
+车辆维保项目管理
+feature_20662_csl_20240708  ams_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20662  未上线
+
+
+油卡加油记录优化
+feature_20842_csl_20240712  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20842  已上线
+
+
+
+
+
+生生耗材管理、
+
+包装箱清洁管理
+feature_20912_csl_20240817  ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20912  未上线
+history-data/add-cleaning-management
+
+update ams_packaging_box_cleaning_management set is_deleted=1 where sto_id=0;
+
+
+
+
+
+
+车辆维保入账月份调整
+feature_20914_csl_20240717   tms_service
+feature_20914_csl_20240717   tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=20914  已上线
+
+
+
+
+外协耗材现结、月结
+feature_20922_csl_20240718  ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20922  已上线
+
+ALTER TABLE ams_external_assist_material MODIFY COLUMN return_no TEXT COMMENT '返回单号';
+
+
+
+
+
+油卡路桥费优化
+feature_20974_csl_20240722 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20974  未上线
+
+ALTER table car add COLUMN refund_tenancy_time int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '退租时间';
+
+
+
+
+外协耗材监控补录单号
+feature_21033_csl_20240724  ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21033  未上线
+
+
+update car_insurance set payment_state=7 where ci_id=2027;
+update car_insurance set payment_state=7 where ci_id=2026;
+update car_insurance set payment_state=7 where ci_id=2025;
+
+update tms_insurance_payment_apply set payment_state=7,payment_time='2024-07-18 14:30:02' where workflow_number='FDPA202407120012';
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170006',2027, 0, '系统', 0, 'IT协助修改状态：已支付 审批单号：ITSJ202407250001', 1721804738, 13, 0);
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170006',2026, 0, '系统', 0, 'IT协助修改状态：已支付 审批单号：ITSJ202407250001', 1721804738, 13, 0);
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170006',2025, 0, '系统', 0, 'IT协助修改状态：已支付 审批单号：ITSJ202407250001', 1721804738, 13, 0);
+
+
+
+
+
+车辆管理优化
+feature_21152_csl_20240726   tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=21152  未上线
+
+
+
+
+
+1.小程序异常收费   已上线
+
+2.外协操作费用优化调整  已上线
+
+3.换冰排时效管理优化   已上线
+
+4.油卡加油记录优化   已上线
+
+5.车辆维保入账月份调整   已上线
+
+6.油卡路桥费优化   已上线
+
+7.车辆维保项目管理 已上线
+
+8.外协耗材现结、月结（AMS系统）   已上线
+
+9.包装箱清洁管理（AMS系统）   已上线
+
+10.供应商新增类型（AMS系统）   已上线
+
+11.外协耗材监控补录单号（AMS系统)   已上线
+
+12.油卡路桥费优化：停车费拆分，暂估比较隐藏等   开发中
+
+严格执行规范
+  
+代码规范性逻辑性
+
+查计划箱型接口
+feature_21176_csl_20240729   tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=21176  已上线
+
+
+路由列表优化
+feature_21190_csl_20240730  dispath_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=21190   已上线
+
+
+大件路由增加路由类型筛选
+feature_21194_csl_20240730  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21194   未上线
+
+
+
+供应商新增类型
+feature_21210_csl_20240730   ams_admin
+feature_21210_csl_20240731   ams_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21210   未上线
+
+
+
+
+油卡路桥费优化：停车费拆分，暂估比较隐藏等
+feature_21218_csl_20240731   tms_admin
+feature_21218_csl_20240806   ams_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21218  未上线
+
+
+ALTER table tms_road_record add COLUMN cost_type  tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1路桥费  2停车费';
+
+update tms_road_record set cost_type=2  where outbound_name like '停车';
+
+
+
+
+ALTER table
+  tms_road_record_bill
+add
+  COLUMN road_money decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '路桥费暂估金额',
+add
+  COLUMN stop_money decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '停车费暂估金额',
+add
+  COLUMN road_cost decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '路桥费暂估成本',
+add
+  COLUMN stop_cost decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '停车费暂估成本';
+
+// ALTER TABLE tms_road_record_bill CHANGE stot_cost stop_cost decimal(10, 2);
+
+ALTER table
+  tms_car_certificate
+add
+  COLUMN sm_name  varchar(100) NOT NULL DEFAULT '' COMMENT '供应商主体名称',
+add
+  COLUMN sm_id   int(11) NOT NULL DEFAULT '0' COMMENT '供应商主体id（关联 ams_supplier_main.id）';
+
+
+
+ALTER table
+  tms_road_record_bill
+add
+  COLUMN sm_name  varchar(100) NOT NULL DEFAULT '' COMMENT '供应商主体名称',
+add
+  COLUMN sm_id   int(11) NOT NULL DEFAULT '0' COMMENT '供应商主体id（关联 ams_supplier_main.id）';
+
+
+
+ALTER table
+  tms_refuel_record_bill
+add
+  COLUMN sm_name  varchar(100) NOT NULL DEFAULT '' COMMENT '供应商主体名称',
+add
+  COLUMN sm_id   int(11) NOT NULL DEFAULT '0' COMMENT '供应商主体id（关联 ams_supplier_main.id）';
+
+
+ALTER table
+  tms_refuel_record
+add
+  COLUMN sm_name  varchar(100) NOT NULL DEFAULT '' COMMENT '供应商名称';
+
+
+车辆维保台账入账确认调整
+feature_21263_csl_20240801   tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=21263  未上线
+
+
+
+
+
+update tms_car_repair_monthly_billing set tcrmb_pay_month=1719763200,tcrmb_entry_month=0  where tcrmb_id=92;
+
+update tms_car_repair_monthly_billing set tcrmb_pay_month=1719763200,tcrmb_entry_month=0  where tcrmb_id=120;
+
+update tms_car_repair_monthly_billing set tcrmb_pay_month=1719763200,tcrmb_entry_month=0  where tcrmb_id=104;
+
+update tms_car_repair_monthly_billing set tcrmb_pay_month=1719763200,tcrmb_entry_month=0  where tcrmb_id=69;
+
+update tms_car_repair_monthly_billing set tcrmb_pay_month=1719763200,tcrmb_entry_month=0  where tcrmb_id=71;
+
+update tms_car_repair_monthly_billing set tcrmb_pay_month=1719763200,tcrmb_entry_month=0  where tcrmb_id=106;
+
+update tms_car_repair_monthly_billing set tcrmb_pay_month=1719763200,tcrmb_entry_month=0  where tcrmb_id=109;
+
+update tms_car_repair_monthly_billing set tcrmb_pay_month=1719763200,tcrmb_entry_month=0  where tcrmb_id=89;
+
+update tms_car_repair_monthly_billing set tcrmb_pay_month=1719763200,tcrmb_entry_month=0  where tcrmb_id=99;
+
+
+  update tms_remark_log set trl_remark ='资金支付-成功 支付时间：2024-07-12 14:48:26 <br>自动确认入账：付款月份：2024-07' where trl_id =277733;
+  update tms_remark_log set trl_remark ='资金支付-成功 支付时间：2024-07-12 14:48:26 <br>自动确认入账：付款月份：2024-07' where trl_id =277734;
+  update tms_remark_log set trl_remark ='资金支付-成功 支付时间：2024-07-16 17:22:05 <br>自动确认入账：付款月份：2024-07' where trl_id =290136;
+  update tms_remark_log set trl_remark ='资金支付-成功 支付时间：2024-07-16 17:24:07 <br>自动确认入账：付款月份：2024-07' where trl_id =290149;
+  update tms_remark_log set trl_remark ='资金支付-成功 支付时间：2024-07-16 17:24:07 <br>自动确认入账：付款月份：2024-07' where trl_id =290150;
+  update tms_remark_log set trl_remark ='资金支付-成功 支付时间：2024-07-16 17:24:07 <br>自动确认入账：付款月份：2024-07' where trl_id =290151;
+  update tms_remark_log set trl_remark ='资金支付-成功 支付时间：2024-07-16 17:24:10 <br>自动确认入账：付款月份：2024-07' where trl_id =290152;
+  update tms_remark_log set trl_remark ='资金支付-成功 支付时间：2024-07-16 17:24:06 <br>自动确认入账：付款月份：2024-07' where trl_id =290153;
+  update tms_remark_log set trl_remark ='资金支付-成功 支付时间：2024-07-16 17:24:06 <br>自动确认入账：付款月份：2024-07' where trl_id =290154;
+
+
+
+TMS
+查计划箱型接口  7.29 已上线
+路由列表优化   7.30  已上线
+大件路由增加路由类型筛选   7.30  已上线
+车辆维保台账入账确认调整    8.1  测试中
+车辆保险优化     8.1  测试中
+油卡路桥费优化：停车费拆分，暂估比较隐藏等   7.31 开发中
+
+AMS
+供应商新增类型  7.31  已上线
+
+下周
+油卡路桥费优化：停车费拆分，暂估比较隐藏等
+
+
+
+
+车辆保险优化
+feature_21272_csl_20240801   tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21272  未上线
+
+
+ALTER table car_insurance add COLUMN pci_id   int(11) NOT NULL DEFAULT '0' COMMENT '父级保险id（关联 car_insurance.ci_id）';
+
+
+
+
+自动生成里程申报优化
+feature_21301_csl_20240805  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21301  已上线
+
+
+取派件补录优化
+feature_21338_csl_20240806   tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21338  未上线
+
+
+
+update tms_road_record set trr_visible=2  where payment_company = '生生供应链管理（广州）有限公司' and deal_time >=1719763200 and deal_time <1722441600;
+
+
+SELECT * FROM `tms_road_record` WHERE payment_company = '生生供应链管理（广州）有限公司' and deal_time >=1719763200 and deal_time <1722441600;
+
+
+
+
+车辆维保项目管理
+feature_20662_csl_20240708  ams_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=20662  已上线
+
+
+
+
+
+
+车辆维保申请、完成、复核。叉车字段调整
+feature_21349_csl_20240807      tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21349  未上线
+
+
+油卡路桥费优化：停车费拆分，暂估比较隐藏等 8.7  测试中
