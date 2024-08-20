@@ -2217,12 +2217,19 @@ feature_21218_csl_20240731   tms_admin
 feature_21218_csl_20240806   ams_service
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21218  未上线
 
+油卡路桥批量对账调整
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21454  未上线
 
-ALTER table tms_road_record add COLUMN cost_type  tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1路桥费  2停车费';
 
 update tms_road_record set cost_type=2  where outbound_name like '停车';
 
 
+ALTER table 
+  tms_road_record 
+add 
+  COLUMN cost_type  tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态  1路桥费  2停车费',
+ADD
+  INDEX idx_deal_time (`deal_time`);
 
 
 ALTER table
@@ -2234,9 +2241,12 @@ add
 add
   COLUMN road_cost decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '路桥费暂估成本',
 add
-  COLUMN stop_cost decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '停车费暂估成本';
+  COLUMN stop_cost decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '停车费暂估成本',
+add
+  COLUMN sm_name  varchar(100) NOT NULL DEFAULT '' COMMENT '供应商主体名称',
+add
+  COLUMN sm_id   int(11) NOT NULL DEFAULT '0' COMMENT '供应商主体id（关联 ams_supplier_main.id）';
 
-// ALTER TABLE tms_road_record_bill CHANGE stot_cost stop_cost decimal(10, 2);
 
 ALTER table
   tms_car_certificate
@@ -2245,14 +2255,6 @@ add
 add
   COLUMN sm_id   int(11) NOT NULL DEFAULT '0' COMMENT '供应商主体id（关联 ams_supplier_main.id）';
 
-
-
-ALTER table
-  tms_road_record_bill
-add
-  COLUMN sm_name  varchar(100) NOT NULL DEFAULT '' COMMENT '供应商主体名称',
-add
-  COLUMN sm_id   int(11) NOT NULL DEFAULT '0' COMMENT '供应商主体id（关联 ams_supplier_main.id）';
 
 
 
@@ -2267,12 +2269,17 @@ add
 ALTER table
   tms_refuel_record
 add
-  COLUMN sm_name  varchar(100) NOT NULL DEFAULT '' COMMENT '供应商名称';
+  COLUMN sm_name  varchar(100) NOT NULL DEFAULT '' COMMENT '供应商名称',
+ADD
+  INDEX idx_deal_time (`deal_time`);
+
+
+
 
 
 车辆维保台账入账确认调整
 feature_21263_csl_20240801   tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&id=21263  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=21263  已上线
 
 
 
@@ -2369,4 +2376,142 @@ feature_21349_csl_20240807      tms_admin
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21349  未上线
 
 
+
+
+
+
 油卡路桥费优化：停车费拆分，暂估比较隐藏等 8.7  测试中
+
+
+update tms_car_repair_monthly_billing set tcrmb_entry_month=1719763200  where tcrmb_id=99;
+
+INSERT INTO `tms_remark_log` (`trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( 141, 141002, 99, 0, '系统', 0, ' 入账月份修改为2024-07 审批编号：ITSJ202408070003', 1723098540, 13);
+
+
+
+
+CAR-T订单新增恺兴商业化项目
+
+feature_21474_csl_20240813   tms_admin
+
+feature_21474_csl_20240813   tms_service
+feature_21474_csl_20240813   omsapi
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21474
+{
+    "cu_ids":[202101157],
+    "cp_ids": [8548,8595],
+    "recycle_cp_ids": [8595],
+    "single_cp_ids": [8548],
+}
+
+{
+    "cu_ids":[202101157,202105217],
+    "cp_ids": [8548,8595,25302,25303,25330,25331],
+    "recycle_cp_ids": [8595,25303,25330],
+    "single_cp_ids": [8548,25302,25331]
+}
+
+
+
+上海医药物流中心有限公司这个客户下面的这两个项目号号：恺兴生命商业化单采血、恺兴生命商业化回输
+华东医药（杭州）有限公司-科济项目这个客户下面的这两个项目号：        恺兴生命商业化回输、        恺兴生命商业化单采
+
+
+                        <option value="25331" >恺兴生命商业化单采</option>
+                        <option value="25330" >恺兴生命商业化回输</option>
+
+
+
+车辆保险优化
+feature_21272_csl_20240801   tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21272  未上线
+
+
+
+
+物流供应商，预付款类型修改
+feature_21381_csl_20240815  tms_admin
+feature_21381_csl_20240816  ams_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21381 未上线
+
+
+
+
+
+车辆维保申请、完成、复核。叉车字段调整  8.12  已上线
+
+CAR-T订单新增恺兴商业化项目   8.13   测试中
+
+油卡路桥批量对账调整  8.14    测试中
+
+物流供应商，预付款类型修改  8.16 开发中
+
+
+车辆维保信息导出优化
+feature_21514_csl_20240819  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=21514  未上线
+
+ALTER table
+  tms_car_certificate
+ADD
+  INDEX idx_ca_id (`ca_id`);
+
+
+ALTER table
+  tms_road_record
+ADD
+  INDEX idx_trr_car_id (`trr_car_id`);
+
+
+ALTER table
+  tms_refuel_record
+ADD
+  INDEX idx_trr_car_id (`trr_car_id`);
+
+
+
+tms_dr_stop_mileage
+
+
+CREATE TABLE `tms_drive_record` (
+  `tms_dr_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '行车记录主键ID',
+  `tms_dr_car_id` int(11) DEFAULT NULL COMMENT '车辆ID',
+  `tms_tcc_id` int(11) NOT NULL DEFAULT '0' COMMENT '新版车辆检查表ID,tms_car_check_new',
+  `tms_rti_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用车检查记录表',
+  `tms_dr_car_record` varchar(200) DEFAULT NULL COMMENT '行车记录',
+  `rti_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用车记录表',
+  `tms_dr_recordtime` int(11) DEFAULT NULL COMMENT '记录时间',
+  `tms_dr_start_mileage` decimal(10,2) DEFAULT NULL COMMENT '起始里程，保留小数点两位数字',
+  `tms_dr_stop_mileage` decimal(10,2) DEFAULT NULL COMMENT '结束里程，保留小数点两位数字',
+  `tms_dr_refuel_money` decimal(10,2) DEFAULT NULL COMMENT '加油金额，保留小数点两位数字',
+  `tms_dr_ur_uid` int(11) DEFAULT NULL COMMENT '记录人ID',
+  `tms_dr_username` varchar(32) DEFAULT NULL COMMENT '记录人员姓名',
+  `tms_dr_start_time` int(11) DEFAULT NULL COMMENT '开始用车时间',
+  `tms_dr_stop_time` int(11) DEFAULT NULL COMMENT '结束用车时间',
+  `tms_dr_is_over` int(11) DEFAULT '1' COMMENT '是否结束用车，1：正常用车，2：结束用车',
+  `tms_dr_visible` tinyint(1) DEFAULT '1' COMMENT '1：显示，2：删除',
+  `tms_dr_coworkeruids` varchar(100) DEFAULT '' COMMENT '同乘人id',
+  `tms_dr_coworkernames` varchar(100) DEFAULT '' COMMENT '同乘人姓名',
+  `tms_dr_abnormal` tinyint(2) DEFAULT '2' COMMENT '异常是否处理 0:未处理 1:处理',
+  `tms_dr_abnormal_feedback` varchar(100) DEFAULT NULL COMMENT '处理结果',
+  `sw_id` int(11) NOT NULL DEFAULT '0' COMMENT '仓库id',
+  `sw_name` varchar(1024) NOT NULL DEFAULT '' COMMENT '仓库名称',
+  PRIMARY KEY (`tms_dr_id`),
+  KEY `tms_dr_car_id` (`tms_dr_car_id`) USING BTREE,
+  KEY `idx_tms_dr_ur_uid` (`tms_dr_ur_uid`) USING BTREE COMMENT '领车人',
+  KEY `idx_tms_dr_coworkeruids` (`tms_dr_coworkeruids`) USING BTREE COMMENT '同乘人',
+  KEY `idx_tms_dr_is_over` (`tms_dr_is_over`) USING BTREE COMMENT '是否结束'
+) ENGINE=InnoDB AUTO_INCREMENT=1233 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='行车记录表';
+
+
+数据导入
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21218
+
+
+
+1942
+
+
+
+Tms_Dwt_Wcmessage_Log
