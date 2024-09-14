@@ -236,7 +236,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=17989  已上线
 update car_repair set maintain_type=1 where cr_id=7460;
 INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',7460, 0, '系统', 0, 'IT协助修改车辆维保类型：常规保养   审批单号：ITSJ202401240005', 1706236482, 1, 0)
 
-
+170001
 
 耗材列表修改增加温度计类型
 feature_17649_csl_20240129 ams_admin
@@ -2539,7 +2539,7 @@ feature_21638_csl_20240822    tms_admin
 feature_21638_csl_20240823    mini_program
 feature_21638_csl_20240829    ams_service
 feature_21638_csl_20240906    tms_service
-feature_21638_csl_20240910    dispath_admin
+// feature_21638_csl_20240910    dispath_admin  不用了 废弃
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21638  未上线
 
 上线前提醒小虎映射 upload 附件文件
@@ -2843,7 +2843,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21218
 
 外协报销提交发货费限制 (和app提交保持一致)    
 feature_21825_csl_20240902    tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21825  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21825  已上线
 
 
 油卡供应商 数据批量导入    已上线
@@ -2851,7 +2851,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21825  未上线
 
 出差单-差旅管家接口切换
 feature_21865_csl_20240903
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21865  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=21865  已上线
 
 
 update car_repair set repair_finish_mile=159279 where cr_id=10261;
@@ -2927,7 +2927,15 @@ INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `u
 
 出差单差旅管家数据优化
 feature_22033_csl_20240911  tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22033  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22033  已上线
+
+
+ALTER table
+  tms_travel_steward
+ADD
+  COLUMN `steward_id`   int(11) unsigned NOT NULL DEFAULT '0' COMMENT '差旅管家订单ID ',
+ADD
+  INDEX idx_travel_number (`travel_number`));
 
 
 
@@ -2937,6 +2945,43 @@ update car_repair set repair_finish_mile=163261 where cr_id=10235;
 INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',10235, 0, '系统', 0, 'IT协助修改 鲁A81K1U车辆在2024-7-16系统内维保里程填写错误，更改为163261KM。   审批单号：ITSJ202409120004', 1726119434, 13, 0);
 
 
+
+
+update car_repair set cr_type=2,maintain_type=1 where cr_id=10914;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',10914, 0, '系统', 0, 'IT协助修改车辆管理-选择京AF05755-修改维保类型-车辆保养。   审批单号：ITSJ202409110004', 1726206984, 13, 0);
+
+
 订单调度列表新增外协耗材监控入口
 feature_22051_csl_20240912   tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22051   未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22051   已上线
+
+
+
+小程序退款补差价推送优化
+feature_22067_csl_20240913  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22067  未上线
+
+240
+TCCD2024080001
+
+
+
+
+
+update
+  tms_car_check_new
+set
+  tcc_car_electronic_equipment_two = 1,
+  tcc_car_cold_protection_one = 1,
+  tcc_car_cold_protection_two = 1,
+  tcc_car_chiller_cooling_one = 1,
+  tcc_car_chiller_cooling_two = 1,
+  tcc_car_yl_check_one = 1,
+  tcc_car_yl_check_two = 1
+where
+  tcc_car_id = 252
+  and tcc_check_time >= 1722441600;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',252, 0, '系统', 0, 'IT协助修 粤B70NB6 8、9月车辆检查数据   审批单号：:ITS202409140003', 1726283696, 13, 0)
