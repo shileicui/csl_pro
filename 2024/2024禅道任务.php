@@ -2931,13 +2931,15 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22033  已上线
 
 
 ALTER table
-  tms_travel_steward
+  tms_travel
 ADD
-  COLUMN `steward_id`   int(11) unsigned NOT NULL DEFAULT '0' COMMENT '差旅管家订单ID ',
-ADD
-  INDEX idx_travel_number (`travel_number`));
+  COLUMN `history_type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '历史数据状态';
 
 
+ALTER table
+  tms_travel
+ADD
+  COLUMN `steward_id`   int(11) unsigned NOT NULL DEFAULT '0' COMMENT '差旅管家订单ID '
 
 
 update car_repair set repair_finish_mile=163261 where cr_id=10235;
@@ -2985,3 +2987,8 @@ where
 
 
 INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',252, 0, '系统', 0, 'IT协助修 粤B70NB6 8、9月车辆检查数据   审批单号：:ITS202409140003', 1726283696, 13, 0)
+
+
+路桥费导出优化
+feature_22137_csl_20240918
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22137
