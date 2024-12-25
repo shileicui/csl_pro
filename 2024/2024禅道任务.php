@@ -2601,6 +2601,8 @@ CREATE TABLE `tms_su_shipment` (
   `tss_shipment_no` varchar(255)  NOT NULL DEFAULT '' COMMENT '发货单号',
   `tss_type` tinyint(4)  NOT NULL DEFAULT '1'  COMMENT '货物类型 1、干冰 2、锂电池 3、其他',
   `tss_quantity` int(10) NOT NULL DEFAULT '0' COMMENT '总件数',
+  `pack_quantity` int(10) NOT NULL DEFAULT '0' COMMENT '包材数量',
+
   `standard_weight` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '标准重量',
   `actual_weight` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '实际重量',
   `actual_remark` text COMMENT '发货备注',
@@ -2621,9 +2623,8 @@ CREATE TABLE `tms_su_shipment` (
   `expense_remark` text COMMENT '费用备注',
   `cause_rejection` text COMMENT '驳回原因',
 
-  `operator_phone` varchar(15) NOT NULL DEFAULT '' COMMENT '操作人手机',
+  `tss_operator_phone` varchar(15) NOT NULL DEFAULT '' COMMENT '操作人手机',
 
-  `distask_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1：未提货，2：已提货',
   `tss_visible` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1：显示，2：删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
@@ -2718,25 +2719,19 @@ ALTER table
 add
   COLUMN `tss_su_id`   int(11) NOT NULL DEFAULT '0' COMMENT '代理供应商id（关联 tms_supplier.tms_sup_id)',
 add
-  COLUMN `tss_su_name`   varchar(255) NOT NULL DEFAULT '' COMMENT '代理供应商';
-
-
-// ALTER TABLE tms_su_shipment MODIFY COLUMN `standard_weight` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '标准重量',
-// MODIFY COLUMN `actual_weight` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '实际重量';
+  COLUMN `tss_su_name`   varchar(255) NOT NULL DEFAULT '' COMMENT '代理供应商',
+MODIFY COLUMN tms_sup_advance int(4) NOT NULL DEFAULT '2' COMMENT '预付类型 1、预充值 2、非预付款 3、预付款';
 
 
 //提货--------------------lllllllllllllllllllllllll----------------------、、、、、、、
 
+供应商提货入口
+feature_22640_csl_20241025  mini_program
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22640  未上线
 
-
-
-
-
-
-// ALTER table
-//   tms_su_shipment
-// add
-//   COLUMN `tsd_id`   int(11) NOT NULL DEFAULT '0' COMMENT '关联提货id（关联 tms_supplier_distask.tsd_id)';
+供应商提货明细及提货费用录入
+feature_22495_csl_20241026  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22495  未上线
 
 
 CREATE TABLE `tms_supplier_operator_distask` (
@@ -2744,7 +2739,6 @@ CREATE TABLE `tms_supplier_operator_distask` (
 
   `tso_id` int(11) NOT NULL DEFAULT '0' COMMENT '供应商操作人表ID （关联tms_supplier_operator.id)',
   `region_id` int(11) NOT NULL DEFAULT '0' COMMENT '城市ID （关联route.stop_region_id)',
-  `tss_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '扫描选择的发货明细id tms_su_shipment.tss_id',
 
   `distask_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '提货日期',
   `to_id`  int(11) unsigned  NOT NULL DEFAULT '0' COMMENT '订单id(关联transport_order.to_id)',
@@ -2772,14 +2766,26 @@ CREATE TABLE `tms_supplier_distask` (
   `region_name` varchar(128)  NOT NULL DEFAULT '' COMMENT '提货城市名称',
   `region_id` int(11) NOT NULL DEFAULT '0' COMMENT '城市ID （关联route.stop_region_id)',
   `su_id`   int(11) NOT NULL DEFAULT '0' COMMENT '供应商id（关联 tms_supplier.tms_sup_id)',
+  `su_name`  varchar(255) NOT NULL DEFAULT '' COMMENT '供应商名称',
 
   `unit_price`  decimal(10,2) NOT NULL DEFAULT '0.00'  COMMENT '单价',
   `distask_price`  decimal(10,2) NOT NULL DEFAULT '0.00'  COMMENT '提货费',
   `service_price`  decimal(10,2) NOT NULL DEFAULT '0.00'  COMMENT '服务费',
   `other_price`  decimal(10,2) NOT NULL DEFAULT '0.00'  COMMENT '其他收费',
 
+  `total_money`  decimal(10,2) NOT NULL DEFAULT '0.00'  COMMENT '总金额',
+
+  `distask_remark` text COMMENT '提货备注',
+  `register_state` tinyint(4) NOT NULL DEFAULT '1'  COMMENT '费用登记状态 1、未登记 2、已登记 3、已通过 4、已驳回',
+  `tsd_state` tinyint(4) NOT NULL DEFAULT '0'  COMMENT '提货明细变更状态 0未变更 1 已变更',
+
+  `expense_remark` text COMMENT '费用备注',
+  `cause_rejection` text COMMENT '驳回原因',
+
+
   `tsd_quantity` int(10) NOT NULL DEFAULT '0' COMMENT '总件数',
   `tsd_order_num` int(10) NOT NULL DEFAULT '0' COMMENT '订单单数',
+  `pack_quantity` int(10) NOT NULL DEFAULT '0' COMMENT '包材数量',
 
   `operator_phone` varchar(15) NOT NULL DEFAULT '' COMMENT '操作人手机',
   `tsd_visible` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1：正常，2：删除',
@@ -2789,6 +2795,98 @@ CREATE TABLE `tms_supplier_distask` (
   PRIMARY KEY (`tsd_id`),
   KEY `idx_distask_time` (`distask_time`) 
 ) COMMENT='供应商提货表明细';
+
+
+
+
+
+
+CREATE TABLE `tms_su_shipment_order_distask` (
+  `tssod_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+
+  `tsd_id` int(11) NOT NULL DEFAULT '0' COMMENT '供应商提货ID tms_supplier_distask.tsd_id)',
+  `to_id`  int(11) unsigned  NOT NULL DEFAULT '0' COMMENT '订单id(关联transport_order.to_id)',
+
+  `di_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '调度ID （关联dispatch.di_id）',
+  `tssod_quantity` int(10) NOT NULL DEFAULT '0' COMMENT '提货数量',
+
+  `tssod_visible` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1：正常，2：删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at`  datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tssod_id`),
+  KEY `idx_di_id` (`di_id`) ,
+  KEY `idx_tsd_id` (`tsd_id`) ,
+  KEY `idx_to_id` (`to_id`) 
+) COMMENT='供应商提货订单表';
+
+
+CREATE TABLE `tms_su_shipment_box_distask` (
+  `tssbd_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+
+  `to_id`  int(11) unsigned  NOT NULL DEFAULT '0' COMMENT '订单id(关联transport_order.to_id)',
+  `tssod_id`  int(11) unsigned  NOT NULL DEFAULT '0' COMMENT '提货明细订单表id(tms_su_shipment_order_distask.tssod_id)',
+
+  `sto_id`  int(11) unsigned  NOT NULL DEFAULT '0' COMMENT '箱型sto_id(关联order_material.sto_id)',
+  `sto_no` char(32)  NOT NULL DEFAULT '' COMMENT '存货编号',
+
+  `tssbd_quantity` int(10) NOT NULL DEFAULT '0' COMMENT '提货数量',
+  `box_weight` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '单个箱子的标准重量',
+  `temp_text` varchar(255) NOT NULL DEFAULT '' COMMENT '箱子对应的温度计',
+
+  `tssbd_visible` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1：正常，2：删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
+  PRIMARY KEY (`tssbd_id`),
+  KEY `idx_sto_id` (`sto_id`) ,
+  KEY `idx_tssod_id` (`tssod_id`) ,
+  KEY `idx_to_id` (`to_id`) 
+) COMMENT='供应商提货表对应箱型';
+
+// ALTER table
+//   tms_supplier_distask
+// add
+//  `pack_quantity` int(10) NOT NULL DEFAULT '0' COMMENT '包材数量';
+
+
+// ALTER table
+//   tms_supplier_distask
+// add  `total_money`  decimal(10,2) NOT NULL DEFAULT '0.00'  COMMENT '总金额',
+// add  `distask_remark` text COMMENT '提货备注',
+// add  `register_state` tinyint(4) NOT NULL DEFAULT '1'  COMMENT '费用登记状态 1、未登记 2、已登记 3、已通过 4、已驳回',
+// add  `tsd_state` tinyint(4) NOT NULL DEFAULT '0'  COMMENT '提货明细变更状态 0未变更 1 已变更',
+// add  `expense_remark` text COMMENT '费用备注',
+// add  `cause_rejection` text COMMENT '驳回原因';
+
+// ALTER TABLE table_name MODIFY COLUMN column_name INT COMMENT 'new comment';
+
+// ALTER table
+//   tms_supplier
+// MODIFY COLUMN tms_sup_advance int(4) NOT NULL DEFAULT '2' COMMENT '预付类型 1、预充值 2、非预付款 3、预付款';
+
+
+
+// alter table tms_su_shipment_box_distask drop tssbd_state;
+
+// alter table tms_su_shipment drop distask_state;
+
+// alter table tms_supplier_operator_distask drop tss_ids;
+
+
+// DROP INDEX idx_tss_id ON tms_su_shipment_order_distask;
+// DROP INDEX idx_tsso_id ON tms_su_shipment_order_distask;
+
+// alter table tms_su_shipment_order_distask drop tsso_id,
+// drop tss_id,
+// drop tssod_state;
+
+// DROP INDEX idx_tsso_id ON tms_su_shipment_box_distask;
+// alter table tms_su_shipment_box_distask drop tsso_id;
+
+
+
+
 
 
 
@@ -2812,69 +2910,15 @@ CREATE TABLE `tms_supplier_distask` (
 //   KEY `idx_tss_id` (`tss_id`) 
 // ) COMMENT='供应商提货关联表';
 
+// ALTER table
+//   tms_su_shipment
+// add
+//  `distask_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1：未提货，2：已提货';
 
-CREATE TABLE `tms_su_shipment_order_distask` (
-  `tssod_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-
-  `tsso_id` int(11) NOT NULL DEFAULT '0' COMMENT '发货明细订单表id(关联tms_su_shipment_order.tsso_id)',
-  `tsd_id` int(11) NOT NULL DEFAULT '0' COMMENT '供应商提货ID tms_supplier_distask.tsd_id)',
-
-  `tss_id` int(11) NOT NULL DEFAULT '0' COMMENT '供应商发货ID （关联tms_su_shipment.tss_id)',
-  `to_id`  int(11) unsigned  NOT NULL DEFAULT '0' COMMENT '订单id(关联transport_order.to_id)',
-
-  `di_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '调度ID （关联dispatch.di_id）',
-  `tssod_quantity` int(10) NOT NULL DEFAULT '0' COMMENT '提货数量',
-
-  `tssod_state` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否确认发货 1 显示 2 隐藏 ',
-  `tssod_visible` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1：正常，2：删除',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updated_at`  datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
-  PRIMARY KEY (`tssod_id`),
-  KEY `idx_tss_id` (`tss_id`) ,
-  KEY `idx_tsso_id` (`tsso_id`) ,
-  KEY `idx_di_id` (`di_id`) ,
-  KEY `idx_tsd_id` (`tsd_id`) ,
-  KEY `idx_to_id` (`to_id`) 
-) COMMENT='供应商提货订单表';
-
-
-CREATE TABLE `tms_su_shipment_box_distask` (
-  `tssbd_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-
-  `to_id`  int(11) unsigned  NOT NULL DEFAULT '0' COMMENT '订单id(关联transport_order.to_id)',
-  `tssod_id`  int(11) unsigned  NOT NULL DEFAULT '0' COMMENT '提货明细订单表id(tms_su_shipment_order_distask.tssod_id)',
-  `tsso_id`  int(11) unsigned  NOT NULL DEFAULT '0' COMMENT '发货明细订单表id(关联tms_su_shipment_order.tsso_id)',
-
-  `sto_id`  int(11) unsigned  NOT NULL DEFAULT '0' COMMENT '箱型sto_id(关联order_material.sto_id)',
-  `sto_no` char(32)  NOT NULL DEFAULT '' COMMENT '存货编号',
-
-  `tssbd_quantity` int(10) NOT NULL DEFAULT '0' COMMENT '提货数量',
-  `box_weight` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '单个箱子的标准重量',
-  `temp_text` varchar(255) NOT NULL DEFAULT '' COMMENT '箱子对应的温度计',
-
-  `tssbd_state` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否确认发货 1 显示 2 隐藏 ',
-  `tssbd_visible` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1：正常，2：删除',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  `deleted_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '删除时间',
-  PRIMARY KEY (`tssbd_id`),
-  KEY `idx_sto_id` (`sto_id`) ,
-  KEY `idx_tssod_id` (`tssod_id`) ,
-  KEY `idx_tsso_id` (`tsso_id`) ,
-  KEY `idx_to_id` (`to_id`) 
-) COMMENT='供应商提货表对应箱型';
-
-
-ALTER table
-  tms_su_shipment
-add
- `distask_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1：未提货，2：已提货';
-
-ALTER table
-  tms_supplier_operator_distask
-add
- `tss_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '扫描选择的发货明细id tms_su_shipment.tss_id';
+// ALTER table
+//   tms_supplier_operator_distask
+// add
+//  `tss_ids` varchar(255) NOT NULL DEFAULT '' COMMENT '扫描选择的发货明细id tms_su_shipment.tss_id';
 
 
 
@@ -3227,7 +3271,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22403   已上线
 
 冷藏车 新增客户温度预警推 推送
 feature_22409_csl_20241011   tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22409  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22409  已上线
 
 
 
@@ -3244,7 +3288,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22409  未上线
 
 支持删除君实订单附件
 feature_22407_csl_20241014   tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22407  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22407  已上线
 
 202000453
 
@@ -3253,12 +3297,12 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22407  未上线
 
 路桥费对账优化
 feature_22342_csl_20241015  tms_admin
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22342  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22342  已上线
 
 
 油耗报表导出优化
 feature_22460_csl_20241015
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22460  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22460  已上线
 
 
 供应商管理优化
@@ -3285,3 +3329,274 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22477  已上线
 
 
 中石化加油记录 支持一键对账功能， 自7月份以来共一键对账30个供应商 共对账 8783条加油记录 提高了对账效率
+
+
+
+
+供应商小程序-发货 已上线 10.28
+
+供应商小程序-提货接口  开发完成 10.28
+
+供应商小程序-提货后台页面  开发完成 10.31
+
+下周 
+
+跟进 供应商小程序-提货接口 对接
+
+
+
+
+出差单差旅账单导出
+feature_22765_csl_20241104  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22765  未上线
+
+
+ALTER table
+  tms_travel
+ADD
+  COLUMN `check_month_type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '月度复合状态 1未复合 2已复合';
+
+
+ALTER table
+  tms_travel_steward
+ADD
+  COLUMN  `booking_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '预定时间';
+
+
+
+
+ALTER table
+  tms_travel_steward
+ADD
+  COLUMN price   decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '票价',
+ADD
+  COLUMN refundfee  decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '退票费',
+ADD
+  COLUMN changefee  decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '改签费',
+ADD
+  COLUMN itineraryamount  decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '行程单金额',
+ADD
+  COLUMN differenceinvoiceamount  decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '差额发票',
+ADD
+  COLUMN airporttax  decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '机建费',
+ADD
+  COLUMN totalprice  decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '应付金额',
+ADD
+  COLUMN invoice_title  varchar(255) NOT NULL DEFAULT '' COMMENT '开票单位',
+ADD
+  COLUMN cost_time  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '消费时间',
+ADD
+  COLUMN price_id  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '消费id',
+ADD
+  COLUMN price_type  int(6) NOT NULL DEFAULT '0' COMMENT '消费类型：值如下：0：预订 1：改签 2：退票 ; 101: 赠送抵扣',
+ADD
+  COLUMN pay_type  int(6) NOT NULL DEFAULT '0' COMMENT '支付方式，值如下：1：支付宝2：微信97：公司充值账户98：公司授信账户',
+ADD
+  COLUMN finance_status  int(6) NOT NULL DEFAULT '0' COMMENT '财务状态：0：待结算 1：对账中 2：已开票 3：已回款 4：无需开票 5：无需结算',
+ADD
+  COLUMN product_type  int(6) NOT NULL DEFAULT '0' COMMENT '产品类型，值如下：1：酒店5：机票6：火车票7：用车';
+
+
+
+{tms_admin} history-data/cl-data
+
+
+
+
+php yii timing-push/month-travel
+
+
+
+update tms_refuel_record_bill set notarize_month='2024-10' where trrb_id=42;
+
+INSERT INTO `tms_remark_log` (`trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( 151, 151003, 42, 0, '系统', 0, ' 确认月份修改为10月， 审批编号：ITSJ202411050001', 1730872174, 13);
+
+
+诺和扫码提交优化
+
+feature_22902_csl_20241113
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22902
+
+
+order_worksheet
+
+update order_worksheet set op_uid='26622' where ow_id=16181337;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102032',3363334, 0, '系统', 0, '更改派件工作单操作人为董建烽  审批单号： ITSJ202411130002', 1731483939, 13, 0);
+
+
+客户端
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22199
+
+
+
+
+
+
+
+客户下单小程序
+feature_22944_csl_20241115
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22944  未上线
+
+短信验证码模板记得上线
+
+
+'customerConfig' => require(__DIR__ . '/customerConfig.php'),
+
+
+################# oms_order_master  ####################
+#oms_order数据库写IP
+MYSQL_OMS_ORDER_MASTER_HOST=
+#oms_order数据库主库名
+MYSQL_OMS_ORDER_MASTER_DB_NAME=
+#oms_order数据库写端口
+MYSQL_OMS_ORDER_MASTER_PORT=
+#oms_order数据库写用户名
+MYSQL_OMS_ORDER_MASTER_USERNAME=
+#oms_order数据库写密码
+MYSQL_OMS_ORDER_MASTER_PASSWORD=
+################# oms_order_master  ####################
+
+
+################# oms_order_slave  ####################
+#oms_order数据库IP
+MYSQL_OMS_ORDER_SLAVE_HOST=
+#oms_order数据库库名
+MYSQL_OMS_ORDER_SLAVE_DB_NAME=
+#oms_order数据库端口
+MYSQL_OMS_ORDER_SLAVE_PORT=
+#oms_order数据库用户名
+MYSQL_OMS_ORDER_SLAVE_USERNAME=
+#oms_order数据库密码
+MYSQL_OMS_ORDER_SLAVE_PASSWORD=
+################# oms_order_slave  ####################
+
+
+
+
+{"id":"2108090","auditing-remark":"","result":"1"}
+
+
+
+
+
+
+      'order_verify_config' =>[
+        'verify_email_config' => [
+            'verify_email_source' => [1,2,3,9],
+            'verify_email_pattern' => "/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$/",//
+            'verify_email_maxlength' => 60,
+        ],
+        'verify_phone_config' => [
+            'verify_phone_source' => [1,2,3,9],
+            'verify_phone_pattern' => "/(^((0\d{2,3})-)?(\d{5,8})(-(\d{3,8}))?$)|(^(400)-(\d{3})-(\d{4})(.)(\d{1,4})$)|(^(400)-(\d{3})-(\d{4}$))|^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\d{8}$/",//^[0-9][0-9-]{4,19}$
+        ],
+        'verify_city_config' => [
+                 'verify_city_source' => [2,3,9],
+        ],
+        'verify_time_config' => [
+              'verify_time_source' =>[1,2,3,9],
+              'verify_time_days' => 30,
+          ],
+    ]
+
+
+需要调整的 to_source
+ 
+ orderoperation/consumer/send-order-customer-examine-message
+
+
+OTduKwe51oBBHhEp0j9W5IZKqZi7xK8A_1677035194
+1 物流,2 临床供应链, 3 其他
+
+
+
+
+
+
+诺和扫码优化
+feature_22993_csl_20241120  omsapi
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22993  未上线
+
+
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=23083
+
+
+
+供应商增加类型
+feature_23102_csl_20241129
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=23102  未上线
+
+
+
+出差单导出差旅账单  已上线
+客户下单小程序     开发中
+供应商管理增加类型  已完成 待泛微配置审批流程
+
+
+
+严格执行规范
+
+
+
+代码质量
+重大BUG、一般BUG、代码规范性逻辑性、注释完整
+--
+30%
+
+
+代码规范性逻辑性
+
+
+路桥费月结台账优化
+feature_23178_csl_20241204
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=23178
+
+
+
+
+
+update car_repair set repair_finish_mile=434619 where cr_id=12112;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',12112, 0, '系统', 0, 'IT协助修改 将2024年11月26日沪FB1655的保养里程由424699更正为434619。   审批单号：ITSJ202412060001', 1733455466, 13, 0);
+
+
+
+update car_repair set cr_type=2,maintain_type=1 where cr_id=12172;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',12172, 0, '系统', 0, 'IT协助修改 将2024年11月30日沪DYT068的车辆维保类型由车辆维修更正为车辆保养  审批单号：ITSJ202412060002', 1733455466, 13, 0);
+
+
+update car_repair set repair_mile=191874,repair_finish_mile=191874 where cr_id=8482
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',8482, 0, '系统', 0, 'IT协助修改  2024年03月12号 保养里程修改为191874公里   审批单号：   
+ITSJ202404270001', 1714295383, 13, 0);
+
+
+
+
+CAR-T订单新增项目节点
+feature_23208_csl_20241211   tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=23208  未上线
+
+
+城市搜索优化
+feature_23308_csl_20241213
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=23308 已上线
+
+
+
+外协费用界面优化
+feature_23361_csl_20241218  tms_admin
+feature_23361_csl_20241218  tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=23361  未上线
+
+
+ALTER table
+  tms_operation_feeremind
+ADD
+  COLUMN address_to_id  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '存在相同地址to_id';
+
+http://baidumap.ashsh.com.cn/directionlite/v1/driving?origin='.$start.'&destination='.$stop

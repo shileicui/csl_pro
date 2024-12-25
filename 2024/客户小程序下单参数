@@ -1,0 +1,231 @@
+{
+    "to_carrier_type": "1",  承运方式
+    "e_cu_id": "201900710",  委托客户ID
+    "stop_cu_name": "成都药明康德新药开发有限公司",   收件单位
+    "cp_name": "综合事业部测试项目二",  项目名称
+    "cp_id": "3785",  项目ID
+    "is_dtp": "2",  是否dtp
+    "to_customer_no": "",   客户单号
+    "oi_patient_number": "",  患者编号
+    "oi_drug_number": "",   药品编号
+    "oi_drug_info": "",    药品信息
+    "ol_static_class": "",  部门
+    "to_category": 1,   1 "物流运输订单" 5 "临床仓储入库订单" 6 "临床仓储出库订单" 7 "临床样本入库订单" 8 "临床样本出库订单"）
+
+    "to_temperature": "11",  运输温度
+    "to_temperature_name": "常温0~30℃",运输温度名称
+    "central_patient_number": "",   中心患者人数
+    "to_thermometer": "1",   温湿度计
+    "start_contact_relation": [
+        {
+            "co_name": "刘大彪",
+            "mobile_phone": "13800000000"
+        },
+        {
+            "co_name": "崔市磊",
+            "mobile_phone": "18310120387"
+        }
+    ],   发件联系人
+    "stop_contact_relation": [
+        {
+            "co_name": "成都单位",
+            "mobile_phone": "17521770941"
+        },
+        {
+            "co_name": "成都小问题",
+            "mobile_phone": "13896396325"
+        }
+    ],  收件联系人
+    "to_hygrometer_range": "",  湿度区间
+    "to_hygrometer_range1": "",
+    "to_hygrometer_range2": "",
+    "to_goodstype": "1",    货物类型
+    "to_business_type": "0",  出货仓库
+    "to_trequirement": "0",   运输方式
+    "to_timelimit": "1",   运输时效
+    "to_insure": "0",    是否投保
+    "to_insure_value": "",  投保金额
+    "start_region_id": "120000",  发件城市ID
+    "start_region_name": "天津市",  发件城市名称
+    "start_child_region_id": "",   发件区县 ID
+    "start_child_region_name": "",发件区县名称
+    "ol_start_hospital": 0,   发件医院ID
+    "start_cu_name": "三大零",    发件单位
+    "start_cu_id": "10413",     发件单位ID
+    "start_co_name": "刘大彪/崔市磊",   请填写发件人名称
+    "start_address": "中卫市中宁县599弄宁夏大伟钢化玻璃制品有限公司800",   发件地址
+    "start_address_name": "",发件地址名称
+    "start_itude": "",  收件地址经纬度
+    "start_address_exact": "",
+    "start_mobile_phone": "13800000000/18310120387",  请填写发件人联系方式
+    "ol_pickup_planbegin": "2024-12-15",  预取时间
+    "ol_pickup_planfw": "2",  预取时间区间
+    "ol_pickup_planbeginstarthour": "08",
+    "ol_pickup_planbeginstartmin": "00",
+    "ol_pickup_planbeginstophour": "10",
+    "ol_pickup_planbeginstopmin": "00",
+    "stop_region_id": "510100",  收件城市ID
+    "stop_region_name": "成都市",  收件城市名称
+    "stop_child_region_name": "",收件城市区县ID
+    "stop_child_region_id": "",收件城市区县名称
+    "stop_cu_id": "10421",  收件单位ID
+    "stop_co_name": "成都单位/成都小问题", 收件单位名称
+    "stop_address": "成都市温江区温泉大道三段333号药明康德8124号201",  收件地址
+    "stop_address_name": "",收件地址名称
+    "stop_itude": "",  收件经纬度
+    "stop_address_exact": "",
+    "stop_mobile_phone": "17521770941/13896396325", 收件联系人
+    "ol_delivery_planbegin": "2024-12-15",  预派时间
+    "ol_delivery_planfw": "9",  预派时间区间
+    "ol_delivery_planbeginstarthour": "08",
+    "ol_delivery_planbeginstartmin": "00",
+    "ol_delivery_planbeginstophour": "10",
+    "ol_delivery_planbeginstopmin": "00",
+    "cex_id": "", 试验中心ID
+    "cex_name": "",试验中心
+    "cex_no": "",  试验中心编号
+    "cex_username": "",  研究者
+    "to_email": "1020231546@qq.com/15238175891@163.com",  反馈邮箱
+    "to_remark": "",  运输备注
+    "cargo_size": "",  货物尺寸
+    "at_subtype": "207007",  附件类型
+    "at_id": "",  附件ID
+    "email": [],  抄送邮箱
+    "emaildesc": "",
+    "audit_tag": "", 审核标志
+    "close_tag": "",  关闭标志
+    "logistics": "", 物流
+    "other_item": "", 其他事项
+    "cargo_info": "",  随货资料
+    "oe_contact_name": "", 紧急联系人姓名
+    "oe_contact_phone": "", 紧急联系人电话
+    "wgo_dis_ste1": [],  消杀要求
+    "wgo_dis_ste": "",  消杀要求
+    "wgo_handover_sheet": "", 交接单类型
+    "wgo_drug_report": "",  药检报告类型
+    "wgo_remark": "",   其他出库备注
+    "cod_amount": "",   到付金额
+    "cod_way": "",    到付方式
+    "to_the_num": "0",   温度计数量
+    "time_type": "3",
+    "carrier_start_cu_name": "", 承运商
+    "carrier_to_customer_no": "",  运单号
+    "carrier_ol_pickup_planbegin": "",  发件日期
+    "carrier_to_remark": "",  运输备注
+    "to_hygrometer": "",   湿度计，1无湿度计，2生生湿度计，3客户湿度计，4客户和生生湿度计
+    "goods": [   货物数据
+        {
+            "cg_id": "5600619",
+            "cg_name": "test",
+            "cg_type": "临床样本",
+            "cu_id": "201900710",
+            "cu_name": "kh201900710-江苏恒瑞医药股份有限公司-综合事业部",
+            "cp_id": null,
+            "cp_name": "",
+            "cg_long": "1.00",
+            "cg_width": "2.00",
+            "cg_height": "3.00",
+            "cg_weight": null,
+            "cg_specification": "dd",
+            "cg_timelimit": "0",
+            "cg_visible": "1",
+            "cg_createtime": "1733381056",
+            "cg_lastupdtime": "1733381056",
+            "cg_temperature": "11",
+            "cg_temperature_name": "常温0~30℃",
+            "sto_batch": "",
+            "expiration_date": "0",
+            "temperature_id": null,
+            "cg_source": "2",
+            "ur_uid": "10496",
+            "can_delete": true,
+            "can_edit": true,
+            "force_selection": false,
+            "display_cg_source": "客户端",
+            "cg_type_name": "临床样本",
+            "og_name": "test",
+            "og_quantity": "12"
+        },
+        {
+            "cg_id": "5600619",
+            "cg_name": "test",
+            "cg_type": "临床样本",
+            "cu_id": "201900710",
+            "cu_name": "kh201900710-江苏恒瑞医药股份有限公司-综合事业部",
+            "cp_id": null,
+            "cp_name": "",
+            "cg_long": "1.00",
+            "cg_width": "2.00",
+            "cg_height": "3.00",
+            "cg_weight": null,
+            "cg_specification": "dd",
+            "cg_timelimit": "0",
+            "cg_visible": "1",
+            "cg_createtime": "1733381056",
+            "cg_lastupdtime": "1733381056",
+            "cg_temperature": "11",
+            "cg_temperature_name": "常温0~30℃",
+            "sto_batch": "",
+            "expiration_date": "0",
+            "temperature_id": null,
+            "cg_source": "2",
+            "ur_uid": "10496",
+            "can_delete": true,
+            "can_edit": true,
+            "force_selection": false,
+            "display_cg_source": "客户端",
+            "cg_type_name": "临床样本",
+            "og_name": "test",
+            "og_quantity": "33"
+        },
+        {
+            "cg_id": "5600619",
+            "cg_name": "test",
+            "cg_type": "临床样本",
+            "cu_id": "201900710",
+            "cu_name": "kh201900710-江苏恒瑞医药股份有限公司-综合事业部",
+            "cp_id": null,
+            "cp_name": "",
+            "cg_long": "1.00",
+            "cg_width": "2.00",
+            "cg_height": "3.00",
+            "cg_weight": null,
+            "cg_specification": "dd",
+            "cg_timelimit": "0",
+            "cg_visible": "1",
+            "cg_createtime": "1733381056",
+            "cg_lastupdtime": "1733381056",
+            "cg_temperature": "11",
+            "cg_temperature_name": "常温0~30℃",
+            "sto_batch": "",
+            "expiration_date": "0",
+            "temperature_id": null,
+            "cg_source": "2",
+            "ur_uid": "10496",
+            "can_delete": true,
+            "can_edit": true,
+            "force_selection": false,
+            "display_cg_source": "客户端",
+            "cg_type_name": "临床样本",
+            "og_name": "test",
+            "og_quantity": "1"
+        }
+    ],
+    "drug": [],  药品数据
+    "added_drug": [],  核酸药品
+    "to_tags": 66,  订单标签
+    "box": [
+        {
+            "ob_sto_id": "27",
+            "ob_sto_name": "VIP12保温箱",
+            "ob_sto_size": "215*215*213",
+            "ob_sto_number": 0,
+            "ob_type": "1"
+        }
+    ],  包材数据
+    "check_cu_id": "201900710",  当前委托客户ID
+    "illegal_confirm": 1,  
+    "to_create_uid": "10496",  当前账号 uid
+    "to_create_username": "testyp",  当前账号名称
+    "draft_box_id": 0   草稿ID
+}

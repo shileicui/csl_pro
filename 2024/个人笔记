@@ -34,15 +34,88 @@ Sswl2023.
 18310120387
 18310120387Csl.
 
-Qq222222
+@Sswl2024
 
 
 堡垒机
 cuishilei
 18310120387.Aa
+/mnt/wwwroot/tms_admin_test/tms_admin/web/upload
+
 
 https://x.com/
 shileicui169323
 Aa111111
 
 ctrl+alt+J
+
+//合并exel
+$newobj->mergeCells('A1:A3');
+
+//exel 字体颜色
+$newobj->getStyle('A1:A2')->getFont()->getColor()->setARGB('ff0000');
+
+//exel 背景颜色
+$newobj->getStyle('A1:A2')->getFill()->setFillType(\PHPExcel_Style_Fill::FILL_SOLID);
+$newobj->getStyle('A1:A2')->getFill()->getStartColor()->setARGB('ff0000');
+
+
+
+委托方  温度计   状态   时间
+
+
+//删除索引删除字段
+DROP INDEX idx_tsso_id ON tms_su_shipment_order_distask;
+
+alter table tms_su_shipment_order_distask drop tsso_id,
+drop tss_id,
+drop tssod_state;
+
+//修改字段备注
+
+ALTER TABLE table_name MODIFY COLUMN column_name INT COMMENT 'new comment';
+
+
+
+
+更改派件人
+
+update order_logistics set ol_delivery_person=110023,ol_delivery_name='外协-桂林-伍传播' where to_id=3351317;
+update oms_logistics set ol_delivery_person=110023,ol_delivery_name='外协-桂林-伍传播' where to_id=3351317;
+
+update opn_operator set user_id=110023,username='外协-桂林-伍传播',role_type=2 where opnop_id=20038516;
+
+
+update tms_logistics_remark set lr_opn_user='外协-桂林-伍传播' where lr_to_id=3351317 and lr_type=5;
+
+update tms_logistics_log set tll_uids=110023,tll_unames='外协-桂林-伍传播' where tll_to_id=3351317 and tll_type =4;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',3351317, 0, '系统', 0, 'IT协助修改  派件人 员工账号：李席德 改成 外协账号：外协-桂林-伍传播 审批单号：ITSJ202411080002', 1731036397, 13, 0);
+
+
+
+
+更改派件指派人
+
+update order_worksheet set op_uid='26622' where ow_id=16181337;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102032',3363334, 0, '系统', 0, '更改派件工作单操作人为董建烽  审批单号： ITSJ202411130002', 1731483939, 13, 0);
+
+
+
+
+你自己去看吧。  测试环境先加了， 生产等明天再加
+
+http://omstest.ashsh.com.cn:10059/oa/select/common-select-item?selectName=供应商类别
+
+
+
+http://oms.ashsh.com.cn:10059/oa/select/common-select-item?selectName=供应商类别
+
+
+
+
+
+
+ArrayHelper::index($da)
