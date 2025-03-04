@@ -1,0 +1,26 @@
+  /****处理停用供应商 停用账号 自动退出 start*******/
+
+            if (!$identity['su_id'] || $identity['operator_phone']) {
+                throw new UnauthorizedHttpException('您的登录验证已经过期，请重新登录');
+            }
+
+            //供应商对应账号停用
+            $operator = Supplier::findIdentityByPhoneSuid($identity['operator_phone'],$identity['su_id']);
+            if (!$operator) {
+                throw new UnauthorizedHttpException('您的登录验证已经过期，请重新登录');
+
+            }
+            //账户锁定
+            $user = Supplier::findUserIdentityByPhone($identity['operator_phone']);
+            if (!$user) {
+                throw new UnauthorizedHttpException('您的登录验证已经过期，请重新登录');
+
+            }
+
+            //供应商停用
+            $supplier = Supplier::getSupplier($identity['su_id']);
+            if (!$supplier) {
+                throw new UnauthorizedHttpException('您的登录验证已经过期，请重新登录');
+
+            }
+            /****处理停用供应商 停用账号 自动退出 end*******/

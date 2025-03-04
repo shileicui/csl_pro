@@ -1,0 +1,16 @@
+        $address_config = SystemEnum::getSystemEnumByEnumType('DRUG_IN_ORDER');
+        $white_list = $address_config['white_list'];
+
+
+        if ($white_list && !in_array($usdata['identifier'], explode(',', $white_list))) {
+            if ( strpos($post['stop_address'],'纪丰路327')  ||  strpos($post['stop_address'],'科创十街16号') ||strpos($post['stop_address'],'光谱东路') ) {
+                if ($post['at_arr'] == '') {
+                    return Helper::outJson(0, '该订单收件地址是生生仓库,请上传入库交接单');
+                }
+                $atIds = explode(',', $post['at_arr']);
+                $uploadedAttachSubtype = Attachment::find()->where(['at_id' => $atIds])->select('at_subtype')->column();
+                if (!in_array(207007, $uploadedAttachSubtype)) {
+                    return Helper::outJson(0, '该订单收件地址是生生仓库,请上传入库交接单');
+                }
+            }
+        }

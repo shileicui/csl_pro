@@ -1,0 +1,389 @@
+{
+  "to_carrier_type": "1",
+  "e_cu_id": "201900710",
+  "stop_cu_name": "中心医院",
+  "cp_name": "7787",
+  "cp_id": "2081",
+  "is_dtp": "1",
+  "to_customer_no": "",
+  "oi_patient_number": "03",
+  "oi_drug_number": "",
+  "oi_drug_info": "",
+  "ol_static_class": "3",
+  "to_category": 1,
+  "to_temperature": "11",
+  "to_temperature_name": "常温0~30℃",
+  "central_patient_number": "",
+  "to_thermometer": "1",
+  "start_contact_relation": [
+    {
+      "co_name": "张小二",
+      "mobile_phone": "13025621320"
+    }
+  ],
+  "stop_contact_relation": [
+    {
+      "co_name": "张",
+      "mobile_phone": "15034456859"
+    }
+  ],
+  "to_hygrometer_range": "",
+  "to_hygrometer_range1": "",
+  "to_hygrometer_range2": "",
+  "to_goodstype": "1",
+  "to_business_type": "0",
+  "to_trequirement": "0",
+  "to_timelimit": "1",
+  "to_insure": "0",
+  "to_insure_value": "",
+  "start_region_id": "310000",
+  "start_region_name": "上海市",
+  "start_child_region_id": null,
+  "start_child_region_name": "",
+  "ol_start_hospital": 0,
+  "start_cu_name": "虹口区卫生院2",
+  "start_cu_id": "10343",
+  "start_co_name": "张小二",
+  "start_address": "上海市虹口区水电路2",
+  "start_address_name": "",
+  "start_itude": "",
+  "start_address_exact": "",
+  "start_mobile_phone": "13025621320",
+  "ol_pickup_planbegin": "2025-01-09",
+  "ol_pickup_planfw": "1",
+  "ol_pickup_planbeginstarthour": "08",
+  "ol_pickup_planbeginstartmin": "00",
+  "ol_pickup_planbeginstophour": "10",
+  "ol_pickup_planbeginstopmin": "00",
+  "stop_region_id": "130700",
+  "stop_region_name": "张家口市",
+  "stop_child_region_name": "",
+  "stop_child_region_id": null,
+  "stop_cu_id": "9693",
+  "stop_co_name": "张",
+  "stop_address": "中心医院一号楼283",
+  "stop_address_name": "",
+  "stop_itude": "",
+  "stop_address_exact": "",
+  "stop_mobile_phone": "15034456859",
+  "ol_delivery_planbegin": "2025-01-09",
+  "ol_delivery_planfw": "9",
+  "ol_delivery_planbeginstarthour": "08",
+  "ol_delivery_planbeginstartmin": "00",
+  "ol_delivery_planbeginstophour": "10",
+  "ol_delivery_planbeginstopmin": "00",
+  "cex_id": "",
+  "cex_name": "",
+  "cex_no": "",
+  "cex_username": "",
+  "to_email": "17521770941@163.com",
+  "to_remark": "",
+  "cargo_size": "",
+  "at_subtype": "207007",
+  "at_id": "",
+  "email": [],
+  "emaildesc": "",
+  "audit_tag": "",
+  "close_tag": "",
+  "logistics": "",
+  "other_item": "",
+  "cargo_info": "",
+  "oe_contact_name": "",
+  "oe_contact_phone": "",
+  "wgo_dis_ste1": [],
+  "wgo_dis_ste": "",
+  "wgo_handover_sheet": "",
+  "wgo_drug_report": "",
+  "wgo_remark": "",
+  "cod_amount": "",
+  "cod_way": "",
+  "to_the_num": "1",
+  "time_type": 0,
+  "carrier_start_cu_name": "",
+  "carrier_to_customer_no": "",
+  "carrier_ol_pickup_planbegin": "",
+  "carrier_to_remark": "",
+  "to_hygrometer": "",
+  "goods": [
+    {
+      "cg_id": "5600634",
+      "cg_name": "货物fix1111",
+      "cg_type": "临床样本",
+      "cu_id": "201900710",
+      "cu_name": "kh201900710-江苏恒瑞医药股份有限公司-综合事业部",
+      "cp_id": null,
+      "cp_name": "",
+      "cg_long": "1.00",
+      "cg_width": "1.00",
+      "cg_height": "1.00",
+      "cg_weight": null,
+      "cg_specification": "1111",
+      "cg_timelimit": "0",
+      "cg_visible": "1",
+      "cg_createtime": "1734338222",
+      "cg_lastupdtime": "1734505035",
+      "cg_temperature": "11",
+      "cg_temperature_name": "常温0~30℃",
+      "sto_batch": "",
+      "expiration_date": "0",
+      "temperature_id": null,
+      "cg_source": "2",
+      "ur_uid": "10899",
+      "can_delete": true,
+      "can_edit": true,
+      "force_selection": false,
+      "display_cg_source": "客户端",
+      "cg_type_name": "临床样本",
+      "og_name": "货物fix1111",
+      "og_quantity": "1"
+    }
+  ],
+  "drug": [],
+  "added_drug": [],
+  "to_tags": "",
+  "box": [
+    {
+      "ob_sto_id": "15",
+      "ob_sto_name": "VIP4保温箱",
+      "ob_sto_size": "2000*3000*4555",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "200648",
+      "ob_sto_name": "VIP6N保温箱",
+      "ob_sto_size": "205*185*170",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "204956",
+      "ob_sto_name": " EP6泡沫箱",
+      "ob_sto_size": "145*145*145",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "205465",
+      "ob_sto_name": "VIP6N保温箱-外显",
+      "ob_sto_size": "20*20*20",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "222912",
+      "ob_sto_name": " D6保温箱",
+      "ob_sto_size": "170*170*200",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "27",
+      "ob_sto_name": "VIP12保温箱",
+      "ob_sto_size": "215*215*213",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "204957",
+      "ob_sto_name": " EP15泡沫箱",
+      "ob_sto_size": "205*185*170",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "222877",
+      "ob_sto_name": " D15保温箱",
+      "ob_sto_size": "280*220*250",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "25",
+      "ob_sto_name": "VIP16保温箱",
+      "ob_sto_size": "244*244*242",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "205466",
+      "ob_sto_name": "VIP16保温箱-外显",
+      "ob_sto_size": "600*20*10",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "204958",
+      "ob_sto_name": " EP25泡沫箱",
+      "ob_sto_size": "244*244*242",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "24",
+      "ob_sto_name": "VIP28保温箱",
+      "ob_sto_size": "297*297*295",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "205467",
+      "ob_sto_name": "VIP28保温箱-外显",
+      "ob_sto_size": "500*500*500",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "205996",
+      "ob_sto_name": "VIP28保温箱-套箱",
+      "ob_sto_size": "0*0*0",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "223366",
+      "ob_sto_name": " D30保温箱",
+      "ob_sto_size": "315*300*315",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "200646",
+      "ob_sto_name": "VIP36保温箱",
+      "ob_sto_size": "374*297*295",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "205468",
+      "ob_sto_name": "VIP36保温箱-外显",
+      "ob_sto_size": "200*300*400",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "204294",
+      "ob_sto_name": " EP53保温箱",
+      "ob_sto_size": "0*0*0",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "205469",
+      "ob_sto_name": "VIP56保温箱-外显",
+      "ob_sto_size": "100*200*300",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "208007",
+      "ob_sto_name": "VIP58保温箱",
+      "ob_sto_size": "457*457*257",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "21",
+      "ob_sto_name": "VIP96保温箱",
+      "ob_sto_size": "448*449*449",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "205261",
+      "ob_sto_name": "VIP96保温箱-外显",
+      "ob_sto_size": "448*449*449",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "205998",
+      "ob_sto_name": "VIP96保温箱-套箱",
+      "ob_sto_size": "100*100*100",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "201417",
+      "ob_sto_name": "VIP100保温箱",
+      "ob_sto_size": "565*465*375",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "205262",
+      "ob_sto_name": "VIP100保温箱-外显",
+      "ob_sto_size": "565*465*375",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "215741",
+      "ob_sto_name": "EP125泡沫箱",
+      "ob_sto_size": "0*0*0",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "201418",
+      "ob_sto_name": "VIP168保温箱",
+      "ob_sto_size": "790*450*450",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "213282",
+      "ob_sto_name": " D225保温箱",
+      "ob_sto_size": "0*0*0",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "213300",
+      "ob_sto_name": " D310保温箱",
+      "ob_sto_size": "0*0*0",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "202874",
+      "ob_sto_name": " 液氮罐",
+      "ob_sto_size": "450*350*250",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "206112",
+      "ob_sto_name": "脐血库专用",
+      "ob_sto_size": "0*0*0",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "206860",
+      "ob_sto_name": "协和发酵专用套箱-大号",
+      "ob_sto_size": "0*0*0",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "206861",
+      "ob_sto_name": "协和发酵专用套箱-小号",
+      "ob_sto_size": "0*0*0",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    },
+    {
+      "ob_sto_id": "206869",
+      "ob_sto_name": "合件专用包装",
+      "ob_sto_size": "0*0*0",
+      "ob_sto_number": 0,
+      "ob_type": "1"
+    }
+  ],
+  "check_cu_id": "201900710",
+  "illegal_confirm": 0,
+  "to_create_uid": 10496,
+  "to_create_username": "testyp",
+  "draft_box_id": 0
+}

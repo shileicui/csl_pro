@@ -1,0 +1,248 @@
+<?
+
+加油费、路桥费车辆所属城市冗余
+feature_23542_csl_20250102
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=23542  未上线
+
+
+
+
+ALTER table
+  tms_refuel_record
+ADD
+  COLUMN car_region_id int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '车辆所属城市城市ID car.region_id',
+ADD
+  COLUMN car_region_name char(128) NOT NULL DEFAULT '' COMMENT '车辆所属城市名 car.region_name';
+
+
+ALTER table
+  tms_road_record
+ADD
+  COLUMN car_region_id int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '车辆所属城市城市ID car.region_id',
+ADD
+  COLUMN car_region_name  char(128) NOT NULL DEFAULT '' COMMENT '车辆所属城市名 car.region_name';
+
+
+
+
+车辆加油汇总优化
+feature_23547_csl_20250103
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=23547  已上线
+
+
+CAR-T同城订单节点改造
+feature_23618_csl_20250107  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=23618   未上线
+
+
+
+
+
+
+
+
+客户端下单小程序   
+feature_22944_csl_20241115  mini_program
+feature_22944_csl_20250113  tms_admin
+feature_22944_csl_20250120  oms_admin
+
+feature_22944_csl_20250222  oms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=22944  未上线
+
+
+
+
+UPDATE customer_configure
+SET source = CONCAT(source, ',11')
+WHERE source LIKE '%2%' AND source NOT LIKE '%11%';
+
+
+//上线记得加  params.php
+    'customerConfig' => require(__DIR__ . '/customerConfig.php'),
+    'weChatParams' => require(__DIR__ . '/weChatParams.php'),
+
+
+
+
+oms_config.php 
+
+,11=>'小程序合同订单'
+
+
+//订单来源
+    'to_source' => [1=>'oms系统', 2=>'客户oms系统' ,3=>'微信服务号', 4=>'API接口', 5=>'国际系统',6=>'迈迪朗杰API',7 => 'OMS系统批量导入', 8 => '机器人邮件自动下单',9 => '小程序',10=>'宴嘉API',11=>'小程序合同订单'],
+
+
+MINI_PROGRAM_CUID
+
+//特殊客户的白名单
+{
+  "cu_id": [
+    20120010,
+    20120504,
+    202000110,
+    201900710,
+    20120206,
+    202100384,
+    202001201,
+    201207741
+  ]
+}
+
+
+
+
+
+// MINI_PROGRAM_NOT_CUID
+
+// //特殊客户的黑名单
+// {
+//   "cu_id": [
+//     20120010,
+//     20120504,
+//     202000110,
+//     201900710,
+//     20120206,
+//     202100384,
+//     202001201,
+//     201207741
+//   ]
+// }
+
+
+
+
+
+
+
+
+
+//暂时不需要客户配置 start
+// alter table
+//   customer
+// add
+//   column `program_contract_order`  tinyint(1) NOT NULL DEFAULT '1' COMMENT '小程序允许下无合同订单 1关闭 2开启';
+
+
+// UPDATE customer SET  program_contract_order = 1;
+
+//
+// ALTER TABLE customer
+// MODIFY COLUMN program_contract_order tinyint(1) NOT NULL DEFAULT '1' COMMENT '小程序允许下无合同订单 1关闭 2开启';
+
+
+// customer_conf  新增
+
+// 'program_contract_order' => array('on' => 2, 'off' => 1, 'label' => '小程序允许下无合同订单', 'span' => ''), //小程序允许下无合同订单  1：关闭 2：开启
+
+// program_contract_order
+
+
+//暂时不需要客户配置 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//下多温区合单
+  "cpc_many_temperature": "1",
+
+  "to_temperatures": [
+    "11",
+    "12"
+  ],
+
+
+稀释液 选药品 根据 温度 发货城市
+
+
+
+      // 是否展示货物
+    // to_business_type：出货仓库   生生||非生生
+    // to_goodstype：货物类型 临床药品||ivd(器械)
+    // 订单类型：to_category  dtp
+    cargoShowStatus() {
+      if (this.activeTab != 3) {
+        if (this.ruleForm.to_carrier_type == 2) return false
+        if (this.ruleForm.to_business_type == 2) {
+          return false
+        } else if (this.ruleForm.to_goodstype == 12) {
+          return false
+        } else if (this.ruleForm.is_dtp == 1) {
+          return this.show_dtp_goods_cpids.includes(Number(this.ruleForm.cp_id))
+        } else {
+          return true
+        }
+      } else {
+        return false
+      }
+
+      // show_dtp_goods_cpidsreturn ruleForm.to_business_type != 2 && ruleForm.to_goodstype != 12 && ruleForm.to_category != 4
+    },
+
+
+
+
+    https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=23694
+
+
+
+'to_goodstype_cuid' => [
+[
+"cu_id" => [201206985],//诺和诺德（中国）制药有限公司
+"goods_id" => [11=>'样品']
+],
+[
+"cu_id" => [201900151],
+"goods_id" => [12 => '稀释液']
+],
+[
+            "cu_id" => [ ],
+            "goods_id" => [13 => '体外诊断试剂']
+        ],
+[
+            "cu_id" => [202105449],
+            "goods_id" => [14 => '细胞制剂']
+        ],
+[
+            "cu_id" => [20120272,201900296],
+            "goods_id" => [15 => '原料药']
+        ],
+],
+
+
+    
+
+
+ALTER table
+  car_repair
+ADD
+  INDEX idx_ca_id (`ca_id`);
+
+
+
+
+
+
+
+
+车辆保险状态同步优化
+
+feature_24288_csl_20250218  tms_service
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24288  未上线

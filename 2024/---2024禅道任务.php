@@ -3591,12 +3591,18 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=23308 已上线
 外协费用界面优化
 feature_23361_csl_20241218  tms_admin
 feature_23361_csl_20241218  tms_service
+
+feature_23361_csl_20241218  omsapi
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=23361  未上线
 
 
 ALTER table
   tms_operation_feeremind
 ADD
-  COLUMN address_to_id  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '存在相同地址to_id';
+  COLUMN address_to_id  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '存在相同地址to_id',
+ADD
+  COLUMN address_opn_id int(11) unsigned NOT NULL DEFAULT '0' COMMENT '存在相同地址tms_operation_fee.opn_id';
+
+  
 
 http://baidumap.ashsh.com.cn/directionlite/v1/driving?origin='.$start.'&destination='.$stop
