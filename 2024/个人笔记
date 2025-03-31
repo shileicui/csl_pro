@@ -39,7 +39,10 @@ Sswl2023.
 
 堡垒机
 cuishilei
-18310120387.Aa
+18310120387.Cc
+
+sudo su
+
 /mnt/wwwroot/tms_admin_test/tms_admin/web/upload
 
 
@@ -119,3 +122,6 @@ http://oms.ashsh.com.cn:10059/oa/select/common-select-item?selectName=供应商�
 
 
 ArrayHelper::index($da)
+
+
+123ABCabc

@@ -1,0 +1,9 @@
+         
+         <?
+
+         'og_name' => $good['cg_name'],
+            'og_long' => $good['cg_long'],
+            'og_width' => $good['cg_width'],
+            'og_height' => $good['cg_height'],
+            'og_quantity' => $good['og_quantity'],
+            'goods_specification' => $good['cg_specification'],

@@ -44,6 +44,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=23618   未上线
 客户端下单小程序   
 feature_22944_csl_20241115  mini_program
 feature_22944_csl_20250113  tms_admin
+
 feature_22944_csl_20250120  oms_admin
 
 feature_22944_csl_20250222  oms_service
@@ -78,18 +79,22 @@ MINI_PROGRAM_CUID
 //特殊客户的白名单
 {
   "cu_id": [
-    20120010,
-    20120504,
-    202000110,
-    201900710,
-    20120206,
-    202100384,
-    202001201,
-    201207741
+   201900710
   ]
 }
 
-
+        <div style="width: 100%;height: 210px;margin-top: 60px">
+            <style>.btn { width:100%;
+                    height:54px;
+                    border:2px solid rgba(0,149,162,1);
+                    border-radius:8px;
+                    background:#fff;
+                    color:rgba(0,149,162,1);
+                    font-size:19px;
+                    font-weight:600;
+                    margin-top:15px; }</style>
+            <button class="btn apply-btn">前往小程序</button>
+        </div>
 
 
 
@@ -246,3 +251,126 @@ ADD
 feature_24288_csl_20250218  tms_service
 
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24288  未上线
+
+
+
+
+服务号引导到小程序下单
+feature_csl_24510_20250306
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24510  已上线
+
+
+
+外协操作费地址标红同步bms
+feature_csl_24554_20250311  tms_admin
+feature_csl_24554_20250311  tms_service
+feature_csl_24554_20250320  omsapi
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24554  已上线
+
+
+
+
+
+
+
+
+小程序对账通知
+feature_24559_csl_20250312  oms_admin
+feature_24559_csl_20250318  mini_program
+feature_24559_csl_20250320  customer_ns
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24559  未上线
+
+
+
+
+
+
+
+
+
+https://api.weixin.qq.com/cgi-bin/user/info?access_token=90_LyYI-ivLzDeJXxCDXQ63xNP3RUevYvUYXVO1dWOt6rT4i9mkPVfQIQADDE8JMng1JtFpvyAZSXAl73Tey2U-ouQq6z4IpX6MQgr2rfDBj60bW5BdLMemJd4iG88IWJgACAZNA&openid=oKTZF6nsTG5z7tqmPpTJB7Z4cmos&lang=zh_CN
+
+
+
+
+：access_token90_LyYI-ivLzDeJXxCDXQ63xNP3RUevYvUYXVO1dWOt6rT4i9mkPVfQIQADDE8JMng1JtFpvyAZSXAl73Tey2U-ouQq6z4IpX6MQgr2rfDBj60bW5BdLMemJd4iG88IWJgACAZNAopenidoKTZF6nsTG5z7tqmPpTJB7Z4cmos
+
+
+
+pagesC/statementAfAccount/statementDetails
+
+
+
+//19号改动
+feature_csl_20250319
+
+
+
+
+
+
+
+客户端供应链入库订单审核状态调整
+feature_24667_csl_20250324   mini_program
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24667
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24699
+
+
+
+
+车辆维保冗余优化
+feature_24753_csl_20250325
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24753  已上线
+
+
+服务号跳转到小程序优化
+feature_24730_csl_20250325
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24730   已上线
+
+
+
+小程序和服务号关联
+feature_24758_csl_20250326  oms_wechat
+feature_24758_csl_20250326  mini_program
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24758  已上线
+
+
+
+
+
+
+
+CREATE TABLE `wechat_openid` (
+  `wo_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `unionid`  varchar(32) NOT NULL DEFAULT '' COMMENT '微信unionid',
+  `service_openid` varchar(32) NOT NULL DEFAULT '' COMMENT '服务号openid',
+  `mini_openid` varchar(32) NOT NULL DEFAULT '' COMMENT '小程序openid',
+  `wo_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`wo_id`),
+  KEY `idx_unionid` (`unionid`) ,
+  KEY `idx_service_openid` (`service_openid`) ,
+  KEY `idx_mini_openid` (`mini_openid`)
+)  COMMENT='微信小程序服务号openid表';
+
+
+
+//搜索条件
+
+
+
+
+
+
+客户小程序-运单支持查询收发客户
+feature_24762_csl_20250326
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24762  已上线
+
+
+客户小程序-允许管理员不选择项目下单
+feature_24778_csl_20250327
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24778
