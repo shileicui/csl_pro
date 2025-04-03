@@ -144,3 +144,23 @@ UPDATE tms_road_record SET trr_visible=2 where WHERE deal_time >= 1735660800 and
 UPDATE car SET  car_level_time =0,car_year_valid_time=0,car_level=0 where ca_id =685;
 
 INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '170', '170001', 685, 0, '系统申请', 0, '川AF40086已录入的技术等级评定及日期数据删除。 审批单号：ITSJ202502100001 ', 1739251930, 13, 0);
+
+
+
+
+
+120.657995,31.276771
+
+
+
+
+SELECT start_address,start_itude FROM `transport_order` WHERE to_id =3654158;
+SELECT start_address,start_itude FROM `oms_order` WHERE to_id =3654158;
+
+//修改订单地址
+UPDATE transport_order SET start_address='苏州市吴中区吴东路1339号',start_itude='120.657995,31.276771' where to_id = 3654158;
+UPDATE oms_order SET start_address='苏州市吴中区吴东路1339号',start_itude='120.657995,31.276771' where to_id = 3654158;
+
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102002', 3654158, 0, '系统申请', 0, ' 修改取件地址为：苏州市吴中区吴东路1339号 审批单号：ITSJ202504010008 ', 1743503900, 13, 0);
+
