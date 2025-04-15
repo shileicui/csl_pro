@@ -154,13 +154,56 @@ INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `
 
 
 
-SELECT start_address,start_itude FROM `transport_order` WHERE to_id =3654158;
-SELECT start_address,start_itude FROM `oms_order` WHERE to_id =3654158;
+SELECT start_address,start_itude FROM `transport_order` WHERE to_id =3660067;
+SELECT start_address,start_itude FROM `oms_order` WHERE to_id =3660067;
 
 //修改订单地址
-UPDATE transport_order SET start_address='苏州市吴中区吴东路1339号',start_itude='120.657995,31.276771' where to_id = 3654158;
-UPDATE oms_order SET start_address='苏州市吴中区吴东路1339号',start_itude='120.657995,31.276771' where to_id = 3654158;
+UPDATE transport_order SET start_address='广西壮族自治区肿瘤医院南宁市河堤路71号',start_itude='108.348333,22.801332' where to_id = 3660067;
+
+UPDATE oms_order SET start_address='广西壮族自治区肿瘤医院南宁市河堤路71号',start_itude='108.348333,22.801332' where to_id = 3660067;
 
 
-INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102002', 3654158, 0, '系统申请', 0, ' 修改取件地址为：苏州市吴中区吴东路1339号 审批单号：ITSJ202504010008 ', 1743503900, 13, 0);
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102002', 3660067, 0, '系统申请', 0, ' 修改取件地址为：广西壮族自治区肿瘤医院南宁市河堤路71号 审批单号：ITSJ202504070001 ', 1743991160, 13, 0);
 
+
+
+//修改取件联系人
+UPDATE transport_order SET start_mobile_phone =13338000538,start_co_name='滕丽蕊'  where to_id = 3660067;
+
+UPDATE oms_order SET start_mobile_phone =13338000538,start_co_name='滕丽蕊'  where to_id = 3660067;
+
+UPDATE order_contact_relation SET mobile_phone =13338000538,co_name='滕丽蕊'  where id = 1080579;
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102002', 3660067, 0, '系统申请', 0, ' 修改取件联系人为滕丽蕊 审批单号：ITSJ202504070001', 1743992739, 13, 0);
+
+
+
+
+108.368949,22.730064
+
+
+
+
+
+
+//修改订单地址
+UPDATE transport_order SET start_cu_name='广西壮族自治区肿瘤医院（五象院区）',start_address='南宁市良庆区良玉大道50号',start_itude='108.368949,22.730064' where to_id = 3660067;
+
+UPDATE oms_order SET start_cu_name='广西壮族自治区肿瘤医院（五象院区）',start_address='南宁市良庆区良玉大道50号',start_itude='108.368949,22.730064' where to_id = 3660067;
+
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102002', 3660067, 0, '系统申请', 0, ' 修改发件客户：广西壮族自治区肿瘤医院（五象院区）取件地址：南宁市良庆区良玉大道50号  审批单号：ITSJ202504070001 ', 1744009008, 13, 0);
+
+
+
+
+UPDATE car SET cumulative_duration=1251 where ca_id = 224;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',224, 0, '系统', 0, 'IT协助修改 冷机保养时总时长改为1251H 审批单号：ITSJ202504100002', 1744337121, 13, 0);
+
+
+
+//修改车辆维保完成里程
+UPDATE car_repair SET repair_finish_mile=247161 where cr_id = 13314;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',13314, 0, '系统', 0, 'IT协助修改 维保里程填写错误需修改为247161KM。  审批单号：ITSJ202504140005', 1744686596, 13, 0);

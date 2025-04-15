@@ -278,6 +278,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24554  已上线
 feature_24559_csl_20250312  oms_admin
 feature_24559_csl_20250318  mini_program
 feature_24559_csl_20250320  customer_ns
+feature_24559_csl_20250314  oms_service
 
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24559  未上线
 
@@ -373,10 +374,62 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24762  已上线
 
 客户小程序-允许管理员不选择项目下单
 feature_24778_csl_20250327
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24778
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24778  未上线
 
 
 
 小程序提发货子单扫码优化
 feature_24864_csl_20250401
 http://project.ashsh.com.cn/index.php?m=task&f=view&id=24864  未上线
+
+
+
+小程序收发件地址保存添加限制
+feature_24907_csl_20250403  mini_program
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24907  未上线
+
+
+
+冷机保养添加限制优化
+feature_25016_csl_20250410 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=25016  未上线
+
+
+
+//审核订单推送小程序
+feature_shts
+
+
+
+
+
+客户小程序-白名单修改为客户配置
+
+feature_24763_csl20250410  oms_admin
+
+feature_24763_csl_20250410 mini_program
+
+feature_24763_csl_20250411 oms_wechat
+
+feature_24763_csl_20250411 oms_service
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24763  未上线
+
+
+MINI_PROGRAM_CUID
+
+
+ alter table
+   customer
+ add
+   column `mini_program_switch`  tinyint(1) NOT NULL DEFAULT '1' COMMENT '允许小程序下单 1关闭 2开启';
+
+
+
+   'mini_program_switch' => array('on' => 2, 'off' => 1, 'label' => '允许小程序下单', 'span' => ''), //允许小程序下单  1：关闭 2：开启
+
+
+
+保险查询优化
+feature_25059_csl_20250414  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=25059  未上线
