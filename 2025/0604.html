@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>请选择字段</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            width: 750px;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        
+        .header {
+            padding: 10px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            font-size: 16px;
+            font-weight: normal;
+            color: #333;
+        }
+        
+        .close-btn {
+            color: #999;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        .action-buttons {
+            padding: 10px 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            cursor: pointer;
+            color: #333;
+            font-size: 12px;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .checkbox-item input {
+            margin-right: 5px;
+        }
+        
+        .checkbox-item label {
+            font-size: 12px;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .btn {
+            padding: 6px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: #1890ff;
+            color: white;
+        }
+        
+        .btn-default {
+            background-color: #409EFF;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>请选择字段</h1>
+            <span class="close-btn">×</span>
+        </div>
+        <div class="action-buttons">
+            <div class="action-btn">全选</div>
+            <div class="action-btn">反选</div>
+            <div class="action-btn">清空</div>
+        </div>
+        <div class="content">
+            <div class="checkbox-grid">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="supplier">
+                    <label for="supplier">供应商</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="client">
+                    <label for="client">委托客户</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="project">
+                    <label for="project">项目名称</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="city">
+                    <label for="city">发件城市</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="unit">
+                    <label for="unit">发件单位</label>
+                </div>
+            </div>
+            
+            <div class="checkbox-grid">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="location">
+                    <label for="location">发件地点</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="sender">
+                    <label for="sender">发件人</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="sender-contact">
+                    <label for="sender-contact">发件人联系方式</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="pickup-schedule">
+                    <label for="pickup-schedule">预约取件时间</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="delivery-schedule">
+                    <label for="delivery-schedule">预约派件时间</label>
+                </div>
+            </div>
+            
+            <div class="checkbox-grid">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="actual-pickup">
+                    <label for="actual-pickup">实际取件日期</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="actual-delivery">
+                    <label for="actual-delivery">实际派件时间</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="receipt-status">
+                    <label for="receipt-status">签收状态</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="tracking">
+                    <label for="tracking">运单号</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="quantity">
+                    <label for="quantity">取件数量</label>
+                </div>
+            </div>
+            
+            <div class="checkbox-grid">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="actual-quantity">
+                    <label for="actual-quantity">实取数量</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="temperature">
+                    <label for="temperature">运输温度</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="project-no">
+                    <label for="project-no">项目编号</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="client-no">
+                    <label for="client-no">客户单号</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="pickup-notes">
+                    <label for="pickup-notes">取派备注</label>
+                </div>
+            </div>
+            
+            <div class="checkbox-grid">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="blood-collection">
+                    <label for="blood-collection">采血时间</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="client-notes">
+                    <label for="client-notes">客户备注</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="temp-serial">
+                    <label for="temp-serial">温度计序列号</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="receiver-unit">
+                    <label for="receiver-unit">收件单位</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="receiver-address">
+                    <label for="receiver-address">收件地址</label>
+                </div>
+            </div>
+            
+            <div class="checkbox-grid">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="receiver">
+                    <label for="receiver">收件人</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="receiver-contact">
+                    <label for="receiver-contact">收件人联系方式</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="feedback-email">
+                    <label for="feedback-email">反馈邮箱</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="order-status">
+                    <label for="order-status">订单状态</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="order-source">
+                    <label for="order-source">订单来源</label>
+                </div>
+            </div>
+            
+            <div class="checkbox-grid">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="order-time">
+                    <label for="order-time">下单时间</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="box-type">
+                    <label for="box-type">箱型</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="accessories">
+                    <label for="accessories">配件</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="count">
+                    <label for="count">数量</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="route-nodes">
+                    <label for="route-nodes">途经节点</label>
+                </div>
+            </div>
+            
+            <div class="checkbox-grid">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="consignor-name">
+                    <label for="consignor-name">委托人姓名</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="consignor-contact">
+                    <label for="consignor-contact">委托人联系方式</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="current-city">
+                    <label for="current-city">当前所在城市</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="cargo-type">
+                    <label for="cargo-type">货物类型</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="project-tag">
+                    <label for="project-tag">项目标签</label>
+                </div>
+            </div>
+            
+            <div class="checkbox-grid">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="signer">
+                    <label for="signer">签收人</label>
+                </div>
+                <div class="checkbox-item" style="visibility: hidden;"></div>
+                <div class="checkbox-item" style="visibility: hidden;"></div>
+                <div class="checkbox-item" style="visibility: hidden;"></div>
+                <div class="checkbox-item" style="visibility: hidden;"></div>
+            </div>
+            
+            <div class="buttons">
+                <button class="btn btn-primary">保存快捷导出</button>
+                <button class="btn btn-default">直接导出</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全选功能
+        document.querySelector('.action-buttons .action-btn:nth-child(1)').addEventListener('click', function() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = true;
+            });
+        });
+
+        // 反选功能
+        document.querySelector('.action-buttons .action-btn:nth-child(2)').addEventListener('click', function() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = !checkbox.checked;
+            });
+        });
+
+        // 清空功能
+        document.querySelector('.action-buttons .action-btn:nth-child(3)').addEventListener('click', function() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+        });
+
+        // 关闭按钮
+        document.querySelector('.close-btn').addEventListener('click', function() {
+            document.querySelector('.container').style.display = 'none';
+        });
+
+        // 按钮点击事件
+        document.querySelector('.btn-primary').addEventListener('click', function() {
+            alert('保存快捷导出按钮被点击');
+        });
+
+        document.querySelector('.btn-default').addEventListener('click', function() {
+            alert('直接导出按钮被点击');
+        });
+    </script>
+</body>
+</html>

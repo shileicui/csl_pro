@@ -8,6 +8,36 @@ INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `u
 
 
 
+update car_repair set cr_type=2,maintain_type=1 where cr_id=13584;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',13584, 0, '系统', 0, 'IT协助修改 	浙G06ZT8车辆2025-03-22更正为车辆保养  审批单号：ITSJ202505130006', 1733455466, 13, 0);
+
+
+
+update car_repair set cr_type=2,maintain_type=1 where cr_id=14005;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',14005, 0, '系统', 0, 'IT协助修改 津C467X7在4月21日维保类型选择错误，维修改为常规保养  审批单号：ITSJ202505070004', 1747012994, 13, 0);
+
+
+
+
+update car_repair set cr_type=2,maintain_type=1 where cr_id=12653;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',12653, 0, '系统', 0, 'IT协助修改  鲁A39B9B车辆在25年1月7号这条数据已经更换机油机滤，属于常规保养，操作确认选择错误，需修改为常规保养  审批单号：ITSJ202504170003', 1745197242, 13, 0);
+
+
+
+update car_repair set cr_type=2,maintain_type=1 where cr_id=13496;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',13496, 0, '系统', 0, 'IT协助修改  鲁AK8P45车辆3月16号维保，操作确认完成是选错选项，修改为车辆常规保养。  审批单号： ITSJ202504230001', 1745821921, 13, 0);
+
+
+
+
+
+
+
+
 //修改维保里程
 update car_repair set repair_mile=306564,repair_finish_mile=306564 where cr_id=12021;
 
@@ -74,6 +104,17 @@ update order_logistics set ol_pickup_time=1724563380   where to_id=3220257;
 update oms_logistics set ol_pickup_time=1724563380   where to_id=3220257;
 
 INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102040', 3220257, 0, '系统申请', 0, ' 取件时间修改为2024-08-25 13:23 审批单号：ITSJ202408260003 ', 1724633519, 13, 0);
+
+
+
+cart订单修改取件时间
+
+UPDATE tms_cart_operation_record SET tcor_time=1746769560 where tcor_id = 25039;
+
+update order_logistics set ol_pickup_time=1746769560   where to_id=3731106;
+update oms_logistics set ol_pickup_time=1746769560   where to_id=3731106;
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102040', 3731106, 0, '系统申请', 0, ' 取件时间修改为2025-05-09 13:46 审批单号：ITSJ202505090001 ', 1746772106, 13, 0);
 
 
 
@@ -207,3 +248,66 @@ INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `u
 UPDATE car_repair SET repair_finish_mile=247161 where cr_id = 13314;
 
 INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',13314, 0, '系统', 0, 'IT协助修改 维保里程填写错误需修改为247161KM。  审批单号：ITSJ202504140005', 1744686596, 13, 0);
+
+
+//删除事故数据
+
+update car_accident set ca_id = 0,ca_number = '' where id=613;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170004',613, 0, '系统', 0, 'IT协助修改 鲁AN6185车辆2099-03-01日期维修数据删除 审批单号：ITSJ202505130004', 1747130895, 13, 0);
+
+
+
+update car_accident set ca_id = 0,ca_number = '' where id=620;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170004',620, 0, '系统', 0, 'IT协助修改 闽DZ2B99车辆2023-03-30日期2条数据删除 审批单号：ITSJ202505130004', 1747130895, 13, 0);
+
+
+
+update car_accident set ca_id = 0,ca_number = '' where id=612;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170004',612, 0, '系统', 0, 'IT协助修改 闽DZ2B99车辆2023-03-30日期2条数据删除 审批单号：ITSJ202505130004', 1747130895, 13, 0);
+
+
+
+
+//开启白名单 客户
+update customer set mini_program_switch = 2 where cu_id in (201900274,202106109,201601388,202100186,202103993,201207765,20120228,202000178,202101805,201900428,201601487,201900462,202105481,201900188,202101724,202102152,202000487,202100705,202102084,20120119,202100844,202103630,201600407,201601361,202102382,202000077,201600719,202000743,202106187,202104126,201601479,201207858,201900959,201207498,202100783,201900234,201600464,201900044,202102801,202105360,201208031,201600169,201900076,202104470,201600343,201900127,202001059,202103241,201601144,202101800,202101162,201900433,202100336,202102857,202104994,201900352,202001001,202000086,202105967,201207297,201207221,20120422,201207622,202104005,201207399,201207888,202103689,201601374,201901029,202104854,201900670,202105124,202103502,202102255,201600453,202104633,201207290,201600760,20120239,202103837,201207494,201900824,202101992,202103245,202102071,202101718,201207255,201207460,201600629,202105916,202104951,201601116,202103976,201207921,202106481,202101340,201900686,201601346,201207877,202100737,202100230,202000729,201900543,202106479,20121007,201900677,202100789,202101714,202104840,201601056,201207728,202106190,202000720,202102561,202104653,202106182,202103621,201601002,201207235,202106395,202101463,20120975,201600260,202102699,202101389);
+
+
+
+
+
+update customer set mini_program_switch = 2 where cu_id in (202102205,201901049,202102117,201900727,202104353,201900874,202100250,201207946,202102620,201601553,202106169,202106947,20120028,202103322,201900418,202100353,202100105,201207274,201207625,202106910,201601383,202001292,202000237,202000551,202102376,20120802,201900569,202102985,201601261,202103834,202000280,202103436,201207793,201900233,202000567,202106450,202104676,201601024,201208044,201900722,202104799,201207839,202105999,202101073,201600467,201207414,202106513,20120745,201601395,202101132,201207802,201600014,202106948,201600100,201600957,202100445,201601026,201207398,202106424,201207665,201601524,201207783,202106470,202104407,202001172,202102488,202106841,20120791,201900390,202106659,202103892,202103508,202001299,201600136,202102766,202107108,201901023,202106586,201207109,202100311,202105333,202102457,201900708,202000525,202000282,201600418,201207383,202101020,202106815,202106561,202104296,201207895,201900473,20120524,201207553,202000826,202105429,202100675,202106268,20120846,202000344,202000526,202107036,202001327,20120756,202106567,201601451,202000013,202101165,202105975,201600198,202102031,202001331,202102059,20120722,202102306,202102983,202101114,20120278,202100334,202100559,202101949,202001235,202105300,202101527,201600301,201207318,201207644,201600002,202104125,201600044,201600936,202106975,202000127,202001024,202106609,202102412,201600412,202105725,201600175,202104596);
+
+
+
+
+update customer set mini_program_switch = 2 where cu_id in (202101193,20120837,201207818,202102262,201207425,202000219,202100610,201601508,202100896,202100866,202101438,20120981,201600300,201600396,201900455,202100720,201900612,20120310,201600204,201207268,201207735,201900776,201207338,202103471,202100084,202000098);
+
+
+
+
+//修改预约取件预约派件时间
+UPDATE oms_logistics SET ol_pickup_planbegin=1747957200,ol_pickup_planend=1747957200,ol_delivery_planbegin=1748046600,ol_delivery_planend=1748046600 where to_id = 3758325;
+
+UPDATE order_logistics SET ol_pickup_planbegin=1747957200,ol_pickup_planend=1747957200,ol_delivery_planbegin=1748046600,ol_delivery_planend=1748046600 where to_id = 3758325;
+
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102002', 3758325, 0, '系统申请', 0, ' 预约取件时间修改为:2025-05-23 07:40-07:40 预约派件时间修改为:2025-05-24 08:30-08:30 审批单号：ITSJ202505220004 ', 1747894317, 13, 0);
+
+
+
+
+update attachment set at_visible=0 where at_id=41252879;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102042',3758325, 0, '系统', 0, '删除附件：2025-05-22华东医药（杭州）-科济项目郑州市郑州大学第一附属医院到上海市上海科济制药-85513302others1747821688972831d7a54a17f.pdf  审批单号：ITSJ202505220004', 1747894317, 13, 0);
+
+
+
+
+
+
+UPDATE tms_road_record SET trr_visible=2  WHERE deal_time >=1746028800 and deal_time <1748707200 and reconciliation_status=1 and payment_company = '生生供应链管理（济南）有限公司'
+
+UPDATE tms_road_record SET trr_visible=2  WHERE deal_time >=1746028800 and deal_time <1748707200 and reconciliation_status=1 and payment_company = '生生供应链管理（广州）有限公司'
