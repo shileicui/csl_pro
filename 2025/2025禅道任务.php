@@ -374,3 +374,16 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24762  已上线
 客户小程序-允许管理员不选择项目下单
 feature_24778_csl_20250327
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=24778
+
+
+
+
+小程序提发货子单扫码优化
+feature_24864_csl_20250401
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=24864
+
+
+
+
+
+
