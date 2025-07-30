@@ -45,6 +45,13 @@ INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `u
 ITSJ202412190003', 1734598396, 13, 0);
 
 
+
+update car_repair set repair_mile=134984,repair_finish_mile=134984 where cr_id=14230;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',14230, 0, '系统', 0, 'IT协助修改  维保里程修改为134984KM  审批单号：   
+ITSJ202507280002', 1753681138, 13, 0);
+
+
 //修改冷机时长
 update car set cumulative_duration=2366 where ca_id=739;
 
@@ -107,6 +114,21 @@ INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `
 
 
 
+
+cart订单修改取件时间
+
+UPDATE tms_cart_operation_record SET tcor_time=1751159280 where tcor_id = 27940;
+
+update order_logistics set ol_pickup_time=1751159280   where to_id=3838160;
+update oms_logistics set ol_pickup_time=1751159280   where to_id=3838160;
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102040', 3838160, 0, '系统申请', 0, ' 取件时间修改为2025.06.29  09:08 审批单号：ITSJ202506290001 ', 1751245564, 13, 0);
+
+
+
+
+
+
 cart订单修改取件时间
 
 UPDATE tms_cart_operation_record SET tcor_time=1746769560 where tcor_id = 25039;
@@ -125,6 +147,15 @@ update order_worksheet set op_uid=6601 where ow_id=16849217;
 
 INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102032',3468703, 0, '系统', 0, '更改取派件工作单操作人为时圣峰  审批单号： ', 1735785076, 13, 0);
 
+
+
+
+
+修改cart工作单指派人
+
+update order_worksheet set op_uid=18492 where ow_id=19376071;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102032',3468703, 0, '系统', 0, '更改派件工作单操作人为 居冠祥  审批单号： ITSJ202507030005', 1751538522, 13, 0);
 
 
 
@@ -311,3 +342,56 @@ INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `u
 UPDATE tms_road_record SET trr_visible=2  WHERE deal_time >=1746028800 and deal_time <1748707200 and reconciliation_status=1 and payment_company = '生生供应链管理（济南）有限公司'
 
 UPDATE tms_road_record SET trr_visible=2  WHERE deal_time >=1746028800 and deal_time <1748707200 and reconciliation_status=1 and payment_company = '生生供应链管理（广州）有限公司'
+
+
+
+加油记录 取消入账
+
+UPDATE tms_refuel_record_bill SET notarize_month='',invoice_money='',invoice_tax='',trrb_remark='',bill_status=2,invoice_cost='' where trrb_id = 125;
+
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151003', 125, 0, '系统申请', 0, ' 取消入账  审批单号：ITSJ202506180005', 1750225438, 13);
+
+
+
+UPDATE customer_address SET child_region_name=''  WHERE child_region_name='无法找到该城市' and  ca_id in (498601,498597,498420,497575,496393,496001,495070,494514,494462,494433,493367,493140,493138,493090,492805,492633,491926,491810,490978,490949,490601,490136,489158,488051,487809,486905,486675,486638,486619,483803,483094,482356,482354,482355,482353,481700,480884,480565,480507,479230,479189,477749,477663,477664,477525,476043,474663,472975,469196,464951,464221,461426,459502,458212,458184,457175,456874,456755,453605,447310,447194,446213,440853,440544,440288,440286,437869,437171,436668,429671);
+
+
+
+
+update tms_city_config set is_twog_unsupported=1 where tcc_id in (39,51,65,78,87,88,89,93,95,96,97,98,99,108,110,121,142,143,145,148,151,165,166,169,176,177,201,202,203,205,207,208,209,215,238,262,265,267,270,271,272,273,276,277,278,279,280,281,282,284,286,288,289,292,293,294,295,296,300,301,304,305,307,308,311)
+
+
+
+cart订单修改派件时间
+
+UPDATE tms_cart_operation_record SET tcor_time=1752839640 where tcor_id = 29025;
+
+update order_logistics set ol_delivery_time=1752839640   where to_id=3888376;
+update oms_logistics set ol_delivery_time=1752839640   where to_id=3888376;
+
+update tms_logistics_remark set lr_opn_date=1752839640         where lr_id=11514975; 
+update tms_logistics_log set tll_operation_time=1752839640        where tll_id=9955020;
+update operation set opn_date=1752839640                  where opn_id=15901120;
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102041', 3888376, 0, '系统申请', 0, ' 派件时间修改为2025-07-18 19:54审批单号：ITSJ202507220001 ', 1753173574, 13, 0);
+
+
+
+cart订单修改取件时间
+
+UPDATE tms_cart_operation_record SET tcor_time=1753752360 where tcor_id = 29646;
+
+update order_logistics set ol_pickup_time=1753752360   where to_id=3908674;
+update oms_logistics set ol_pickup_time=1753752360   where to_id=3908674;
+
+
+update tms_logistics_remark set lr_opn_date=1753752360         where lr_id=11650159; 
+update tms_logistics_log set tll_operation_time=1753752360        where tll_id=10062622;
+update operation set opn_date=1753752360                  where opn_id=15997042;
+
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102040', 3908674, 0, '系统申请', 0, ' 取件时间修改为2025.07.29  09:26 审批单号：TSJ202507290002 ', 1753771835, 13, 0);
+
+
+

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>快捷导出配置</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .header h2 {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .close-btn {
+      cursor: pointer;
+    }
+    .sidebar {
+      float: left;
+      width: 20%;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+    }
+    .sidebar-item {
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+    .sidebar-item:hover {
+      background-color: #e0e0e0;
+    }
+    .sidebar-item.active {
+      background-color: #d0e8ff;
+      color: #2196F3;
+      font-weight: bold;
+    }
+    .content {
+      float: right;
+      width: 78%;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      padding: 15px;
+    }
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+    }
+    .option-item {
+      position: relative;
+    }
+    .checkbox {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+    }
+    .checkbox-input {
+      margin-right: 5px;
+    }
+    .checkbox-label {
+      font-size: 14px;
+    }
+    .order-number {
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: #999;
+      font-size: 12px;
+    }
+    .buttons {
+      margin-top: 20px;
+      text-align: right;
+    }
+    .btn {
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn-confirm {
+      background-color: #2196F3;
+      color: white;
+      border: none;
+    }
+    .btn-cancel {
+      background-color: white;
+      border: 1px solid #ccc;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <div class="header">
+        <h2>快捷导出配置</h2>
+        <span class="close-btn">×</span>
+      </div>
+      <div class="sidebar">
+        <div class="sidebar-item active">测试</div>
+        <div class="sidebar-item">测试2</div>
+        <div class="sidebar-item">dd</div>
+        <div class="sidebar-item">东方大道</div>
+      </div>
+      <div class="content">
+        <div class="option-grid">
+          <div class="option-item">
+            <div class="checkbox">
+              <input type="checkbox" class="checkbox-input" id="option1" v-model="selectedOptions['option1']" @change="updateOrder('option1')">
+              <label class="checkbox-label" for="option1">序号</label>
+              <span class="order-number">{{ selectedOptions['option1'] ? getOrderNumber('option1') : '' }}</span>
+            </div>
+          </div>
+          <div class="option-item">
+            <div class="checkbox">
+              <input type="checkbox" class="checkbox-input" id="option2" v-model="selectedOptions['option2']" @change="updateOrder('option2')">
+              <label class="checkbox-label" for="option2">发件单位</label>
+              <span class="order-number">{{ selectedOptions['option2'] ? getOrderNumber('option2') : '' }}</span>
+            </div>
+          </div>
+          <div class="option-item">
+            <div class="checkbox">
+              <input type="checkbox" class="checkbox-input" id="option3" v-model="selectedOptions['option3']" @change="updateOrder('option3')">
+              <label class="checkbox-label" for="option3">预约派件时间</label>
+              <span class="order-number">{{ selectedOptions['option3'] ? getOrderNumber('option3') : '' }}</span>
+            </div>
+          </div>
+          <div class="option-item">
+            <div class="checkbox">
+              <input type="checkbox" class="checkbox-input" id="option4" v-model="selectedOptions['option4']" @change="updateOrder('option4')">
+              <label class="checkbox-label" for="option4">取件数量</label>
+              <span class="order-number">{{ selectedOptions['option4'] ? getOrderNumber('option4') : '' }}</span>
+            </div>
+          </div>
+          <div class="option-item">
+            <div class="checkbox">
+              <input type="checkbox" class="checkbox-input" id="option5" v-model="selectedOptions['option5']" @change="updateOrder('option5')">
+              <label class="checkbox-label" for="option5">取派备注</label>
+              <span class="order-number">{{ selectedOptions['option5'] ? getOrderNumber('option5') : '' }}</span>
+            </div>
+          </div>
+          <div class="option-item">
+            <div class="checkbox">
+              <input type="checkbox" class="checkbox-input" id="option6" v-model="selectedOptions['option6']" @change="updateOrder('option6')">
+              <label class="checkbox-label" for="option6">收件单位</label>
+              <span class="order-number">{{ selectedOptions['option6'] ? getOrderNumber('option6') : '' }}</span>
+            </div>
+          </div>
+          <div class="option-item">
+            <div class="checkbox">
+              <input type="checkbox" class="checkbox-input" id="option7" v-model="selectedOptions['option7']" @change="updateOrder('option7')">
+              <label class="checkbox-label" for="option7">订单状态</label>
+              <span class="order-number">{{ selectedOptions['option7'] ? getOrderNumber('option7') : '' }}</span>
+            </div>
+          </div>
+          <div class="option-item">
+            <div class="checkbox">
+              <input type="checkbox" class="checkbox-input" id="option8" v-model="selectedOptions['option8']" @change="updateOrder('option8')">
+              <label class="checkbox-label" for="option8">配件</label>
+              <span class="order-number">{{ selectedOptions['option8'] ? getOrderNumber('option8') : '' }}</span>
+            </div>
+          </div>
+          <div class="option-item">
+            <div class="checkbox">
+              <input type="checkbox" class="checkbox-input" id="option9" v-model="selectedOptions['option9']" @change="updateOrder('option9')">
+              <label class="checkbox-label" for="option9">当前所在城市</label>
+              <span class="order-number">{{ selectedOptions['option9'] ? getOrderNumber('option9') : '' }}</span>
+            </div>
+          </div>
+          <div class="option-item">
+            <div class="checkbox">
+              <input type="checkbox" class="checkbox-input" id="option10" v-model="selectedOptions['option10']" @change="updateOrder('option10')">
+              <label class="checkbox-label" for="option10">预派件时段</label>
+              <span class="order-number">{{ selectedOptions['option10'] ? getOrderNumber('option10') : '' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="buttons">
+          <button class="btn btn-confirm">确定</button>
+          <button class="btn btn-cancel">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        selectedOptions: {
+          option1: false,
+          option2: false,
+          option3: false,
+          option4: false,
+          option5: false,
+          option6: false,
+          option7: false,
+          option8: false,
+          option9: false,
+          option10: false
+        },
+        selectedOrder: []
+      },
+      methods: {
+        updateOrder(optionKey) {
+          if (this.selectedOptions[optionKey]) {
+            this.selectedOrder.push(optionKey);
+          } else {
+            this.selectedOrder = this.selectedOrder.filter(key => key !== optionKey);
+          }
+        },
+        getOrderNumber(optionKey) {
+          const index = this.selectedOrder.indexOf(optionKey);
+          if (index !== -1) {
+            return index + 1;
+          }
+          return '';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

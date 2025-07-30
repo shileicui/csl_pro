@@ -431,7 +431,11 @@ feature_25087_csl_20250416  omsapi
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=25087 已上线
 
 
+上次保养里程 （保养类型：常规保养，临时保养，首次保养）
 
+
+
+新增 保养类型：临时保养 属于上次保养里程范围（任务来源天山）
 
 
 
@@ -730,7 +734,36 @@ feature_25458_csl_20250515    mini_program
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=25458  未上线
 
 
+20120010	江苏恒瑞医药股份有限公司-肿瘤临床研究部
+20120206	广东东阳光药业股份有限公司
+20120504	上海恒瑞医药有限公司
+201900710	江苏恒瑞医药股份有限公司-综合产品事业部
+202000110	江苏恒瑞医药股份有限公司-中央医学事务部
+202001201	歌礼生物科技（杭州）有限公司
+202100384	诺合泰生物科技（重庆）有限公司
+
 MINI_NOT_TEMPERATURE
+{
+    "cu_id": [
+        20120010,
+        20120504,
+        202000110,
+        20120206,
+        202100384,
+        201900710,
+        202001201
+    ],//出库不选择运输温度客户id
+    "cp_id": [
+        16812
+    ],//出库不选择运输温度cpid
+    "noshow_date_cuid": [
+        202100384,
+        20120206
+    ]//出库不选择预取、预派、时效 配置
+
+}
+
+
 {
     "cu_id": [
         20120010,
@@ -748,7 +781,6 @@ MINI_NOT_TEMPERATURE
         202100384,
         20120206
     ]
-
 }
 
 
@@ -760,16 +792,75 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=25789  未上线
 MINI_CUSTOMER_CONFIG  小程序下单客户可选项配置	
 
 {
-	"other_good_show":[201206985],
-	"drug_show":[201900151],
-	"cod_amount_show":[202001281],
-	"title_text_show":[20120010],
-	"jinmanli_show":[202100068,20120083],
-	"to_goodstype_noshow":[20120010,20120206,20120504,201207741,201900702,201900710,202000110,202000187,202000528,202100384,202100841,202100899],
-	"no_week_show":[20120010,201900710,20120206,202100384,202001201]
+	"other_good_show":[201206985],//显示随货物资
+	"cu_name_show":[201206985],
+	"drug_show":[201900151],//勃林 货物类型稀释液、 发件城市在广州、长春 支持 选药品  
+	"cod_amount_show":[202001281],//到付金额 、到付方式
+	"title_text_show":[20120010],//顶部 显示 title_text
+	"jinmanli_show":[202100068,20120083],// 修改订单、下单提醒 (只提醒一次 ) jinmanli_text
+	"to_goodstype_noshow":[20120010,20120206,20120504,201207741,201900702,201900710,202000110,202000187,202000528,202100384,202100841,202100899],//服务号特殊逻辑 客户端CRC账号 隐藏 货物类型：临床药品
+	"no_week_show":[20120010,201900710,20120206,202100384,202001201],//周末不弹框 选择了项目 并且 货物类型：临床药品  并且   出货仓库：生生仓库出库
+	"cargo_size_show":[201207340],//显示货物尺寸  
+	"compute_box_show":[201600962]//柯乾-获取箱型
 }
 
 
+{
+    "other_good_show": [
+        201206985
+    ],
+    "cu_name_show": [
+        201206985
+    ],
+    "drug_show": [
+        201900151
+    ],
+    "cod_amount_show": [
+        202001281
+    ],
+    "title_text_show": [
+        20120010
+    ],
+    "jinmanli_show": [
+        202100068,
+        20120083
+    ],
+    "to_goodstype_noshow": [
+        20120010,
+        20120206,
+        20120504,
+        201207741,
+        201900702,
+        201900710,
+        202000110,
+        202000187,
+        202000528,
+        202100384,
+        202100841,
+        202100899
+    ],
+    "no_week_show": [
+        20120010,
+        201900710,
+        20120206,
+        202100384,
+        202001201
+    ],
+    "cargo_size_show": [
+        201207340
+    ],
+    "compute_box_show": [
+        201600962
+    ],
+    "is_ad_goods": [
+        202000722
+    ]
+}
+
+,
+    "send_date_flag": [
+        201900162,201207722
+    ]
 customer-order/create-data
 
 
@@ -785,14 +876,37 @@ MINI_ID_CONFIG
     "drug_city_id": [
         440100,
         220100
-    ],
+    ],//勃林 货物类型稀释液、 发件城市在广州、长春 支持 选药品  
     "cod_amount_cp_id":[
     	5738
-    ],
+    ],//到付金额 、到付方式
     "title_text_cp_id":[7221],
     "title_text":"基因外周血-恒温10~30℃,基因肿瘤组织-恒温10~30℃,PK血样-超低温-60~100℃",
     "jinmanli_text":"下单时间：周一~周日 上午8:30-下午17:30，正常上班时间最快可预约次日取件，如非正常上班时间以及县级医院预约送检，需提前2天下单。（国家法定节日放假另行通知）",
-    "no_week_cp_id":[16812]
+    "no_week_cp_id":[16812],//周末不弹框 选择了项目 并且 货物类型：临床药品  并且   出货仓库：生生仓库出库
+    "become_cp_id":[1154,2243]//显示采血时间
+}
+
+{
+    "drug_city_id": [
+        440100,
+        220100
+    ],
+    "cod_amount_cp_id": [
+        5738
+    ],
+    "title_text_cp_id": [
+        7221
+    ],
+    "title_text": "基因外周血-恒温10~30℃,基因肿瘤组织-恒温10~30℃,PK血样-超低温-60~100℃",
+    "jinmanli_text": "下单时间：周一~周日 上午8:30-下午17:30，正常上班时间最快可预约次日取件，如非正常上班时间以及县级医院预约送检，需提前2天下单。（国家法定节日放假另行通知）",
+    "no_week_cp_id": [
+        16812
+    ],
+    "become_cp_id": [
+        1154,
+        2243
+    ]
 }
 
 
@@ -804,7 +918,7 @@ to_goodstype
 
 
 
-特殊客户逻辑-不选 运输温度、预取日期、预派日期、运输时效下单
+特殊客户逻辑-2
 feature_25827_csl_20250611
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=25827  未上线
 
@@ -815,12 +929,341 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=25827  未上线
 
 车辆加油记录及导入优化
 feature_csl_25650_20250616
-https://project.ashsh.com.cn/index.php?m=task&f=view&id=25650
-
-
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=25650  已上线
 
 
 ALTER table
   tms_refuel_record_bill
 ADD
   COLUMN discounts_money  decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '优惠消费金额';
+
+  $model->car_region[$value['car_region_city']];
+
+
+
+ 预报单导出优化
+  https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=25949
+
+  featrue_25949_csl_20250624
+
+
+
+
+小程序特殊客户-3
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=25966
+
+
+/customer/customer-common/inventory-detail_x.html
+
+
+
+小程序下单区县优化
+feature_csl_25993_20250626
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=25993  
+
+
+
+
+
+
+无法找到该城市
+
+update customer_address
+
+
+
+
+
+ITSJ202506290001
+
+
+客户下单填写CRA/CRC信息
+feature_26115_csl_20250703
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=26115 未上线
+
+
+
+小程序现结授权登录提示优化
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26124  已上线
+
+
+
+小程序不支持选药编号限制
+feature_26126_csl_20250704
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26126  未上线
+
+
+
+
+温控运输下单不允许选择无温度计
+feature_26131_csl_20250704
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26131  未上线
+
+
+特殊客户逻辑
+feature_25789_csl_20250609
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=25789  未上线
+
+
+
+//上线发这一个就够了
+小程序查询列表新增功能及其他调整
+feature_26025_csl_20250717
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26025
+
+
+外勤车、人员管理
+feature_26145_csl_20250707
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26145  未上线
+
+
+ALTER table
+  tms_keep_record_car
+ADD
+  COLUMN tkc_use_nature   tinyint(4) NOT NULL DEFAULT '0' COMMENT  '使用性质  1 临时使用 2 长期使用',
+ADD
+  COLUMN driving_start_time int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '驾驶证 开始日期',
+ADD
+  COLUMN driving_end_time int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '驾驶证 结束日期',
+ADD
+  COLUMN travel_start_time int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '行驶证 开始日期',
+ADD
+  COLUMN travel_end_time int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '行驶证 结束日期',
+ADD
+  COLUMN operator_start_time int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '运营证 开始日期',
+ADD
+  COLUMN operator_end_time int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '运营证 结束日期',
+
+ADD
+  COLUMN term_start_time int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '交强险 开始日期',
+ADD
+  COLUMN term_end_time int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '交强险 结束日期',
+
+ADD
+  COLUMN commerce_start_time int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '商业险 开始日期',
+ADD
+  COLUMN commerce_end_time int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '商业险 结束日期',
+
+ADD
+  COLUMN main_refrigerator_state   tinyint(4) NOT NULL DEFAULT '0' COMMENT  '是否有主冷机  1是 2 否',
+ADD
+  COLUMN main_refrigerator_version  varchar(255) NOT NULL DEFAULT '' COMMENT '主冷机型号',
+ADD
+  COLUMN vice_refrigerator_state   tinyint(4) NOT NULL DEFAULT '0' COMMENT  '是否有副冷机  1是 2 否',
+ADD
+  COLUMN vice_refrigerator_version  varchar(255) NOT NULL DEFAULT '' COMMENT '副冷机型号',
+
+ADD
+  COLUMN front_portiere_state   tinyint(4) NOT NULL DEFAULT '0' COMMENT  '是否有前门帘  1是 2 否',
+ADD
+  COLUMN later_portiere_state   tinyint(4) NOT NULL DEFAULT '0' COMMENT  '是否有后门帘  1是 2 否',
+ADD
+  COLUMN easy_flow_num int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '易流数量',
+ADD
+  COLUMN tkrc_remark text COMMENT '备注',
+ADD
+  COLUMN tkrci_id int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '交强险保险id',
+ADD
+  COLUMN tkrcr_id int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '车辆保养维保id',
+ADD
+  COLUMN tkryr_id int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '冬季验证报告id',
+ADD
+  COLUMN tkrc_tkrci_id int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '商业险保险id',
+ADD
+  COLUMN tkrc_tkrcr_id int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '冷机保养维保id',
+ADD
+  COLUMN tkrc_tkryr_id int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '夏季验证报告id',
+ADD
+  INDEX idx_tkrc_tkrci_id (`tkrc_tkrci_id`),
+ADD
+  INDEX idx_tkrc_tkrcr_id (`tkrc_tkrcr_id`),
+ADD
+  INDEX idx_tkrc_tkryr_id (`tkrc_tkryr_id`),
+ADD
+  INDEX idx_tkrci_id (`tkrci_id`),
+ADD
+  INDEX idx_tkrcr_id (`tkrcr_id`),
+ADD
+  INDEX idx_tkryr_id (`tkryr_id`);
+
+
+CREATE TABLE `tms_keep_record_car_insurance` (
+  `tkrci_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `tkrci_start_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '保险开始日期',
+  `tkrci_end_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '保险结束日期',
+  `tkrci_type`  tinyint(4) NOT NULL DEFAULT '0' COMMENT  '保险类型  1交强险 2 商业险',
+  `tkc_id` int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '合格资质车辆id',
+  `tkc_car_number` varchar(50)  NOT NULL DEFAULT '' COMMENT '合格资质车辆车牌',
+  `tkrci_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tkrci_id`),
+  KEY idx_tkc_id (`tkc_id`)
+)  COMMENT='合格资质车辆保险表';
+
+
+CREATE TABLE `tms_keep_record_car_repair` (
+  `tkrcr_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `tkrcr_start_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '维保开始日期',
+  `tkrcr_end_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '维保结束日期',
+  `tkrcr_type`  tinyint(4) NOT NULL DEFAULT '0' COMMENT  '维保类型  1车辆保养 2 冷机保养',
+  `tkc_id` int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '合格资质车辆id',
+  `tkc_car_number` varchar(50)  NOT NULL DEFAULT '' COMMENT '合格资质车辆车牌',
+  `tkrcr_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tkrcr_id`),
+  KEY idx_tkc_id (`tkc_id`)
+)  COMMENT='合格资质车辆维保表';
+
+
+
+CREATE TABLE `tms_car_person` (
+  `tcp_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `ur_uid`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT 'uid',
+  `username` varchar(50) NOT NULL DEFAULT ''  COMMENT '姓名',
+  `identity_start_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '身份证 开始日期',
+  `identity_end_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '身份证 结束日期',
+
+  `driving_start_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '驾驶证 开始日期',
+  `driving_end_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '驾驶证 结束日期',
+
+  `qualification_start_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '从业资格证 开始日期',
+  `qualification_end_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '从业资格证 结束日期',
+
+  `health_start_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '健康证 开始日期',
+  `health_end_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '健康证 结束日期',
+  `tcp_remark` text COMMENT '备注',
+
+  `tcp_state`  tinyint(4) NOT NULL DEFAULT '1' COMMENT  '状态  1正常 2停用',
+  `tcp_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tcp_id`)
+)  COMMENT='资质人员管理';
+
+
+
+CREATE TABLE `tms_car_person_cultivate` (
+  `tcpc_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `ur_uids` varchar(1024) NOT NULL DEFAULT ''  COMMENT '培训人员uid',
+  `usernames` varchar(1024) NOT NULL DEFAULT ''  COMMENT '培训人员',
+  `tcp_ids` varchar(1024) NOT NULL DEFAULT ''  COMMENT '资质人员id',
+  `tcpc_content` text  COMMENT '培训内容',
+  `cultivate_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '培训时间',
+
+  `tcpc_state`  tinyint(4) NOT NULL DEFAULT '1' COMMENT  '状态  1正常 2停用',
+  `tcpc_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tcpc_id`)
+)  COMMENT='资质人员培训管理';
+
+
+ALTER table
+  tms_keep_record_car_yzreport
+ADD
+  COLUMN tkryr_check_time_end int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '验证结束日期',
+ADD
+  COLUMN tkryr_type tinyint(4)  NOT NULL DEFAULT '0' COMMENT '验证报告类型 1 冬季验证 2 夏季验证';
+
+
+
+车辆配件门帘增加附件上传
+feature_26151_csl_20250707
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=26151  未上线
+
+
+404,456,509,510,516,517,520,537,587,588
+
+''
+
+
+
+ 异常坐标地址优化
+ feature_26272_csl_20250715
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26272
+
+
+
+feature_26293_csl_20250717
+车辆行车修改优化
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26293
+
+
+外勤车、人员管理 开发中  进度90%
+
+小程序不支持选药编号限制  待上线
+小程序查询列表优化   待上线   
+客户下单填写CRA/CRC信息   待上线 
+小程序不支持选药编号提示  待上线  
+
+下周
+外勤车、人员管理（消息提醒推送、车辆备案）
+
+
+
+
+
+CRA和CRC互看的功能先祥医药
+
+https://project.ashsh.com.cn/index.php?m=story&f=view&id=4810
+
+
+
+
+项目配置，单项配置，增加客户单号必填
+feature_25962_csl_20250723
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=25962  未上线
+
+
+
+路由发运规则项目搜索优化
+feature_26364_csl_20250723
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26364
+
+
+
+新增客户默认开启白名单
+
+ alter table
+   customer
+ MODIFY
+   column `mini_program_switch`  tinyint(1) NOT NULL DEFAULT '2' COMMENT '允许小程序下单 1关闭 2开启';
+
+
+   外勤车、人员管理 	验证报告、维保、保险、证照
+资质人员管理
+资质人员培训管理
+消息提醒推送
+支持大文件上传、
+
+1.支持大文件上传（分片上传）
+2.添加资质合格车辆新增供应商选项
+3.添加资质合格人员新增备注字段
+
+
+
+外协操作费续单费优化
+feature_26449_csl_20250730
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26449  未上线
+
+
+
+1、下单选择试验中心
+feature_26354_csl_20250730
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26354   未上线
+
+
+
+
+ alter table
+   customer
+ add
+   column `experiment_centre_switch`  tinyint(1) NOT NULL DEFAULT '1' COMMENT '物流订单可关联试验中心 1关闭 2开启';
+
+   'experiment_centre_switch' => array('on' => 2, 'off' => 1, 'label' => '物流订单可关联试验中心', 'span' => ' '), //物流订单可关联试验中心  1：关闭 2：开启

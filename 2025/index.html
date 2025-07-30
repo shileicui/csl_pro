@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分片上传组件</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .upload-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .upload-container h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #333;
+        }
+        .upload-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+        .upload-area.dragover {
+            border-color: #0095a2;
+            background-color: #e6f3ea;
+        }
+        .upload-area p {
+            margin: 0;
+            color: #666;
+        }
+        .file-input {
+            display: none;
+        }
+        .progress-container {
+            margin-top: 16px;
+            display: none;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #28a745;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+        .status {
+            margin-top: 8px;
+            color: #333;
+        }
+        .error {
+            color: #dc3545;
+        }
+        button {
+            background-color: #0095a2;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0095a2;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h2>文件分片上传</h2>
+        <div class="upload-area" id="uploadArea">
+            <p>拖拽文件到此处或点击选择文件</p>
+            <input type="file" class="file-input" id="fileInput">
+        </div>
+        <button id="uploadButton" disabled>上传</button>
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="status" id="status">上传中: 0%</div>
+        </div>
+    </div>
+
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const uploadButton = document.getElementById('uploadButton');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progress');
+        const status = document.getElementById('status');
+
+        const CHUNK_SIZE = 1024 * 1024 * 10; // 1MB 每片
+        let file = null;
+        const uniqueId = `file_${Date.now()}_${Math.random().toString(36).slice(2)}`; // 生成唯一 ID
+        const targetDir = '/uploads'; // 目标目录，需根据实际需求修改
+        let firstTimestamp = null;
+
+        // 拖拽事件
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            file = e.dataTransfer.files[0];
+            if (file) {
+                uploadButton.disabled = false;
+                uploadArea.querySelector('p').textContent = `已选择: ${file.name}`;
+            }
+        });
+
+        // 点击选择文件
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', () => {
+            file = fileInput.files[0];
+            if (file) {
+                uploadButton.disabled = false;
+                uploadArea.querySelector('p').textContent = `已选择: ${file.name}`;
+            }
+        });
+
+        // 上传按钮点击事件
+        uploadButton.addEventListener('click', async () => {
+            if (!file) return;
+
+            uploadButton.disabled = true;
+            progressContainer.style.display = 'block';
+            status.textContent = '上传中: 0%';
+            progressBar.style.width = '0%';
+            firstTimestamp = Date.now().toString(); // 记录开始上传时间戳
+
+            const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
+            let uploadedChunks = 0;
+
+            for (let i = 0; i < totalChunks; i++) {
+                const start = i * CHUNK_SIZE;
+                const end = Math.min(start + CHUNK_SIZE, file.size);
+                const chunk = file.slice(start, end);
+
+                const formData = new FormData();
+                formData.append('name', file.name);
+                formData.append('first_timestamp', firstTimestamp);
+                formData.append('unique_id', uniqueId);
+                formData.append('chunk', i.toString());
+                formData.append('chunks', totalChunks.toString());
+                formData.append('target_dir', targetDir);
+                formData.append('file', chunk);
+
+                try {
+                    const response = await fetch('https://omstest.ashsh.com.cn:18012/index.php?r=common/partition-upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`上传分片 ${i} 失败`);
+                    }
+
+                    uploadedChunks++;
+                    const progressPercent = Math.round((uploadedChunks / totalChunks) * 100);
+                    progressBar.style.width = `${progressPercent}%`;
+                    status.textContent = `上传中: ${progressPercent}%`;
+                } catch (error) {
+                    status.textContent = `错误: ${error.message}`;
+                    status.classList.add('error');
+                    uploadButton.disabled = false;
+                    return;
+                }
+            }
+
+            status.textContent = '上传完成！';
+            uploadButton.disabled = false;
+        });
+    </script>
+</body>
+</html>
