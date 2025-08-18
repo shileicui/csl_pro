@@ -1,0 +1,7 @@
+https://api.weixin.qq.com/cgi-bin/user/info?access_token=&openid=olSkn0vJHIR12Wyt4MSLCKr8KNdg&lang=zh_CN
+
+
+wechat_params.wp_type =1 AND wp_name = access_token
+
+
+OMS客户端系统告警群（正式） 搜索  服务号关注openid_unionid保存失败

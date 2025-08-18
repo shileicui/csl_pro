@@ -1250,6 +1250,8 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26364
 
 外协操作费续单费优化
 feature_26449_csl_20250730
+feature_26449_csl_20250730
+feature_26449_csl_20250805  tms_service
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26449  未上线
 
 
@@ -1260,10 +1262,182 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26354   未上线
 
 
 
+ALTER TABLE
+  `customer`
+ADD
+  COLUMN `cex_require` TINYINT UNSIGNED NOT NULL DEFAULT '1' COMMENT '物流订单试验中心必填 1关闭 2开启'
 
- alter table
-   customer
+   'cex_require' => array('on' => 2, 'off' => 1, 'label' => '物流订单可关联试验中心', 'span' => ''), //物流订单可关联试验中心  1：关闭 2：开启
+
+
+
+2、DTP拆分
+feature_26485_csl_20250731  mini_program
+feature_26485_csl_20250731  oms_admin
+feature_26485_csl_20250807  order_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26485  未上线
+
+
+
+
+{mini_program}history-data/cp-dtp-data
+
+{
+    "1": "DTP",
+    "3": "DFP",
+    "2": "都不是"
+}
+
+
+临床非生生运输订单调整
+feature_26602_csl_20250804
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26602
+
+
+
+
+DTP拆分 小程序后端
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26601   新建
+
+下单选择试验中心（小程序）
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26600   新建
+
+
+
+ 冷藏车订单新增委托方
+feature_26469_csl_20250731
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26469  已上线
+
+
+
+
+
+齐鲁制药隐藏收发件信息
+feature_26490_csl_20250805
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26490  未上线
+
+
+
+导预报单新增定制化下载
+feature_26527_csl_20250805
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26527  未上线
+
+
+
+{
+    "1": "临床样本",
+    "2": "回收药",
+    "3": "临床药品",
+    "4": "其他物品",
+    "5": "商业成品药",
+    "6": "脐带血",
+    "7": "细胞产品或CAR-T",
+    "8": "IVD试剂（器械）",
+    "9": "特检普检",
+    "10": "科研样本",
+    "11": "样品",
+    "12": "稀释液",
+    "13": "体外诊断试剂",
+    "14": "细胞制剂",
+    "15": "原料药",
+    "16": "送检产品",
+    "17": "其他临床试验物资",
+    "18": "医疗器械",
+}
+
+
+
+DTP/DFP隐藏逻辑调整
+feature_26566_csl_20250807  tms_admin
+feature_26566_csl_20250807  tms_service
+feature_26566_csl_20250811 dispatch_admin
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26566  未上线
+
+
+
+ 特殊客户签收人支持复选框勾选
+feature_26703_csl_20250815
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26703
+
+
+
+{
+    "1": "10405",
+    "2": "10405"
+}
+
+
+{
+    "1": "11010",
+    "2": "11010"
+}
+
+
+https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=4864
+
+alter table
+   tms_city_config
  add
-   column `experiment_centre_switch`  tinyint(1) NOT NULL DEFAULT '1' COMMENT '物流订单可关联试验中心 1关闭 2开启';
+   column `logistics_feedback_uid`   varchar(100) NOT NULL DEFAULT ''  COMMENT '物流反馈人 uid',
+add
+   column `logistics_feedback_username`   varchar(255) NOT NULL DEFAULT ''  COMMENT '物流反馈人名称 ',
+ add
+   column `consumable_feedback_uid`   varchar(100) NOT NULL DEFAULT ''  COMMENT '耗材反馈人 uid',
+ add
+   column `consumable_feedback_username`   varchar(255) NOT NULL DEFAULT ''  COMMENT '耗材反馈人名称';
 
-   'experiment_centre_switch' => array('on' => 2, 'off' => 1, 'label' => '物流订单可关联试验中心', 'span' => ' '), //物流订单可关联试验中心  1：关闭 2：开启
+
+
+
+CREATE TABLE `tms_reserve_order` (
+  `tro_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `cu_id`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '委托客户id',
+  `cu_name`  varchar(255) NOT NULL DEFAULT ''  COMMENT '委托客户名称',
+  `cp_id`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '项目id',
+  `cp_name`  varchar(255) NOT NULL DEFAULT ''  COMMENT '项目名称',
+  `to_temperature` tinyint(4) unsigned DEFAULT '0'   COMMENT '温区',
+  `to_temperature_name`  varchar(50) NOT NULL DEFAULT ''    COMMENT '温区名称',
+  `to_trequirement` tinyint(4) unsigned DEFAULT '0'   COMMENT '运输方式',
+
+  `start_region_id` int(11) unsigned DEFAULT '0' COMMENT '发件城市ID',
+  `start_region_name` char(128) DEFAULT NULL COMMENT '发件城市名',
+  `stop_region_id` int(11) unsigned DEFAULT '0' COMMENT '收件城市ID',
+  `stop_region_name` char(128) DEFAULT NULL COMMENT '收件城市名',
+
+  `arrange_region_id` int(11) unsigned DEFAULT '0' COMMENT '安排城市ID',
+  `arrange_region_name` char(128) DEFAULT NULL COMMENT '安排城市名',
+
+  `pickup_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '预取时间',
+  `delivery_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '预派时间',
+  `reserve_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '预约生成时间',
+  `tro_type` tinyint(4) unsigned DEFAULT '1'   COMMENT '预约状态 1未反馈 2已反馈 3已确认 4已驳回 5已下单',
+
+  `logistics_ur_uid`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '物流反馈人uid',
+  `logistics_username` varchar(50) NOT NULL DEFAULT ''  COMMENT '物流反馈人姓名',
+
+  `consumable_ur_uid`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '耗材反馈人uid',
+  `consumable_username` varchar(50) NOT NULL DEFAULT ''  COMMENT '耗材反馈人姓名',
+
+  `phone_number` varchar(50) NOT NULL DEFAULT '' COMMENT '手机号',
+  `identity_card` varchar(100) NOT NULL DEFAULT '' COMMENT '身份证号',
+  `car_number` varchar(50) NOT NULL DEFAULT ''  COMMENT '车牌号',
+  `start_train_number` varchar(50) NOT NULL DEFAULT ''  COMMENT '去往车次',
+  `end_train_number` varchar(50) NOT NULL DEFAULT ''  COMMENT '返程车次',
+  `start_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '出发日期',
+  `end_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '返回日期',
+
+  `box_number`   varchar(50) NOT NULL DEFAULT ''   COMMENT '保温箱编号',
+  `temp_number_one`   varchar(50) NOT NULL DEFAULT ''   COMMENT '温度计编号1',
+  `temp_number_two`   varchar(50) NOT NULL DEFAULT ''   COMMENT '温度计编号2',
+  `temp_number_three`   varchar(50) NOT NULL DEFAULT ''   COMMENT '温度计编号3',
+  `tro_remark` text  COMMENT '备注',
+
+  `tro_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tro_id`),
+  KEY idx_cu_id (`cu_id`),
+  KEY idx_cp_id (`cp_id`)
+)  COMMENT='预约单';
