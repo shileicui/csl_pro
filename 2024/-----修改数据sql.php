@@ -395,3 +395,164 @@ INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `
 
 
 
+
+tms_drive_record tms_dr_visible =1
+
+//冷机初始化
+update tms_drive_record set tms_dr_visible=2,tms_dr_car_id=0   where tms_dr_id=525851;
+update tms_drive_record set tms_dr_visible=2,tms_dr_car_id=0   where tms_dr_id=525852;
+
+
+//修改冷机时长
+
+沪FH7520
+
+update car set cumulative_duration=2695 where ca_id=404;
+update tms_car_info set vice_cumulative_duration=283 where ca_id=404;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',404, 0, '系统', 0, 'IT协助修改 修改主冷机时长为2695 副冷机时长为283  审批单号：   
+ITSJ202508260001', 1756175397, 13, 0);
+
+
+
+update car set cumulative_duration=1694 where ca_id=739;
+update tms_car_info set vice_cumulative_duration=170 where ca_id=739;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',739, 0, '系统', 0, 'IT协助修改 修改主冷机时长为1694 副冷机时长为170  审批单号：   
+ITSJ202508260001', 1756175397, 13, 0);
+
+
+update car set cumulative_duration=3053 where ca_id=457;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',457, 0, '系统', 0, 'IT协助修改 修改主冷机时长为3053  审批单号：   
+ITSJ202508260001', 1756175397, 13, 0);
+
+
+
+update car set cumulative_duration=2059 where ca_id=738;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',738, 0, '系统', 0, 'IT协助修改 修改主冷机时长为2059  审批单号：   
+ITSJ202508260001', 1756175397, 13, 0);
+
+
+update car set cumulative_duration=2379 where ca_id=396;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',396, 0, '系统', 0, 'IT协助修改 修改主冷机时长为2379  审批单号：   
+ITSJ202508260001', 1756175397, 13, 0);
+
+
+update car set cumulative_duration=2095 where ca_id=740;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',740, 0, '系统', 0, 'IT协助修改 修改主冷机时长为2095  审批单号：   
+ITSJ202508260001', 1756175397, 13, 0);
+
+update car set cumulative_duration=1392 where ca_id=580;
+update tms_car_info set vice_cumulative_duration=364 where ca_id=580;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',580, 0, '系统', 0, 'IT协助修改 修改主冷机时长为1392 副冷机为364  审批单号：   
+ITSJ202508260001', 1756175397, 13, 0);
+
+
+
+update car set cumulative_duration=1304 where ca_id=500;
+update tms_car_info set vice_cumulative_duration=307 where ca_id=500;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',500, 0, '系统', 0, 'IT协助修改 修改主冷机时长为1304 副冷机为307  审批单号：   
+ITSJ202508260001', 1756175397, 13, 0);
+
+
+update car set cumulative_duration=1619 where ca_id=456;
+update tms_car_info set vice_cumulative_duration=358 where ca_id=456;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',456, 0, '系统', 0, 'IT协助修改 修改主冷机时长为1619 副冷机为358  审批单号：   
+ITSJ202508260001', 1756175397, 13, 0);
+
+
+
+update car set cumulative_duration=3419 where ca_id=401;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',401, 0, '系统', 0, 'IT协助修改 修改主冷机时长为3419   审批单号：   
+ITSJ202508260001', 1756175397, 13, 0);
+
+
+update car set cumulative_duration=3253 where ca_id=390;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',390, 0, '系统', 0, 'IT协助修改 修改主冷机时长为3253   审批单号：   
+ITSJ202508260001', 1756175397, 13, 0);
+
+update car set cumulative_duration=2713 where ca_id=381;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',381, 0, '系统', 0, 'IT协助修改 修改主冷机时长为2713   审批单号：   
+ITSJ202508260001', 1756175397, 13, 0);
+
+
+
+
+'沪FH7520,沪FJ9758,沪FJ7255,沪FL5295,沪FG3809,沪FP2603,鲁AX1090,沪FK1172,沪FP2283,沪FG1373,苏ALL169,沪EUX500'
+
+
+//路桥费
+update tms_road_record set trr_visible=2 where trrb_id=86;
+update tms_road_record_bill set trrb_visible=2 where trrb_id=86;
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '150', '150005', 86, 0, '系统申请', 0, ' 删除数据 审批单号：ITSJ202508270002', 1756260463, 13);
+
+
+update tms_road_record set payment_company='生生供应链管理（杭州）有限公司' where trrb_id=77;
+update tms_road_record_bill set payment_company='生生供应链管理（杭州）有限公司' where trrb_id=77;
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '150', '150004', 77, 0, '系统申请', 0, ' 更改 付款公司：生生供应链管理（杭州）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+
+update tms_refuel_record set payment_company='瑞生供应链管理（南京）有限公司' where trrb_id in (109,120,134,151,173);
+update tms_refuel_record_bill set payment_company='瑞生供应链管理（南京）有限公司' where trrb_id in (109,120,134,151,173);
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 109, 0, '系统申请', 0, ' 更改 付款公司： 瑞生供应链管理（南京）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 120, 0, '系统申请', 0, ' 更改 付款公司： 瑞生供应链管理（南京）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 134, 0, '系统申请', 0, ' 更改 付款公司： 瑞生供应链管理（南京）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 151, 0, '系统申请', 0, ' 更改 付款公司： 瑞生供应链管理（南京）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 173, 0, '系统申请', 0, ' 更改 付款公司： 瑞生供应链管理（南京）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+
+
+update tms_refuel_record set payment_company='生生供应链管理（成都）有限公司' where trrb_id in (108,126,140,150,167);
+update tms_refuel_record_bill set payment_company='生生供应链管理（成都）有限公司' where trrb_id in (108,126,140,150,167);
+
+
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 108, 0, '系统申请', 0, ' 更改 付款公司： 生生供应链管理（成都）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 126, 0, '系统申请', 0, ' 更改 付款公司： 生生供应链管理（成都）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 140, 0, '系统申请', 0, ' 更改 付款公司： 生生供应链管理（成都）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 150, 0, '系统申请', 0, ' 更改 付款公司： 生生供应链管理（成都）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 167, 0, '系统申请', 0, ' 更改 付款公司： 生生供应链管理（成都）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+
+update tms_refuel_record set payment_company='生生供应链管理（杭州）有限公司' where trrb_id in (107,128,142,149,165);
+update tms_refuel_record_bill set payment_company='生生供应链管理（杭州）有限公司' where trrb_id in (107,128,142,149,165);
+
+
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 107, 0, '系统申请', 0, ' 更改 付款公司： 生生供应链管理（杭州）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 128, 0, '系统申请', 0, ' 更改 付款公司： 生生供应链管理（杭州）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 142, 0, '系统申请', 0, ' 更改 付款公司： 生生供应链管理（杭州）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 149, 0, '系统申请', 0, ' 更改 付款公司： 生生供应链管理（杭州）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '151', '151004', 165, 0, '系统申请', 0, ' 更改 付款公司： 生生供应链管理（杭州）有限公司 审批单号：ITSJ202508270002', 1756260463, 13);
+
+cart 点亮节点表
+tms_cart_operation_record

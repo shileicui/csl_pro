@@ -1285,13 +1285,13 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26485  未上线
 {
     "1": "DTP",
     "3": "DFP",
-    "2": "都不是"
+    "2": "否"
 }
 
 
 临床非生生运输订单调整
-feature_26602_csl_20250804
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26602
+feature_26602_csl_20250804  mini_program
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26602  未上线
 
 
 
@@ -1354,7 +1354,7 @@ feature_26566_csl_20250811 dispatch_admin
 
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26566  未上线
 
-
+js  版本号记得改大点
 
  特殊客户签收人支持复选框勾选
 feature_26703_csl_20250815
@@ -1376,6 +1376,34 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26703
 
 https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=4864
 
+
+
+
+CAR-T预约安排
+feature_26732_csl_20250819 tms_admin
+feature_26732_csl_20250905 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26732  未上线
+
+测试
+
+//CAR-T预约单消息推送模板ID
+define('CART_RESERVE_ORDER_MESSAGE_ID','280');
+tms.reserve.ordermsg
+
+线上
+
+//CAR-T预约单消息推送模板ID
+define('CART_RESERVE_ORDER_MESSAGE_ID','292');
+
+
+{
+    "msgtype":"markdown",
+    "markdown":{
+        "content":"@@touser@@ 你有一个@@type_msg@@CAR-T常规预约，请及时安排人员！\n委托客户：@@cu_name@@\n项目名称：@@cp_name@@\n温区：@@to_temperature_name@@\n运输方式：@@to_trequirement_name@@\n运输城市：@@start_end_region@@\n预取日期：@@pickup_date@@\nID：@@tro_id@@"
+    },
+    "key":"54b332ea-ef0f-42fd-84ec-35606692a952"
+}
+
 alter table
    tms_city_config
  add
@@ -1396,22 +1424,25 @@ CREATE TABLE `tms_reserve_order` (
   `cu_name`  varchar(255) NOT NULL DEFAULT ''  COMMENT '委托客户名称',
   `cp_id`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '项目id',
   `cp_name`  varchar(255) NOT NULL DEFAULT ''  COMMENT '项目名称',
-  `to_temperature` tinyint(4) unsigned DEFAULT '0'   COMMENT '温区',
-  `to_temperature_name`  varchar(50) NOT NULL DEFAULT ''    COMMENT '温区名称',
-  `to_trequirement` tinyint(4) unsigned DEFAULT '0'   COMMENT '运输方式',
+  `to_temperature` tinyint(4) unsigned NOT NULL DEFAULT '0'   COMMENT '温区',
+  `to_temperature_name`  varchar(100) NOT NULL DEFAULT ''    COMMENT '温区名称',
+  `to_trequirement` tinyint(4) unsigned NOT NULL DEFAULT '0'   COMMENT '运输方式 2 专人 3 专车',
 
-  `start_region_id` int(11) unsigned DEFAULT '0' COMMENT '发件城市ID',
-  `start_region_name` char(128) DEFAULT NULL COMMENT '发件城市名',
-  `stop_region_id` int(11) unsigned DEFAULT '0' COMMENT '收件城市ID',
-  `stop_region_name` char(128) DEFAULT NULL COMMENT '收件城市名',
+  `start_region_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '发件城市ID',
+  `start_region_name` varchar(128) NOT NULL DEFAULT '' COMMENT '发件城市名',
+  `stop_region_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '收件城市ID',
+  `stop_region_name` varchar(128) NOT NULL  DEFAULT '' COMMENT '收件城市名',
 
-  `arrange_region_id` int(11) unsigned DEFAULT '0' COMMENT '安排城市ID',
-  `arrange_region_name` char(128) DEFAULT NULL COMMENT '安排城市名',
+  `arrange_region_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '安排城市ID',
+  `arrange_region_name` varchar(128) NOT NULL  DEFAULT '' COMMENT '安排城市名',
 
   `pickup_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '预取时间',
   `delivery_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '预派时间',
   `reserve_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '预约生成时间',
-  `tro_type` tinyint(4) unsigned DEFAULT '1'   COMMENT '预约状态 1未反馈 2已反馈 3已确认 4已驳回 5已下单',
+  `feedback_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '反馈时间',
+
+  `tro_type` tinyint(4) unsigned  NOT NULL  DEFAULT '1'   COMMENT '预约状态 1未反馈 2已反馈 3已确认 4已驳回 5已下单',
+  `to_id` int(11)  unsigned NOT NULL DEFAULT '0'  COMMENT '绑定的订单id',
 
   `logistics_ur_uid`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '物流反馈人uid',
   `logistics_username` varchar(50) NOT NULL DEFAULT ''  COMMENT '物流反馈人姓名',
@@ -1419,6 +1450,8 @@ CREATE TABLE `tms_reserve_order` (
   `consumable_ur_uid`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '耗材反馈人uid',
   `consumable_username` varchar(50) NOT NULL DEFAULT ''  COMMENT '耗材反馈人姓名',
 
+  `operation_uid`   varchar(100) NOT NULL DEFAULT ''  COMMENT '人员姓名 uid',
+  `operation_username`   varchar(255) NOT NULL DEFAULT ''  COMMENT '人员姓名'
   `phone_number` varchar(50) NOT NULL DEFAULT '' COMMENT '手机号',
   `identity_card` varchar(100) NOT NULL DEFAULT '' COMMENT '身份证号',
   `car_number` varchar(50) NOT NULL DEFAULT ''  COMMENT '车牌号',
@@ -1433,6 +1466,12 @@ CREATE TABLE `tms_reserve_order` (
   `temp_number_three`   varchar(50) NOT NULL DEFAULT ''   COMMENT '温度计编号3',
   `tro_remark` text  COMMENT '备注',
 
+  `designate_ur_uid`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '指派人uid',
+  `designate_username` varchar(50) NOT NULL DEFAULT ''  COMMENT '指派人姓名',
+
+  `consumable_designate_ur_uid` int(11) NOT NULL DEFAULT '0' COMMENT '耗材指派人-id',
+  `consumable_designate_username` varchar(50) NOT NULL DEFAULT '' COMMENT '耗材指派人',
+
   `tro_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -1440,4 +1479,300 @@ CREATE TABLE `tms_reserve_order` (
   PRIMARY KEY (`tro_id`),
   KEY idx_cu_id (`cu_id`),
   KEY idx_cp_id (`cp_id`)
-)  COMMENT='预约单';
+)  COMMENT='car-t预约单';
+
+alter table
+   tms_reserve_order
+ add
+   column `operation_uid`   varchar(100) NOT NULL DEFAULT ''  COMMENT '人员姓名 uid',
+add
+   column `operation_username`   varchar(255) NOT NULL DEFAULT ''  COMMENT '人员姓名';
+
+{
+    "cu_ids": [
+        202101157,
+        202105217
+    ],
+    "cp_ids": [
+        8548,
+        8595,
+        25302,
+        25303,
+        25330,
+        25331
+    ],
+    "recycle_cp_ids": [
+        8595,
+        25303,
+        25330
+    ],
+    "single_cp_ids": [
+        8548,
+        25302,
+        25331
+    ]
+}
+
+
+温度计绑定限制配置优化
+feature_26729_csl_20250819
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26729  已上线
+
+
+
+
+
+
+
+车辆维保台账页面
+feature_26800_csl_20250821
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=26800 未上线
+
+
+
+预报单定制化
+feature_26814_csl_20250822
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26814  未上线
+
+
+CREATE TABLE `tms_forecast_mailtemp` (
+  `tfm_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `cu_id`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '委托客户id',
+  `cu_name`  varchar(255) NOT NULL DEFAULT ''  COMMENT '委托客户名称',
+  `tfm_title`  varchar(500) NOT NULL DEFAULT ''  COMMENT '邮件标题',
+  `tfm_content` text  COMMENT '邮件内容',
+  `tfm_receiver` text COMMENT '邮件接收人',
+  `tfm_person` text COMMENT '邮件抄送人',
+  `tfm_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tfm_id`),
+  KEY idx_cu_id (`cu_id`)
+)  COMMENT='预报单邮件模板';
+
+
+
+ 财务获取绑定的车辆数据接口调整
+ feature_26981_csl_20250904
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=26981
+
+
+预报单发送邮件-支持富文本编辑器
+
+
+
+
+DTP拆分     已上线
+DTP/DFP隐藏逻辑调整  已上线
+临床非生生运输订单调整  待测试
+
+预报单定制化  已上线
+预报单发送邮件-支持富文本编辑器 已上线
+car-t预约单   进行中（进度 90%）
+
+下周计划
+car-t预约单  完成开发
+
+
+承运商车辆支持模糊查询
+feature_27027_csl_20250905
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27027  已上线
+
+
+
+
+
+车辆行车列表增加冷机附件
+feature_27004_csl_20250908
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27004
+
+
+
+预报单发邮件模板配置调整
+feature_27062_csl_20250908
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27062  已上线
+
+
+
+
+预报单发送邮件支持上传多个附件
+feature_27070_csl_20250908
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27070  已上线
+
+
+
+
+car-t订单退回取件方调整
+feature_27114_csl_20250911
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27114  未上线
+
+
+
+
+
+
+物流项目配置汇总改造
+feature_27188_csl_20250917
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=27188  未上线
+
+
+TMS_PROJECT_CONFIG
+{
+    "pickup_collect_note_switch": {
+        "on": 1,
+        "off": 0,
+        "label": "取件给收件方发送短信",
+        "span": "取件完成，给收件人发送短信"
+    },
+    "pickup_client_mail_switch": {
+        "on": 1,
+        "off": 0,
+        "label": "取件给客户发送邮件",
+        "span": "取件完成，给客户发送邮件"
+    },
+    "note_code_switch": {
+        "on": 1,
+        "off": 0,
+        "label": "派件验证码校验",
+        "span": "派件时，给收件方发送短信验证，操作在APP需要录入验证码"
+    },
+    "cpc_send_message_add_customer": {
+        "on": 1,
+        "off": 0,
+        "label": " 取派短信发送项目人员信息",
+        "span": ""
+    },
+    "send_code_verify": {
+        "on": 1,
+        "off": 0,
+        "label": "到达派件签收码校验",
+        "span": " "
+    },
+    "connect_verify": {
+        "on": 1,
+        "off": 0,
+        "label": "上传客户交接单",
+        "span": "取派件时，要求APP上传客户交接单拍照"
+    },
+    "batch_delivery_switch": {
+        "on": 1,
+        "off": 0,
+        "label": "批量派件",
+        "span": "项目支持，APP批量派件"
+    },
+    "cpc_not_use_ssexpress": {
+        "on": 1,
+        "off": 0,
+        "label": "不使用生生签收单据",
+        "span": " "
+    },
+    "cpc_use_customer_express": {
+        "on": 1,
+        "off": 0,
+        "label": "使用客户签收单据",
+        "span": " "
+    },
+    "ice_aging_status": {
+        "on": 1,
+        "off": 0,
+        "label": "不允许中途私自换冰排",
+        "span": "APP提示不能换冰排"
+    },
+    "app_send_time_status": {
+        "on": 1,
+        "off": 0,
+        "label": "取派件不获取温度计开关机时间",
+        "span": " "
+    },
+    "pickup_contact_status": {
+        "on": 1,
+        "off": 0,
+        "label": "取件前电话联系客户",
+        "span": "提醒APP，和标签是否有重复"
+    },
+    "send_contact_status": {
+        "on": 1,
+        "off": 0,
+        "label": "派件前电话联系客户",
+        "span": "提醒APP，和标签是否有重复"
+    },
+    "high_speed_status": {
+        "on": 1,
+        "off": 0,
+        "label": "禁止高铁押运、专人专车交接",
+        "span": "开启后，禁止使用高铁押运"
+    },
+    "is_blood_bag_clamp": {
+        "on": 1,
+        "off": 0,
+        "label": "需要绑定血袋夹",
+        "span": "提醒APP，做方案的时候需要绑定血袋夹"
+    },
+    "corpuscle_single_status": {
+        "on": 1,
+        "off": 0,
+        "label": "支持电子面单",
+        "span": "开启后，客户可以使用电子面单"
+    },
+    "write_temp_switch": {
+        "on": 1,
+        "off": 0,
+        "label": "取派件填写开启关闭温度 ",
+        "span": "开启后，要求APP在取派件时填写温度"
+    }
+}
+
+临床非生生运输订单调整 待测试
+
+物流car-t预约单  测试中
+car-t订单退回取件方调整  已上线
+物流项目配置汇总改造  测试中
+
+
+车辆保养数据修改
+诺和关联表数据修改
+
+
+
+
+
+
+
+
+CREATE TABLE `tms_fixed_drug` (
+  `tfd_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `cu_id`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '委托客户id',
+  `cu_name`  varchar(255) NOT NULL DEFAULT ''  COMMENT '委托客户名称',
+  `cp_id`  int(11) unsigned NOT NULL DEFAULT '0' COMMENT '项目id',
+  `cp_no`  varchar(255) NOT NULL DEFAULT ''  COMMENT '项目名称',
+  `to_temperature` tinyint(4) unsigned NOT NULL DEFAULT '0'   COMMENT '温区',
+  `to_temperature_name`  varchar(100) NOT NULL DEFAULT ''    COMMENT '温区名称',
+  `drug_name`  varchar(255) NOT NULL DEFAULT ''  COMMENT '药品名称',
+  `tfd_long` decimal(10,2)  NOT NULL DEFAULT '0.00'  COMMENT '长（厘米）',
+  `tfd_width` decimal(10,2)  NOT NULL DEFAULT '0.00'  COMMENT '宽（厘米）',
+  `tfd_height` decimal(10,2)  NOT NULL DEFAULT '0.00'  COMMENT '高（厘米）',
+  `tfd_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tfd_id`),
+  KEY idx_cu_id (`cu_id`),
+  KEY idx_cp_id (`cp_id`)
+)  COMMENT='固定箱型配置表';
+
+
+CREATE TABLE `tms_fixed_box` (
+  `tfb_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `tfd_id` int(11) DEFAULT NULL COMMENT 'tms_fixed_drug.tfd_id',
+  `sto_id` int(11) DEFAULT NULL COMMENT '箱型id',
+  `sto_name` varchar(255) DEFAULT NULL COMMENT '箱型名称',
+  `tfb_num` varchar(255) DEFAULT NULL COMMENT '箱型数量',
+  `tfb_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tfb_id`),
+  KEY idx_tfb_sto_id (`tfb_sto_id`),
+  KEY idx_tfd_id (`tfd_id`)
+)  COMMENT='固定箱型配置附属箱型表';

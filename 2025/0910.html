@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>供应商报价录入 – Layui</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/layui@2.8.12/dist/css/layui.css">
+  <style>
+    .layui-container{ margin-top: 20px; }
+    .layui-table-tool{ margin-bottom: 10px; }
+    .layui-table-tool-temp{ padding: 0; }
+    .w-auto{ width: 100%; }
+    .m-top{ margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+<div class="layui-container">
+  <form class="layui-form" lay-filter="quoteForm">
+
+    <!-- 基础信息 -->
+    <fieldset class="layui-elem-field">
+      <legend>基础信息</legend>
+      <div class="layui-field-box">
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">供应商名称</label>
+            <div class="layui-input-inline" style="width: 200px;">
+              <input type="text" name="supplier"  placeholder="请输入" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-inline">
+            <label class="layui-form-label">是否含税</label>
+            <div class="layui-input-inline">
+              <input type="radio" name="hasTax" value="1" title="含税"   lay-filter="tax">
+              <input type="radio" name="hasTax" value="0" title="不含税" lay-filter="tax" checked>
+            </div>
+          </div>
+          <div class="layui-inline" id="taxRateBox" style="display:none;">
+            <label class="layui-form-label">税点(%)</label>
+            <div class="layui-input-inline" style="width: 100px;">
+              <input type="number" name="taxRate" placeholder="税点" class="layui-input">
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 路由信息 -->
+    <fieldset class="layui-elem-field">
+      <legend>路由信息</legend>
+      <div class="layui-field-box">
+        <table class="layui-table" lay-size="sm">
+          <thead>
+            <tr>
+              <th>路由类型</th>
+              <th>出发城市</th>
+              <th>到达城市</th>
+              <th>货物类型</th>
+              <th>计费类型</th>
+              <th>开始生效日期</th>
+              <th width="70">操作</th>
+            </tr>
+          </thead>
+          <tbody id="routeTbody">
+            <tr>
+              <td><select name="routeType" lay-search><option value="">请选择</option></select></td>
+              <td><input type="text" name="fromCity" class="layui-input"></td>
+              <td><input type="text" name="toCity"   class="layui-input"></td>
+              <td><select name="cargoType" lay-search><option value="">请选择</option></select></td>
+              <td><select name="chargeType" lay-search><option value="">请选择</option></select></td>
+              <td><input type="text" name="effectDate" class="layui-input date"></td>
+              <td><button type="button" class="layui-btn layui-btn-danger layui-btn-xs del">删除</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="layui-btn layui-btn-sm" id="addRoute">添加一行</button>
+      </div>
+    </fieldset>
+
+    <!-- 非干冰运价 -->
+    <fieldset class="layui-elem-field">
+      <legend>非干冰运价（元/KG）</legend>
+      <div class="layui-field-box">
+        <table class="layui-table" lay-size="sm">
+          <thead><tr><th>重量区间</th><th>金额（元）</th><th width="70">操作</th></tr></thead>
+          <tbody id="noIceTbody">
+            <tr>
+              <td><input type="text" name="noIceSection" class="layui-input" placeholder="如：0-10kg"></td>
+              <td><input type="number" name="noIcePrice" class="layui-input" step="0.01"></td>
+              <td><button type="button" class="layui-btn layui-btn-danger layui-btn-xs del">删除</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="layui-btn layui-btn-sm" id="addNoIce">添加一行</button>
+      </div>
+    </fieldset>
+
+    <!-- 干冰运价 -->
+    <fieldset class="layui-elem-field">
+      <legend>干冰运价（元/KG）</legend>
+      <div class="layui-field-box">
+        <table class="layui-table" lay-size="sm">
+          <thead><tr><th>重量区间</th><th>金额（元）</th><th width="70">操作</th></tr></thead>
+          <tbody id="iceTbody">
+            <tr>
+              <td><input type="text" name="iceSection" class="layui-input" placeholder="如：0-10kg"></td>
+              <td><input type="number" name="icePrice" class="layui-input" step="0.01"></td>
+              <td><button type="button" class="layui-btn layui-btn-danger layui-btn-xs del">删除</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="layui-btn layui-btn-sm" id="addIce">添加一行</button>
+      </div>
+    </fieldset>
+
+    <!-- 其它费用 -->
+    <fieldset class="layui-elem-field">
+      <legend>其它费用</legend>
+      <div class="layui-field-box">
+        <div class="layui-row layui-col-space15">
+          <div class="layui-col-md3"><label class="layui-form-label">燃油费（元/KG）</label><input type="number" name="fuel" class="layui-input"></div>
+          <div class="layui-col-md3"><label class="layui-form-label">干冰检查费（元/票）</label><input type="number" name="iceCheck" class="layui-input"></div>
+          <div class="layui-col-md3"><label class="layui-form-label">锂电池检查费（元/件）</label><input type="number" name="batteryCheck" class="layui-input"></div>
+          <div class="layui-col-md3"><label class="layui-form-label">代理操作费（元/票）</label><input type="number" name="agent" class="layui-input"></div>
+          <div class="layui-col-md3"><label class="layui-form-label">超重费（元/件）</label><input type="number" name="overWeight" class="layui-input"></div>
+          <div class="layui-col-md3"><label class="layui-form-label">机场操作费（元/票）</label><input type="number" name="airport" class="layui-input"></div>
+          <div class="layui-col-md3"><label class="layui-form-label">包装费（元/件）</label><input type="number" name="package" class="layui-input"></div>
+          <div class="layui-col-md3"><label class="layui-form-label">电报费（元/票）</label><input type="number" name="telegraph" class="layui-input"></div>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 满减优惠 -->
+    <fieldset class="layui-elem-field">
+      <legend>满减优惠</legend>
+      <div class="layui-field-box">
+        <table class="layui-table" lay-size="sm">
+          <thead><tr><th>满减额度（≥）</th><th>折扣（%）</th><th width="70">操作</th></tr></thead>
+          <tbody id="discountTbody">
+            <tr>
+              <td><input type="number" name="full" class="layui-input" step="0.01"></td>
+              <td><input type="number" name="discount" class="layui-input" step="0.01"></td>
+              <td><button type="button" class="layui-btn layui-btn-danger layui-btn-xs del">删除</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" class="layui-btn layui-btn-sm" id="addDiscount">新增一行</button>
+      </div>
+    </fieldset>
+
+    <!-- 保存 -->
+    <div class="layui-form-item m-top">
+      <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="save">保存</button>
+        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<script src="https://unpkg.com/layui@2.8.12/dist/layui.js"></script>
+<script>
+layui.use(['form','layer','laydate'], function(){
+  const $ = layui.$, form = layui.form, laydate = layui.laydate;
+
+  // 日期
+  laydate.render({ elem: '.date', type: 'date' });
+
+  // 是否含税切换
+  form.on('radio(tax)', function(data){
+    $('#taxRateBox').toggle(data.value === '1');
+  });
+
+  // 通用增行
+  function addRow(tbody){
+    const first = tbody.find('tr:first');
+    const clone = first.clone();
+    clone.find('input').val('');
+    clone.find('select').each(function(){ this.selectedIndex=0; });
+    tbody.append(clone);
+    form.render('select');
+  }
+  $('#addRoute').click(()=> addRow($('#routeTbody')));
+  $('#addNoIce').click(()=> addRow($('#noIceTbody')));
+  $('#addIce').click(()=> addRow($('#iceTbody')));
+  $('#addDiscount').click(()=> addRow($('#discountTbody')));
+
+  // 通用删行
+  $(document).on('click','.del', function(){
+    const len = $(this).parents('tbody').find('tr').length;
+    if(len>1) $(this).parents('tr').remove();
+    else layer.msg('至少保留一行');
+  });
+
+ form.on('submit(save)', function(obj){
+  // 1. 收集主表字段
+  const main = {
+    supplierName    : obj.field.supplier,
+    hasTax          : obj.field.hasTax === '1',
+    taxRate         : obj.field.taxRate || null,
+    fuelFee         : obj.field.fuel || 0,
+    iceCheckFee     : obj.field.iceCheck || 0,
+    batteryCheckFee : obj.field.batteryCheck || 0,
+    agentFee        : obj.field.agent || 0,
+    overWeightFee   : obj.field.overWeight || 0,
+    airportFee      : obj.field.airport || 0,
+    packageFee      : obj.field.package || 0,
+    telegraphFee    : obj.field.telegraph || 0
+  };
+
+  // 2. 收集路由
+  const routes = [];
+  $('#routeTbody tr').each(function(){
+    routes.push({
+      routeType  : $(this).find('[name=routeType]').val(),
+      fromCity   : $(this).find('[name=fromCity]').val(),
+      toCity     : $(this).find('[name=toCity]').val(),
+      cargoType  : $(this).find('[name=cargoType]').val(),
+      chargeType : $(this).find('[name=chargeType]').val(),
+      effectDate : $(this).find('[name=effectDate]').val()
+    });
+  });
+
+  // 3. 收集非干冰运价
+  const noIcePrices = [];
+  $('#noIceTbody tr').each(function(){
+    noIcePrices.push({
+      priceType        : 1,
+      weightSection : $(this).find('[name=noIceSection]').val(),
+      price         : $(this).find('[name=noIcePrice]').val()
+    });
+  });
+
+  // 4. 收集干冰运价
+  const icePrices = [];
+  $('#iceTbody tr').each(function(){
+    icePrices.push({
+      priceType     : 2,
+      weightSection : $(this).find('[name=iceSection]').val(),
+      price         : $(this).find('[name=icePrice]').val()
+    });
+  });
+
+  // 5. 收集满减
+  const discounts = [];
+  $('#discountTbody tr').each(function(){
+    discounts.push({
+      fullAmount : $(this).find('[name=full]').val(),
+      discount   : $(this).find('[name=discount]').val()
+    });
+  });
+
+  // 6. 汇总
+  const payload = {
+    ...main,
+    routes,
+    prices : [...noIcePrices, ...icePrices],
+    discounts
+  };
+  console.log(payload)
+
+
+  return false; // 阻止表单默认跳转
+});
+});
+</script>
+</body>
+</html>
