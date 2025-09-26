@@ -39,10 +39,12 @@ INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `u
 
 
 //修改维保里程
-update car_repair set repair_mile=306564,repair_finish_mile=306564 where cr_id=12021;
+update car_repair set repair_mile=182870,repair_finish_mile=182870 where cr_id=16230;
 
-INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',12021, 0, '系统', 0, 'IT协助修改  2024-11-19系统保养操作录入里程错误，需要修改。原来录入30806KM需要修改为306564KM  审批单号：   
-ITSJ202412190003', 1734598396, 13, 0);
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',16230, 0, '系统', 0, 'IT协助修改  苏A93RS8车辆9月10号维保里程填写错误，正确里程182870KM。  审批单号：ITSJ202509230003', 1758619439, 13, 0);
+
+
+
 
 
 
@@ -556,3 +558,26 @@ INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl
 
 cart 点亮节点表
 tms_cart_operation_record
+
+
+
+
+
+
+//修改派件人
+
+
+update order_logistics set ol_delivery_person=62617,ol_delivery_name='张家界-胡湘民' where to_id=4024509;
+update oms_logistics set ol_delivery_person=62617,ol_delivery_name='张家界-胡湘民' where to_id=4024509;
+
+update opn_operator set user_id=62617,username='张家界-胡湘民',role_type=2 where opnop_id=24746542;
+
+update tms_operation_fee set user_id=62617,username='张家界-胡湘民' where to_id=4024509 and opn_type =2;
+
+
+update tms_logistics_remark set lr_opn_user='张家界-胡湘民' where lr_to_id=4024509 and lr_type=5;
+
+update tms_logistics_log set tll_uids=62617,tll_unames='张家界-胡湘民' where tll_to_id=4024509 and tll_type =4;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4024509, 0, '系统', 0, 'IT协助修改  派件人 跨越-九辰 改成 外协账号：张家界-胡湘民 审批单号：ITSJ202509220001', 1758520721, 13, 0);

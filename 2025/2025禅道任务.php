@@ -1605,7 +1605,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27070  已上线
 
 car-t订单退回取件方调整
 feature_27114_csl_20250911
-https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27114  未上线
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27114  已上线
 
 
 
@@ -1725,7 +1725,7 @@ TMS_PROJECT_CONFIG
 
 临床非生生运输订单调整 待测试
 
-物流car-t预约单  测试中
+物流car-t预约单  待上线
 car-t订单退回取件方调整  已上线
 物流项目配置汇总改造  测试中
 
@@ -1736,9 +1736,9 @@ car-t订单退回取件方调整  已上线
 
 
 
-
-
-
+添加固定箱型配置页面
+feature_27234_csl_20250922
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27234
 
 CREATE TABLE `tms_fixed_drug` (
   `tfd_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -1759,20 +1759,26 @@ CREATE TABLE `tms_fixed_drug` (
   PRIMARY KEY (`tfd_id`),
   KEY idx_cu_id (`cu_id`),
   KEY idx_cp_id (`cp_id`)
-)  COMMENT='固定箱型配置表';
+)  COMMENT='固定箱型配置表/tms_admin';
 
 
 CREATE TABLE `tms_fixed_box` (
   `tfb_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `tfd_id` int(11) DEFAULT NULL COMMENT 'tms_fixed_drug.tfd_id',
-  `sto_id` int(11) DEFAULT NULL COMMENT '箱型id',
-  `sto_name` varchar(255) DEFAULT NULL COMMENT '箱型名称',
-  `tfb_num` varchar(255) DEFAULT NULL COMMENT '箱型数量',
+  `tfd_id` int(11) NOT NULL DEFAULT '0' COMMENT 'tms_fixed_drug.tfd_id',
+  `sto_id` int(11) NOT NULL DEFAULT '0' COMMENT '箱型id',
+  `sto_name` varchar(255)  NOT NULL DEFAULT '' COMMENT '箱型名称',
+  `tfb_num` int(11) NOT NULL DEFAULT '0' COMMENT '箱型数量',
   `tfb_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
   PRIMARY KEY (`tfb_id`),
-  KEY idx_tfb_sto_id (`tfb_sto_id`),
+  KEY idx_sto_id (`sto_id`),
   KEY idx_tfd_id (`tfd_id`)
-)  COMMENT='固定箱型配置附属箱型表';
+)  COMMENT='固定箱型配置附属箱型表/tms_admin';
+
+
+
+物流car-t预约单  待上线
+物流项目配置汇总改造  待上线
+添加固定箱型配置页面   已上线
