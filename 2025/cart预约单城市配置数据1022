@@ -1,0 +1,117 @@
+alter table
+   tms_city_config
+ add
+   column `logistics_feedback_uid`   varchar(100) NOT NULL DEFAULT ''  COMMENT '物流反馈人 uid',
+add
+   column `logistics_feedback_username`   varchar(255) NOT NULL DEFAULT ''  COMMENT '物流反馈人名称 ',
+ add
+   column `consumable_feedback_uid`   varchar(100) NOT NULL DEFAULT ''  COMMENT '耗材反馈人 uid',
+ add
+   column `consumable_feedback_username`   varchar(255) NOT NULL DEFAULT ''  COMMENT '耗材反馈人名称';
+
+update tms_city_config  set logistics_feedback_username='',logistics_feedback_uid=,consumable_feedback_username='',consumable_feedback_uid= where region_id =;
+
+
+	update tms_city_config  set logistics_feedback_username='郭迎庆,李鑫鑫',logistics_feedback_uid='47453,879',consumable_feedback_username='刘笼博,蒋成俊',consumable_feedback_uid='3522,3252' where region_id = 310000;
+	update tms_city_config  set logistics_feedback_username='于慧宝',logistics_feedback_uid='1098',consumable_feedback_username='张明东',consumable_feedback_uid='20620' where region_id = 230100;
+	update tms_city_config  set logistics_feedback_username='于慧宝',logistics_feedback_uid='1098',consumable_feedback_username='张明东',consumable_feedback_uid='20620' where region_id = 230200;
+	update tms_city_config  set logistics_feedback_username='于慧宝',logistics_feedback_uid='1098',consumable_feedback_username='张明东',consumable_feedback_uid='20620' where region_id = 230600;
+	update tms_city_config  set logistics_feedback_username='于慧宝',logistics_feedback_uid='1098',consumable_feedback_username='张明东',consumable_feedback_uid='20620' where region_id = 230800;
+	update tms_city_config  set logistics_feedback_username='信冷奎',logistics_feedback_uid='47',consumable_feedback_username='马海平',consumable_feedback_uid='11581' where region_id = 220100;
+	update tms_city_config  set logistics_feedback_username='信冷奎',logistics_feedback_uid='47',consumable_feedback_username='马海平',consumable_feedback_uid='11581' where region_id = 220500;
+	update tms_city_config  set logistics_feedback_username='陈雨',logistics_feedback_uid='1037',consumable_feedback_username='胡忠国',consumable_feedback_uid='15458' where region_id = 210100;
+	update tms_city_config  set logistics_feedback_username='陈雨',logistics_feedback_uid='1037',consumable_feedback_username='胡忠国',consumable_feedback_uid='15458' where region_id = 210200;
+	update tms_city_config  set logistics_feedback_username='陈雨',logistics_feedback_uid='1037',consumable_feedback_username='胡忠国',consumable_feedback_uid='15458' where region_id = 210700;
+	update tms_city_config  set logistics_feedback_username='陈雨',logistics_feedback_uid='1037',consumable_feedback_username='胡忠国',consumable_feedback_uid='15458' where region_id = 211100;
+	update tms_city_config  set logistics_feedback_username='李烁',logistics_feedback_uid='11656',consumable_feedback_username='康建新',consumable_feedback_uid='13146' where region_id = 110000;
+	update tms_city_config  set logistics_feedback_username='陈凯',logistics_feedback_uid='698',consumable_feedback_username='段三峰',consumable_feedback_uid='2640' where region_id = 370100;
+	update tms_city_config  set logistics_feedback_username='陈军',logistics_feedback_uid='10167',consumable_feedback_username='段三峰',consumable_feedback_uid='2640' where region_id = 370600;
+	update tms_city_config  set logistics_feedback_username='陈军',logistics_feedback_uid='10167',consumable_feedback_username='段三峰',consumable_feedback_uid='2640' where region_id = 370700;
+	update tms_city_config  set logistics_feedback_username='陈军',logistics_feedback_uid='10167',consumable_feedback_username='段三峰',consumable_feedback_uid='2640' where region_id = 370200;
+	update tms_city_config  set logistics_feedback_username='陈军',logistics_feedback_uid='10167',consumable_feedback_username='段三峰',consumable_feedback_uid='2640' where region_id = 371300;
+	update tms_city_config  set logistics_feedback_username='陈军',logistics_feedback_uid='10167',consumable_feedback_username='段三峰',consumable_feedback_uid='2640' where region_id = 370400;
+	update tms_city_config  set logistics_feedback_username='陈军',logistics_feedback_uid='10167',consumable_feedback_username='段三峰',consumable_feedback_uid='2640' where region_id = 370900;
+	update tms_city_config  set logistics_feedback_username='陈军',logistics_feedback_uid='10167',consumable_feedback_username='段三峰',consumable_feedback_uid='2640' where region_id = 371500;
+	update tms_city_config  set logistics_feedback_username='陈军',logistics_feedback_uid='10167',consumable_feedback_username='段三峰',consumable_feedback_uid='2640' where region_id = 371600;
+	update tms_city_config  set logistics_feedback_username='陈军',logistics_feedback_uid='10167',consumable_feedback_username='段三峰',consumable_feedback_uid='2640' where region_id = 370300;
+	update tms_city_config  set logistics_feedback_username='陈军',logistics_feedback_uid='10167',consumable_feedback_username='段三峰',consumable_feedback_uid='2640' where region_id = 370800;
+	update tms_city_config  set logistics_feedback_username='熊立鹏',logistics_feedback_uid='17701',consumable_feedback_username='闫安平',consumable_feedback_uid='21974' where region_id = 120000;
+	update tms_city_config  set logistics_feedback_username='熊立鹏',logistics_feedback_uid='17701',consumable_feedback_username='闫安平',consumable_feedback_uid='21974' where region_id = 130100;
+	update tms_city_config  set logistics_feedback_username='熊立鹏',logistics_feedback_uid='17701',consumable_feedback_username='闫安平',consumable_feedback_uid='21974' where region_id = 130900;
+	update tms_city_config  set logistics_feedback_username='熊立鹏',logistics_feedback_uid='17701',consumable_feedback_username='闫安平',consumable_feedback_uid='21974' where region_id = 130400;
+	update tms_city_config  set logistics_feedback_username='熊立鹏',logistics_feedback_uid='17701',consumable_feedback_username='闫安平',consumable_feedback_uid='21974' where region_id = 130600;
+	update tms_city_config  set logistics_feedback_username='熊立鹏',logistics_feedback_uid='17701',consumable_feedback_username='闫安平',consumable_feedback_uid='21974' where region_id = 130500;
+	update tms_city_config  set logistics_feedback_username='熊立鹏',logistics_feedback_uid='17701',consumable_feedback_username='闫安平',consumable_feedback_uid='21974' where region_id = 131000;
+	update tms_city_config  set logistics_feedback_username='蒋少峰',logistics_feedback_uid='990',consumable_feedback_username='刘丙丙',consumable_feedback_uid='20683' where region_id = 410100;
+	update tms_city_config  set logistics_feedback_username='蒋少峰',logistics_feedback_uid='990',consumable_feedback_username='刘丙丙',consumable_feedback_uid='20683' where region_id = 410700;
+	update tms_city_config  set logistics_feedback_username='蒋少峰',logistics_feedback_uid='990',consumable_feedback_username='刘丙丙',consumable_feedback_uid='20683' where region_id = 410300;
+	update tms_city_config  set logistics_feedback_username='蒋少峰',logistics_feedback_uid='990',consumable_feedback_username='刘丙丙',consumable_feedback_uid='20683' where region_id = 411300;
+	update tms_city_config  set logistics_feedback_username='蒋少峰',logistics_feedback_uid='990',consumable_feedback_username='刘丙丙',consumable_feedback_uid='20683' where region_id = 410500;
+	update tms_city_config  set logistics_feedback_username='蒋少峰',logistics_feedback_uid='990',consumable_feedback_username='刘丙丙',consumable_feedback_uid='20683' where region_id = 150100;
+	update tms_city_config  set logistics_feedback_username='蒋少峰',logistics_feedback_uid='990',consumable_feedback_username='刘丙丙',consumable_feedback_uid='20683' where region_id = 150200;
+	update tms_city_config  set logistics_feedback_username='蒋少峰',logistics_feedback_uid='990',consumable_feedback_username='刘丙丙',consumable_feedback_uid='20683' where region_id = 150400;
+	update tms_city_config  set logistics_feedback_username='李磊',logistics_feedback_uid='30',consumable_feedback_username='李磊',consumable_feedback_uid='30' where region_id = 140100;
+	update tms_city_config  set logistics_feedback_username='李磊',logistics_feedback_uid='30',consumable_feedback_username='李磊',consumable_feedback_uid='30' where region_id = 140400;
+	update tms_city_config  set logistics_feedback_username='李磊',logistics_feedback_uid='30',consumable_feedback_username='李磊',consumable_feedback_uid='30' where region_id = 140800;
+	update tms_city_config  set logistics_feedback_username='李磊',logistics_feedback_uid='30',consumable_feedback_username='李磊',consumable_feedback_uid='30' where region_id = 141000;
+	update tms_city_config  set logistics_feedback_username='姜海南',logistics_feedback_uid='63',consumable_feedback_username='安继强',consumable_feedback_uid='995' where region_id = 320100;
+	update tms_city_config  set logistics_feedback_username='刘成龙',logistics_feedback_uid='44',consumable_feedback_username='刘成龙',consumable_feedback_uid='44' where region_id = 320700;
+	update tms_city_config  set logistics_feedback_username='王钢',logistics_feedback_uid='784',consumable_feedback_username='王超',consumable_feedback_uid='33952' where region_id = 320300;
+	update tms_city_config  set logistics_feedback_username='孙赛',logistics_feedback_uid='58219',consumable_feedback_username='刘帅',consumable_feedback_uid='120082' where region_id = 320200;
+	update tms_city_config  set logistics_feedback_username='姜海南',logistics_feedback_uid='63',consumable_feedback_username='安继强',consumable_feedback_uid='995' where region_id = 321000;
+	update tms_city_config  set logistics_feedback_username='丁爱民',logistics_feedback_uid='4058',consumable_feedback_username='丁爱民',consumable_feedback_uid='4058' where region_id = 321200;
+	update tms_city_config  set logistics_feedback_username='郑强强',logistics_feedback_uid='21587',consumable_feedback_username='郑强强',consumable_feedback_uid='21587' where region_id = 320600;
+	update tms_city_config  set logistics_feedback_username='王齐',logistics_feedback_uid='578',consumable_feedback_username='王齐',consumable_feedback_uid='578' where region_id = 321100;
+	update tms_city_config  set logistics_feedback_username='王伟伟',logistics_feedback_uid='15912',consumable_feedback_username='王伟伟',consumable_feedback_uid='15912' where region_id = 320400;
+	update tms_city_config  set logistics_feedback_username='姜海南',logistics_feedback_uid='63',consumable_feedback_username='安继强',consumable_feedback_uid='995' where region_id = 320800;
+	update tms_city_config  set logistics_feedback_username='郭迎庆',logistics_feedback_uid='47453',consumable_feedback_username='刘笼博',consumable_feedback_uid='3522' where region_id = 310000;
+	update tms_city_config  set logistics_feedback_username='郭迎庆',logistics_feedback_uid='47453',consumable_feedback_username='刘笼博',consumable_feedback_uid='3522' where region_id = 320500;
+	update tms_city_config  set logistics_feedback_username='王训康',logistics_feedback_uid='54092',consumable_feedback_username='丁佳良',consumable_feedback_uid='942' where region_id = 330100;
+	update tms_city_config  set logistics_feedback_username='余晖',logistics_feedback_uid='8270',consumable_feedback_username='余晖',consumable_feedback_uid='8270' where region_id = 330200;
+	update tms_city_config  set logistics_feedback_username='朱兴珑',logistics_feedback_uid='16490',consumable_feedback_username='朱兴珑',consumable_feedback_uid='16490' where region_id = 330300;
+	update tms_city_config  set logistics_feedback_username='马奇',logistics_feedback_uid='13350',consumable_feedback_username='马奇',consumable_feedback_uid='13350' where region_id = 331000;
+	update tms_city_config  set logistics_feedback_username='王训康',logistics_feedback_uid='54092',consumable_feedback_username='丁佳良',consumable_feedback_uid='942' where region_id = 330700;
+	update tms_city_config  set logistics_feedback_username='王训康',logistics_feedback_uid='54092',consumable_feedback_username='丁佳良',consumable_feedback_uid='942' where region_id = 330600;
+	update tms_city_config  set logistics_feedback_username='王训康',logistics_feedback_uid='54092',consumable_feedback_username='丁佳良',consumable_feedback_uid='942' where region_id = 330400;
+	update tms_city_config  set logistics_feedback_username='沈闯',logistics_feedback_uid='5850',consumable_feedback_username='沈闯',consumable_feedback_uid='5850' where region_id = 330500;
+	update tms_city_config  set logistics_feedback_username='李世贤',logistics_feedback_uid='823',consumable_feedback_username='张小松',consumable_feedback_uid='25679' where region_id = 340100;
+	update tms_city_config  set logistics_feedback_username='张翔',logistics_feedback_uid='1459',consumable_feedback_username='张翔',consumable_feedback_uid='1459' where region_id = 340200;
+	update tms_city_config  set logistics_feedback_username='王飞龙',logistics_feedback_uid='68',consumable_feedback_username='王飞龙',consumable_feedback_uid='68' where region_id = 340300;
+	update tms_city_config  set logistics_feedback_username='张辉',logistics_feedback_uid='358',consumable_feedback_username='刘义',consumable_feedback_uid='77' where region_id = 420100;
+	update tms_city_config  set logistics_feedback_username='张辉',logistics_feedback_uid='358',consumable_feedback_username='刘义',consumable_feedback_uid='77' where region_id = 420500;
+	update tms_city_config  set logistics_feedback_username='张辉',logistics_feedback_uid='358',consumable_feedback_username='刘义',consumable_feedback_uid='77' where region_id = 420300;
+	update tms_city_config  set logistics_feedback_username='张辉',logistics_feedback_uid='358',consumable_feedback_username='刘义',consumable_feedback_uid='77' where region_id = 421000;
+	update tms_city_config  set logistics_feedback_username='张辉',logistics_feedback_uid='358',consumable_feedback_username='刘义',consumable_feedback_uid='77' where region_id = 420600;
+	update tms_city_config  set logistics_feedback_username='刘名泉',logistics_feedback_uid='343',consumable_feedback_username='潘福生',consumable_feedback_uid='110178' where region_id = 360100;
+	update tms_city_config  set logistics_feedback_username='刘名泉',logistics_feedback_uid='343',consumable_feedback_username='潘福生',consumable_feedback_uid='110178' where region_id = 360300;
+	update tms_city_config  set logistics_feedback_username='刘名泉',logistics_feedback_uid='343',consumable_feedback_username='潘福生',consumable_feedback_uid='110178' where region_id = 360700;
+	update tms_city_config  set logistics_feedback_username='王杰明',logistics_feedback_uid='892',consumable_feedback_username='王杰明',consumable_feedback_uid='892' where region_id = 350100;
+	update tms_city_config  set logistics_feedback_username='李海州',logistics_feedback_uid='47099',consumable_feedback_username='李海州',consumable_feedback_uid='47099' where region_id = 350200;
+	update tms_city_config  set logistics_feedback_username='刘泽军',logistics_feedback_uid='15119',consumable_feedback_username='全奇',consumable_feedback_uid='21935' where region_id = 430100;
+	update tms_city_config  set logistics_feedback_username='刘泽军',logistics_feedback_uid='15119',consumable_feedback_username='全奇',consumable_feedback_uid='21935' where region_id = 430400;
+	update tms_city_config  set logistics_feedback_username='刘泽军',logistics_feedback_uid='15119',consumable_feedback_username='全奇',consumable_feedback_uid='21935' where region_id = 431000;
+	update tms_city_config  set logistics_feedback_username='刘泽军',logistics_feedback_uid='15119',consumable_feedback_username='全奇',consumable_feedback_uid='21935' where region_id = 430600;
+	update tms_city_config  set logistics_feedback_username='甘显宽',logistics_feedback_uid='659',consumable_feedback_username='林峰',consumable_feedback_uid='34902' where region_id = 450100;
+	update tms_city_config  set logistics_feedback_username='甘显宽',logistics_feedback_uid='659',consumable_feedback_username='林峰',consumable_feedback_uid='34902' where region_id = 450200;
+	update tms_city_config  set logistics_feedback_username='甘显宽',logistics_feedback_uid='659',consumable_feedback_username='林峰',consumable_feedback_uid='34902' where region_id = 450300;
+	update tms_city_config  set logistics_feedback_username='蔡锦桂',logistics_feedback_uid='26',consumable_feedback_username='云天炯',consumable_feedback_uid='96774' where region_id = 460100;
+	update tms_city_config  set logistics_feedback_username='蔡锦桂',logistics_feedback_uid='26',consumable_feedback_username='云天炯',consumable_feedback_uid='96774' where region_id = 460200;
+	update tms_city_config  set logistics_feedback_username='李圣玖',logistics_feedback_uid='344',consumable_feedback_username='甘显聪',consumable_feedback_uid='496' where region_id = 520100;
+	update tms_city_config  set logistics_feedback_username='李圣玖',logistics_feedback_uid='344',consumable_feedback_username='甘显聪',consumable_feedback_uid='496' where region_id = 520300;
+	update tms_city_config  set logistics_feedback_username='李佳超',logistics_feedback_uid='8011',consumable_feedback_username='黄中岳',consumable_feedback_uid='23264' where region_id = 440100;
+	update tms_city_config  set logistics_feedback_username='李佳超',logistics_feedback_uid='8011',consumable_feedback_username='黄中岳',consumable_feedback_uid='23264' where region_id = 440300;
+	update tms_city_config  set logistics_feedback_username='李佳超',logistics_feedback_uid='8011',consumable_feedback_username='黄中岳',consumable_feedback_uid='23264' where region_id = 440400;
+	update tms_city_config  set logistics_feedback_username='李佳超',logistics_feedback_uid='8011',consumable_feedback_username='黄中岳',consumable_feedback_uid='23264' where region_id = 441300;
+	update tms_city_config  set logistics_feedback_username='李佳超',logistics_feedback_uid='8011',consumable_feedback_username='黄中岳',consumable_feedback_uid='23264' where region_id = 440500;
+	update tms_city_config  set logistics_feedback_username='李佳超',logistics_feedback_uid='8011',consumable_feedback_username='黄中岳',consumable_feedback_uid='23264' where region_id = 440200;
+	update tms_city_config  set logistics_feedback_username='李佳超',logistics_feedback_uid='8011',consumable_feedback_username='黄中岳',consumable_feedback_uid='23264' where region_id = 441400;
+	update tms_city_config  set logistics_feedback_username='张恩龙',logistics_feedback_uid='1109',consumable_feedback_username='李春明',consumable_feedback_uid='23546' where region_id = 510100;
+	update tms_city_config  set logistics_feedback_username='张恩龙',logistics_feedback_uid='1109',consumable_feedback_username='李春明',consumable_feedback_uid='23546' where region_id = 510500;
+	update tms_city_config  set logistics_feedback_username='张恩龙',logistics_feedback_uid='1109',consumable_feedback_username='李春明',consumable_feedback_uid='23546' where region_id = 511500;
+	update tms_city_config  set logistics_feedback_username='田静',logistics_feedback_uid='33',consumable_feedback_username='胡鑫',consumable_feedback_uid='26560' where region_id = 500000;
+	update tms_city_config  set logistics_feedback_username='刘飞',logistics_feedback_uid='17114',consumable_feedback_username='李志昌',consumable_feedback_uid='52553' where region_id = 530100;
+	update tms_city_config  set logistics_feedback_username='汪梦',logistics_feedback_uid='87360',consumable_feedback_username='时圣涛',consumable_feedback_uid='573' where region_id = 610100;
+	update tms_city_config  set logistics_feedback_username='赵驰',logistics_feedback_uid='12790',consumable_feedback_username='赵驰',consumable_feedback_uid='12790' where region_id = 650100;
+	update tms_city_config  set logistics_feedback_username='李世莜',logistics_feedback_uid='5199',consumable_feedback_username='李世峰',consumable_feedback_uid='32903' where region_id = 620100;
+	update tms_city_config  set logistics_feedback_username='汪梦',logistics_feedback_uid='87360',consumable_feedback_username='时圣涛',consumable_feedback_uid='573' where region_id = 630100;
+	update tms_city_config  set logistics_feedback_username='汪梦',logistics_feedback_uid='87360',consumable_feedback_username='时圣涛',consumable_feedback_uid='573' where region_id = 640100;

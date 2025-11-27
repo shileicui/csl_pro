@@ -1399,9 +1399,9 @@ define('CART_RESERVE_ORDER_MESSAGE_ID','292');
 {
     "msgtype":"markdown",
     "markdown":{
-        "content":"@@touser@@ 你有一个@@type_msg@@CAR-T常规预约，请及时安排人员！\n委托客户：@@cu_name@@\n项目名称：@@cp_name@@\n温区：@@to_temperature_name@@\n运输方式：@@to_trequirement_name@@\n运输城市：@@start_end_region@@\n预取日期：@@pickup_date@@\nID：@@tro_id@@"
+        "content":"@@touser@@ 你有一个@@type_msg@@CAR-T常规预约，请及时安排人员！\n委托客户：@@cu_name@@\n项目名称：@@cp_name@@\n温区：@@to_temperature_name@@\n运输方式：@@to_trequirement_name@@\n运输城市：@@start_end_region@@\n预取日期：@@pickup_date@@\nID：@@tro_id@@@@remark@@"
     },
-    "key":"54b332ea-ef0f-42fd-84ec-35606692a952"
+    "key":"0a28a195-fdee-4354-b239-3413b04999bc"
 }
 
 alter table
@@ -1451,7 +1451,7 @@ CREATE TABLE `tms_reserve_order` (
   `consumable_username` varchar(50) NOT NULL DEFAULT ''  COMMENT '耗材反馈人姓名',
 
   `operation_uid`   varchar(100) NOT NULL DEFAULT ''  COMMENT '人员姓名 uid',
-  `operation_username`   varchar(255) NOT NULL DEFAULT ''  COMMENT '人员姓名'
+  `operation_username`   varchar(255) NOT NULL DEFAULT ''  COMMENT '人员姓名',
   `phone_number` varchar(50) NOT NULL DEFAULT '' COMMENT '手机号',
   `identity_card` varchar(100) NOT NULL DEFAULT '' COMMENT '身份证号',
   `car_number` varchar(50) NOT NULL DEFAULT ''  COMMENT '车牌号',
@@ -1471,6 +1471,7 @@ CREATE TABLE `tms_reserve_order` (
 
   `consumable_designate_ur_uid` int(11) NOT NULL DEFAULT '0' COMMENT '耗材指派人-id',
   `consumable_designate_username` varchar(50) NOT NULL DEFAULT '' COMMENT '耗材指派人',
+  `contradict_remark`   varchar(500) NOT NULL DEFAULT ''  COMMENT '驳回原因',
 
   `tro_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -1481,13 +1482,18 @@ CREATE TABLE `tms_reserve_order` (
   KEY idx_cp_id (`cp_id`)
 )  COMMENT='car-t预约单';
 
+
 alter table
    tms_reserve_order
- add
-   column `operation_uid`   varchar(100) NOT NULL DEFAULT ''  COMMENT '人员姓名 uid',
 add
-   column `operation_username`   varchar(255) NOT NULL DEFAULT ''  COMMENT '人员姓名';
+   column `pick_address`   varchar(800) NOT NULL DEFAULT ''  COMMENT '取件地址',
+add
+   column `delivery_address`   varchar(800) NOT NULL DEFAULT ''  COMMENT '派件地址',
+ add
+   column `reserved_remark`  text  COMMENT '预约单备注';
 
+
+//不加项目
 {
     "cu_ids": [
         202101157,
@@ -1782,3 +1788,288 @@ CREATE TABLE `tms_fixed_box` (
 物流car-t预约单  待上线
 物流项目配置汇总改造  待上线
 添加固定箱型配置页面   已上线
+
+
+
+预报单发送邮件支持不包含附件
+feature_27327_csl_20251009  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27327  未上线
+
+
+临时对公支付接口调整
+异常收费等待费优化
+
+
+工作单航空发货预报导出优化
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27432
+
+
+car-t按钮权限优化
+car-t订单修改派件时间
+
+凯强-青浦
+士伟-闵行
+三叔-浦东
+
+
+结算箱型批量确认
+feature_27467_csl_20251015
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27467  未上线
+
+
+
+
+签单返回管理支持批量修改状态
+feature_27508_csl_20251016
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27508  已上线
+
+
+大数据接口调用调整
+feature_27550_csl_20251017
+feature_27550_csl_20251105 tms_service
+feature_27550_csl_20251105 omsapi
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27550 已上线
+
+car-t预约单
+
+
+
+feature_mc_csl_20251022
+
+
+
+每刻对接
+feature_27623_csl_20251028 tms_admin
+feature_27623_csl_20251029 ams_service
+feature_27623_csl_20251103 bms_service
+feature_27623_csl_20251105 bms_admin
+feature_27623_csl_20251110 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27623  未上线
+
+
+
+/*********上线注意事项 start******/
+
+
+tms_admin/bms_service/bms_admin
+test
+define('MC_API_DOMAIN',"http://omstest.ashsh.com.cn:10059");
+
+线上
+define('MC_API_DOMAIN',"http://127.0.0.1:10059");
+
+//过滤策略
+{templateKey}等于fund_payment
+{"rule":{"bool":{"term":{"templateKey":"fund_payment"}}}}
+
+
+
+bms_settlement_config/fee_pay_apply_config
+新增        
+ 'code'=>'CS112190',
+ 'uruid'=>'10988',
+bms_remarklog_config  158007 去掉 泛微两字
+
+
+
+MC_COMPANY_CODE
+{
+"上海生生医药冷链科技股份有限公司":"SS",
+"上海生生物流有限公司":"SS01",
+"北生（北京）供应链管理有限公司":"SS01001",
+"生生供应链管理（广州）有限公司":"SS01002",
+"生生供应链管理（杭州）有限公司":"SS01003",
+"生生供应链管理（成都）有限公司":"SS01004",
+"生生供应链管理（济南）有限公司":"SS01005",
+"云南生生物流有限公司":"SS01006",
+"宴嘉供应链管理（武汉）有限公司":"SS01007",
+"瑞生供应链管理（南京）有限公司":"SS01008",
+"瑞生供应链管理（南京）有限公司徐州分公司":"SS01009",
+"苏州生生供应链管理有限公司":"SS01010",
+"生生供应链管理（天津）有限公司":"SS01011",
+"西安生生供应链管理有限公司":"SS01012",
+"深圳宴嘉供应链管理有限公司":"SS01013",
+"郑州生生供应链管理有限公司":"SS01014",
+"贵州生生供应链管理有限公司":"SS01015",
+"湖南生生供应链管理有限公司":"SS01016",
+"吉林生生供应链管理有限公司":"SS01017",
+"上海生生物流有限公司石家庄分公司":"SS01018",
+"南昌宴嘉供应链管理有限公司":"SS01019",
+"厦门生生供应链管理有限公司":"SS01020",
+"合肥宴佳瑞生供应链管理有限公司":"SS01021",
+"晏嘉供应链管理（哈尔滨）有限公司":"SS01022",
+"重庆生生供应链管理有限公司":"SS01023",
+"生生供应链管理（沈阳）有限公司":"SS01024",
+"乌鲁木齐宴嘉供应链管理有限公司":"SS01025",
+"甘肃宴伽供应链管理服务有限公司":"SS01026",
+"海南宴嘉供应链管理有限公司":"SS01027",
+"广西宴嘉供应链管理有限公司":"SS01028",
+"福州生生供应链管理有限公司":"SS01029",
+"上海生生冷链物流有限公司":"SS01030",
+"上海宴嘉冷链物流有限公司":"SS01031",
+"宴嘉冷链物流（武汉）有限公司":"SS01032",
+"北京宴嘉冷链物流有限公司":"SS01033",
+"石家庄宴嘉供应链管理有限公司":"SS01034",
+"西安宴嘉供应链管理有限公司":"SS01035",
+"烟台生生供应链管理有限公司":"SS01036",
+"上海元廷科技有限公司":"SS02",
+"上海生生国际物流有限公司":"SS03",
+"American shengsheng supply chain llc":"SS03001",
+"Shengsheng Supply Chain Management":"SS03002",
+"Shengsheng Australia pty ltd":"SS03003",
+"北京迈迪朗杰医疗器械股份有限公司":"SS04",
+"海南银瀚投资有限公司":"SS05",
+"Shengsheng International Logistics Pte. Ltd.":"SS06"
+}
+
+server_type
+{
+    "1": "oms系统",
+    "2": "m3",
+    "3": "微信服务号",
+    "4": "微信操作号",
+    "5": "客户oms系统",
+    "6": "API接口",
+    "7": "操作端APP",
+    "8": "邮件",
+    "9": "小程序",
+    "10": "企业微信",
+    "11": "ecology",
+    "12": "药品端APP",
+    "13": "审计平台",
+    "14": "小程序合同订单",
+    "15": "SRM系统",
+    "16": "每刻系统"
+}
+
+
+
+alter table
+   tms_repair_payment_apply
+add
+   column `arrive_ticket_at`  datetime DEFAULT NULL COMMENT '到票时间';
+
+alter table
+   tms_car_repair_monthly_billing
+add
+   column `arrive_ticket_at`   datetime DEFAULT NULL COMMENT '到票时间';
+
+
+
+alter table
+   carrier_bill
+add
+   column `arrive_ticket_at`   datetime DEFAULT NULL COMMENT '到票时间/预计到票时间';
+
+
+
+
+/*********上线注意事项 end******/
+
+
+签单返回管理新增取件城市搜索
+feature_27790_csl_20251103
+http://project.ashsh.com.cn/index.php?m=task&f=view&id=27790 已上线
+
+
+
+
+
+出差单列表新增是否支援字段并支持导出
+feature_27851_csl_20251106  tms_admin
+feature_27851_csl_20251106 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27851  未上线
+
+
+车辆违章增加城市数据
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27984
+
+车辆配件增加定位仪、温度监控主机绑定
+feature_27923_csl_20251111 ams_service
+feature_27923_csl_20251111 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27923  已上线
+
+
+alter table
+  tms_car_info
+add
+  column `orientator_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否有定位仪 0 否 1 是',
+add
+  column `orientator_no` varchar(32) NOT NULL DEFAULT '' COMMENT '定位仪编码',
+add
+  column `temp_monitoring_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否有温度监控主机 0 否 1 是',
+add
+  column `temp_monitoring_no` varchar(32) NOT NULL DEFAULT '' COMMENT '温度监控主机编码';
+
+
+
+ CAR-T订单预约优化
+feature_28011_csl_20251113 tms_admin
+feature_28011_csl_20251114 tms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28011   未上线
+
+102216 CAR-T预约单
+
+
+{
+    "msgtype":"markdown",
+    "markdown":{
+        "content":"@@touser@@ 你有一个@@type_msg@@CAR-T常规预约，请及时安排人员！\n委托客户：@@cu_name@@\n项目名称：@@cp_name@@\n温区：@@to_temperature_name@@\n运输方式：@@to_trequirement_name@@\n取派城市：@@start_end_region@@\n预取日期：@@pickup_date@@\nID：@@tro_id@@@@remark@@"
+    },
+    "key":"0a28a195-fdee-4354-b239-3413b04999bc"
+}·
+
+
+alter table
+   tms_reserve_order
+add
+   column `pick_address`   varchar(800) NOT NULL DEFAULT ''  COMMENT '取件地址',
+add
+   column `delivery_address`   varchar(800) NOT NULL DEFAULT ''  COMMENT '派件地址',
+add
+   column `reserved_remark`  text  COMMENT '预约单备注',
+add
+   column `start_cu_name`   varchar(400) NOT NULL DEFAULT ''  COMMENT '取件单位',
+add
+   column `stop_cu_name`   varchar(400) NOT NULL DEFAULT ''  COMMENT '派件单位',
+add
+   column `warehouse_address`  varchar(800) NOT NULL DEFAULT ''  COMMENT '仓库地址',
+add
+   column `pharmacy_address`  varchar(800) NOT NULL DEFAULT ''  COMMENT '药房地址';
+
+
+
+车辆监控推送优化
+feature_28002_csl_20251112
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28002  已上线
+
+
+车辆违章增加城市数据
+车辆监控推送优化
+车辆配件增加定位仪、温度监控主机绑定
+CAR-T订单预约优化
+
+
+订单时效管控优化
+feature_28133_csl_20251119  tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28133  已上线
+
+alter table
+   tms_order_information
+add
+   column `aging_status` tinyint(1) NOT NULL  DEFAULT '1' COMMENT '时效处理状态 1、未处理 2、已处理',
+add
+   column `aging_dispose_num` tinyint(2) NOT NULL  DEFAULT '0' COMMENT '时效处理次数',
+add
+   column `aging_remark`  varchar(100) NOT NULL DEFAULT '' COMMENT '时效处理备注';
+订单时效管控-每日下午5点10分更新项目未派件管控的处理状态 为未处理
+
+
+临检项目订单列表添加筛选
+feature_28158_csl_20251124
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28158  已上线
+
+
+
+山东省齐鲁细胞添加复制功能
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28187  已上线

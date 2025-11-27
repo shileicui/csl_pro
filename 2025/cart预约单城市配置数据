@@ -1,4 +1,4 @@
-update tms_city_config set logistics_feedback_username = '郭迎庆,李鑫鑫',logistics_feedback_uid='47453,879',consumable_feedback_username='刘笼博、蒋成俊',consumable_feedback_uid='3522,3252' where  region_id=310000;
+update tms_city_config set logistics_feedback_username = '郭迎庆,李鑫鑫',logistics_feedback_uid='47453,879',consumable_feedback_username='刘笼博,蒋成俊',consumable_feedback_uid='3522,3252' where  region_id=310000;
 
 update tms_city_config set logistics_feedback_username = '于慧宝',logistics_feedback_uid='1098',consumable_feedback_username='张明东',consumable_feedback_uid='20620'   where  region_id=230100;
 
