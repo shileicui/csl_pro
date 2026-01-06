@@ -1844,6 +1844,8 @@ feature_27623_csl_20251029 ams_service
 feature_27623_csl_20251103 bms_service
 feature_27623_csl_20251105 bms_admin
 feature_27623_csl_20251110 tms_service
+feature_27623_20251127 srm
+feature_27623_csl_20251117 omsapi
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=27623  未上线
 
 
@@ -2017,7 +2019,15 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28011   未上线
         "content":"@@touser@@ 你有一个@@type_msg@@CAR-T常规预约，请及时安排人员！\n委托客户：@@cu_name@@\n项目名称：@@cp_name@@\n温区：@@to_temperature_name@@\n运输方式：@@to_trequirement_name@@\n取派城市：@@start_end_region@@\n预取日期：@@pickup_date@@\nID：@@tro_id@@@@remark@@"
     },
     "key":"0a28a195-fdee-4354-b239-3413b04999bc"
-}·
+}
+
+{
+    "msgtype":"markdown",
+    "markdown":{
+        "content":"@@touser@@ 你有一个@@type_msg@@CAR-T常规预约，请及时安排人员！\n委托客户：@@cu_name@@\n项目名称：@@cp_name@@\n温区：@@to_temperature_name@@\n运输方式：@@to_trequirement_name@@\n运输城市：@@start_end_region@@\n预取日期：@@pickup_date@@\nID：@@tro_id@@@@remark@@"
+    },
+    "key":"0a28a195-fdee-4354-b239-3413b04999bc"
+}
 
 
 alter table
@@ -2071,5 +2081,313 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28158  已上线
 
 
 
-山东省齐鲁细胞添加复制功能
+
+
+
+
+诺和商药项目添加专车节点
+feature_28225_csl_20251128
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28225  未上线
+
+
+
+
+人员备案管理
+feature_28289_csl_20251201 tms_admin
+feature_28289_csl_20251208 qms_service
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28289 未上线
+
+
+CREATE TABLE `tms_operation_health_record` (
+  `tohr_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `tohr_start_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '有效期起',
+  `tohr_end_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '有效期止',
+  `tohr_type`  tinyint(4) NOT NULL DEFAULT '0' COMMENT  '档案类型 1、体检报告 2、健康证',
+  `ur_uid` int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '技能类型',
+  `username` varchar(50)  NOT NULL DEFAULT '' COMMENT '操作员uid',
+  `tohr_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tohr_id`),
+  KEY idx_tkc_id (`ur_uid`)
+)  COMMENT='操作员健康档案';
+
+
+CREATE TABLE `tms_operation_skill_certificate` (
+  `tosc_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `tosc_start_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '有效期起',
+  `tosc_end_time`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '有效期止',
+  `tosc_type`  tinyint(4) NOT NULL DEFAULT '0' COMMENT  '技能类型 1、从业资格证 2、安全员 3、安全负责人',
+  `ur_uid` int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '操作员uid',
+  `username` varchar(50)  NOT NULL DEFAULT '' COMMENT '操作员名称',
+  `tosc_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tosc_id`),
+  KEY idx_ur_uid (`ur_uid`)
+)  COMMENT='操作员技能资格证';
+
+
+
+CREATE TABLE `tms_operation_segment` (
+  `tos_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `tos_type`  tinyint(4) NOT NULL DEFAULT '0' COMMENT  '业务板块 1、科研及临床样本及药品 2、商业成品药 3、体外诊断试剂 4、特检普检样本 5、脐带血 6、免疫细胞 7、疫苗 8、其他 9、国际客户',
+  `ur_uid` int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '操作员uid',
+  `username` varchar(50)  NOT NULL DEFAULT '' COMMENT '操作员名称',
+  `skilled_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT  '熟练程度 1、首选 2、备选',
+  `tos_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tos_id`),
+  KEY idx_ur_uid (`ur_uid`)
+)  COMMENT='操作员业务板块熟练程度';
+
+
+
+CREATE TABLE `tms_operation_project_type` (
+  `topt_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `topt_type`  tinyint(4) NOT NULL DEFAULT '0' COMMENT  '项目类型 1、临床 2、商业成品药 3、IVD试剂 4、脐带血 5、细胞 6、特检普检 7、其他 ',
+  `ur_uid` int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '操作员uid',
+  `username` varchar(50)  NOT NULL DEFAULT '' COMMENT '操作员名称',
+  `skilled_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT  '熟练程度 1、首选 2、备选',
+  `topt_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`topt_id`),
+  KEY idx_ur_uid (`ur_uid`)
+)  COMMENT='操作员项目类型熟练程度';
+
+
+CREATE TABLE `tms_operation_user` (
+  `tou_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `tou_cu_ids` text COMMENT '重点保障客户id',
+  `tou_cu_name` text COMMENT '重点保障客户名称',
+  `tou_support`  tinyint(4) NOT NULL DEFAULT '0' COMMENT  '是否支援 1、是 2、否',
+  `ur_uid` int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '操作员uid',
+  `username` varchar(50)  NOT NULL DEFAULT '' COMMENT '操作员名称',
+  `tou_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tou_id`),
+  KEY idx_ur_uid (`ur_uid`)
+)  COMMENT='操作员附属信息';
+
+
+TMS_CU_SEGMENT
+{
+    "1": "科研及临床样本及药品",
+    "2": "商业成品药",
+    "3": "体外诊断试剂(IVD)",
+    "4": "特检普检样本",
+    "5": "脐带血",
+    "6": "免疫细胞",
+    "7": "疫苗",
+    "8": "其他",
+    "9": "国际客户"
+}
+
+TMS_CU_PROJECT_TYPE
+
+{
+    "1": "临床",
+    "2": "商业成品药",
+    "3": "IVD试剂",
+    "4": "脐带血",
+    "5": "细胞",
+    "6": "特检普检",
+    "7": "其他"
+}
+
+QMS_PENALTY_TYPE
+
+
+{
+    "0": "待岗培训",
+    "1": "停薪待岗培训",
+    "2": "罚款",
+    "3": "严重警告",
+    "4": "无"
+}
+
+荣昌生物制药添加复制功能
+feature_28187_csl_20251202
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28187  已上线
+
+
+CP_CUIDS_CPIDS
+ {
+ 	"cu_ids":[202000471, 20120237, 201600300, 202107140, 201601314, 202102951],
+ 	"cp_ids":[12387]
+ }
+ 	
+
+
+
+
+
+订单时效管控 新增收件客户名称、车牌号
+feature_28442_csl_20251209 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28442
+
+
+
+
+预报单定时发送
+feature_28470_csl_20251211
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28470 未上线
+
+//定时任务
+timing-push/tomorrow-mail
+
+
+//需求   预报单定时发送
+https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5103  未上线
+
+alter table
+   tms_forecast_mailtemp
+add
+   column `newest_send_at` datetime DEFAULT NULL COMMENT '最近发送时间',
+add
+   column `next_send_at` datetime DEFAULT NULL COMMENT '下次发送时间',
+add
+    column `time_status` tinyint(4) NOT NULL  DEFAULT '2' COMMENT '是否定时任务发送 1、是 2、否',
+add
+    column `send_type` tinyint(4) NOT NULL  DEFAULT '0' COMMENT '发送逻辑 1、周期循环 2、固定时间',
+add
+    column `cycle_period_type` tinyint(4) NOT NULL  DEFAULT '0' COMMENT '循环周期 1、每工作日 2、每天 3、每周 4、每月 5、每月最后一天',
+add
+    column `weekly_days` varchar(255) NOT NULL  DEFAULT '' COMMENT '每周:1-7',
+add
+    column `monthly_days` varchar(255) NOT NULL  DEFAULT '' COMMENT '每月:1-31',
+add
+    column `fixed_at` datetime DEFAULT NULL  COMMENT '固定发送时间',
+add
+    column `point_time` time DEFAULT NULL COMMENT '时间点',
+add
+    column `tomorrow_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '标记明天需要执行的数据';
+
+
+
+车辆管理优化
+feature_28538_csl_20251216 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28538 未上线
+
+alter table
+   car
+add
+   column `car_condition` tinyint(4) NOT NULL  DEFAULT '0' COMMENT '车况 1、完好（可长途使用）2、一般（跨城市非长途使用）3、不好（只能同城使用）';
+
+
+alter table
+   tms_keep_record_car_yzreport
+add
+  column `tkryr_temperature` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '温区',
+add
+  column `tkryr_temperature_name` varchar(100) NOT NULL  DEFAULT ''  COMMENT '温区名称';
+
+
+
+
+
+纯电车辆管理优化
+feature_28602_csl_20251219
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28602 未上线
+
+
+
+
+电池电量：电池电量是否满足本次出行里程需求
+车辆电池：车辆启动自检，是否有电池故障图标亮起
+驱动系统：车辆启动自检，是否有电机故障图标亮起
+电控系统：车辆启动自检，是否有控制器故障等图标亮起
+
+
+alter table
+   tms_car_check_new
+add
+  column `tcc_battery_capacity` tinyint(4) NOT NULL  DEFAULT '0' COMMENT '电池电量:电池电量是否满足本次出行里程需求 1、合格 2、不合格',
+add
+  column `tcc_car_battery` tinyint(4) NOT NULL  DEFAULT '0' COMMENT '车辆电池:车辆启动自检，是否有电池故障图标亮起 1、合格 2、不合格',
+add
+  column `tcc_drive_system` tinyint(4) NOT NULL  DEFAULT '0' COMMENT '驱动系统:车辆启动自检，是否有电机故障图标亮起 1、合格 2、不合格',
+add
+  column `tcc_electronic_system` tinyint(4) NOT NULL  DEFAULT '0' COMMENT '电控系统:车辆启动自检，是否有控制器故障等图标亮起 1、合格 2、不合格';
+
+
+
+
+ALTER TABLE 
+	tms_refuel_record
+MODIFY
+  COLUMN `trr_payment_method` tinyint(3) NOT NULL DEFAULT '1' COMMENT  '加油方式/充电方式，1、油卡-中石化，2、现金，3油卡-中石油，4、电卡充电 5、自营充电',
+MODIFY
+  COLUMN `trr_date` varchar(30) NOT NULL DEFAULT '' COMMENT '加油日期/充电日期',
+MODIFY
+  COLUMN `refuel_uid` int(11) NOT NULL DEFAULT '0' COMMENT '加油人/充电人 ID',
+MODIFY
+  COLUMN `refuel_username` varchar(30) NOT NULL DEFAULT '' COMMENT '加油人/充电人 姓名',
+MODIFY
+  COLUMN `trr_mileage` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '加油/充电 里程',
+MODIFY
+  COLUMN `trr_quantity` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '加油升数/充电电量',
+MODIFY
+  COLUMN `trr_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '加油金额/充电金额',
+MODIFY
+  COLUMN `trr_region_name` varchar(100) NOT NULL DEFAULT '' COMMENT '加油城市/充电城市',
+MODIFY
+  COLUMN `trr_station_address` varchar(255) NOT NULL DEFAULT '' COMMENT '加油地点/充电地点';
+
+
+
+
+ALTER TABLE `tms_keep_record_car`
+COMMENT = '承运商车辆';
+
+
+
+计划箱型配置接口
+feature_28712_csl_20251225 tms_service
+feature_28712_csl_20251229 tms_admin
+
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=28712 未上线
+
+
+
+
+每刻 月结承运商多主体付款：新增成本月份、未含税金额、税额
+
+承运车辆优化  冷藏车添加验证报告相关必填限制 非冷藏车 隐藏验证报告、配置 
+
+取派件时间补录 默认展示最近7天未处理数据
+
+计划箱型配置接口 
+{
+默认选项   客户选择包材 > 自动工作单配置 > 大数据推荐（接口新增可选项参数）
+
+可选项 固定箱型 > 备案箱型 >计划箱型（有项目id （项目、客户）> 客户 >无客/项 ）>基础箱型（温区） 
+
+计划箱型、基础箱型
+过滤 stt_id=137（D系列箱子）  cu_id = 202000654（和元生物技术（上海）股份有限公司）
+}
+
+
+4月	6441	2961
+5月	7557	3094
+6月	7770	3423
+7月	7705	3555
+8月	3058	3619
+9月	2826	3445
+10月	3009	3468
+11月	2459	3191
+12月	3194	3510
+
+
+
+
+订单详情添加内部变更申请
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=28827

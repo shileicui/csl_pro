@@ -1,0 +1,259 @@
+姓名  1否可出来支援  适配项目  ur_uid
+
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900430,20120237,202106719','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,惠升生物制药股份有限公司,长春金赛药业有限责任公司,北京渼颜空间科技有限公司',1,2969,'苏东雨');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900430,20120237,202106719','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,惠升生物制药股份有限公司,长春金赛药业有限责任公司,北京渼颜空间科技有限公司',1,7434,'刘艳辉');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900430,20120237,202106719','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,惠升生物制药股份有限公司,长春金赛药业有限责任公司,北京渼颜空间科技有限公司',1,20278,'刘学');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900430,20120237,202106719','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,惠升生物制药股份有限公司,长春金赛药业有限责任公司,北京渼颜空间科技有限公司',1,12302,'王航');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951','荣昌生物制药（烟台）股份有限公司-成品药',1,661,'王超');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,10167,'陈军');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951','荣昌生物制药（烟台）股份有限公司-成品药',1,34747,'高广顺');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,16216,'段志勇');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,57010,'李法辉');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,860,'王鹏');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,7162,'陈林');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('20120230,202102951','齐鲁制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,3517,'胡荣志');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('20120230,202102951','齐鲁制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,61775,'韩军常');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,16253,'王飞');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,201900075','诺和诺德（中国）制药有限公司,凯莱英生命科学技术（天津）有限公司',1,18816,'于振海');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,47454,'王占军');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,49953,'夏鹏');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,12833,'代桂彬');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,59534,'赵春胜');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,90631,'黄建');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,91298,'李赫阳');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,91911,'陈鹏飞');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,92911,'徐安栋');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,93234,'刘东海');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,93567,'付家齐');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,94674,'秦叶朝');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,95982,'路炜');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,26333,'李会波');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,27578,'王利彬');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,52092,'康军');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,140027,'王金帅');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,140025,'李意');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,135412,'李金锁');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,201900075','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,凯莱英生命科学技术（天津）有限公司',1,144837,'孙常春');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,81670,'赵观杰');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,766,'韩金刚');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,603,'陆海军');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,6601,'时圣峰');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,24925,'耿学武');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,420,'李志会');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,768,'李亚');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,12559,'高峰');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,17972,'彭元正');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,39837,'孙长飞');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,33959,'张明军');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,24431,'刁豪华');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,38195,'贺海军');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,26015,'李翔');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,28202,'孙中月');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,29604,'崔安东');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,47361,'汪赞赞');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,48148,'向川');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,67377,'卢建');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951,202101782','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,43322,'陈孝伟');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951,202101782','荣昌生物制药（烟台）股份有限公司-成品药,东曜药业有限公司-商业药',1,511,'彭东东');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,72,'卢长风');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,18492,'居冠祥');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,25208,'高华修');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,28823,'蒋超');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951,20120010,201208027','荣昌生物制药（烟台）股份有限公司-成品药,江苏恒瑞医药股份有限公司-肿瘤临床研究部,常州合全药业有限公司',1,19839,'万宇');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951,201208027','荣昌生物制药（烟台）股份有限公司-成品药,常州合全药业有限公司',1,20622,'郭为益');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951,201208027','荣昌生物制药（烟台）股份有限公司-成品药,常州合全药业有限公司',1,23426,'骆涛');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951,201208027','荣昌生物制药（烟台）股份有限公司-成品药,常州合全药业有限公司',1,21814,'顾山');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951,201208027','荣昌生物制药（烟台）股份有限公司-成品药,常州合全药业有限公司',1,27028,'阚猛');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('20120010,201208027','江苏恒瑞医药股份有限公司-肿瘤临床研究部,常州合全药业有限公司',1,27641,'董欢');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951,20120010,201208027','荣昌生物制药（烟台）股份有限公司-成品药,江苏恒瑞医药股份有限公司-肿瘤临床研究部,常州合全药业有限公司',1,65003,'王成龙');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951,20120010,201208027','荣昌生物制药（烟台）股份有限公司-成品药,江苏恒瑞医药股份有限公司-肿瘤临床研究部,常州合全药业有限公司',1,2345,'郑远生');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951,20120010,201208027','荣昌生物制药（烟台）股份有限公司-成品药,江苏恒瑞医药股份有限公司-肿瘤临床研究部,常州合全药业有限公司',1,419,'俞广海');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951,20120010,201208027','荣昌生物制药（烟台）股份有限公司-成品药,江苏恒瑞医药股份有限公司-肿瘤临床研究部,常州合全药业有限公司',1,5635,'杨明响');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,21680,'杨武文');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,21892,'李拥辉');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951','荣昌生物制药（烟台）股份有限公司-成品药',1,48676,'杨桐');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('202102951','荣昌生物制药（烟台）股份有限公司-成品药',1,853,'李树恩');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,3787,'石忠束');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,23971,'潘晶');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,39988,'陶正育');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,50342,'郑永胜');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985','诺和诺德（中国）制药有限公司',1,15368,'彭远');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,17374,'何涛');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,21817,'张勇');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,19919,'汪永红');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,21818,'牟泽东');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,110179,'尹乾隆');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,114000,'朱世亮');
+
+INSERT INTO `tms_operation_user` ( `tou_cu_ids`, `tou_cu_name`, `tou_support`, `ur_uid`, `username`) VALUES
+ ('201206985,202102951','诺和诺德（中国）制药有限公司,荣昌生物制药（烟台）股份有限公司-成品药',1,114001,'王迪');
+
+    

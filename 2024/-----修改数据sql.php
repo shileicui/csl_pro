@@ -93,8 +93,8 @@ VALUES
 update tms_car_info  set vice_cumulative_duration=362 where ca_id =739;
 
 
-INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',13162, 0, '系统', 0, 'IT协助修改  沪FJ9758车辆冷机保养2025-2-20本次保养主冷机保养系统修改为副冷机保养  审批单号：   
-ITSJ202503040004', 1741227530, 13, 0);
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',13162, 0, '系统', 0, 'IT协助修改  川AGX011副冷机保养填写成了主冷机需要删除该条记录，2025-09-17主冷冷机保养352小时这条记录需要删除。  审批单号：   
+ITSJ202510150002', 1741227530, 13, 0);
 
 
 
@@ -581,3 +581,243 @@ update tms_logistics_log set tll_uids=62617,tll_unames='张家界-胡湘民' whe
 
 
 INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4024509, 0, '系统', 0, 'IT协助修改  派件人 跨越-九辰 改成 外协账号：张家界-胡湘民 审批单号：ITSJ202509220001', 1758520721, 13, 0);
+
+
+
+
+
+
+cart订单修改派件时间
+
+UPDATE tms_cart_operation_record SET tcor_time=1760323020 where tcor_id = 34174;
+UPDATE tms_cart_operation_record SET tcor_time=1760323020 where tcor_id = 34173;
+
+update order_logistics set ol_delivery_time=1760323020   where to_id=4070928;
+update oms_logistics set ol_delivery_time=1760323020   where to_id=4070928;
+
+update tms_logistics_remark set lr_opn_date=1760323020         where lr_id=12723335; 
+update tms_logistics_log set tll_operation_time=1760323020        where tll_id=10914318;
+update operation set opn_date=1760323020                  where opn_id=16761706;
+
+INSERT INTO `remark_log` ( `rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ( '102', '102041', 4070928, 0, '系统申请', 0, ' 派件时间修改为2025-10-13 10:37审批单号：ITSJ202510130004 ', 1760408334, 13, 0);
+
+
+
+4070928
+
+
+
+
+
+tms_car_refrigerator
+
+
+//删除冷机保养数据
+UPDATE tms_car_refrigerator SET ca_id=0,tcr_visible=2 where tcr_id = 613;
+
+
+INSERT INTO `tms_remark_log` ( `trl_type`, `trl_subtype`, `trl_identifier`, `trl_uid`, `trl_username`, `trl_status`, `trl_remark`, `trl_createtime`, `trl_server_type`) VALUES ( '133', '133002', 613, 0, '系统申请', 0, 'IT协助修改 川AGX011副冷机保养填写成了主冷机需要删除该条记录，2025-09-17主冷冷机保养352小时这条记录需要删除。  审批单号：ITSJ202510150002', 1760922426, 13);
+
+
+
+update car_repair set cr_type=2,maintain_type=1 where cr_id=16032;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',16032, 0, '系统', 0, 'IT协助修改 苏ASN722车辆2025-9-2系统内操作保养类型录入错误，需修改为常规保养  审批单号：ITSJ202510240001', 1733455466, 13, 0);
+
+
+
+//修改车辆维保完成里程
+UPDATE car_repair SET repair_finish_mile=291409 where cr_id = 16859;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',16859, 0, '系统', 0, 'IT协助修改 维保里程填写错误需修改为291409KM。  审批单号：ITSJ202510300007', 1761806694, 13, 0);
+
+
+//修改车辆维保完成里程
+
+update car_repair set repair_mile=321632,repair_finish_mile=321632 where cr_id=16867;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',16867, 0, '系统', 0, 'IT协助修改  	鲁AN6185车辆2025-10-27维保里程填写错误，正确里程321632KM。  审批单号：ITSJ202511060005', 1762476652, 13, 0);
+
+
+321632
+
+
+
+1006
+update car set car_number='琼AD33045',car_usage_status=1 where ca_id=1006;
+
+
+
+琼AD33045
+update car set car_number='',car_usage_status=5 where ca_id=1005;
+
+
+湘ADN4554
+update car set car_usage_status=1 where ca_id=1007;
+
+
+
+取件人
+90199041
+4190207
+
+update tms_operation_fee set user_id=151557,username='湘潭-戴峥' where to_id=4192305 and opn_type =2;
+
+
+
+//修改派件人
+4171896	85890904
+
+4190207	90199041
+
+4192305	85294700
+
+
+85890904,90199041,85294700
+
+update order_logistics set ol_delivery_person=151557,ol_delivery_name='湘潭-戴峥' where to_id=4171896;
+update oms_logistics set ol_delivery_person=151557,ol_delivery_name='湘潭-戴峥' where to_id=4171896;
+
+update opn_operator set user_id=151557,username='湘潭-戴峥',role_type=2 where opnop_id=25723059;
+
+
+update tms_logistics_remark set lr_opn_user='湘潭-戴峥' where lr_to_id=4171896 and lr_type=5;
+
+update tms_logistics_log set tll_uids=151557,tll_unames='湘潭-戴峥' where tll_to_id=4171896 and tll_type =4;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4171896, 0, '系统', 0, 'IT协助修改  派件人 宋镭 改成 外协账号：湘潭-戴峥 审批单号：ITSJ202511250012', 1764059411, 13, 0);
+
+
+
+
+
+update order_logistics set ol_delivery_person=151557,ol_delivery_name='湘潭-戴峥' where to_id=4192305;
+update oms_logistics set ol_delivery_person=151557,ol_delivery_name='湘潭-戴峥' where to_id=4192305;
+
+update opn_operator set user_id=151557,username='湘潭-戴峥',role_type=2 where opnop_id=25855458;
+
+
+update tms_logistics_remark set lr_opn_user='湘潭-戴峥' where lr_to_id=4192305 and lr_type=5;
+
+update tms_logistics_log set tll_uids=151557,tll_unames='湘潭-戴峥' where tll_to_id=4192305 and tll_type =4;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4192305, 0, '系统', 0, 'IT协助修改  派件人 宋镭 改成 外协账号：湘潭-戴峥 审批单号：ITSJ202511250012', 1764059411, 13, 0);
+
+
+
+
+//修改取件人
+update order_logistics set ol_pickup_person=151557,ol_pickup_name='湘潭-戴峥' where to_id=4190207;
+update oms_logistics set ol_pickup_person=151557,ol_pickup_name='湘潭-戴峥' where to_id=4190207;
+
+update opn_operator set user_id=151557,username='湘潭-戴峥',role_type=2 where opnop_id=25803187;
+
+
+update tms_logistics_remark set lr_opn_user='湘潭-戴峥' where lr_to_id=4190207 and lr_type=2;
+
+update tms_logistics_log set tll_uids=151557,tll_unames='湘潭-戴峥' where tll_to_id=4190207 and tll_type =1;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4190207, 0, '系统', 0, 'IT协助修改  取件人 宋镭 改成 外协账号：湘潭-戴峥 审批单号：ITSJ202511250012', 1764059411, 13, 0);
+
+
+
+
+
+//修改维保里程
+update car_repair set repair_mile=344994,repair_finish_mile=344994 where cr_id=16930;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',16930, 0, '系统', 0, 'IT协助修改  沪FYY159车辆11月1日维保完成里程确认完成输入错误，由349994修改为344994。  审批单号：ITSJ202511260004', 1764324596, 13, 0);
+
+
+344962
+
+
+
+
+
+
+//修改维保里程
+update car_repair set repair_mile=219240,repair_finish_mile=219240 where cr_id=16593;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',16593, 0, '系统', 0, 'IT协助修改  鲁A01V8Z近一次保养完成里程由215240公里修改为219240公里。  审批单号：ITSJ202512020007', 1764838455, 13, 0);
+
+
+update car_repair set repair_cost=0,repair_real_cost=0,repair_settlements_type=3 where cr_id=17167;
+
+update  tms_car_repair_monthlysettlement set tcrm_visible=2 where tcrm_id=4384;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',17167, 0, '系统', 0, 'IT协助修改  沪GD8585 2025.11.20号维保金额678元改为0元。结算类型改成免费  审批单号：ITSJ202512020001', 1764838455, 13, 0);
+
+
+
+
+update car_repair set repair_mile=307434,repair_finish_mile=307434 where cr_id=16597;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',16597, 0, '系统', 0, 'IT协助修改  	苏C8L2F3保养申请日期10月11号里程误填写错误，申请修改为（307434）。  审批单号：ITSJ202512060001', 1765351116, 13, 0);
+
+
+
+
+
+
+
+4227973	86055729
+//修改派件人
+153025 岳阳-周剑
+
+update order_logistics set ol_delivery_person=153025,ol_delivery_name='岳阳-周剑' where to_id=4227973;
+update oms_logistics set ol_delivery_person=153025,ol_delivery_name='岳阳-周剑' where to_id=4227973;
+
+update opn_operator set user_id=153025,username='岳阳-周剑',role_type=2 where opnop_id=26103002;
+
+
+update tms_logistics_remark set lr_opn_user='岳阳-周剑' where lr_to_id=4227973 and lr_type=5;
+
+update tms_logistics_log set tll_uids=153025,tll_unames='岳阳-周剑' where tll_to_id=4227973 and tll_type =4;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4227973, 0, '系统', 0, 'IT协助修改  派件人 樊俊鹏 改成 外协账号：岳阳-周剑 审批单号：ITSJ202512150002', 1765782777, 13, 0);
+
+
+4241522	90000029
+153025 岳阳-周剑
+
+//修改取件人
+update order_logistics set ol_pickup_person=153025,ol_pickup_name='岳阳-周剑' where to_id=4241522;
+update oms_logistics set ol_pickup_person=153025,ol_pickup_name='岳阳-周剑' where to_id=4241522;
+
+update opn_operator set user_id=153025,username='岳阳-周剑',role_type=2 where opnop_id=26143816;
+
+
+update tms_logistics_remark set lr_opn_user='岳阳-周剑' where lr_to_id=4241522 and lr_type=2;
+
+update tms_logistics_log set tll_uids=153025,tll_unames='岳阳-周剑' where tll_to_id=4241522 and tll_type =1;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4241522, 0, '系统', 0, 'IT协助修改  取件人 樊俊鹏 改成 外协账号：岳阳-周剑 审批单号：ITSJ202512150002', 1765782777, 13, 0);
+
+
+
+
+
+4248712	86088193
+
+//修改派件人
+153025 岳阳-周剑
+
+update order_logistics set ol_delivery_person=153025,ol_delivery_name='岳阳-周剑' where to_id=4248712;
+update oms_logistics set ol_delivery_person=153025,ol_delivery_name='岳阳-周剑' where to_id=4248712;
+
+update opn_operator set user_id=153025,username='岳阳-周剑',role_type=2 where opnop_id=26321517;
+
+
+update tms_logistics_remark set lr_opn_user='岳阳-周剑' where lr_to_id=4248712 and lr_type=5;
+
+update tms_logistics_log set tll_uids=153025,tll_unames='岳阳-周剑' where tll_to_id=4248712 and tll_type =4;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4248712, 0, '系统', 0, 'IT协助修改  派件人 樊俊鹏 改成 外协账号：岳阳-周剑 审批单号：ITSJ202512240003', 1766564079, 13, 0);
