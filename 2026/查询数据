@@ -1,0 +1,10 @@
+(CASE
+			crr.tag_value 
+			WHEN FIND_IN_SET('19', tag_value)>0 THEN
+			'19' 
+			WHEN FIND_IN_SET('42', tag_value)>0 THEN
+			'42'  
+			WHEN FIND_IN_SET('48', tag_value)>0 THEN
+			'48' 
+		END 
+		) as tag

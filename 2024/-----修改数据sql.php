@@ -6,6 +6,13 @@ update car_repair set cr_type=2,maintain_type=1 where cr_id=12172;
 
 INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',12172, 0, '系统', 0, 'IT协助修改 将2024年11月30日沪DYT068的车辆维保类型由车辆维修更正为车辆保养  审批单号：ITSJ202412060002', 1733455466, 13, 0);
 
+17656
+
+
+update car_repair set cr_type=2,maintain_type=1 where cr_id=17656;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',17656, 0, '系统', 0, 'IT协助修改 将25-12-26沪DYT068的车辆	浙AE15Z9车辆保养申请提交错误，由车辆年审改为车辆保养  审批单号：ITSJ202512300002', 1767522402, 13, 0);
+
 
 
 update car_repair set cr_type=2,maintain_type=1 where cr_id=13584;
@@ -281,6 +288,27 @@ INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `u
 UPDATE car_repair SET repair_finish_mile=247161 where cr_id = 13314;
 
 INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',13314, 0, '系统', 0, 'IT协助修改 维保里程填写错误需修改为247161KM。  审批单号：ITSJ202504140005', 1744686596, 13, 0);
+
+
+
+//修改车辆维保完成里程
+UPDATE car_repair SET repair_finish_mile=282992  where cr_id = 17719;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',17719, 0, '系统', 0, 'IT协助修改 维保里程填写错误需修改为282992KM。  审批单号：ITSJ202601100001', 1768352380, 13, 0);
+
+
+
+
+
+//修改车辆维保完成里程
+UPDATE car_repair SET repair_finish_mile=253343 where cr_id = 17581;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',17581, 0, '系统', 0, 'IT协助修改 维保里程填写错误需修改为253343KM。  审批单号：ITSJ202601050005', 1767946247, 13, 0);
+
+
+
+
+
 
 
 //删除事故数据
@@ -821,3 +849,173 @@ update tms_logistics_log set tll_uids=153025,tll_unames='岳阳-周剑' where tl
 
 
 INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4248712, 0, '系统', 0, 'IT协助修改  派件人 樊俊鹏 改成 外协账号：岳阳-周剑 审批单号：ITSJ202512240003', 1766564079, 13, 0);
+
+
+
+//修改维保里程
+update car_repair set repair_mile=190630,repair_finish_mile=190630 where cr_id=16431;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',16431, 0, '系统', 0, 'IT协助修改  车辆保养公里数修改 公里数由198630改为190630。  审批单号：ITSJ202512270001', 1767056848, 13, 0);
+
+
+
+
+
+
+//修改维保里程
+update car_repair set repair_mile=205441,repair_finish_mile=205441 where cr_id=17961;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',17961, 0, '系统', 0, 'IT协助修改  车辆保养公里数修改 公里数由198630改为190630。  审批单号：ITSJ202601210003', 1768960826, 13, 0);
+
+
+
+
+
+ITSJ202601210004
+
+
+17793153
+17769870
+17769016
+15471318
+
+
+update tms_operation_fee set opn_visible=0 where opn_id=17793153;
+update tms_operation_fee set opn_visible=0 where opn_id=17769870;
+update tms_operation_fee set opn_visible=0 where opn_id=17769016;
+update tms_operation_fee set opn_visible=0 where opn_id=15471318;
+
+3070150161,86150052,85782689,83528910
+
+
+
+
+
+
+{"pick":"207034","pick_verify":0,"delivery":"207007,207023","delivery_verify":1}
+
+
+
+{"pick":"207001","pick_verify":1,"pick_remark":"测试取件","delivery":"207002","delivery_verify":1,"delivery_remark":"测试派件"}
+
+
+
+
+85855620/85855621/85855622
+
+
+ITSJ202601200001
+
+
+
+
+
+//修改取件人
+update order_logistics set ol_pickup_person=55363,ol_pickup_name='郭云辉' where to_id=4324646;
+update oms_logistics set ol_pickup_person=55363,ol_pickup_name='郭云辉' where to_id=4324646;
+
+
+update opn_operator set opnop_visible=0 where opnop_id=26757579;
+
+update tms_operation_fee set opn_visible=0 where opn_id=17774824;
+
+
+update tms_logistics_remark set lr_opn_user='郭云辉' where lr_to_id=4324646 and lr_type=2;
+
+update tms_logistics_log set tll_uids=55363,tll_unames='郭云辉' where tll_to_id=4324646 and tll_type =1;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4324646, 0, '系统', 0, 'IT协助修改  取件人 去掉外协名字:赤峰-李亮，实际没用外协帮忙， 审批单号：ITSJ202601200001', 1769051514, 13, 0);
+
+
+
+
+update order_logistics set ol_pickup_person=55363,ol_pickup_name='郭云辉' where to_id=4324983;
+update oms_logistics set ol_pickup_person=55363,ol_pickup_name='郭云辉' where to_id=4324983;
+
+
+update opn_operator set opnop_visible=0 where opnop_id=26757363;
+
+update tms_operation_fee set opn_visible=0 where opn_id=17774656;
+
+
+update tms_logistics_remark set lr_opn_user='郭云辉' where lr_to_id=4324983 and lr_type=2;
+
+update tms_logistics_log set tll_uids=55363,tll_unames='郭云辉' where tll_to_id=4324983 and tll_type =1;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4324983, 0, '系统', 0, 'IT协助修改  取件人 去掉外协名字:赤峰-李亮，实际没用外协帮忙， 审批单号：ITSJ202601200001', 1769051514, 13, 0);
+
+
+
+
+
+update order_logistics set ol_pickup_person=55363,ol_pickup_name='郭云辉' where to_id=4324789;
+update oms_logistics set ol_pickup_person=55363,ol_pickup_name='郭云辉' where to_id=4324789;
+
+
+update opn_operator set opnop_visible=0 where opnop_id=26756734;
+
+update tms_operation_fee set opn_visible=0 where opn_id=17774206;
+
+
+update tms_logistics_remark set lr_opn_user='郭云辉' where lr_to_id=4324789 and lr_type=2;
+
+update tms_logistics_log set tll_uids=55363,tll_unames='郭云辉' where tll_to_id=4324789 and tll_type =1;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4324789, 0, '系统', 0, 'IT协助修改  取件人 去掉外协名字:赤峰-李亮，实际没用外协帮忙， 审批单号：ITSJ202601200001', 1769051514, 13, 0);
+
+
+
+781	冀DQ886H	 LSYADAACICK022931
+504	冀T5Z719	 LS4ASC2EA746486
+226	鲁A01V8Z	 LWLDM5G4LL040104
+567	鲁A99A9K 	LA68BAA47MB509803
+
+
+
+
+鲁A01V8Z 	LWLDMA5G4LL040104
+鲁A99A9K 	LA69BAA45MB509803
+冀DQ886H 	LSYADAAC1LK022931
+冀T5Z719 	LS4ASC2E5EA746486
+
+
+
+
+update car set car_frame_number='LSYADAAC1LK022931' where ca_id=781;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',781, 0, '系统', 0, 'IT协助修改 车架号改为LSYADAAC1LK022931  审批单号： ITSJ202601140003', 1769053199, 13, 0);
+
+
+update car set car_frame_number='LS4ASC2E5EA746486' where ca_id=504;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',504, 0, '系统', 0, 'IT协助修改 车架号改为LS4ASC2E5EA746486  审批单号： ITSJ202601140003', 1769053199, 13, 0);
+
+
+update car set car_frame_number='LWLDMA5G4LL040104' where ca_id=226;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',226, 0, '系统', 0, 'IT协助修改 车架号改为LWLDMA5G4LL040104  审批单号： ITSJ202601140003', 1769053199, 13, 0);
+
+
+update car set car_frame_number='LA69BAA45MB509803' where ca_id=567;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',567, 0, '系统', 0, 'IT协助修改 车架号改为LA69BAA45MB509803  审批单号： ITSJ202601140003', 1769053199, 13, 0);
+
+
+
+
+//修改冷机时长
+update car set cumulative_duration=2202 where ca_id=417;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170001',417, 0, '系统', 0, 'IT协助修改 修改冷机时数2312 改为2202  审批单号：ITSJ202601140003', 1769064249, 13, 0);
+
+
+
+
+
+update attachment set at_visible=0 where at_id=47045692;
+ 
+ 
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102042',4357274 , 0, '系统', 0, 'IT协助修改删除附件 2026-01-26华东医药（杭州）-科济项目信阳市信阳市中心医院到上海市上海科济制药-90046003waybill1769493180268dc6ee1949ff9.pdf  审批单号：ITSJ202601270003',1769495001, 13, 0);

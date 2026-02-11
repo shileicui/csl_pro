@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>供应商信息变更审核</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#fff;font:14px/1.5 "Microsoft YaHei",sans-serif;color:#333}
+  .wrap{height:100%;display:flex;flex-direction:column}
+  table{width:100%;border-collapse:collapse;table-layout:fixed}
+  thead{background:#f4f4f4}
+  th{font-weight:400;text-align:left;padding-left:20px;height:40px;color:#555}
+  td{padding-left:20px;height:40px;border-bottom:1px solid #e5e5e5}
+  tbody tr.changed{background:#fff8e5}
+  tbody tr.changed td{color:#ff8c00}
+  .w50{width:50%}
+  .footer{height:60px;display:flex;align-items:center;justify-content:center;gap:24px;border-top:1px solid #e5e5e5}
+  .btn{width:120px;height:36px;border:none;border-radius:4px;font-size:16px;color:#fff;cursor:pointer}
+  .pass{background:#07c160}
+  .reject{background:#ff4747}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <table>
+    <thead>
+      <tr>
+        <th class="w50">原数据</th>
+        <th class="w50">本次更新数据</th>
+      </tr>
+    </thead>
+    <tbody id="tb"></tbody>
+  </table>
+
+  <div class="footer">
+    <button class="btn pass" onclick="audit(true)">通过</button>
+    <button class="btn reject" onclick="audit(false)">驳回</button>
+  </div>
+</div>
+
+<script>
+/************  模拟数据  ************/
+const data = {
+  supplier_name: { old:"张三", new:"李四" },
+  usci:          { old:"18636369659", new:"15269369878" },
+  legal_person:  { old:"张三", new:"李四" },
+  accounts:[
+    {
+      old:{bank_name:"中国工商银行股份有限公司朔州朔城支行",bank_account:"8901834908249328",remark:"测试备注"},
+      new:{bank_name:"中国工商银行股份有限公司朔州朔城支行",bank_account:"8901834908249328",remark:"测试备注1"}
+    },
+    {
+      old:{bank_name:"交通银行上海场中路支行",bank_account:"2222222222222",remark:"测试"},
+      new:{bank_name:"交通银行上海场中路支行",bank_account:"2222222222222",remark:"测试1"}
+    }
+  ]
+};
+
+/************  渲染  ************/
+const tb = document.getElementById('tb');
+function addRow(label, oldVal, newVal, changed){
+  const tr = document.createElement('tr');
+  if(changed) tr.className = 'changed';
+  tr.innerHTML = `
+    <td>${label?label+'：':''}${oldVal}</td>
+    <td>${label?label+'：':''}${newVal}</td>
+  `;
+  tb.appendChild(tr);
+}
+addRow('供应商名称', data.supplier_name.old, data.supplier_name.new, true);
+addRow('统一社会信用代码', data.usci.old, data.usci.new, true);
+addRow('法人', data.legal_person.old, data.legal_person.new, true);
+data.accounts.forEach((g,i)=>{
+  addRow('',`账户${i+1}（原）`,`账户${i+1}（新）`,false);
+  ['bank_name','bank_account','remark'].forEach(k=>{
+    const o=g.old[k],n=g.new[k];
+    const label={bank_name:'开户行',bank_account:'开户行账号',remark:'备注'}[k];
+    addRow(label,o,n,o!==n);
+  });
+});
+
+/************  审核按钮  ************/
+function audit(pass){
+  alert(pass ? '已确认通过' : '已确认驳回');
+  // 这里调用后端接口
+}
+</script>
+</body>
+</html>
+
+
+{"code":0,"msg":"成功","data":}
+
+
+{"ams_supplier_main_account":[{"asma_id":"3166","bank_name":"中国工商银行股份有限公司朔州朔城支行","bank_account":"8901834908249328","asma_remark":"测试备注1"},{"asma_id":"3167","bank_name":"交通银行上海场中路支行","bank_account":"2222222222222","asma_remark":"测试1"}]}、
+
+
+
+{"ams_supplier_main_account":[{"asma_id":"3166","bank_name":"中国工商银行股份有限公司朔州朔城支行","bank_account":"8901834908249328","asma_remark":"测试备注1"},{"asma_id":"3167","bank_name":"交通银行上海场中路支行","bank_account":"2222222222222","asma_remark":"测试1"}]}
