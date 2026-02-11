@@ -596,3 +596,36 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29418
 精麻订单业务线上化V1.0-主体流程
 feature_csl_5210_20260209
 https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5210
+
+
+
+alter table
+   tms_shipment_plan
+add
+`is_anesthetic` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否精麻运输 1、是 2、否',
+add
+`transport_node` tinyint(4) NOT NULL DEFAULT '0' COMMENT '运输节点 1、确认出发 2、确认到达 3、取件更新 4、确认出发 5、确认到达 6、派件更新 7、返回文件',
+add
+ `tmsattrs`   varchar(300) NOT NULL DEFAULT ''  COMMENT '上传附件tms_attachment.tat_ids',
+add
+ `attrs`   varchar(500) NOT NULL DEFAULT ''  COMMENT '上传附件attachment.at_ids';
+
+
+{
+    "1": "科研及临床样本及药品",
+    "2": "商业成品药",
+    "3": "体外诊断试剂(IVD)",
+    "4": "特检普检样本",
+    "5": "脐带血",
+    "6": "免疫细胞",
+    "7": "疫苗",
+    "8": "其他",
+    "9": "国际客户",
+    "10": "细胞-临床",
+    "11": "细胞-商业",
+    "12": "疫苗-临床",
+    "13": "疫苗-商业"
+}
+
+
+     'cu_segment'=>[1=>'科研及临床样本及药品',2=>'商业成品药',3=>'体外诊断试剂(IVD)',4=>'特检普检样本',5=>'脐带血',6=>'免疫细胞',7=>'疫苗',8=>'其他',9=>'国际客户',10=>'细胞-临床',11=>'细胞-商业',12=>'疫苗-临床',13=>'疫苗-商业'],
