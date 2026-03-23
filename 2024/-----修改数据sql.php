@@ -1019,3 +1019,66 @@ update attachment set at_visible=0 where at_id=47045692;
  
  
 INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102042',4357274 , 0, '系统', 0, 'IT协助修改删除附件 2026-01-26华东医药（杭州）-科济项目信阳市信阳市中心医院到上海市上海科济制药-90046003waybill1769493180268dc6ee1949ff9.pdf  审批单号：ITSJ202601270003',1769495001, 13, 0);
+
+
+
+update tms_order_drug set out_temp_number='T245F044' where tod_id=4617;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102204',4395890 , 0, '系统', 0, 'IT协助修改 将外显温度计编号T243G1DF改为T245F044 审批编号：ITSJ202602100002',1770686968, 13, 0);
+
+
+
+
+4414872	90000374
+153025 岳阳-周剑
+
+//修改取件人
+update order_logistics set ol_pickup_person=153025,ol_pickup_name='岳阳-周剑' where to_id=4414872;
+update oms_logistics set ol_pickup_person=153025,ol_pickup_name='岳阳-周剑' where to_id=4414872;
+
+update opn_operator set user_id=153025,username='岳阳-周剑',role_type=2 where opnop_id=27455975;
+
+
+update tms_logistics_remark set lr_opn_user='岳阳-周剑' where lr_to_id=4414872 and lr_type=2;
+
+update tms_logistics_log set tll_uids=153025,tll_unames='岳阳-周剑' where tll_to_id=4414872 and tll_type =1;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4414872, 0, '系统', 0, 'IT协助修改  取件人 樊俊鹏 改成 外协账号：岳阳-周剑 审批单号：ITSJ202602240004', 1772153092, 13, 0);
+
+
+
+152821 安阳-王玥棣
+
+//修改取件人
+update order_logistics set ol_pickup_person=152821,ol_pickup_name='安阳-王玥棣' where to_id=4427711;
+update oms_logistics set ol_pickup_person=152821,ol_pickup_name='安阳-王玥棣' where to_id=4427711;
+
+update opn_operator set user_id=152821,username='安阳-王玥棣',role_type=2 where opnop_id=27455975;
+
+
+update tms_logistics_remark set lr_opn_user='安阳-王玥棣' where lr_to_id=4427711 and lr_type=2;
+
+update tms_logistics_log set tll_uids=152821,tll_unames='安阳-王玥棣' where tll_to_id=4427711 and tll_type =1;
+
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('102', '102012',4427711, 0, '系统', 0, 'IT协助修改  取件人 樊俊鹏 改成 外协账号：安阳-王玥棣 审批单号：ITSJ202602240004', 1772153092, 13, 0);
+
+
+
+
+update car_repair set repair_mile=200820,repair_finish_mile=200820 where cr_id=18241;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',18241, 0, '系统', 0, 'IT协助修改  维保里程修改为200820KM  审批单号：   
+ITSJ202603060005', 1773126155, 13, 0);
+
+
+update car_repair set repair_mile=261402,repair_finish_mile=261402 where cr_id=15836;
+
+INSERT INTO `remark_log` (`rl_type`, `rl_subtype`, `rl_identifier`, `ur_uid`, `username`, `rl_status`, `rl_remark`, `rl_createtime`, `rl_server_type`, `rl_region_id`) VALUES ('170', '170008',15836, 0, '系统', 0, 'IT协助修改  维保里程修改为261402KM  审批单号：   
+ITSJ202603090004', 1773126155, 13, 0);
+
+
+
+update opn_operator set role_type=3 WHERE user_id = 156494;

@@ -8,3 +8,6 @@
 			'48' 
 		END 
 		) as tag
+
+
+		        echo json_encode($group_rules, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);

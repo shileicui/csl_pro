@@ -148,7 +148,7 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&id=29161
 
 
  签单返回改造V1.1
-feature_29425_csl_20260205  tms_service
+feature_29425_csl_20260205  tms_service  未上线 客户端说是不调用接口
 禅道任务：https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29425
 需求:https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5211
 
@@ -159,6 +159,8 @@ ON_LINE_TIME_SWITCH
 	"sign_time":"2026-01-26"
 }
 
+
+//sql 已上线
 
 alter table
    tms_signing_file
@@ -593,22 +595,6 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29418
 
 
 
-精麻订单业务线上化V1.0-主体流程
-feature_csl_5210_20260209
-https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5210
-
-
-
-alter table
-   tms_shipment_plan
-add
-`is_anesthetic` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否精麻运输 1、是 2、否',
-add
-`transport_node` tinyint(4) NOT NULL DEFAULT '0' COMMENT '运输节点 1、确认出发 2、确认到达 3、取件更新 4、确认出发 5、确认到达 6、派件更新 7、返回文件',
-add
- `tmsattrs`   varchar(300) NOT NULL DEFAULT ''  COMMENT '上传附件tms_attachment.tat_ids',
-add
- `attrs`   varchar(500) NOT NULL DEFAULT ''  COMMENT '上传附件attachment.at_ids';
 
 
 {
@@ -629,3 +615,419 @@ add
 
 
      'cu_segment'=>[1=>'科研及临床样本及药品',2=>'商业成品药',3=>'体外诊断试剂(IVD)',4=>'特检普检样本',5=>'脐带血',6=>'免疫细胞',7=>'疫苗',8=>'其他',9=>'国际客户',10=>'细胞-临床',11=>'细胞-商业',12=>'疫苗-临床',13=>'疫苗-商业'],
+
+
+
+纯电车充电记录支持现金充电 
+feature_csl_29514_20260226
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29514
+
+
+alter table
+   tms_ordersign_file
+ADD
+  INDEX idx_toc_id (`toc_id`);
+
+alter table
+   tms_ordersign_conf
+ADD
+  INDEX idx_to_id (`to_id`);
+
+
+
+
+
+
+签单返回改造V1.2
+需求：https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5229
+
+禅道任务：https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29569
+
+
+
+alter table
+   tms_signing_conf
+add
+ `special_require`   varchar(300) NOT NULL DEFAULT ''  COMMENT '特殊要求',
+ MODIFY
+`back_frequency` tinyint(4) NOT NULL DEFAULT '0' COMMENT '返回频率 1-28号';
+
+alter table
+   tms_ordersign_conf
+add
+ `special_require`   varchar(300) NOT NULL DEFAULT ''  COMMENT '特殊要求',
+ MODIFY
+`back_frequency` tinyint(4) NOT NULL DEFAULT '0' COMMENT '返回频率 1-28号';
+
+
+alter table
+   tms_signing_file
+ADD
+  INDEX idx_tsc_id (`tsc_id`);
+
+
+alter table
+   tms_sign_bill
+add
+ `return_cust_no`   varchar(16) NOT NULL DEFAULT ''  COMMENT '返回客户快递单号';
+
+
+
+update tms_signing_conf set back_frequency=1 where back_frequency=4;
+update tms_signing_conf set back_frequency=15 where back_frequency=5;
+update tms_signing_conf set back_frequency=28 where back_frequency=6;
+
+
+
+CREATE TABLE `tms_shipment_plan_car_check` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `tsp_id` int(11) NOT NULL DEFAULT '0' COMMENT '行车计划表id，tms_shipment_plan.id',
+  `vehicle_performance_normal` tinyint(1) NOT NULL DEFAULT '0' COMMENT '车辆性能是否正常：1是 2否',
+  `vehicle_at_ids` varchar(100) NOT NULL DEFAULT '' COMMENT '车辆图片标识符（车外、车厢内拍照，多个用逗号分隔）',
+  `device_normal` tinyint(1) NOT NULL DEFAULT '0' COMMENT '车载设备是否正常：1是 2否',
+  `device_at_ids` varchar(100) NOT NULL DEFAULT '' COMMENT '车载设备图片标识符（摄像设备、易流硬盘正常读取拍照，多个用逗号分隔）',
+  `accessories_complete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '拍摄配件齐全：1是 2否',
+  `accessories_at_ids` varchar(100) NOT NULL DEFAULT '' COMMENT '拍摄配件图片标识符（硬盘读取器、U盘、手机蓝牙自拍杆或执法记录仪、A4硬胶套，多个用逗号分隔）',
+  `package_box_ready` tinyint(1) NOT NULL DEFAULT '0' COMMENT '包装箱是否已准备：1是 2否',
+  `package_box_at_ids` varchar(100) NOT NULL DEFAULT '' COMMENT '包装箱图片标识符（上锁或封签，多个用逗号分隔）',
+  `transport_plan_ready` tinyint(1) NOT NULL DEFAULT '0' COMMENT '专车运输方案是否已准备：1是 2否',
+  `transport_plan_at_ids` varchar(100) NOT NULL DEFAULT '' COMMENT '专车运输方案图片标识符，多个用逗号分隔',
+  `confirm_departure` tinyint(1) NOT NULL DEFAULT '0' COMMENT '检查无误确认出发：1是 2否',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_tsp_id` (`tsp_id`) USING BTREE COMMENT '行车计划表id'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='tms_service/行车计划运输前检查记录表';
+
+
+
+
+
+
+
+
+
+精麻订单业务线上化V1.0-主体流程
+需求链接：https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5210
+
+
+feature_csl_29512_20260312
+禅道任务：https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29512
+
+
+alter table
+   tms_shipment_plan
+add
+`is_anesthetic` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否精麻运输 1、是 2、否',
+add
+ `tmsattrs`   varchar(300) NOT NULL DEFAULT ''  COMMENT '上传附件tms_attachment.tat_ids',
+ add
+`is_transport_proof` tinyint(4) NOT NULL DEFAULT '0' COMMENT '客户提供运输证明 1、是 2、否',
+add
+`is_transport_letter` tinyint(4) NOT NULL DEFAULT '0' COMMENT '客户提供物流委托函 1、是 2、否';
+
+
+alter table
+   tms_shipment_plan
+add
+  `car_source` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '来源:1自有车辆、2承运商车辆',
+add
+  `car_number` varchar(50) NOT NULL DEFAULT '' COMMENT '车牌';
+
+
+
+alter table
+   tms_shipment_plan_order
+add
+`is_pick_video` tinyint(4) NOT NULL DEFAULT '0' COMMENT '取件视频录制 1、是 2、否',
+add
+`is_send_video` tinyint(4) NOT NULL DEFAULT '0' COMMENT '派件视频录制 1、是 2、否';
+
+
+
+UPDATE `tms_shipment_plan` AS sp
+INNER JOIN `car` AS c ON sp.car_id = c.ca_id
+SET sp.car_number = c.car_number
+WHERE sp.car_id > 0;
+
+测试
+{
+    "1": "7.8米",
+    "2": "4.2米",
+    "3": "5.2米",
+    "4": "3.5米",
+    "5": "全顺、依维柯"
+}
+
+
+线上
+
+{
+    "1": "7.8米",
+    "2": "4.2米",
+    "4": "3.5米",
+    "5": "全顺、依维柯"
+}
+
+
+精麻订单业务线上化V1.1-U盘视频交接
+
+feature_29623_csl_20260305  
+
+需求：https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5219
+禅道任务：https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29623
+
+
+
+
+
+
+CREATE TABLE `tms_shipment_plan_dish` (
+  `tspd_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `tsp_id` int(11) NOT NULL DEFAULT '0' COMMENT '行车计划表id，tms_shipment_plan.id',
+  `tspd_no` varchar(16) NOT NULL DEFAULT '' COMMENT 'U盘编号',
+  `tops_id` int(11) NOT NULL DEFAULT '0' COMMENT '使用部门（站点），tms_operation_site.tops_id',
+  `tops_name` varchar(255) NOT NULL DEFAULT ''  COMMENT '使用部门（站点）名称，tms_operation_site.tops_name',
+  `tspd_use_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '开始使用时间',
+
+  `is_send` tinyint(1) NOT NULL DEFAULT '0' COMMENT  '是否寄出 1、是 2、否',
+  `send_uid`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '寄出人id user.ur_uid',
+  `send_name` varchar(50) NOT NULL DEFAULT ''  COMMENT '寄出人名称',
+  `file_name` varchar(255) NOT NULL DEFAULT ''  COMMENT '存储文件名称',
+  `send_no` varchar(50) NOT NULL DEFAULT '' COMMENT '寄出快递单号',
+
+
+  `is_receive` tinyint(1) NOT NULL DEFAULT '0' COMMENT  '是否接收 1、是 2、否',
+  `receive_uid`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '接收人id user.ur_uid',
+  `receive_name` varchar(50) NOT NULL DEFAULT ''  COMMENT '接收人名称',
+  `receive_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '接收时间',
+  `receive_remark` varchar(500) NOT NULL DEFAULT ''  COMMENT '接收备注',
+
+  `is_dispose` tinyint(1) NOT NULL DEFAULT '0' COMMENT  '是否处理 1、是 2、否',
+
+  `is_reviewed` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '是否复核无误 1、是 2、否',
+
+  `is_notify_site_delete` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '是否通知站点删除视频 1、是 2、否',
+
+  `is_copied_to_nas` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '是否拷贝NAS系统 1、是 2、否',
+  `copy_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '拷贝时间',
+
+  `is_retention_expired` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '是否已过保管期 1、是 2、否',
+  `is_nas_content_deleted` TINYINT(1) NOT NULL DEFAULT '0' COMMENT 'NAS系统内容是否删除 1、是 2、否',
+
+  `is_guided_customer` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '是否已导客户 1、是 2、否',
+
+  `is_usb_cleared` TINYINT(1) NOT NULL DEFAULT '0' COMMENT 'U盘是否清空 1、是 2、否',
+
+  `is_returned_to_site` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '是否已还站点 1、是 2、否',
+  `return_tracking_no` varchar(50) NOT NULL DEFAULT '' COMMENT '归还快递单号',
+
+
+  `tspd_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tspd_id`),
+  KEY idx_tsp_id (`tsp_id`),
+  KEY idx_tops_id (`tops_id`)
+)  COMMENT='行车计划运输U盘交接表/tms_admin';
+
+
+
+
+精麻订单业务线上化V1.2-运输证明流转
+https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5220
+
+feature_29678_csl_20250310
+禅道任务：https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29678
+
+
+
+CREATE TABLE `tms_shipment_plan_transport` (
+  `tspt_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `tsp_id` int(11) NOT NULL DEFAULT '0' COMMENT '行车计划表id，tms_shipment_plan.id',
+
+  `receive_uid`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '接收人id user.ur_uid',
+  `receive_name` varchar(50) NOT NULL DEFAULT ''  COMMENT '接收人名称',
+  `receive_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '接收时间',
+
+  `tops_id` int(11) NOT NULL DEFAULT '0' COMMENT '接收部门（站点），tms_operation_site.tops_id',
+  `tops_name` varchar(255) NOT NULL DEFAULT ''  COMMENT '接收部门（站点）名称，tms_operation_site.tops_name',
+
+  `use_preserver_uid`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '使用保管人id user.ur_uid',
+  `use_preserver_name` varchar(50) NOT NULL DEFAULT ''  COMMENT '使用保管人名称',
+
+  `transport_proof_retained` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '收件方留存运输证明 1、是 2、否',
+  `transport_letter_retained` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '收件方留存物流委托函 1、是 2、否',
+  `retained_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '留存时间',
+
+  `is_exchange` TINYINT(4) NOT NULL DEFAULT '2' COMMENT '是否流转 1、是 2、否',
+
+  `transport_proof_at_ids` varchar(100) NOT NULL DEFAULT ''  COMMENT '运输证明附件atids 多个用逗号分隔',
+  `transport_letter_at_ids` varchar(100) NOT NULL DEFAULT ''  COMMENT '物流委托函atids  多个用逗号分隔',
+
+  `return_custodian_uid`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '带回保管人id user.ur_uid',
+  `return_custodian_name` varchar(50) NOT NULL DEFAULT ''  COMMENT '带回保管人名称',
+
+  `forwarding_method` TINYINT(4) NOT NULL DEFAULT '0' COMMENT '转寄方式 1、客户 2、站点',
+
+  `receiving_region_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '接收城市ID system_region.region_id',
+  `receiving_region_name` varchar(128) NOT NULL DEFAULT '' COMMENT '接收城市名',
+
+  `recipient_uid`  int(11)  unsigned NOT NULL DEFAULT '0' COMMENT '快递接收人id user.ur_uid',
+  `recipient_name` varchar(50) NOT NULL DEFAULT ''  COMMENT '快递接收人名称',
+
+  `courier_company` varchar(100) NOT NULL DEFAULT ''  COMMENT '快递公司',
+  `tracking_number` varchar(50) NOT NULL DEFAULT ''  COMMENT '转寄快递单号',
+
+  `tspt_visible` int(4) NOT NULL DEFAULT '1' COMMENT '状态 1正常 2删除',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` datetime DEFAULT NULL COMMENT '删除时间 为null表示未删除',
+  PRIMARY KEY (`tspt_id`),
+  KEY idx_tsp_id (`tsp_id`),
+  KEY idx_tops_id (`tops_id`)
+)  COMMENT='行车计划运输证明流转表/tms_admin';
+
+
+
+SELECT car_number,car_ratify_size FROM `car` WHERE car_number in ('鲁A37L3A','鲁A10YL0','苏AB390S','苏AS275N','苏A93RS8','苏A672D5','沪DHC084','川A1W47D','京HBK030','粤A88RX8','贵A88XT9','川A60M91','浙AE12N2','苏A26J5E','鄂AF62C9','黑A3V86W','川A7M0W5','沪ERN777','桂A2A3C5','甘AD7A53') GROUP BY car_ratify_size
+
+
+京HBK030
+川A1W47D
+川A60M91
+川A7M0W5
+桂A2A3C5
+沪DHC084
+沪ERN777
+浙AE12N2
+甘AD7A53
+粤A88RX8
+苏A26J5E
+苏A672D5
+苏A93RS8
+苏AB390S
+苏AS275N
+贵A88XT9
+鄂AF62C9
+鲁A37L3A
+黑A3V86W
+
+
+外协新增查询字段
+
+feature_29723_csl_20260312 tms_admin
+feature_29723_csl_20260316 bms_admin
+禅道任务：https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29723
+
+
+
+
+alter table
+   tms_contact_examination
+add
+ `at_ids`   varchar(300) NOT NULL DEFAULT ''  COMMENT '上传附件tms_attachment.tat_ids';
+
+
+
+
+外协新增查询字段  已上线
+签单返回配置-过滤项目状态   已上线
+行车单分配优化-支持选承运商车辆  测试中
+操作员管理证件维护、监控  测试中
+
+
+
+
+
+
+操作员管理证件维护、监控
+feature_29789_csl_20260317
+禅道任务：https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29789
+
+
+
+
+
+
+
+
+
+AI温度预测后台显示V1.1
+https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5260
+
+feature_29830_csl_20260320
+禅道任务：https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29830
+
+
+
+AI订单审核
+需求：https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5256
+
+
+alter table
+   tms_order_information
+add
+ `ai_review`  TINYINT(1) NOT NULL DEFAULT '0' COMMENT 'ai预审结果 1 预审通过 2 预审异常',
+add  
+  column `ai_review_data`  text COMMENT 'ai预审结果数据';
+
+
+
+
+$redisAiClusterEnv = env('REDIS_AI_CLUSTER_NODES');
+$redisAiClusterPwd = env('REDIS_AI_CLUSTER_PASSWORD', null);
+$redisAiNodeList   = explode(',', $redisAiClusterEnv);
+$redisAiServers    = [];
+foreach ($redisAiNodeList as $redisAiNode) {
+    $AinodeInfo       = explode(':', $redisAiNode);
+    $redisAiServers[] = [
+        'host'    => $AinodeInfo[0],
+        'port'    => $AinodeInfo[1],
+        // 'timeout' => 1
+        'timeout' => env('REDIS_TIMEOUT', 1)
+    ];
+}
+
+
+
+        'redisAi' => [
+            'class'   => 'sswl\component\predis\Connection',
+            'servers' => $redisAiServers,
+            'options' => [
+                'cluster'    => 'redis',
+                //特殊场景，共享前缀配置，多个项目共享同一套数据
+                'prefix'     => YII_ENV.':',
+                'parameters' => [
+                    'password' => $redisAiClusterPwd
+                ]
+            ],
+        ],
+
+
+
+
+
+REDIS_AI_CLUSTER_NODES=172.19.199.100:6739
+REDIS_AI_CLUSTER_PASSWORD=6w~BRiv8a
+
+
+
+
+
+
+
+
+
+
+
+
+    $temp = (new Query())
+            ->select('t.to_temperature,t.to_temperature_name, COUNT(DISTINCT t.to_id) as to_id_count')
+            ->from('transport_order t')
+            ->innerJoin('tms_order_temperature_prediction p', 'p.to_id=t.to_id')
+            ->where(['to_status' => [2, 3, 4]]) // 可选：只查询在途订单
+            ->groupBy('to_temperature')
+            ->all();
