@@ -147,11 +147,6 @@ https://project.ashsh.com.cn/index.php?m=task&f=view&id=29161
 需求：https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5166
 
 
- 签单返回改造V1.1
-feature_29425_csl_20260205  tms_service  未上线 客户端说是不调用接口
-禅道任务：https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29425
-需求:https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5211
-
 
 /****** 注意事项**********/
 
@@ -165,6 +160,11 @@ ON_LINE_TIME_SWITCH
 
 /****** 注意事项**********/
 
+
+ 签单返回改造V1.1
+feature_29425_csl_20260205  tms_service  已上线 客户端说是不调用接口
+禅道任务：https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29425
+需求:https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5211
 
 
 //sql 已上线
