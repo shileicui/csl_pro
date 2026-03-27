@@ -732,6 +732,39 @@ feature_csl_29512_20260312
 
 /******上线注意 start*********/
 
+
+
+
+
+测试
+{
+    "1": "7.8米",
+    "2": "4.2米",
+    "3": "5.2米",
+    "4": "3.5米",
+    "5": "全顺、依维柯"
+}
+
+
+线上
+
+{
+    "1": "7.8米",
+    "2": "4.2米",
+    "4": "3.5米",
+    "5": "全顺、依维柯"
+}
+
+
+
+下面的表已上线
+
+
+UPDATE `tms_shipment_plan` AS sp
+INNER JOIN `car` AS c ON sp.car_id = c.ca_id
+SET sp.car_number = c.car_number
+WHERE sp.car_id > 0;
+
 alter table
    tms_shipment_plan
 add
@@ -755,35 +788,6 @@ add
 `is_pick_video` tinyint(4) NOT NULL DEFAULT '0' COMMENT '取件视频录制 1、是 2、否',
 add
 `is_send_video` tinyint(4) NOT NULL DEFAULT '0' COMMENT '派件视频录制 1、是 2、否';
-
-
-
-UPDATE `tms_shipment_plan` AS sp
-INNER JOIN `car` AS c ON sp.car_id = c.ca_id
-SET sp.car_number = c.car_number
-WHERE sp.car_id > 0;
-
-测试
-{
-    "1": "7.8米",
-    "2": "4.2米",
-    "3": "5.2米",
-    "4": "3.5米",
-    "5": "全顺、依维柯"
-}
-
-
-线上
-
-{
-    "1": "7.8米",
-    "2": "4.2米",
-    "4": "3.5米",
-    "5": "全顺、依维柯"
-}
-
-
-
 
 
 
@@ -955,7 +959,7 @@ add
 
 
 操作员管理证件维护、监控
-feature_29789_csl_20260317
+feature_29789_csl_20260317  已上线
 禅道任务：https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29789
 
 
@@ -969,7 +973,7 @@ feature_29789_csl_20260317
 AI温度预测后台显示V1.1
 https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5260
 
-feature_29830_csl_20260320
+feature_29830_csl_20260320  已上线
 禅道任务：https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29830
 
 
@@ -977,7 +981,7 @@ feature_29830_csl_20260320
 AI订单审核
 需求：https://project.ashsh.com.cn/index.php?m=story&f=view&storyID=5256
 
-
+AI订单审核
 feature_29897_csl_20260323 tms_admin
 feature_29897_csl_20260323 tms_service
 禅道任务:https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29897
@@ -1061,28 +1065,31 @@ REDIS_AI_CLUSTER_PASSWORD=@test@redis@
 
 
 
+to_id  运单id
+to_no 运单编号
+start_address 寄件地址
+start_region_name 寄件城市
+stop_address  收件地址
+stop_region_name  收件城市
+stop_cu_name 收件单位
+stop_co_name 收件人
+to_remark    客户备注
+to_temperature_name  温区
+project_special_requirements  项目特殊要求
+ol_pickup_planbegin 预取时间
+ol_delivery_planbegin  预派时间
+ol_remark  取派备注
+to_tags_names 订单标签
+cp_tags_names  项目标签
+to_goodstype_name  货物类型
+to_timelimit_name  运输时效
+to_the_num_name  温度计数量
 
-to_id   运单id
-to_no   运单编号
-start_address   寄件地址
-stop_address   收件地址
-stop_cu_name   收件单位
-stop_co_name   收件人
-ol_pickup_planbegin   预取时间
-ol_delivery_planbegin   预派时间
-to_timelimit   运输时效
-to_remark   客户备注
-ol_remark   取派备注
-project_special_requirements   项目特殊要求
-to_tags   订单标签
-cp_tags   项目标签
-to_goodstype   货物类型
-to_temperature_name   温区
-to_thermometer   温度计
+运单序号、寄件地址、收件地址、收件单位、收件人、预取时间、预派时间、运输时效、客户备注、项目特殊要求、订单标签、项目标签、货物类型、温区、温度计。我们需要上方这几个字段存入redies
 
 
  阿里项目 屏蔽 外协账号（跨越-阿里项目）
-feature_29872_csl_20260320
+feature_29872_csl_20260320  已上线
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29872
 
 
@@ -1091,7 +1098,7 @@ update opn_operator set role_type=3 WHERE user_id = 156494;
 
 
 签单配置返支持按照周期返单
-feature_29948_csl_20260324  tms_admin
+feature_29948_csl_20260324  tms_admin  已上线
 https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29948
 
 
@@ -1110,3 +1117,34 @@ add
 
 
  update tms_signing_conf set back_type=1 WHERE back_frequency != 0;
+
+
+
+获取订单签章附件接口调整
+feature_29879_csl_20260325 tms_service
+禅道任务：https://project.ashsh.com.cn/index.php?m=task&f=view&id=29879  已上线
+
+
+
+cart订单列表 订单状态支持多选
+feature_29975_csl_20260326 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&taskID=29975
+
+
+
+车辆管理新增最新归还城市字段
+feature_29991_csl_20260326 tms_admin
+https://project.ashsh.com.cn/index.php?m=task&f=view&id=29991
+
+
+alter table
+   car
+add
+  `returned_region_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '最新归还城市ID system_region.region_id',
+add
+  `returned_region_name` varchar(128) NOT NULL DEFAULT '' COMMENT '最新归还城市名称';
+
+
+
+  UPDATE `car`
+SET returned_region_id = region_id,returned_region_name = region_name;
